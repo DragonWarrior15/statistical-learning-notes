@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage[a4paper, margin=1in]{geometry}
 \usepackage{amsfonts}
+\usepackage{mathtools}
 
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning}
@@ -524,6 +525,59 @@
         t_{s}^{*} &= E[min\{n \geq 1 \text{ such that } X_{n}=s\} | X_{0} = s] \\
         t_{s}^{*} &= 1 + \sum_{j} t_{j} p_{ij}
     \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Weak Law of Large Numbers}
+    Suppose we want to know the mean height of penguins in the world. The absolutely correct answer can be obtained by taking the average of the entire population. But ths is not practical, and often we will have to resort to estimating the quantity through a sample. Let there be $n$ penguins in the sample and $X_{1}, X_{2}, \ldots, X_{n}$ be the random variables denoting their heights. Then,
+    \begin{align*}
+        M_{n} &= \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}\\
+        \lim_{n \to \inf} E[M_{n}] &= E[X] = \text{The true mean}
+    \end{align*}
+
+    \subsection{Markov Inequality/Chebychev Inequality}
+    For nonnegative random variable $X$,
+    \begin{alignat*}{2}
+        E[X] &= \sum_{x}xp_{X}(x) &&\geq \sum_{x \geq a}xp_{X}(x) \tag*{discrete case}\\
+            &= \int_{x}xp_{X}(x) &&\geq \int_{x \geq a}xp_{X}(x) \tag*{continuous case}
+    \end{alignat*}
+    
+    Applying the above set of inequalities to the variable $X - \mu$
+    \begin{align*}
+        E[(X - \mu)^{2}] &\geq a^{2} P((X - \mu)^{2} \geq a^{2}) \\
+        \text{or, \;} Var(X) &\geq a^{2} P(\mid X - \mu \mid \geq a)\\
+        \text{For continuous case, }\\
+        \sigma^{2} &= \int_{-\inf}^{\inf} (x-\mu)^{2}f_{X}(x) dx\\
+                  &\geq \int_{-\inf}^{\mu-c} (x-\mu)^{2}f_{X}(x)dx + \int_{\mu+c}^{\inf} (x-\mu)^{2}f_{X}(x)dx\\
+                  &\geq c^{2} P(\mid X - \mu \mid \geq c)\\
+        \text{Hence,}\\
+        P(\mid X - \mu \mid \geq c^{2}) &\leq \frac{\sigma^{2}}{c^{2}}\\
+        \text{or, } \\
+        \Aboxed{P(\mid X - \mu \mid \geq k\sigma) &\leq \frac{1}{k^{2}}}\text{\;\;\;where $c = k\sigma$}
+    \end{align*}
+
+    Going back to the problem of estimating the mean,
+    \begin{align*}
+        M_{n} &= \frac{X_{1} + X_{2} + \cdots + X_{n}}{n} \\
+        E[M_{n}] &= \frac{1}{n} \sum_{i=1}^{n} E[X_{i}] = \mu \text{\;\; expectation of expectation} \\
+        Var(M_{n}) &= \sum_{i=1}^{n} Var(\frac{X_{i}}{n}) = \frac{\sigma^{2}}{n} \text{\;\; since $X_{i}$ are independent} \\
+        \Aboxed{P(\mid M_{n} - \mu \mid \geq \epsilon) &\leq \frac{\sigma^{2}}{n\epsilon^{2}}}
+    \end{align*}
+    or, as $n \rightarrow \inf,\; M_{n} - \mu \rightarrow 0$, $\epsilon$ is the error bound/confidence.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Central Limit Theorem}
+    Chebychev's inequality gives a loose bound. We can do better with CLT. Let $X$ be a random variable with mean $\mu$ and variance $\sigma^{2}$, and let $X_{i}$ be independent identically distributed random variables with the same distribution as $X$. Then,
+    \begin{align*}
+        S_{n} &= X_{1} + X_{2} + \cdots + X_{n}\\
+        Z_{n} &= \frac{S_{n} - E[S_{n}]}{\sigma_{n}} \text{\;\;random variable with mean $0$ and variance $1$} \\
+             &= \frac{S_{n} - nE[X]}{\sqrt{n} \sigma}\\
+        \text{or,\;\;} S_{n} &= \sqrt{n} \sigma Z_{n} + nE[X] \\
+        \text{In\;\;} \lim_{n \to \inf} Z_{n} &\rightarrow Z \text{\;(standard normal)}\\
+        \text{or,\;\;} \Aboxed{Z &= \frac{S_{n} - nE[X]}{\sqrt{n} \sigma}} \text{\;\;only for CDF (no comment on PDF/PMF)}\\
+        \text{Thus,\;\;} \Aboxed{P(Z > c) &= P(\frac{S_{n} - nE[X]}{\sqrt{n} \sigma} > c)}
+    \end{align*}
+    By defining the confidence on how close we desire $S_{n}$ to the actual mean, we can calculate the required value of the $n$ using standard normal CDF tables. However, we need to have an estimate of variance of the distribution in order to do the estimate of $n$.
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Problems}
