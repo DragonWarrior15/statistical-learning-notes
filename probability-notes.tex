@@ -8,6 +8,9 @@
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning}
 
+\usepackage{pgfplots}
+\pgfplotsset{width=5cm,compat=1.9}
+
 % remove paragraph indent
 \setlength{\parindent}{0em}
 
@@ -580,6 +583,43 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Bayesian Inference}
+    We have a signal $S$ that goes through a "model" $a$ through which we observe $X$ (with sum added noise $N$). The aim of Bayesian Inference is to try to infer $S$ given the observed $X$.
+    \newline
+    Hypothesis testing is done on an unknown that takes some possible values, and the aim is to arrive at a value that gives a small probability of incorrect decision (e.g. - Radar)
+    \newline
+    Estimation is aimed at finding the value of a quantity with a small estimation error (e.g. poll estimation)
+    \newline
+    Bayes Rule
+    \begin{align*}
+        p_{\Theta|X}(\theta|x) &= \frac{p_{\Theta}(\theta)p_{X|\Theta}(x|\theta)}{p_{X}(x)} \tag*{$\theta$ and $X$ are both discrete}\\
+        \text{or,\;\;} Posterior &= \frac{Prior * Model}{Data}\\
+        p_{\Theta|X}(\theta|x) &= \frac{p_{\Theta}(\theta)f_{X|\Theta}(x|\theta)}{f_{X}(x)} \tag*{$\theta$ is discrete and $X$ is continuous}\\
+    \end{align*}
+    Note that Bayesian inference will give us a distribution over the possible values, but it is often desirable to get an estimate.
+
+    \subsection{Maximum a Posteriori (MAP)}
+    MAP is a point estimate of the unknown quantity and is defined as follows
+    \begin{align*}
+        p_{\Theta|X}(\theta|x) = \max_{\theta}p_{\Theta|X}(\theta|x) \tag*{$\theta$ with maximum posterior probability}\\
+    \end{align*}
+    In continuous case, expected value can be a better estimate
+
+    \subsection{Least Mean Square Estimate}
+    Here, we aim to find an estimate such that
+    \begin{align*}
+        \theta* &= \min_{c} E[(\Theta - c)^{2}]\\
+        E[(\Theta - c)^{2}] &= E[\Theta^{2}] - 2cE[\Theta] + c^{2}\\
+        \text{Taking derivative,\;\;} \frac{dE}{dc} &= 0\\
+        \Aboxed{c &= E[\Theta]}\\
+        \text{In general,\;\;} c &= E[\Theta|X] \tag*{minimizes $E[(\Theta - g(X))^{2}]$ over all estimators $g(X)$ }
+    \end{align*}
+    $E[\Theta]$ minimizes the least squares estimate
+    \newline
+    When $X$ is observed, the best estimate simlply becomes $E[\Theta|X]$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Problems}
     \subsection{Cumulative Distribution Function}
     A random variable X is a combination of a continuous and discrete distribution as follows
@@ -823,6 +863,137 @@
     \end{align*}
     Solving, $\mu_{1} = \frac{55}{4}, \mu_{2} = 12$ and $\mu_{3} = \frac{111}{8}$ \newline
 
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Estimating Binomial with CLT, $\frac{1}{2}$ correction}
+    Given a Bernoulli Process with $n = 36$ and $p = 0.5$, find $P(S_{n} <= 21)$. \newline \newline
+    \textbf{Ans.} The exact answer will be
+    \begin{align*}
+        \sum_{k=0}^{21}\binom{36}{k}(\frac{1}{2})^{36} = 0.8785
+    \end{align*}
+    But the same can be estimated using the CLT as follows
+    \begin{align*}
+        \mu = np = 18\\
+        \sigma^{2} = np(1-p) = 9\\
+        P(S_{n} \leq 21) \approx P(\frac{S_{n} - 18}{3} \leq \frac{21-18}{3}) \approx 0.843
+    \end{align*}
+    Our estimate is in the rough range of the answer but not quite close. We can do better using the $\frac{1}{2}$ correction
+    \begin{align*}
+        P(S_{n} \leq 21) = P(S_{n} < 22) \text{\;\;since $S_{n}$ is an integer}\\
+        \text{Consider \;}P(S_{n} <= 21.5) \text{\;\;as a compromise between the two}\\
+        P(S_{n} <= 21.5) = P(\frac{S_{n} - 18}{3} \leq \frac{21.5 - 18}{3}) \approx 0.879
+    \end{align*}
+    In a similar manner, $P(S_{n}=19) = P(18.5 \leq S_{n} \leq 19.5)$ using $\frac{1}{2}$ correction.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{LMS estimate}
+    Given the prior $f_{\Theta|(\theta)}$, uniform in $[4,10]$, and $f_{X|]Theta}(x|\theta)$ is uniform in $[\theta-1, \theta+1]$, estimate the posterior of $\theta$.
+    \newline \newline
+    \textbf{Ans.} we need to evaluate $f_{\Theta|X}(\theta|x)$ in order to get $E[\Theta|X]$.
+    \newline
+    $f_{X,\Theta}(x,\theta) = f_{X}(x) f_{\Theta|X}(\theta|x)$ which is a parallelogram on the $\theta-x$ plane at the points  $(3,4)$, $(5,4)$, $(9,10)$ and $(11,10)$. Then $E[\Theta|X]$ can be obtained by drawing vertical lines on the planes and calculating the $E[\theta]$ over that line. It is a line which bends at two points.
+
+    % plot of f(theta)
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $\theta$,
+            ylabel = {$f_{\Theta}(\theta)$},
+            xmin=3, xmax=11,
+            ymin=0, ymax=1
+        ]
+        %define the plot here
+        \addplot [
+            domain=4:10, 
+            samples=2, 
+            color=black,
+        ]
+        {1/6};
+        \end{axis}
+    \end{tikzpicture}
+    \hskip 5pt
+    % plot of f(X|theta)
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $\theta$,
+            ylabel = {$f_{X|\Theta}(x|\theta)$},
+            xmin=0, xmax=4,
+            ymin=0, ymax=1,
+            xticklabels={$\theta-1$,$\theta+1$},
+            xtick={1,3}
+        ]
+        %define the plot here
+        \addplot [
+            domain=1:3,
+            samples=2, 
+            color=black,
+        ]
+        {1/2};
+        \end{axis}
+    \end{tikzpicture}
+    \hskip 5pt
+    % plot of theta vs x
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = $X$,
+            ylabel = {$\theta$},
+            xmin=0, xmax=12,
+            ymin=0, ymax=11,
+            legend pos=north west,
+        ]
+        %define the plot here
+        \addplot [
+            domain=3:5,
+            samples=2, 
+            color=black,
+        ]
+        {4};
+        \addplot [
+            domain=3:9,
+            samples=2, 
+            color=black,
+        ]
+        {x+1};
+        \addplot [
+            domain=9:11,
+            samples=2, 
+            color=black,
+        ]
+        {10};
+        \addplot [
+            domain=5:11,
+            samples=2, 
+            color=black,
+        ]
+        {x-1};
+        % \addlegendentry{$\theta\;vs\;x$}
+        \addplot [
+            domain=3:5,
+            samples=2, 
+            color=blue,
+        ]
+        {(x/2)+(5/2)};
+        \addplot [
+            domain=5:9,
+            samples=2, 
+            color=blue,
+        ]
+        {x};
+        \addplot [
+            domain=9:11,
+            samples=2, 
+            color=blue,
+        ]
+        {(x/2)+(9/2)};
+        \addlegendentry{$E[\theta|X]$}
+        \end{axis}
+    \end{tikzpicture}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
