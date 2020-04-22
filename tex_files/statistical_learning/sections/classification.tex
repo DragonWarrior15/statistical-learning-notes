@@ -1,0 +1,149 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% \usepackage{tikz}
+% \usetikzlibrary{automata, positioning}
+
+% \usepackage{pgfplots}
+% \pgfplotsset{width=5cm,compat=1.9}
+\setlength{\parindent}{0em}
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Classification}
+    For more than two classes, it is hard to maintain the ordering between them using linear regression. For two classes however, linear regression can be used to prepare an ordering of the data (although difficult to interpret as probability themselves).\newline 
+    \textbf{Classification using linear regression to predict binary reponse will be same as Linear Discriminant Analysis (LDA).}\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Logistic Regression}
+    Modelling binary response with linear regression might produce values outside the range $[0,1]$ ( and possibly negative as well). Hence we use a logistic function to compress the outputs to $[0,1]$ range.
+    
+    \begin{align*}
+        p(Y=1|X) = \frac{1}{1+e^{-(\beta_{0}+\beta_{1}X)}}\\
+        odds = \frac{p(Y=1|X)}{1-p(Y=1|X)} = e^{\beta_{0} + \beta_{1}X}
+    \end{align*}
+    \begin{itemize}
+        \item The solution to this model is obtained via \textbf{Maximum Likelihood Estimation}.
+        \item Odds are also used to interpret probability. A low value of odds (close to $0$) indicates a low probability while a high value (close to $\inf$) indicates a high probability.
+        \item One unit change in $X$ will cause $\beta_{1}$ change in the $log\;odds$.
+    \end{itemize}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Loss Function}
+    \textbf{Maximum Likelihood} is used to determine the coefficients. Basic intuition is to choose such a pair of $\beta's$ that will make the predicted probability as close to the correct binary response ($0$ or $1$) as possible.
+
+    \begin{align*}
+        \text{likelihood function} &= l(\beta_{0},\beta_{1}) = \prod_{i:y_{i}=1} p(x_{i}) \prod_{i^{'}:y_{i^{'}}=0}(1-p(x_{i^{'}}))\\
+        \text{Taking logarithm, } logloss &= \sum_{i:y_{i}=1} \log p(x_{i}) + \sum_{i^{'}:y_{i^{'}}=0}\log (1-p(x_{i^{'}}))\\
+        &= \sum_{i} y\log p_{i} + (1-y)\log (1-p_{i}) \tag*{since $y = 0$ or $1$}
+    \end{align*}
+    All the formulae listed here and above extend easily for the case of multiple variables, wherein we simply replace the sum $\beta_{0} + \beta_{1}X$ with $\beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{p}X_{p}$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Linear Discriminant Analysis (LDA)}
+    Why use LDA ?
+    \begin{itemize}
+        \item When the \textbf{classes are well separated}, the parameter estimates for the \textbf{logistic regression} model are surprisingly \textbf{unstable}. \textbf{LDA} does not suffer from this problem and is relatively \textbf{stable}.
+        \item if \textbf{$n$ is small} and the distribution of \textbf{$X$ is approximately normal} in each of the classes, \textbf{LDA} is again \textbf{more stable} than logistic regression.
+        \item LDA is popular when we have \textbf{more than two classes}.
+    \end{itemize}
+
+    LDA first models the distribution of $X$ in each class, and then uses Bayes' rule to flip this and get $p(Y|X)$. When these distributions of $X$ are normal, the model is very similar in form to logistic regression.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Model Derivation}
+    Let the total number of classes be $K$ and the prior probability that a randomly chosen observation comes from the $k^{th}$ class be $\pi_{k} = P(Y=k)$. Also, let $f_{k}(x) = P(X=x|Y=k)$ denote the probability distribution function of $X$ for the data points belonging to the class $k$. By Bayes' Rule
+    \begin{align*}
+        \pi_{k} &= \frac{\text{Observations in class k}}{\text{Total observations}}\\
+        p(Y=k|X=x) &= \frac{P(Y=k)P(X=x|Y=k)}{P(X=x)}\\
+                &= \frac{P(Y=k)P(X=x|Y=k)}{\sum_{l=1}^{K} P(Y=l)P(X=x|Y=l)}\\
+                &=  \frac{\pi_{k}f_{k}(x)}{\sum_{l=1}^{K}\pi_{l}f_{l}(x)}
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Gaussian Model with one Predictor}
+    We assume the predictor to have a Gaussian distribution. For simplicity, also assume that the variances of $X$ for all the $K$ classes are also the same (fundamental assumption for linearity of decision boundary). Then,
+    \begin{align*}
+        f_{k}(x) &= \frac{1}{\sqrt{2\pi}\sigma}e^{\frac{(x-\mu_{k})^{2}}{2\sigma^{2}}}\\
+        p_{k}(x) &= \frac{\pi_{k}\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{(x-\mu_{k})^{2}}{2\sigma^{2}}}}{\sum_{l=1}^{K}\pi_{l}\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{(x-\mu_{l})^{2}}{2\sigma^{2}}}}
+    \end{align*}
+    
+    For any given $x$, we notice that all $f_{k}(x)$'s have the same denominator. To assign a class, we just need to find the maximum value. Taking $\log$, removing the denominator and removing the parts corresponding to $x$ from numerator (since they are same across all classses),
+    \begin{align*}
+        \log{p_{k}(x)} \propto \log{pi_{k}} + \frac{\mu_{k}^{2}}{2\sigma^{2}} - \frac{x\mu_{k}}{\sigma^{2}}
+    \end{align*}
+
+    In the case of two classes, the decision boundary can be found by equating the two $\log probabilities$ (assume the priors to be same for simplicity)
+    \begin{align*}
+        x\frac{\mu_{1}}{\sigma^{2}} - \frac{\mu_{k}^{2}}{2\sigma^{2}} &= x\frac{\mu_{2}}{\sigma^{2}} - \frac{\mu_{2}^{2}}{2\sigma^{2}} \\
+        \text{or, } x &= \frac{\mu_{1} + \mu_{2}}{2} 
+    \end{align*}
+
+    $\mu_{k}$ and $\sigma^{2}$ need to be estimated from the data, which can be done through the following formulae ($n$ is total training examples and $n_{k}$ is total training examples from class $k$)
+    \begin{align*}
+        \hat{\mu_{k}} &= \frac{1}{n_{k}} \sum_{i:y_{i}=k}x_{i}\\
+        \hat{sigma^{2}} &= \frac{1}{N - K}\sum_{k=1}^{K}\sum_{i:y_{i}=k}(x-\hat{\mu_{k}})^{2}
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Multivariate Gaussian}
+    A Multivariate Gaussian is an extension of the 1-D gaussian to multiple dimensions. Here, we assume that each of the individual dimensions is itself a Gaussian, with the different dimensions having correlation with each other, which are all specified in the correlation matrix.
+    \begin{align*}
+        X &\sim \mathcal{N}(\mu, \Sigma) \\
+        f(x) &= \frac{1}{(2\pi)^{p/2}\mid \Sigma \mid^{1/2}} \exp(-\frac{1}{2}(x-\mu)^{T}\Sigma^{-1}(x-\mu))
+    \end{align*}
+
+    Here, $\mu$ is the mean vector $\Sigma$ is the covariance matrix (symmetric). \newline 
+    Assume $\mu_{k}$ represents the mean vector for individual classes and we have a common covariance matrix across all classes. Plugging this into the LDA equation and removing the common part across all classes, the discriminant becomes
+    \begin{align*}
+        \log{p_{k}(x)} \propto \log{\pi_{k}} + x^{T}\Sigma^{-1}\mu_{k} - \frac{1}{2}\mu_{k}^{T}\Sigma^{-1}\mu_{k}    
+    \end{align*}
+
+    To calculate the decision boundary, we simply do a pairwise equality between the discriminants of the individual classes and get the pairwise decision boundaries.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Quadratic Discriminant Analysis (QDA)}
+    The assumption of same covariance matrix $\Sigma$ across all classes is fundamental to LDA in order to create the linear decision boundaries. \newline
+    However, in QDA, we relax this condition to allow class specific covariance matrix $\Sigma_{k}$. Thus, for the $k^{th}$ class, $X$ comes from $X \sim \mathcal{N}(\mu_{k}, \Sigma_{k}$. \newline
+    Plugging this into the classification rule to get the discriminants (removing denominators as they are common for all classes)
+    \begin{align*}
+        \delta_{k}(x) &= \log{\pi_{k}} -\frac{1}{2}\log{\mid\Sigma \mid} - \frac{1}{2}(x-\mu_{k})^{T}\Sigma_{k}^{-1}(x-\mu_{k}) \\
+        \text{Note that, } x^{T}\Sigma_{k}^-{1}\mu_{k} &= \mu_{k}^{T}\Sigma_{k}^{-1}x \text{  since $\Sigma$ is symmetric and $x^{T}\Sigma_{k}^{-1}\mu_{k}$ is scalar} \\
+        \delta_{k}(x) &= \log{\pi_{k}} -\frac{1}{2}\log{\mid\Sigma \mid} - \frac{1}{2}x^{T}\Sigma_{k}^{-1}x + x^{T}\Sigma_{k}^{-1}\mu_{k} -\frac{1}{2}\mu_{k}^{T}\Sigma_{k}^{-1}\mu_{k}
+    \end{align*}
+
+    Notice the term $x^{T}\Sigma_{k}^{-1}x$ that gives the classifier it's quadratic form. \newline
+    However, since we are calculating individual covariance matrices for all the classes, we need to calculate more parameters than before which requires more data. \newline
+    The following points about QDA vs LDA must be noted
+    \begin{itemize}
+        \item QDA requires evaluation of substantially more parameters than LDA which subsequently means that more training data points must be available.
+        \item QDA will be superior if the decision boundaries are not linear, i.e., LDA's assumption of equal variances for all classes will not hold true which will cause LDA to have a higher bias.
+        \item QDA is more flexible than LDA which can reduce bias. However, bias-variance tradeoff implies that variance can be relatively higher for QDA if training examples are not sufficient.
+    \end{itemize}
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Comparison of Classifiers}
+    Logistic Regression and LDA are similar in the sense that they produce linear decision boundaries.
+    \begin{itemize}
+        \item Logistic Regression estimates coefficients using Maximum Likelihood Estimate
+        \item LDA estimates parameters using the sample mean and variance
+    \end{itemize}
+    For both the models, $\log {odds}$ takes a linear form. LDA adds a strong assumption of normal distribution of the predictor variables.\newline
+    
+    Comparison of models
+    \begin{itemize}
+        \item Logistic Regression is the simplest classifier one can build. It assumes linearly separated decision boundaries. It is usually used as a binary classifier. The decision boundary can be made non linear by adding transformed version of the predictors like second powers, interaction terms etc.
+        \item LDA is also a linear classifier, but works under the assumptions that the decision boundaries are linear and all the classes share the same covariance matrix. It works well with multiple classes. The performance can be quite bad if the underlying variables are not normally distributed.
+        \item QDA is a natural extension of LDA that relaxes the assumption of shared covariance matrix and allows each class to have a separate covariance matrix. This causes QDA to work well when decision boundaries have non linearity
+        \item KNN is a non parametric model that is the most flexible. However, we can get no indication of which predictor is important, and the model can suffer from high variance.
+    \end{itemize}
+
+
+\end{document}
