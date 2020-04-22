@@ -87,7 +87,7 @@
     $\mu_{k}$ and $\sigma^{2}$ need to be estimated from the data, which can be done through the following formulae ($n$ is total training examples and $n_{k}$ is total training examples from class $k$)
     \begin{align*}
         \hat{\mu_{k}} &= \frac{1}{n_{k}} \sum_{i:y_{i}=k}x_{i}\\
-        \hat{sigma^{2}} &= \frac{1}{N - K}\sum_{k=1}^{K}\sum_{i:y_{i}=k}(x-\hat{\mu_{k}})^{2}
+        \hat{\sigma^{2}} &= \frac{1}{N - K}\sum_{k=1}^{K}\sum_{i:y_{i}=k}(x-\hat{\mu_{k}})^{2}
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,7 +114,7 @@
     Plugging this into the classification rule to get the discriminants (removing denominators as they are common for all classes)
     \begin{align*}
         \delta_{k}(x) &= \log{\pi_{k}} -\frac{1}{2}\log{\mid\Sigma \mid} - \frac{1}{2}(x-\mu_{k})^{T}\Sigma_{k}^{-1}(x-\mu_{k}) \\
-        \text{Note that, } x^{T}\Sigma_{k}^-{1}\mu_{k} &= \mu_{k}^{T}\Sigma_{k}^{-1}x \text{  since $\Sigma$ is symmetric and $x^{T}\Sigma_{k}^{-1}\mu_{k}$ is scalar} \\
+        \text{Note that, } x^{T}\Sigma_{k}^{-1}\mu_{k} &= \mu_{k}^{T}\Sigma_{k}^{-1}x \text{  since $\Sigma$ is symmetric and $x^{T}\Sigma_{k}^{-1}\mu_{k}$ is scalar} \\
         \delta_{k}(x) &= \log{\pi_{k}} -\frac{1}{2}\log{\mid\Sigma \mid} - \frac{1}{2}x^{T}\Sigma_{k}^{-1}x + x^{T}\Sigma_{k}^{-1}\mu_{k} -\frac{1}{2}\mu_{k}^{T}\Sigma_{k}^{-1}\mu_{k}
     \end{align*}
 
@@ -129,7 +129,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Comparison of Classifiers}
+    \subsection{Comparison of Classifiers}
     Logistic Regression and LDA are similar in the sense that they produce linear decision boundaries.
     \begin{itemize}
         \item Logistic Regression estimates coefficients using Maximum Likelihood Estimate
@@ -144,6 +144,38 @@
         \item QDA is a natural extension of LDA that relaxes the assumption of shared covariance matrix and allows each class to have a separate covariance matrix. This causes QDA to work well when decision boundaries have non linearity
         \item KNN is a non parametric model that is the most flexible. However, we can get no indication of which predictor is important, and the model can suffer from high variance.
     \end{itemize}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Classfication Metrics}
+    Several classification metrics are available for binary classifiers which are used based on the problem setting.
+
+    \subsubsection{Confusion Matrix}
+    This matrix tabulates the number of cases we are classifying and misclassifying.
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c}
+        Confusion Matrix & \textbf{Actual Positive} & \textbf{Actual Negative}\\ \hline
+        \textbf{Predicted Positive} & True Positive & False Positive\\ \hline
+        \textbf{Predicted Negative} & False Negative & True Negative\\
+    \end{tabular}
+    % \caption{Confusion Matrix}
+    \end{table}
+
+    Based on the above table, we define the following terms
+    \begin{itemize}
+        \item Accuracy $= \frac{TP + TN}{P+N}$
+        \item Sensitivity or True Positive Rate (TPR) or Recall $= \frac{TP}{P} = \frac{TP}{TP+FN}$
+        \item Specificity or True Negative Rate (TNR) $= \frac{TN}{N} = \frac{TN}{FP+TN}$
+        \item Precision or Positive Predicted Value (PPV) $= \frac{TP}{FP+TP}$
+        \item False Positive Rate $= \frac{FP}{N} = \frac{FP}{FP+TN}$
+        \item $F_{1}$ Score $= \frac{2 * precision * recall}{precision + recall}$
+    \end{itemize}
+
+    \subsubsection{Receiver Operating Characteristics (ROC Curve)}
+    ROC curve is plot between \textbf{True Positive Rate} and \textbf{False Positive Rate}, or equivalently, between \textbf{sensitivity/recall} and \textbf{$1 - $ specificity}. The area under the plotted curve is know as AUC score. \newline
+    The curve is plot by repeatedly constructing the confusion matrix at different probability thresholds (i.e. changing the decision boundary to see how the confusion matrix changes).\newline
+    ROC Curve is agnostic of the class balancing in the data set, and is thus used frequently in case of class imbalance to judge a classifier. A random classifier will have AUC of $0.5$ as at any threshold, the number of correctly and incorrectly classified points will roughly be the same. A perfect classifier will be able to segregate the population perfectly and will have the value of AUC as $1.0$.
 
 
 \end{document}
