@@ -77,4 +77,46 @@
                         &= \frac{1}{n}\sum_{i=1}^{n} (\frac{y_{i}-\hat{y_{i}}}{1-h_{i}})^{2}
     \end{align*}
     which can be computed by simply building a single model on all the $n$ data points.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{$k$-Fold Cross Validation}
+    Here, we divide the data set into k groups of roughly the equal size, and build $k$ models. In each model, one of the folds is chosen as the validation set while the remaining $k-1$ folds are used for training. Let $MSE_{1}, MSE_{2}, \ldots, MSE_{k}$ denote the individual errors on the $k$ subsets (when they are used for validation), then the estimate of test MSE is
+    \begin{align*}
+        MSE = \frac{1}{k}\sum_{i=1}^{k}MSE_{i}
+    \end{align*}
+
+    Typically, $k = 5, 10$. Leave one out CV is a special case of $k$-fold CV. The MSE calculated above can help determine the best flexibility to chose for a given model (using the minima of MSE vs fliexibility) or help compare different types of models using the value of MSE. \newline
+
+    \subsubsection{$k$-Fold CV bias-variance}
+    $k$-fold CV is preferable over LOOCV not just because of computational issues, but also due to a bias variance tradeoff. Note that the more data we use, it is expected that we will have less bias. By this logic, we expect LOOCV to have a low bias compared to $k$-fld CV. However, variance is also of interest in a statistical model. The $n$ models that we fit in LOOCV are correlated with one another, since we have almost identical data sets being used for training. Hence, the average of the MSE's of such correlated models will tend to have a higher variance. On the other hand, $k$-fold CV effectively creates less correlated models which have quite lower variance in comparison. Hence $k$-fold CV is preferable in most of the cases.
+    \begin{align*}
+        Var(X + Y) = Var(X) + Var(Y) + 2Cov(X,Y)
+    \end{align*}
+    Hence, higher the correlation, higher the variance of sum of two random variables.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Bootstrap}
+    A widely applicable method that helps quantify uncertainty in the estimates of a statistical model. This is especially useful when formulae don't exist to quantify this uncertainty.\newline
+    To estimate the uncertainty in estimates, we repeatedly create new data sets called bootstrap samples. Here, we simply select $n$ observations from the original data set, but with replacement. This creates a slightly different version of the original data on which we train our model and get the estimates. From several bootsrapped data sets, we obtain a distribution of our estimate (a collection of estimates) whose mean and variance can help quantify the uncertainty.\newline
+
+    \subsubsection{Probability of selection}
+    Since we are sampling with replacement, notice that the chance that the $i^{th}$ observation is in the sampled data set is given by
+    \begin{align*}
+        P(not\;selection) &= (1-\frac{1}{n})^{n}\\
+        p(selection) &= 1 - (1 - \frac{1}{n})^{n}
+    \end{align*}
+    This comes using the product rule. The chance that any observation of the bootstrap sample is not equal to $i^{th}$ observation is simply $1 - \frac{1}{n}$ since we can choose any of the other $n-1$ examples.
+    \begin{align*}
+        \text{Note, } y &= \lim_{n\to\inf}(1-\frac{1}{n})^{n}\\
+                 \ln(y) &= \lim_{n\to\inf}\frac{1}{n}\ln(1-\frac{1}{n}) \\
+                        &= \lim_{n\to\inf}\frac{\ln(1-\frac{1}{n})}{\frac{1}{n}} \\
+                        &= \lim_{n\to\inf}\frac{\frac{1}{1-\frac{1}{n}} \frac{1}{n^{2}}}{-\frac{1}{n^{2}}} \tag*{Using L'Hospital's Rule}\\
+                        &= \lim_{n\to\inf}-\frac{1}{1 - \frac{1}{n}}\\
+                        &= -1\\
+                      y &= \frac{1}{e}\\
+        \lim_{n\to\inf} P(selection) &= 1 - \frac{1}{e} \approx 0.632
+    \end{align*}
+    Hence, the probability that an observation from the original data set falls into a bootstrap sample is $63.2\%$ which suggests that the sampled data sets are sufficiently variable !
 \end{document}
