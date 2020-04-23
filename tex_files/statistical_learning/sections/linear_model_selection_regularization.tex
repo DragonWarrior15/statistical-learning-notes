@@ -1,0 +1,163 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+% \usepackage{algorithm}
+
+% \usepackage{tikz}
+% \usetikzlibrary{automata, positioning}
+
+% \usepackage{pgfplots}
+% \pgfplotsset{width=5cm,compat=1.9}
+\setlength{\parindent}{0em}
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Linear Model Selection and Regularization}
+    Linear models are often simple and easy to interpret at the cost of having high bias if the relationship in the data is not linear. Some considerations about linear models
+    \begin{itemize}
+        \item If $n >> p$, least square estimates often have less variance. If $n$ is larger than $p$, then least square estimates can have some variance. While if $n < p$, we are looking at non unique solutions which can cause lot of variation in the test predictions.
+        \item It is often the case that many of the predictors do not have a relationship with the response. Hence, it is a good idea to remove those and make the model more interpretable at the cost of some bias. Least square estimates almost never give zero coefficients.
+    \end{itemize}
+
+    There are major ways in which the number of variables in the model can be reduced
+    \begin{itemize}
+        \item Selecting a \textbf{subset of variables} that go well with the response. This itself can be done by forward selection, backward elimination etc.
+        \item \textbf{Shrinking} some of the \textbf{coefficients} to zero. This is a great help in reducing the variance of the predictions.
+        \item \textbf{Dimension Reduction} helps in projecting the $p$ predictors onto a $M$ dimensional space where $M < p$. This utilizes linear combinations to create a set of new features.
+    \end{itemize}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Subset Selection}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Best Subset Selection}
+    This is a naive approach that essentially tries to find the best model among $2^{p}$ models that are trained on all possible subsets of the $p$ variables. As we increase the subset of variables, the training error will monotonically decrease whereas the same cannot be said for the test error. A number of criteria like test MSE, $R^{2}$, AIC etc can be used to pick the models.\newline
+
+    In case of classification models, similar argument holds and a more general error metric $deviance$ can be used. $Deviance$ is defined as $-2 * \log likelihood$ of the data. The smaller the $deviance$, the better the model fit.\newline
+
+    The huge search space presented by this approach easily overfits as the search space presents more opportunities to find better fits. However, this causes a higher variance in the predictions on future data and can possibly also have higher test error.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Forward Stepwise Selection}
+    This is a greedy approach that significantly shrinks the search space being checked (in comparison to the best subset selection approach).
+
+    Forward Stepwise Selection Algorithm
+    \begin{enumerate}
+        \item Let $M_{0}$ denote the null model, i.e., the model with no predictors
+        \item For $k = 0, 1, \ldots, p - 1$
+        \begin{enumerate}
+            \item Consider all $p - k$ models formed by adding a single predictor to the model $M_{k}$
+            \item Select the best model $M_{k+1}$ among the $p - k$ models on the basis of the error metric
+        \end{enumerate}
+        \item From the models $M_{0}, M_{1}, \ldots, M_{p}$, select the one with the lowest cross validation error on the evaluation choosing the appropriate error metric
+    \end{enumerate}
+
+    This approach effectively has reduced the search space from $2^{p}$ to $1 + p(p+1)/2$. Although, now it is not guaranteed that the model selected will be the best one among $2^{p}$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Backward Stepwise Selection}
+    This approach is the opposite of forward stepwise selection. We recursively reduce the number of variables in our model.
+
+    \begin{enumerate}
+        \item Let $M_{p}$ denote the complete model, i.e., the model with all p predictors
+        \item For $k = p, p-1, \ldots, 1$
+        \begin{enumerate}
+            \item Consider all $k-1$ models that keep all but one predictors in the current model $M_{k}$
+            \item Among these, select the best model $M_{k-1}$ with the lowest error
+        \end{enumerate}
+        \item From the models $M_{0}, M_{1}, \ldots, M_{p}$, select the one with the lowest cross validation error on the evaluation choosing the appropriate error metric 
+    \end{enumerate}
+
+    The number of models explored is same as the forward stepwise method.\newline
+    A hybrid approach is usually selected where we start with the usual forward selection method, but while adding variables, we do not add a variable if it does not give significant improvement. Another approach can be to remove redundant variables using p-test at every step of forward selection.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Metrics for evaluating Subset Models}
+    In linear models, as we add more variables, the training error usually monotonically decreases. Test error may not behave in the same way. When training a model, the coefficients obtained are specific for minimizing the training error and hence will have less bias in comparison to the test error. \newline
+    Hence, subset evaluation using training error will usually favour models with more number of variables. To overcome this
+    \begin{itemize}
+        \item Correct the training error estimate to correctly calculate test error
+        \item Use a validation test or $k$-fold validation for better estimate of test error
+    \end{itemize}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{$C_{p}$ Estimate}
+    For a least square fitted model,
+    \begin{align*}
+        C_{p} = \frac{1}{n}(RSS + 2p\hat{\sigma}^{2})
+    \end{align*}
+    $p$ is the number of predictors and $\hat{\sigma}^{2}$ is the estimate of the error associated with each observation. This is typically evaluated using the model built on all $p$ predictors.\newline
+    Clearly, as $p$ increases, we are penalizing the model more to compensate for the decrease in the training RSS. When $\hat{\sigma}$ is an unbiased estimate of $\sigma$, we can show that this is infact an unbiased estimate of the test MSE.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Akaike Information Criterion (AIC)}
+    AIC is defined for a large class of models fit by the maximum likelihood estimate.\newline
+    For least squares fit in linear models, the errors are assumed to be gaussian and thus, AIC and least squares mean the same thing. For this case
+    \begin{align*}
+        AIC = \frac{1}{n\hat{\sigma}^2}(RSS + 2p\hat{\sigma}^2)
+    \end{align*}
+    where we have omitted an additive constant for the sake of simplicity.\newline
+    For least squares models, $C_{p}$ and AIC are proportional to each other.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Bayesian Information Criterion (BIC)}
+    BIC is derived from a Bayesian point of view, but ends up looking similar to the above defined errors.\newline
+    For least squares error without constants, the BIC is
+    \begin{align*}
+        BIC = \frac{1}{n\hat{\sigma}^{2}} (RSS + \log(n)p\hat{\sigma}^{2})
+    \end{align*}
+    Note that the $\log(n)$ term will put a heavier weight on the error term for large $p$. Hence, BIC will tend to select models with lower number of variables in comparison to say $C_{p}$.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Adjusted $R^{2}$}
+    Recall that $R^{2}$ is defined as $1 - RSS/TSS$. Adjusted $R^{2}$ is
+    \begin{align*}
+        Adjusted\;R^{2} = 1 - \frac{\frac{RSS}{n-p-1}}{\frac{TSS}{n-1}}
+    \end{align*}
+    This adjusted $R^{2}$ might increase or decrease when adding variables due to the terms corresponding to $p$. The intuition is that, after the correct number of variables have been identified, the decrease in RSS is less in comparison to the decrease in $n-p-1$ which will slightly increase the Adjusted $R^{2}$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Shrinkage Methods}
+    Instead of using a subset of predictors, we can also use all of the predictors and shrink the coefficients towards zero. This approach significantly reduces the variance in the model estimates. The famous ones here are \emph{Ridge Regression} and \emph{Lasso Regression}.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Ridge Regression}
+    Ridge Regression is very similar to the least square estimate for linear regression except that we add a term corresponding to the squared sum of the regression coefficients in the error.
+    \begin{align*}
+        error &= RSS + \lambda \sum_{j=1}{p}\beta_{j}^{2}\\
+              &= (Y-X\beta)^{T}(Y-X\beta) + \lambda \beta^{T}\beta
+    \end{align*}
+    $\lambda$ is a tuning parameter that needs to be chosen separately. It acts as a weight between the error in the data and how large are the regression coefficients. It is also known as the shrinkage penalty.\newline
+    Note that we will not include the intercept term in shrinkage because it is simply the mean estimate of the model when all the predictors are zero and may not necessarily zero.\newline
+
+    Using least squares estimate,
+    \begin{align*}
+        error &= (Y-X\beta)^{T}(Y-X\beta) + \lambda \beta^{T}\beta\\
+        \frac{\partial error}{\partial \beta} &= 0\\
+        \implies 0 &= -Y^{T}X - Y^{T}X + \beta^{T}X^{T}X + \beta^{T}X^{T}X + \lambda \beta^{T} + \lambda \beta^{T}\\
+        \beta^{T}(X^{T}X + \lambda I) &= Y^{T}X\\
+        (X^{T}X + \lambda I)^{T}\beta &= X^{T}Y\\
+        (X^{T}X + \lambda I)\beta &= X^{T}Y\\
+        \Aboxed{\beta &= (X^{T}X + \lambda I)^{-1}X^{T}Y}  
+    \end{align*}
+    $\lambda = 0$ will result in the simple least squares regression while $\lambda \to \inf$ will force the coefficients to go towards zero.\newline
+
+    As is clear from the formula, the error term is sensitive to the actual scale of the coefficients which is ultimately dependent on the predictors themselves. In a simple least squares regression, the coefficients will scale up and down depending on how the data is scaled. The same is not true for Ridge Regression.\newline
+    Hence when using \textbf{Ridge Regression, it is always advisable to \emph{standardize} the predictors} before training the model using
+    \begin{align*}
+        \tilde{x}_{ij} = \frac{x_{ij}}{\sqrt{\frac{1}{n}\sum_{i=1}{n}(x_{ij}-\bar{x}_{j})^{2}}}
+    \end{align*}
+
+    The success of Ridge Regression is based in the \textbf{bias variance tradeoff}. If the data is linear, simple linear regression will have a very low bias but high variance, making it sensitive to the training data. As $\lambda$ is introduced, it forces the model to have less flexibility by reducing the coefficiets value and subsequently their power on the prediction. This causes a reduction in the variance at expense of slight increase in bias. However, this trend is not monotonic with increasing $\lambda$ and the appropriate value must be chosen based on the errors observed. 
+
+\end{document}
