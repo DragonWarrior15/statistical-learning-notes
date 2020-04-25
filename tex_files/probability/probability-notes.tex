@@ -4,7 +4,6 @@
 \usepackage[a4paper, margin=1in]{geometry}
 \usepackage{amsfonts}
 \usepackage{mathtools}
-
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning}
 
@@ -621,6 +620,57 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Problems}
+    \subsection{Independence in Complemets}
+    Given $A \perp B$, show $A \perp B^{c}$ and $A^{c} \perp B^{c}$.
+    \newline \newline
+    \textbf{Ans.}
+    \begin{enumerate}
+        \item 
+        \begin{align*}
+            P(A \cap B) &= P(A) P(B)\\
+            P(A) &= P((A \cap B) \cup (A \cap B^{c}))\\
+                &= P(A \cap B) + P(A \cap B^{c}) \tag*{since disjoint}\\
+            P(A \cap B^{c}) &= P(A) - P(A)P(B)\\
+                &= P(A)(1 - P(B)) = P(A)P(B^{c})
+        \end{align*}
+        \item 
+        \begin{align*}
+            (A \cup B)^{c} &= A^{c} \cap B^{c}\\
+            P(A^{c} \cap B^{c}) &= 1 - P(A \cup B)\\
+                            &= 1 - P(A) - P(B) + P(A \cap B)\\
+                            &= (1 - P(A))(1 - P(B))\\
+                            &= P(A^{c})P(B^{c})
+        \end{align*}
+    \end{enumerate}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Conditional Independence}
+    $A,B,$ and $C$ are independent with $P(C) > 0$. Show that $A\perp B |C$.
+    \newline \newline
+    \textbf{Ans.}
+    \begin{align*}
+        P(A \cap B | C) = \frac{P(A \cap B \cap C)}{P(C)} = P(A)P(B) = P(A|C)P(B|C) \tag*{Due to independence}
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Geometry of Meeting}
+    R and J have to meet at a given place and each will arrive at the given place independent of each other with a delay of 0 to 1hr uniformly distributed. The pairs of delays are all equally likely. The first to arrive waits for 15 minutes and leaves. What is the probability of meeting ?
+    \newline \newline
+    \textbf{Ans.} Suppose R arrives at $x$ hours. J has to arrive between $x$ hrs to $x$ hrs + 15 mins. Similarly if J arrives at $y$ hours, R has to arrive between $y$ hours to $y$ hours + 15 mins. These are regions enclosed by the regions $x \leq 1, y \leq 1, y \leq x + \frac{1}{4} \;and\; y \geq x - \frac{1}{4}$. The probability is then $ 1 - P(not\;meeting) = 1 - 2(\frac{1}{2} \frac{3}{4} \frac{3}{4}) = \frac{7}{16}$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Expectation of Function}
+    Let $X$ and $Y$ be random variables with $Y = g(X)$. Show $E[Y] = \sum_{x}g(x)p_{X}(x)$.
+    \newline \newline
+    \textbf{Ans.}
+    \begin{align*}
+        E[Y] = \sum_{y}yp_Y(y) = \sum_{y}\sum_{x:g(x)=y}p_{X}(x) = \sum_{y} \sum_{x:g(x)=y} yp_{X}(x)\\
+        = \sum_{y} \sum_{x:g(x)=y}g(x)p_{X}(x) = \sum_{x}g(x)p_{X}(x) 
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Cumulative Distribution Function}
     A random variable X is a combination of a continuous and discrete distribution as follows
     \begin{align*}
@@ -739,9 +789,116 @@
                                         0 &\mbox{$8 < y$} \end{cases}
     \end{alignat*}
 
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Waiting for Taxi}
+    A taxi stand and bus stop near Al's home are at the same location. Al goes there and if a taxi is waiting $P=\frac{2}{3}$, he boards it. Otherwise, he waits for a taxi or bus to come, whichever is first. Taxi takes anywhere between $0$ to $10$ mins (uniform) while a bus arrives in exactly 5 mins. He boards whichever is first. Find CDF and E[wait time].
+    \newline \newline
+    \textbf{Ans.} Let $X$ be the waiting time and $F_{X}(x)$ be the CDF. Then,
+    \begin{align*}
+        F_{X}(x) = \begin{cases} 0 &\mbox{ $x < 0$}\\
+                                \frac{2}{3} &\mbox{ $x = 0$}\\
+                                \frac{2}{3} + \frac{1}{30}x &\mbox{ $0 < x < 5$}\\
+                                1 &\mbox{ $5 \leq x$} \end{cases}
+    \end{align*}
+    The PDF is simply the derivate of the CDF. Thus, expectation is
+    \begin{align*}
+        E[X] = \frac{2}{3}(0) + \int_{0}^{5} \frac{1}{30}x dx + \frac{1}{6}(5) = \frac{5}{4} mins
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Bayes Theorem}
+    Let $Q$ be a continuous random variable with PDF
+    \begin{align*}
+        f_{Q}(q) = \begin{cases} 6q(1-q) &\mbox{ $0 \leq q \leq 1$}\\
+                                 0 &\mbox{ otherwise} \end{cases}
+    \end{align*}
+    where $Q$ represents $P(success)$ for a Bernoulli $X$, i.e., $P(X=1|Q=q) = q$. Find $f_{Q|X}(q|x) \forall x \in [0,1] and q$.
+    \newline \newline
+
+    \textbf{Ans.} From Bayes' theorem 
+    \begin{align*}
+        f_{Q|X}(q|x) &= \frac{f_{X|Q}(x|q) f_{Q}(q)}{f_{X}(x)}\\
+                    &= \frac{f_{X|Q}(x|q) f_{Q}(q)}{\int_{0}^{1} f_{X|Q}(x|q) f_{Q}(q) dq}
+    \end{align*}
+    We will need to solve separately for $x = 0$ and $x = 1$ as $x$ is discrete.
+    \begin{align*}
+        f_{Q|X=0}(q|x=0) &= \frac{(1-q)* 6q(1-q)}{\int_{0}^{1} (1-q)*6q(1-q) dq} = 12q(1-q)^{2}\\
+        f_{Q|X=1}(q|x=1) &= \frac{q* 6q(1-q)}{\int_{0}^{1} q*6q(1-q) dq} = 12q^{2}(1-q)
+    \end{align*}
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{A Normal Transformation}
+    Let $X$ be $\mathbb{N}(0,1)$ and $Y = g(X)$. Find $p_{Y}(y)$.
+    \begin{align*}
+        g(t) = \begin{cases} -t &\mbox{$t \leq 0$}\\
+                            \sqrt{t} &\mbox{$t > 0$} \end{cases}
+    \end{align*}
+    \newline
+
+    \textbf{Ans.} Questions of this type must only be approached through CDF. First find the CDF of Y and then it's PDF.
+    \begin{align*}
+        F_{Y}(y) &= P(Y \leq y) = P(g(X) <= y)\\
+                &= P(X \in [-y, 0] \cup X \in [0, y^{2}])\\
+                &= (F_{X}(0) - F_{X}(-y)) + (F_{X}(y^{2}) - F_{X}(0))\\
+                &= F_{X}(y^{2}) - F_{X}(-y)\\
+        p_{Y}(y) &= \frac{F_{Y}(y)}{dy}\\
+                &= \frac{dF_{X}(y^{2})}{dx} \frac{d(y^{2})}{dy} - \frac{dF_{X}(-y)}{dx} \frac{d(-y)}{dy}\\
+                &= 2yp_{X}(y^{2}) + p_{X}(-y)\\
+                &= 2y\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{4}}{2}} + \frac{1}{\sqrt{2\pi}} e^{-\frac{y^{2}}{2}}
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Binomial Shooter}
+    A shooter takes 10 hits in a shooting range and each shot has $p=0.2$ of hitting target independent of each other. Let $X = $ number of hits. Find
+    \begin{enumerate}
+         \item PMF of $X$
+         \item $P(no\;hits)$
+         \item $P(scoring\;more\;than\;misses)$
+         \item $E[X]$ and $Var(X)$
+         \item Suppose the entry is \$3 and each shot fetches \$2. Let $Y$ = profit. Find $E[Y] and Var(Y)$.
+         \item Suppose entry is free and total reward is square of number of hits. Let $Z$ be profit. Find $E[Z]$.
+    \end{enumerate}
+
+    \textbf{Ans.} 
+    \begin{enumerate}
+        \item $P(X=k) = \binom{10}{k} 0.2^{k}0.8^{10-k}$
+        \item $P(no\;hits) = 0.8^{10}$
+        \item $P(X>=6) \ \sum_{k=6}^{10} \binom{10}{k} 0.2^{k}0.8^{10-k}$
+        \item $E[X] = np = 2, Var(X) = np(1-p) = 1.6$ for Bernoulli distribution
+        \item $Y = 2X - 3, E[Y] = 2E[X] - 3 = 1, Var(Y) = 4Var(X) = 6.4$
+        \item $Z = X^{2}, E[Z] = E[X^{2}] = Var(X) + E[X]^{2} = 5.6$
+    \end{enumerate}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{HH or TT}
+    Given a coin with $P(H) = p$, find the $E[number\;of\;tosses\;till\;HH\;or\;TT]$.
+    \newline \newline
+    \textbf{Ans.} This quantity can be calculated using the law of total expectation
+    \begin{align*}
+        E[X] = E[X|A_{1}]P(A_{1}) + E[X|A_{2}]P(A_{2}) + \cdots + E[X|A_{n}]P(A_{n}) \tag*{where $A_{i}$ are disjoint}
+    \end{align*}
+    Let $H_{1}$ denote heads at first toss, $H_{2}$ denote heads at the second toss, $T_{1}$ denote tails at first toss and $T_{2}$ denote tails at the second toss. Then,
+    \begin{align*}
+        E[X] &= E[X|H_{1}]P(H_{1}) + E[X|T_{1}]P(T_{1})\\
+        E[X|H_{1}] &= E[X|H_{1}H_{2}]P(H_{2}|H_{1}) + E[X|H_{1}T_{2}]P(T_{2}|H_{1})\\
+                &= 2p + (1 + E[X|T_{1}])(1-p)\\
+        E[X|T_{1}] &= E[X|T_{1}T_{2}]P(T_{2}|T_{1}) + E[X|T_{1}H_{2}]P(H_{2}|T_{1})\\
+                &= 2(1-p) + (1 + E[X|H_{1}])p\\
+    \end{align*}
+    $E[X|H_{1}T_{2}] = 1 + E[X|T_{1}]$ because the tails after the first heads implies the first heads is now irrelevant and we have wasted one toss on the heads. The remaining process is same as starting from the first coin toss as tails. \newline
+    Solving for the conditional expectations,
+    \begin{align*}
+        E[X|H_{1}] &= \frac{3 - 2p + p^{2}}{1 - p + p^{2}}\\
+        E[X|T_{1}] &= \frac{2 + p^{2}}{1 - p + p^{2}}\\
+        E[X] &= \frac{2 + p - p^{2}}{1 - p + p^{2}}
+    \end{align*}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Poisson Emails}
-    You get emails according to a Poisson process at the rate of 5 messages/hour. You check email every 30 minutes. Find \newline
+    You get emails according to a Poisson process at the rate of 5 messages/hour. You check email every 30 minutes. Find
     \begin{itemize}
         \item P(no new message)
         \item P(one new message)
