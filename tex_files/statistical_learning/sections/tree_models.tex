@@ -1,0 +1,87 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% to insert images
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} {../images/}}
+
+% \usepackage{hyperref}
+% \hypersetup{
+    % colorlinks=true, % make the links colored
+    % linkcolor=blue, % color TOC links in blue
+    % urlcolor=red, % color URLs in red
+    % linktoc=all % 'all' will create links for everything in the TOC
+% }
+
+\setlength{\parindent}{0em}
+
+\DeclareMathOperator*{\minimize}{minimize}
+
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Tree Based Models}
+    The idea behind this family of methods is to segment the region into subspaces and the prediction for any subspace is made by taking the \emph{mean} or \emph{mode} of the response in that region.\newline
+    A simple decision tree may not give performance at par with linear regression or generalized additive models, but when combined with techniques like bagging and boosting, multiple trees can yield significant reduction in bias.\newline
+    A simple decision tree finds its utility in being relatively simpler in interpretation than it's derived non-linear family.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Regression Trees}
+    The algorithm behind building trees consists of two basic steps
+    \begin{enumerate}
+        \item Divide the predictors $X_{1}, X_{2}, \ldots, X_{n}$ into $J$ \textbf{distinct} and \textbf{non-overlapping} regions $R_{1}, R_{2}, \ldots, R_{J}$.
+        \item For making a prediction in the region $R_{j}$, simply take the \textbf{response mean} of all the data points following in that region.
+    \end{enumerate}
+    With the above definition, the loss becomes
+    \begin{align*}
+        RSS = \sum_{j=1}^{J} \sum_{i \in R_{J}} (y_{i} - \bar{y}_{R_{J}})^{2}
+    \end{align*}
+    But minimizing this loss is infeasible in practice as the total number of possible partitions are too large !\newline
+
+    To overcome this, we build the trees in a greedy top down approach called \textbf{recursive binary splitting}. This method aims to find the best possible split at each level in a greedy manner.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{The Algorithm}
+    To start off, the alogithm will try to split the data into two regions $\{X|X_{j} < s\}$ and $\{X|X_{j} \geq s\}$ using the values of predictor $X_{j}$ and the search is performed across all the predictors to choose the one which minimizes the RSS. Mathematically
+    \begin{align*}
+        R_{1}(j,s) = \{X|X_{j} < s\} \text{ and } R_{2}(j,s) = \{X|X_{j} \geq s\}\\
+        \minimize_{j, s} \sum_{i:x_{i} \in R_{1}} (y_{i} - \bar{y}_{R_{1}})^{2} + \sum_{i:x_{i} \in R_{2}} (y_{i} - \bar{y}_{R_{2}})^{2}
+    \end{align*}
+    where $\bar{y}_{R_{1}}$ and $\bar{y}_{R_{2}}$ are the response mean in the region $R_{1}$ and $R_{2}$ respectively.\newline
+
+    The same algorithm is run recursively. The only change that is made that after the first split, we now wolr independently on two separate regions. For each region, we will not be able to consider all the possible values of $s$ since the region has been restricted. Otherwise, the RSS term will remain the same.\newline
+
+    The process is stopped when a pre-determined stopping criteria is reached. For making a prediction, we will first determine the region in which the test observation falls and then make the prediction based on the mean of the training samples in this region.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Tree Pruning}
+    The tree build using above strategy can have good results on the training set, but will yield poor performance on the test set due to the high complexity. A better strategy is to build \textbf{short trees which are less complex and produce lower variance at cost of little bias} and are more interpretable.\newline
+
+    A simple strategy can be to build only when there is a decrease in RSS above a threshold. This approach can be short-sighted as some future good branches can be missed.\newline
+
+    Tree pruning is to \textbf{build a large tree and then shrink it back to obtain a subtree}. The RSS of a subtree can be found via cross validation. This approach is expensive for all possible subtrees.\newline
+
+    \textbf{Cost complexity Pruning} or \textbf{weakest link pruning} is an approach to overcome this problem. For a non-negative parameter $\alpha$, there exists a subtree $T$ of the large tree $T_{0}$ such that the following is minimized
+    \begin{align*}
+        RSS = \sum_{m=1}^{\vert T \vert} \sum_{i:x_{i}\in R_{m}} (y_{i} - \bar{y}_{R_{m}})^{2} + \alpha \vert T \vert
+    \end{align*}
+    where $\vert T \vert$ is the number of terminal nodes in the tree. The formulation is similar to lasso and here we are controlling the complexity of the tree via a parameter $\alpha$. Larger the $\alpha$, the less number of terminal nodes there would be in the tree.\newline
+
+    The algorithm can then be summarized as follows
+    \begin{enumerate}
+        \item Use \emph{binary recursive splitting} to obtain a large tree on the data set. Stop only when at a terminal node, the number of observations is less than a minimum.
+        \item Apply \emph{cost complexity pruning} in order to obtain a small tree $T$ as a function of the cost parameter $\alpha$ (fix a set of $\alpha$ and get a set of subtrees).
+        \item Use K-fold cross validation to choose $\alpha$. For each of the folds $k = 1, 2, \ldots, K$
+        \begin{enumerate}
+             \item Repeat steps 1 and 2 excluding the data from the $k$th fold to obtain a family of subtrees as a function of $\alpha$.
+             \item Evaluate the mean predicted validation error as a function of $\alpha$.\newline
+             Choose the value of $\alpha$ that minimizes the average error across all the folds.
+         \end{enumerate}
+        \item Select the substree from step 2 that corresponds to the chosen value of $\alpha$.
+    \end{enumerate}
+\end{document}
