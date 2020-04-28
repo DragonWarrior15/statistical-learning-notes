@@ -133,4 +133,66 @@
     Since we do not have access to different training datasets, we will get the average using bootstraps of the original data set. Note that \textbf{trees grown on bootstrapped data sets are deep and not pruned} so that they have low bias. Even though they may have high variance, averaging will reduce it out.\newline
 
     \textbf{Averaging bootstrapped predictors works for regression} while we \textbf{take the majority vote in case of classification}. The overall prediction is the most commonly occurring class across the $B$ trees. Note that \textbf{using a large value of \emph{B} will not lead to overfitting}, it should just be sufficiently large to ensure the error has come down compared to a single tree (building too many trees can take up significant time).
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Out of Bag Error}
+    It can be shown the probability of an observation being present in a bootstrapped dataset is $1 - 1/e$ (this can be shown by considering that the probability that an observation is not present in the data set is $((1 - 1/n)^{n}$ and taking the limit $n \to \inf$). Thus, on an average, a data will only contain about $2/3$rd ($0.63$ to be exact) of the total observations in it. We can make use of the observations not used for training to estimate the error.\newline
+
+    Any observation not part of the bootstrapped set is called \textbf{Out of Bag} and the error we are about to calculate is out of bag error. Now, we can take the $i$th observation, and get it's prediction from the sets where it was not used for training. This will be around $1/3$rd of the predictors. We can combine these results using average in case of regression or majority vote in case of classification. Thus, we have a "test error" for all the observations in the data.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Variable Importance}
+    We have been able to reduce the variance using the bagging approach, but the model is no longer interpretable due to the presence of multiple trees. We need to somehow aggregate all the trees to get this measure.\newline
+
+    A simple workaround is to calculate the total amount the RSS (regression) or Gini Index (classification) has decreased across all the trees due to split on a particular variable. To make the values comparable, we simply take the average across $B$ trees. A large value means that the variable has high importance.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Random Forests}
+    Random forests overcome the problem of \textbf{decorrelation} in bagging. The trees built using bagging are similar because if there is a strong predictor, we expect it to dominate the splits in each of the trees and give similar trees.\newline
+    
+    Note that adding correlated variables will only change the variance of the mean slightly. Consider $Var(X + Y)$ which is $Var(X) + Var(Y)$ when $X$ and $Y$ are independent and $Var(X) + Var(Y) + 2Cov(X,Y)$ when $X$ and $Y$ are not independent. Clearly, the variance of the mean will be close to individual variances when the variables are not independent. Hence, to improve the classifier, the predictions must not be correlated or, the trees themselves must be decorrelated.\newline
+
+    \textbf{Variance of the mean of independent variables is much less than their individual variances while we don't expect such significant reduction in the case of correlated variables.}\newline
+
+    \textbf{Random Forests achieve decorrelation by using only a subset of variables for each split ($\sqrt{p}$)}. This subset is chosen randomly at each split to ensure that the trees differ enough in structure to give less correlated predictions.\newline
+
+    Similar to bagging, \textbf{random forests will not overfit if we increase the number of trees $B$}. Hence, the choice can be made based on whether the reduction in test error is sufficient.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Boosting}
+    Boosting is a general tecnique that can be applied to multiple statistical learning techniques and not just decision trees. Like Bagging, boosting is also trained on multiple data sets derived from the training data, but instead of building independent trees on different data sets, \textbf{boosting is a sequential process that builds trees on modified versions of the original data set}.\newline
+
+    Given a model, boosting will try to fit a tree on the residuals obtained by the model instead of the response $Y$. The model is then updated by adding this tree and the residuals are calculated again. \textbf{Trees in boosting are typically small, just a few terminal nodes} controlled by the parameter $d$ and we allow the tree to fit the areas where improvement is needed in a slow manner. Shrinkage parameter $\lambda$ allows to further slow down this process allowing for a variety of trees.\newline
+
+    Boosting has three parameters
+    \begin{enumerate}
+         \item $B$, the number of trees. Unlike bagging, large $B$ can overfit although slowly. Right value of $B$ can be determined through cross validation.
+         \item Shrinkage parameter $\lambda$ which controls how slowly the model is learnt and is a small positive number in the range 0.1 to 0.001 typically. Very smal $\lambda$ can require a very large $B$ to achieve a good performance.
+         \item The number of splits $d$ in a single tree. Typically $d=1$ is used and referred to a stump. Higer value signifies higher interaction between the variables. When using stumps, the model is simply additive since we are using a single variable in each of the trees.
+     \end{enumerate}
+
+     Boosting algorithm is as follows
+     \begin{enumerate}
+         \item Set the residuals $r_{i} = y_{i}$ and the model $\hat{f}(x) = 0$.
+         \item For $b = 1, \cdots, B$ repeat
+         \begin{enumerate}
+             \item Fit the model $\hat{f}^{b}(x)$ with $d$ splits on the data $(X,r)$
+             \item Update the model
+             \begin{align*}
+                 \hat{f}(x) \leftarrow \hat{f}(x) + \lambda \hat{f}^{b}(x)
+             \end{align*}
+             \item Update the residuals
+             \begin{align*}
+                 r_{i} \leftarrow r_{i} - \lambda \hat{f}^{b}(x)
+             \end{align*}
+         \end{enumerate}
+         \item Return the boosted model
+         \begin{align*}
+             \hat{f}(x) = \sum_{b=1}^{B} \lambda \hat{f}^{b}(x)
+         \end{align*}
+     \end{enumerate}
 \end{document}
