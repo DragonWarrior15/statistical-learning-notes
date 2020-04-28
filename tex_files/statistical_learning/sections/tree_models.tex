@@ -84,4 +84,53 @@
          \end{enumerate}
         \item Select the substree from step 2 that corresponds to the chosen value of $\alpha$.
     \end{enumerate}
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Classification Trees}
+    Here we predict a qualitative variable and will report the \textbf{most occurring class in the region}. Since we are almost always also interested in the probabilistic aspects of the prediction, we also consider \textbf{the proportion of the classes occurring in a region}.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{The Algorithm}
+    The algorithm is almost similar to the regression trees but instead of RSS, we need to use something that is related to class proportions and frequencies. A very straightforward metric is \textbf{classification error rate}
+    \begin{align*}
+        E = 1 - \max_{k}\hat{p}_{mk}
+    \end{align*}
+    where $\hat{p}_{mk}$ is the proportion of the $k$th class in the $m$th region. However, in practice, this metric is not sufficient to grow the trees.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Gini Index}
+    Gini Index is defined as
+    \begin{align*}
+        G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk})
+    \end{align*}
+    for a given region. Clearly, G is close to zero when the node is pure, i.e. most of the observations come from the same class. Gini index is also know as a measure of \textbf{purity} since it's low value implies predominance of a single class in the node.
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Entropy}
+    Entropy is defined as
+    \begin{align*}
+        D = \sum_{k=1}^{K} -\hat{p}_{mk} \log(\hat{p}_{mk})
+    \end{align*}
+    for a region. Entropy takes value close to zero if the class probabilities are close to $0$ or $1$. Gini index and Entropy are somewhat similar numerically.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Bagging}
+    Decision tree suffer from a high variance. When the data is divided into smaller parts, it is quite likely to expect variance when the data set itself is changed. Bootstrap Aggregation of Bagging is a method to try to overcome this problem.\newline
+
+    \textbf{Averaging a set of random variables reduces variance}. Consider $n$ random variables with the same variance $\sigma^{2}$, then the variance of their average is $\sigma^{2}/n$. Naturally, we can extend this idea to build several prediction models on different training data sets and average out their results to reduce the variance in the response.\newline
+
+    We train $b$ different models, make predictions $\hat{f}_{i}(x)$ using these and then average them out as
+    \begin{align*}
+        \hat{f} = \frac{1}{B}\sum_{b=1}^{B} \hat{f}_{b}(x)
+    \end{align*}
+    to get a low variance prediction statistic.\newline
+
+    Since we do not have access to different training datasets, we will get the average using bootstraps of the original data set. Note that \textbf{trees grown on bootstrapped data sets are deep and not pruned} so that they have low bias. Even though they may have high variance, averaging will reduce it out.\newline
+
+    \textbf{Averaging bootstrapped predictors works for regression} while we \textbf{take the majority vote in case of classification}. The overall prediction is the most commonly occurring class across the $B$ trees. Note that \textbf{using a large value of \emph{B} will not lead to overfitting}, it should just be sufficiently large to ensure the error has come down compared to a single tree (building too many trees can take up significant time).
 \end{document}
