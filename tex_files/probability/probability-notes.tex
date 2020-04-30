@@ -300,6 +300,58 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Exponential Distribution}
+    Exponential distribution is characterized by the parameter $\lambda$ and has the following probability distribution
+    \begin{align*}
+        f_{X}(x) = \begin{cases} 0 &\mbox{if $x < 0$}\\
+                                \lambda e^{-\lambda x} &\mbox{otherwise} \end{cases}
+    \end{align*}
+
+    Exponential distribution is used to represent the interarrival time probability distribution in the context of Poisson Process. The cumulative distribution is given by
+    \begin{alignat*}{2}
+        F_{X}(x) &= \begin{cases} 0 &\mbox{if $x < 0$}\\
+                                1 - e^{-\lambda x} &\mbox{otherwise} \end{cases}\\
+        P(X > x) &= \int_{x}^{\inf} \lambda e^{-\lambda x} dx\\
+        &= e^{-\lambda x}
+    \end{alignat*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Mean and Variance}
+    The mean of the distribution is given by
+    \begin{align*}
+        E[x] &= \int_{0}^{\inf} \lambda x e^{-\lambda x} dx\\
+        &= [-x e^{-\lambda x}]_{0}^{\inf} + \int_{0}^{\inf} e^{-\lambda x} dx = \frac{1}{\lambda}\\
+        \Aboxed{E[X] &= \frac{1}{\lambda}}
+    \end{align*}
+    where we used integration by parts, $\int uv' = uv - \int u'v$ and substituted $u = x$ and $v = -e^{-\lambda x}/\lambda$.\newline
+
+    For variance, we first calculate the value of $E[x^{2}]$
+    \begin{align*}
+        E[x^{2}] &= \int_{0}^{\inf} \lambda x^{2} e^{-\lambda x} dx\\
+        &= [-x^{2} e^{-\lambda x}]_{0}^{\inf} + \int_{0}^{\inf} 2x e^{-\lambda x} dx\\
+        &= [\frac{-2x e^{-\lambda x}}{\lambda}]_{0}^{\inf} - [\frac{2e^{-\lambda x}}{\lambda^{2}}]_{0}^{\inf}\\
+        &= \frac{2}{\lambda^{2}}\\
+        Var(X) &= E[X^{2}] - E[X]^{2}\\
+        \Aboxed{Var(X) &= \frac{1}{\lambda^{2}}}
+    \end{align*}
+    The above property can be generalized for the $n$th power as well
+    \begin{align*}
+        E[X^{n}] = \frac{n!}{\lambda^{n}}
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Memoryless Property}
+    A fundamental mathematical property of the exponential distribution is the memoryless property. In summary, this means that whatever has transpired till now will not affect the future distribution. Mathematically $P(T > t+s) is independent of t$
+    \begin{align*}
+        P(T > t+s | T>t) &= \frac{P(T> t+s \text{ and }T > t)}{P(T > t)}\\
+        &= \frac{P(T > t + s)}{P(T > t)}\\
+        &= \frac{e^{-\lambda(t+s)}}{e^{-\lambda t}}\\
+        &= e^{-\lambda s}\\
+        \Aboxed{P(T > t+s | T>t) &= P(T > s)}
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Poisson Process}
     Poisson process also falls in the realm of random processes but is different from Bernoulli process as it is a continuous time process. This process is very commonly used to model arrival times and number of arrivals in a given time interval.
     \begin{align*}
@@ -349,7 +401,7 @@
         f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \tag*{Erland Distribution}
     \end{align*}
 
-    \subsection{Time of $1^{st}$ arrival}
+    \subsection{Time of 1st Arrival}
     Using the Erlang Distribution described above, we have
     \begin{align*}
         f_{Y_{1}}(t) = \lambda e^{-\lambda t}
@@ -422,6 +474,7 @@
     A state $i$ is called \emph{recurrent} if, starting from $i$, and travelling anywhere, it is always possible to return to $i$. If a state is not recurrent, it is \emph{transient}. States in a recurrent class are periodic if they can be grouped into $d > 1$ groups so that all transitions from one group lead to the next group.
 
     \subsection{Steady State Probabilities}
+    \label{sec_markov_steady}
     Do $r_{ij}(n)$ converge to some $\pi_{j}$ (independent of i) ? \newline
     Yes if,
     \begin{itemize}
@@ -435,7 +488,7 @@
         \pi_{ij} &= \sum_{k} \pi_{ik} p_{kj} \tag*{balance equations} \\
         \sum_{i} \pi_{i} &= 1 \\
         \text{frequency of transitions $k \rightarrow j$} &= \pi_{k} p_{kj} \tag*{in one step}\\
-        \text{frequency of transitions into $j$} &= \sum_{k} \pi_{k} p_{kj} \tag*{influx from all connected states}e
+        \text{frequency of transitions into $j$} &= \sum_{k} \pi_{k} p_{kj} \tag*{influx from all connected states}
     \end{align*}
 
     \subsection{Birth Death Process}
@@ -508,6 +561,7 @@
     When $\rho = 1$ or $p = q$, then all states are equally likely - symmetric random walk.
 
     \subsection{Absorption Probabilities}
+    \label{sec_markov_absorb}
     let $a_{i}$ denote the probability of absorption and $\mu_{i}$ denote the expected no of steps until absorption starting from state $i$. Then,
     \begin{align*}
         a_{i} &= \sum_{j} a_{j}p_{ij} \tag*{outflux to the possible states}\\
@@ -529,6 +583,8 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Central Limit Theorem}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Weak Law of Large Numbers}
     Suppose we want to know the mean height of penguins in the world. The absolutely correct answer can be obtained by taking the average of the entire population. But ths is not practical, and often we will have to resort to estimating the quantity through a sample. Let there be $n$ penguins in the sample and $X_{1}, X_{2}, \ldots, X_{n}$ be the random variables denoting their heights. Then,
     \begin{align*}
@@ -536,6 +592,7 @@
         \lim_{n \to \inf} E[M_{n}] &= E[X] = \text{The true mean}
     \end{align*}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Markov Inequality/Chebychev Inequality}
     For nonnegative random variable $X$,
     \begin{alignat*}{2}
@@ -567,7 +624,7 @@
     or, as $n \rightarrow \inf,\; M_{n} - \mu \rightarrow 0$, $\epsilon$ is the error bound/confidence.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Central Limit Theorem}
+    \subsection{Central Limit Theorem}
     Chebychev's inequality gives a loose bound. We can do better with CLT. Let $X$ be a random variable with mean $\mu$ and variance $\sigma^{2}$, and let $X_{i}$ be independent identically distributed random variables with the same distribution as $X$. Then,
     \begin{align*}
         S_{n} &= X_{1} + X_{2} + \cdots + X_{n}\\
@@ -770,6 +827,20 @@
     \item \hypertarget{q_poissonbulb}{\textbf{Poisson Lightbulbs}}\newline
     We have three identical but independent lightbulbs whose lifetimes are modelled by a Poisson process with parameter $\lambda$. Given that we start all the three bulbs together, find the $E[\text{time until last bulb dies out}]$. \hyperlink{a_poissonbulb}{Solution}
 
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_poissonbulb2}{\textbf{Two Poisson Lightbulbs}}\newline
+    Beginning at $t=0$, we begin using bulbs one at a time until failure. Any broken bulb is immediately replaced. Each new bulb is selected independently and equally likely from type A(exponential life with $\lambda = 1$) or type B(exponential life with $\lambda = 3$). Lifetimes of all bulbs are independent.
+    \begin{enumerate}
+        \item Find $E[$time until first failure$]$.
+        \item $P($no bulb failure before time $t)$.
+        \item Given that there are no failures until time t, determine the conditional probability that the first bulb used is of type A.
+        \item Find the probability that the total illumination by two type B bulbs $>$ one type A.
+        \item Suppose the process terminates after 12 bulbs fail. Determine the expected value and variance of the total illumination provided by type B bulbs while the process is in operation.
+        \item Given there are no failures until time $t$, find the expected value of time until first failure.
+    \end{enumerate}
+    \hyperlink{a_poissonbulb2}{Solution}
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_steadymarkov}{\textbf{Steady State Markov Process}}\newline
     Find the steady state probabilites of the following Markov Process\newline
@@ -826,12 +897,70 @@
     Calculate the absorption probabilites for state $4$ and expected time to absortion from all states. (for absorption time, assume $p_{35} = 0$ and $p_{32} = 0.5$) \hyperlink{a_absorbmarkov}{Solution}
 
     %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_markovcourse}{\textbf{Selecting Courses with Markov Process}}\newline
+    \begin{center}
+    \begin{tikzpicture}
+        % first add the node that we want to represent
+        \node[state] at (0,0)     (61) {$6-1$};
+        \node[state] at (-3,3)    (62) {$6-2$};
+        \node[state] at (3,3)     (15) {$15$};
+        \node[state] at (-3,-3)   (63) {$6-3$};
+        \node[state] at (3,-3)    (9) {$9$};
+        % draw the edges between the nodes
+        % bend left/right is from the persepective of the starting node
+        % and so is the auto=left/right which specifies the side to put text
+        \draw[every loop]
+            % 6-1
+            (61) edge[out=60, in=30, loop, auto=left] node {$\frac{1}{2}$} (61)
+            (61) edge[bend left, auto=right] node {$\frac{1}{8}$} (62)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (63)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (9)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (15)
+            % 6-2
+            (62) edge[bend left, auto=left] node {$\frac{3}{8}$} (61)
+            (62) edge[bend left, auto=right] node {$\frac{1}{8}$} (63)
+            (62) edge[bend left, auto=right] node {$\frac{1}{2}$} (15)
+            %6-3
+            (63) edge[bend left, auto=right] node {$\frac{3}{8}$} (61)
+            (63) edge[bend left, auto=right] node {$\frac{3}{8}$} (62)
+            (63) edge[bend right, auto=left] node {$\frac{1}{4}$} (9)
+            % 9
+            (9) edge[loop right] node {$1$} (9)
+            % 15
+            (15) edge[loop right] node {$1$} (15);
+    \end{tikzpicture}
+    \end{center}
+
+    Consider the above markov process for changing courses. The probability being in some course tomorrow given a course today is mentioned along the edges. Suppose we start with course 6-1 (Note that course 6 is the combination of courses 6-1, 6-2 and 6-3). Calculate the following
+    \begin{enumerate}
+        \item $P($eventually leaving course 6$)$.
+        \item $P($eventually landing in course 15$)$.
+        \item $E[$number of days till leaving course 6$]$.
+        \item At every switch for 6-2 to 6-1 or 6-3 to 6-1, we buy an ice cream (but a maximum of two). Calculate the $E[$number of ice creams before leaving course 6$]$.
+        \item Suppose we end up in 15. What is the $E[$number of steps to reach 15$]$.
+        \item Suppose we don't want to take course 15. Accordingly, when in 6-1, we stay there with probability $1/2$ while other three options have equal probabilities. If we are in 6-2, probability of going to 6-1 and 6-3 are in the same ratio as before. Calculate the $E[$number of days until we enter course 9$]$.
+        \item Assuming $P(X_{n+1}=15|X_{n}=9) = P(X_{n+1}=9|X_{n}=15) = P(X_{n+1}=15|X_{n}=15) = P(X_{n+1}=9|X_{n}=9) = 1/2$, what is $P(X_{n}=15)$ and $P(X_{n}=9)$ far into the future.
+        \item Suppose $P(X_{n+1}=6-1|X_{n}=9) = 1/8, P(X_{n+1}=9|X_{n}=9) = P(X_{n+1}=15|X_{n}=15) = 7/8$. What is the $E[$number of days till return to 6-1$]$.
+    \end{enumerate}  
+
+    \hyperlink{a_markovcourse}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_binclt}{\textbf{Estimating Binomial with CLT, 1/2 correction}}\newline
     Given a Bernoulli Process with $n = 36$ and $p = 0.5$, find $P(S_{n} \leq 21)$. \hyperlink{a_binclt}{Solution}
 
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_lmsestimate}{\textbf{LMS estimate}}\newline
     Given the prior $f_{\Theta|(\theta)}$, uniform in $[4,10]$, and $f_{X|\Theta}(x|\theta)$ is uniform in $[\theta-1, \theta+1]$, estimate the posterior of $\theta$. \hyperlink{a_lmsestimate}{Solution}
+
+    \item \hypertarget{q_convergence}{\textbf{Probability Convergence}}\newline
+    Let $X$ be uniformly distributed between $[-1,1]$. Let $X_{1}, X_{2},\ldots,X_{n}$ be independently and identically distributed with the same distribution as $X$. Find whether the following sequences are convergent in probability and also find the limit.
+    \begin{enumerate}
+        \item $X_{i}$
+        \item $Y_{i} = X_{i}/i$
+        \item $Z_{i} = (X_{i})^{i}$
+    \end{enumerate}
 
     %%%%%%%%%%%%%%%%%%%%
     \end{enumerate}
@@ -1189,6 +1318,72 @@
         After the first bulb dies out, we are left with a process with $\lambda^{'} = 3\lambda$. Due to memoryless property, $E[\text{second bulb fails}] = \frac{1}{2\lambda}$ and consequently $E[\text{last bulb fails}] = \frac{1}{\lambda}$. \newline
         Note the above two times denote the time difference, i.e. the time taken for the bulb to die out after the last bulb died out. Thus, $E[\text{time until last bulb dies out}] = \frac{1}{3\lambda} + \frac{1}{2\lambda} + \frac{1}{\lambda}$
 
+        
+        %%%%%%%%%%%%%%%%%%%%
+        \hypertarget{a_poissonbulb2}{\item} \hyperlink{q_poissonbulb2}{Question}\newline
+        \begin{enumerate}
+            \item 
+            \begin{align*}
+                E[\text{time till failure}] &= E[\text{time till failure}|A]P(A) + E[\text{time till failure}|B]P(B)\\
+                &= \frac{1}{\lambda_{A}} \frac{1}{2} + \frac{1}{\lambda_{B}} \frac{1}{2}\\
+                &= \frac{1}{2}(1 + \frac{1}{3}) = \frac{2}{3}
+            \end{align*}
+
+            \item Let $C$ denote the event of no failure till time $t$. $P(C)$ for a given $\lambda$ will be $\int_{t}^{\inf} \lambda e^{-\lambda t}$. Then,
+            \begin{align*}
+                P(C) &= P(C|A)P(A) + P(C|B)P(B) \tag*{Using total probability theorem}\\
+                     &= e^{-t}(\frac{1}{2}) + e^{-3t}(\frac{1}{2})\\
+                     &= \frac{1}{2}(e^{-t} + e^{-3t})
+            \end{align*}
+
+            \item \label{itm:a_poissonbulb2_c} Let $C$ denote the event of no failure till time $t$. Then,
+            \begin{align*}
+                P(A|C) &= \frac{P(C|A)P(A)}{P(C)}\\
+                       &= \frac{P(C|A)P(A)}{P(C|A)P(A) + P(C|B)P(B)}\\
+                       &= \frac{\frac{1}{2} e^{-t}}{\frac{1}{2}(e^{-t} + e^{-3t})}\\
+                       &= \frac{1}{1 + e^{-2t}}
+            \end{align*}
+
+            \item Let $T_{B1}, T_{B2}$ and $T_{A}$ denote the life times of the first B bulb, second B bulb and the A bulb respectively. First consider the solution to $P(T_{B1} + T_{B2} = t)$
+            \begin{align*}
+                P(T_{B1} + T_{B2} = t) &= \int_{0}^{t} P(T_{B1} = t_{1})P(T_{B2} = t - t_{1}) dt_{1} \tag*{Using independence}\\
+                &= \int_{0}^{t} 3e^{-3t_{1}} 3e^{-3(t - t_{1})} dt_{1}\\
+                &= \int_{0}^{t} 9e^{-3t}dt_{1}\\
+                &= 9te^{-3t}
+            \end{align*}
+            
+            Now, we can rewrite the requred probability in a slightly different format
+            \begin{align*}
+                P(T_{B1} + T_{B2} > T_{A}) &= P(T_{B1} + T_{B2} = t)P(T_{A} \leq t)\\
+                &= \int_{0}^{\inf} 9te^{-3t} (\int_{0}^{t} e^{-t_{1}}dt_{1}) dt\\
+                &= \int_{0}^{\inf} 9te^{-3t} (1 - e^{-t}) dt\\
+                &= \int_{0}^{\inf} 9te^{-3t} - 9te^{-4t} dt\\
+            \end{align*}
+            Using integration by parts, $\int uv^{'} = uv - \int u^{'}v$ and choosing $u = t, v = e^{-3t}/3$,
+            \begin{align*}
+                P(T_{B1} + T_{B2} > T_{A}) &= \bigg[ 9[te^{-3t}]_{0}^{\inf} - 3\int_{0}^{\inf} e^{-3t}dt -9[te^{-4t}]_{0}^{\inf} + \frac{9}{4}\int_{0}^{\inf} e^{-4t}dt  \bigg]\\
+                &= 0 + 1 - 0 - \frac{9}{16} = \frac{7}{16}
+            \end{align*}
+
+            \item Let there be $N$  bulbs of type B out of the 12 bulbs. Clearly $N$ is a random variable and can be seen as the "successes" of choosing a given bulb as B. and the probability of choosing any $i$th bulb as B is $1/2$.\newline
+            Let the life time of any bulb of type B be $T$. Then the total lifetime of all the type B bulbs will be $NT$, which is nothing but the sum of a random number of random variables.\newline
+            \begin{align*}
+                E[NT] &= E[N]E[T] = np * \frac{1}{\lambda} = 12 * \frac{1}{2} * \frac{1}{3} = 2\\
+                Var(NT) &= E[Var(NT|N)] + Var(E[NT|N]) = E[N]Var(T) + E[T]^{2}Var(N)\\
+                &= np * \frac{1}{\lambda^{2}} + (\frac{1}{\lambda})^{2} np(1-p) = 1
+            \end{align*}
+
+            \item Let $D$ be the event that the lifetime is greater thatn $t$ or $T > t$. Then,
+            \begin{align*}
+                E[T|D] &= E[T|D,A]P(A|D) + E[T|D,B]P(B|D)\\
+                &= t + (E[T-t|D,A]P(A|D) + E[T-t|D,B]P(B|D))\\
+                &= t + (\frac{1}{1}P(A|D) + \frac{1}{3}P(B|D))\tag*{Using memoryless property}\\
+                &= t + (\frac{1}{1 + e^{-2t}} + \frac{1}{3}(1 - \frac{1}{1 + e^{-2t}})) \tag*{Using part \ref{itm:a_poissonbulb2_c}}\\
+                &= t + \frac{1}{3} + \frac{2}{3}\frac{1}{1 + e^{-2t}}
+            \end{align*}
+        \end{enumerate}
+        
+
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_steadymarkov}{\item} \hyperlink{q_steadymarkov}{Question}\newline
         Using balance equations, we have
@@ -1219,6 +1414,85 @@
             \mu_{3} &= 1 + \mu_{1}p_{31} + \mu_{2}p_{32}
         \end{align*}
         Solving, $\mu_{1} = \frac{55}{4}, \mu_{2} = 12$ and $\mu_{3} = \frac{111}{8}$
+
+
+        %%%%%%%%%%%%%%%%%%%%
+        \hypertarget{a_markovcourse}{\item} \hyperlink{q_markovcourse}{Question}\newline
+        \begin{enumerate}
+            \item The probability of eventually leaving course 6 is 1 as states 15 and 9 are absorbing states.
+            \item \label{itm:a_markovcourse_2} Here we have to calculate the probability of absortion into state 15. Let $a_{i}$ denote the probability of absorption into state 15 from state $i$. Then, $a_{15} = 1$ and $a_{9} = 0$. Using equations from \ref{sec_markov_absorb},
+            \begin{align*}
+                a_{6-1} &= \frac{1}{2}a_{6-1} + \frac{1}{8} a_{6-2} + \frac{1}{8} a_{6-3} + \frac{1}{8}a_{9} + \frac{1}{8}a_{15}\\
+                a_{6-2} &= \frac{1}{2}a_{15} + \frac{3}{8}a_{6-1} + \frac{1}{8}a_{6-3}\\
+                a_{6-3} &= \frac{1}{4}a_{9} + \frac{3}{8}a_{6-1} + \frac{3}{8}a_{6-2}
+            \end{align*}
+            Solving the 3 equations, 3 variable system, $a_{6-1} = 105/184, a_{6-2} = 143/184$ and $a_{6-3} = 93/184$.
+            \item Let $\mu_{i}$ denote the expected number of steps to get absorbed starting from state $i$. Then, $\mu_{15} = \mu_{9} = 0$. Using equations from \ref{sec_markov_absorb},
+            \begin{align*}
+                \mu_{6-1} &= 1 + \frac{1}{2}\mu_{6-1} + \frac{1}{8} \mu_{6-2} + \frac{1}{8} \mu_{6-3} + \frac{1}{8}\mu_{9} + \frac{1}{8}\mu_{15}\\
+                \mu_{6-2} &= 1 + \frac{1}{2}\mu_{15} + \frac{3}{8}\mu_{6-1} + \frac{1}{8}\mu_{6-3}\\
+                \mu_{6-3} &= 1 + \frac{1}{4}\mu_{9} + \frac{3}{8}\mu_{6-1} + \frac{3}{8}\mu_{6-2}                
+            \end{align*}
+            Solving, $\mu_{6-1} = 81/23, \mu_{6-2} = 63/23$ and $\mu_{6-3} = 77/23$.
+
+            \item This question can be done in a manner similar to the equations described above but with a small adjustment. Note that, we can either have 0, 1, or 2 ice creams. Consider $v_{i}(j)$ as the probability of making $j$ additional ice creams from 6-2 to 6-1 or 6-3 to 6-1 transitions, given the current state is $i$. Note $v_{15}(0) = v_{9}(0) = 1$. Then,
+            \begin{align*}
+                v_{6-1}(0) &= \frac{1}{2}v_{6-1}(0) + \frac{1}{8} v_{6-2}(0) + \frac{1}{8} v_{6-3}(0) + \frac{1}{8}v_{9}(0) + \frac{1}{8}v_{15}(0)\\
+                v_{6-2}(0) &= \frac{1}{2} v_{15}(0) + \frac{3}{8}(0) + \frac{1}{8}v_{6-3}(0)\\
+                v_{6-3}(0) &= \frac{1}{4}v_{9}(0) + \frac{3}{8}(0) + \frac{3}{8}v_{6-2}(0)
+            \end{align*}
+            Some of the transitions have been directly replaced with 0 as we are considering 0 ice creams and thus those transitions are not possible (6-2 to 6-1 for instance). Solving, $v_{6-1}(0) = 46/61, v_{6-2}(0) = 34/61$ and $v_{6-3}(0) = 28/61$.\newline
+
+            The same way, we can construct equations for 1 additional steps where $v_{15}(1) = v_{9} = 0$.
+            \begin{align*}
+                v_{6-1}(1) &= \frac{1}{2}v_{6-1}(1) + \frac{1}{8} v_{6-2}(1) + \frac{1}{8} v_{6-3}(1) + \frac{1}{8}v_{9}(1) + \frac{1}{8}v_{15}(1)\\
+                v_{6-2}(1) &= \frac{1}{2} v_{15}(1) + \frac{3}{8}v_{6-1}(0) + \frac{1}{8}v_{6-3}(1)\\
+                v_{6-3}(1) &= \frac{1}{4}v_{9}(1) + \frac{3}{8}v_{6-1}(0) + \frac{3}{8}v_{6-2}(1)
+            \end{align*}
+            In the second equation, after going from 6-2 to 6-1, we can only get 0 more ice creams. Hence, some of the values have been replaced with the $v_{i}(0)$ calculated above. Solving, $v_{6-1}(1) = 690/3721, v_{6-2}(1) = 1242/3721$ and $v_{6-3}(1) = 1518/3721$.\newline
+
+            Note that since the total ice creams are 0, 1, or 2, we have $v_{6-1}(0) + v_{6-1}(1) + v_{6-1}(2) = 1$. $E[$ice creams$] = 0 * v_{6-1}(0) + 1 * v_{6-1}(1) + 2 * v_{6-1}(2) = 1140/3721$
+
+            \item We need to recalculate the the transition probabilities since we are conditioning on the event $A$ that we land up in state 15.
+            \begin{align*}
+                P_{ij|A} &= P(X_{n+1}=j|X_{i}=i,A)\\
+                &= \frac{P(X_{n+1}=j, X_{n}=i, A)}{P(X_{n}=i, A)}\\
+                &= \frac{P(A|X_{n+1}=j, X_{n}=i) P(X_{n+1}=j|X_{n}=i) P(X_{n}=i)}{P(A|X_{n}=i) P(X_{n}=i)}\\
+                &= \frac{P(A|X_{n+1}=j) P(X_{n+1}=j|X_{n}=i)}{P(A|X_{n}=i)}\\
+                &= \frac{a_{j}}{a_{i}} P_{ij}
+            \end{align*}
+            where $a_{i}$ is the probability of absorption into state 15 starting from state $i$. Since markov process is only dependent on the last state, absoprtion probabilities are not dependent on $n$.\newline
+
+            We can write equations similar to \ref{sec_markov_absorb} for calculating the expected number of steps with the adjusted transition probabilities
+            \begin{align*}
+                \mu_{6-1} &= 1 + \frac{a_{6-1}}{a_{6-1}}\frac{1}{2} \mu_{6-1} + \frac{a_{6-2}}{a_{6-1}}\frac{1}{8} \mu_{6-2} + \frac{a_{6-3}}{a_{6-1}}\frac{1}{8} \mu_{6-3} + \frac{a_{15}}{a_{6-1}}\frac{1}{8} \mu_{15}+ \frac{a_{9}}{a_{6-1}}\frac{1}{8} \mu_{9}\\
+                \mu_{6-2} &= 1 + \frac{a_{6-1}}{a_{6-2}}\frac{3}{8} \mu_{6-1} + \frac{a_{6-3}}{a_{6-2}}\frac{1}{8} \mu_{6-3} + \frac{a_{15}}{a_{6-2}}\frac{1}{2} \mu_{15}\\
+                \mu_{6-3} &= 1 + \frac{a_{6-1}}{a_{6-3}}\frac{3}{8} \mu_{6-1} + \frac{a_{6-2}}{a_{6-3}}\frac{3}{8} \mu_{6-2} + \frac{a_{9}}{a_{6-3}}\frac{1}{4} \mu_{9}\\
+            \end{align*}
+            where $\mu_{15} = \mu_{9} = 0, a_{15} = 1$, and $a_{9} = 0$. The absorption probabilities can be taken from the part \ref{itm:a_markovcourse_2}. Solving, $\mu_{6-1} = 1763/483$.
+
+            \item The changed probabilites become $P(X_{n+1}=15|X_{n}=6-1) = P(X_{n+1}=6-2|X_{n}=6-1) = P(X_{n+1}=6-3|X_{n}=6-1) = 1/6, P(X_{n+1}=6-1|X_{n}=6-2)=3/4$ and $P(X_{n+1}=6-3|X_{n}=6-2)=1/4$. We then use equations from \ref{sec_markov_absorb} to calculate the expected values
+            \begin{align*}
+                \mu_{6-1} &= 1 + \frac{1}{2}\mu_{6-1} + \frac{1}{6} \mu_{6-2} + \frac{1}{6} \mu_{6-3} + \frac{1}{6}\mu_{9}\\
+                \mu_{6-2} &= 1 + \frac{3}{4}\mu_{6-1} + \frac{1}{4}\mu_{6-3}\\
+                \mu_{6-3} &= 1 + \frac{1}{4}\mu_{9} + \frac{3}{8}\mu_{6-1} + \frac{3}{8}\mu_{6-2}
+            \end{align*}
+            where $\mu_{15} = 0$. Solving, $\mu_{6-1} = 86/13, \mu_{6-2} = 98/13$ and $\mu_{6-3} = 82/13$.
+
+            \item If we look carefully at the new probabilities, states 15 and 9 become recurrent. Far into the future, we are sure to land up in those states, and will be in either one of those. By symmetry, the two should be same. $\pi_{15} = \pi_{9} = 1/2$.
+
+            \item We assume that 6-1 is an absorbing state, and accordingly calculate the probabilities. Note that there will not be an equation for 6-1 since we are then already in the final state.
+            \begin{align*}
+                \mu_{6-2} &= 1 + \frac{1}{8} \mu_{6-3} + \frac{1}{2} \mu_{15}\\
+                \mu_{6-3} &= 1 + \frac{3}{8} \mu_{6-2} + \frac{1}{4} \mu_{9}\\
+                \mu_{9} &= 1 + \frac{7}{8} \mu_{9}\\
+                \mu_{15} &= 1 + \frac{7}{8} \mu_{15}\\
+            \end{align*}
+            Solving, $\mu_{6-2} = 344/61, \mu_{6-3} = 312/61$ and $\mu_{9} = \mu_{15} = 8$. Plugging these into the following equation (which corresponds to taking one step out of 6-1),
+            \begin{align*}
+                \mu_{6-1} = 1 + \frac{1}{2} \mu_{6-1} + \frac{1}{8} \mu_{15} + \frac{1}{8} \mu_{6-2} + \frac{1}{8} \mu_{6-3} + \frac{1}{8} \mu_{15} = \frac{265}{61}
+            \end{align*}
+        \end{enumerate}
 
 
         %%%%%%%%%%%%%%%%%%%%
@@ -1347,6 +1621,24 @@
         \end{tikzpicture}
 
         %%%%%%%%%%%%%%%%%%%%
+
+        %%%%%%%%%%%%%%%%%%%%
+        \hypertarget{a_convergence}{\item} \hyperlink{a_convergence}{Question}\newline
+        \begin{enumerate}
+            \item No, since $X_{i}$ is also uniform in $[-1,1]$
+            \item Yes, $E[Y_{i}] = 0$ by symmetry. For $\epsilon > 0$,
+            \begin{align*}
+                \lim_{i \to \inf}(P\vert Y_{i} - \mu_{i} \vert > \epsilon) &= \lim_{i \to \inf} P(\vert \frac{X_{i}}{i} - 0 \vert > \epsilon)\\
+                &= \lim_{i \to \inf} P(\frac{X_{i}}{i} > \epsilon \text{ and } \frac{X_{i}}{i} < -\epsilon)\\
+                &= \lim_{i \to \inf} [P(X_{i} > i\epsilon) + P(X_{i} < -i\epsilon)] = 0
+            \end{align*}
+            \item Yes, $E[Y_{i}] = 0$ by symmetry. For $\epsilon > 0$,
+            \begin{align*}
+                \lim_{i \to \inf}P(\vert Z_{i} - 0 \vert > \epsilon) &= \lim_{i \to \inf}P((X_{i})^{i} > \epsilon \text{ or } (X_{i})^{i} < -\epsilon)\\
+                &= \lim_{i \to \inf} [\frac{1}{2}(1 - \epsilon^{1/i}) + \frac{1}{2}(1 - \epsilon^{1/i})]\\
+                &= \lim_{i \to \inf}(1 - \epsilon^{1/i}) = 0
+            \end{align*}
+        \end{enumerate}
     \end{enumerate}
 
 \end{document}
