@@ -1,0 +1,21 @@
+\documentclass[../../probability-notex.tex]{subfiles}
+\begin{document}
+    \begin{enumerate}
+        \item 
+        \begin{align*}
+            P(A \cap B) &= P(A) P(B)\\
+            P(A) &= P((A \cap B) \cup (A \cap B^{c}))\\
+                &= P(A \cap B) + P(A \cap B^{c}) \tag*{since disjoint}\\
+            P(A \cap B^{c}) &= P(A) - P(A)P(B)\\
+                &= P(A)(1 - P(B)) = P(A)P(B^{c})
+        \end{align*}
+        \item 
+        \begin{align*}
+            (A \cup B)^{c} &= A^{c} \cap B^{c}\\
+            P(A^{c} \cap B^{c}) &= 1 - P(A \cup B)\\
+                            &= 1 - P(A) - P(B) + P(A \cap B)\\
+                            &= (1 - P(A))(1 - P(B))\\
+                            &= P(A^{c})P(B^{c})
+        \end{align*}
+    \end{enumerate}
+\end{document}
