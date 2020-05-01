@@ -1,0 +1,302 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    \subsection{Problems}
+    \begin{enumerate}
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_indcomp}{\textbf{Independence in Complements}}\newline
+    Given $A \perp B$, show $A \perp B^{c}$ and $A^{c} \perp B^{c}$. \hyperlink{a_indcomp}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_conind}{\textbf{Conditional Independence}}\newline
+    $A,B,$ and $C$ are independent with $P(C) > 0$. Show that $A\perp B |C$. \hyperlink{a_conind}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_geomeet}{\textbf{Geometry of Meeting}}\newline
+    R and J have to meet at a given place and each will arrive at the given place independent of each other with a delay of 0 to 1hr uniformly distributed. The pairs of delays are all equally likely. The first to arrive waits for 15 minutes and leaves. What is the probability of meeting ? \hyperlink{a_geomeet}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_expfn}{\textbf{Expectation of Function}}\newline
+    Let $X$ and $Y$ be random variables with $Y = g(X)$. Show $E[Y] = \sum_{x}g(x)p_{X}(x)$. \hyperlink{a_expfn}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_cumuldistfn}{\textbf{Cumulative Distribution Function}}\newline
+    A random variable X is a combination of a continuous and discrete distribution as follows
+    \begin{align*}
+        f_{X}(x) = \begin{cases} 0.5 &\mbox{$a \leq x \leq b$}\\
+                                 0.5 &\mbox{x = 0.5}\\
+                                 0 &\mbox{otherwise} \end{cases}
+    \end{align*}
+    Find the Cumulative Distribution of X. \hyperlink{a_cumuldistfn}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_tossh}{\textbf{Number of tosses till first head}}\newline
+    When tossing a fair coin, what is the $E[$\# tosses till the first H$]$. \hyperlink{a_tossh}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_itrexpproof}{\textbf{Iterated Expectation Proof}}\newline
+    For discrete variables, show $E[X] = E[E[X|Y]]$. \hyperlink{a_itrexpproof}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_itrexpthree}{\textbf{Iterated Expectation for three variables}}\newline
+    For three random variables $X$, $Y$ and $Z$, show $E[Z|X] = E[E[Z|X,Y]|X]$. \hyperlink{a_itrexpthree}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_itrexppractice}{\textbf{Iterated Expectation practice}}\newline
+    A class has two sections denoted by the random variable $Y$. Let $X$ denote the quiz score of a student. Given that section 1 has 10 students, section 2 has 20 students, $E[X|Y=1] = 90, E[X|Y=2] = 60, Var(X|Y=1) = 10, Var(X|Y=2) = 20$, find $E[X]$ and $Var(X)$. \hyperlink{a_itrexppractice}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_hatproblem}{\textbf{Hat Problem}}\newline
+    $n$ people throw their hats in a box and then pick a hat at random. What is the expected number of people who pick their own hat ? \hyperlink{a_hatproblem}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_breakstick}{\textbf{Breaking a stick}}\newline
+    A stick of length $l$ is broken first at $X$ uniformly chosen between $[0,l]$, and then at $Y$, uniformly chosen between $[0,X]$. Find the expected length of the shorter part. \hyperlink{a_breakstick}{Solution}
+
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_trianglestick}{\textbf{Triangles from a Stick}}\newline
+    We have a stick of length 1. We randomly choose two points on the stick and break the stick at those points. Calculate the probability that the three pieces form a triangle. \hyperlink{a_trianglestick}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_pmffn}{\textbf{PMF of g(X)}}\newline
+    Let $X$ be uniform in $[0, 2]$, then find the PMF of $Y = X^{3}$. \hyperlink{a_pmffn}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_waittaxi}{\textbf{Waiting for Taxi}}\newline
+    A taxi stand and bus stop near Al's home are at the same location. Al goes there and if a taxi is waiting $P=\frac{2}{3}$, he boards it. Otherwise, he waits for a taxi or bus to come, whichever is first. Taxi takes anywhere between $0$ to $10$ mins (uniform) while a bus arrives in exactly 5 mins. He boards whichever is first. Find CDF and $E$[wait time]. \hyperlink{a_waittaxi}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_bayes}{\textbf{Bayes Theorem}}\newline
+    Let $Q$ be a continuous random variable with PDF
+    \begin{align*}
+        f_{Q}(q) = \begin{cases} 6q(1-q) &\mbox{ $0 \leq q \leq 1$}\\
+                                 0 &\mbox{ otherwise} \end{cases}
+    \end{align*}
+    where $Q$ represents $P(success)$ for a Bernoulli $X$, i.e., $P(X=1|Q=q) = q$. Find $f_{Q|X}(q|x) \forall x \in [0,1] and q$. \hyperlink{a_bayes}{Solution}
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_normaltr}{\textbf{A Normal Transformation}}\newline
+    Let $X \sim \mathcal{N}(0,1)$ and $Y = g(X)$. Find $p_{Y}(y)$. 
+    \begin{align*}
+        g(t) = \begin{cases} -t &\mbox{$t \leq 0$}\\
+                            \sqrt{t} &\mbox{$t > 0$} \end{cases}
+    \end{align*}
+    \hyperlink{a_normaltr}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_binshoot}{\textbf{Binomial Shooter}}\newline
+    A shooter takes 10 hits in a shooting range and each shot has $p=0.2$ of hitting target independent of each other. Let $X = $ number of hits. Find
+    \begin{enumerate}
+         \item PMF of $X$
+         \item $P(no\;hits)$
+         \item $P(scoring\;more\;than\;misses)$
+         \item $E[X]$ and $Var(X)$
+         \item Suppose the entry is \$3 and each shot fetches \$2. Let $Y$ = profit. Find $E[Y] and Var(Y)$.
+         \item Suppose entry is free and total reward is square of number of hits. Let $Z$ be profit. Find $E[Z]$.
+    \end{enumerate} \hyperlink{a_binshoot}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_mosquito}{\textbf{Mosquito and Tick}}\newline
+    Every second, a mosquito lands with $P = 0.5$. Once it lands, it bites with $P=0.2$. Let $X$ be the time between successive mosquito bites. Find $E[X]$ and $Var(X)$.\newline
+    Now suppose a tick comes into play independent of mosquito. It lands with $P=0.1$ and once landed, bites with $)=0.7$. Let $Y$ be the time between successive bug bites. Find $E[Y]$ and $Var(Y)$. \hyperlink{a_mosquito}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_hhtt}{\textbf{HH or TT}}\newline
+    Given a coin with $P(H) = p$, find the $E$[number of tosses till $HH$ or $TT$]. \hyperlink{a_hhtt}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \label{itm:threecoins} \hypertarget{q_threecoins}{\textbf{A Three Coin Game}}\newline
+    Let $3$ fair coins be tossed at every turn. Given all coins and turns are independent, calculate the following (assuming success is defined as all three coins landing the same side up))
+    \begin{enumerate}
+        \item PMF of $K$, no of trials upto but not including the $2^{nd}$ success
+        \item $E$ and $Var$ of $M$, the $E[$number of tails$]$ before first success.
+    \end{enumerate}
+    \hyperlink{a_threecoins}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_linexp}{\textbf{Linear Expectations}}\newline
+    Bob conducts trials in a similar manner to Problem \ref{itm:threecoins}, but with four coins. He repeatedly removes a coin at success until just a single coin remains. Calculate the Expected number of tosses till the finish of experiment. \hyperlink{a_linexp}{Solution}
+    
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_papers}{\textbf{Papers Drawn with Replacement}}\newline
+    Suppose there are $n$ papers in a drawer. We take one paper, sign it, and then put it back into the drawer. We take one more paper out and if it is not signed, we sign it and put it back in the drawer. If the paper is already signed, we simply put it back in the drawer. We repeat this process until all the papers are signed. Find the $E[$papers drawn till all papers are signed$]$. What is the value of this quantity as $n \to large$. \hyperlink{a_papers}{Solution}
+
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_threevar}{\textbf{A Three Variable Inequality}} \newline
+    Let $X$, $Y$, $Z$ be three exponentially distributed random variables with parameters $\lambda, \mu,$ and $\nu$ respectively. Find $P(X < Y < Z)$. \hyperlink{a_threevar}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_poissonemails}{\textbf{Poisson Emails}}\newline
+    You get emails according to a Poisson process at the rate of 5 messages/hour. You check email every 30 minutes. Find
+    \begin{itemize}
+        \item P(no new message)
+        \item P(one new message)
+    \end{itemize}
+    \hyperlink{a_poissonemails}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_poissonfish}{\textbf{Poisson Fishing}}\newline
+    We go fishing where we catch fishes at the rate of $0.6/hour$. We fish for two hours. If we do not catch a fish in the first two hours, we fist until the first catch. Find the following
+    \begin{itemize}
+        \item P(fish for $> 2$ hours)
+        \item P(fish for $> 2$ but $< 5$ hours)
+        \item P(catch at least two fish)
+        \item E[fish]
+        \item E[Total fishing time]
+        \item E[future fishing time|fished for two hours]
+    \end{itemize}
+    \hyperlink{a_poissonfish}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_poissonbulb}{\textbf{Poisson Lightbulbs}}\newline
+    We have three identical but independent lightbulbs whose lifetimes are modelled by a Poisson process with parameter $\lambda$. Given that we start all the three bulbs together, find the $E[\text{time until last bulb dies out}]$. \hyperlink{a_poissonbulb}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_poissonbulb2}{\textbf{Two Poisson Lightbulbs}}\newline
+    Beginning at $t=0$, we begin using bulbs one at a time until failure. Any broken bulb is immediately replaced. Each new bulb is selected independently and equally likely from type A(exponential life with $\lambda = 1$) or type B(exponential life with $\lambda = 3$). Lifetimes of all bulbs are independent.
+    \begin{enumerate}
+        \item Find $E[$time until first failure$]$.
+        \item $P($no bulb failure before time $t)$.
+        \item Given that there are no failures until time t, determine the conditional probability that the first bulb used is of type A.
+        \item Find the probability that the total illumination by two type B bulbs $>$ one type A.
+        \item Suppose the process terminates after 12 bulbs fail. Determine the expected value and variance of the total illumination provided by type B bulbs while the process is in operation.
+        \item Given there are no failures until time $t$, find the expected value of time until first failure.
+    \end{enumerate}
+    \hyperlink{a_poissonbulb2}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_steadymarkov}{\textbf{Steady State Markov Process}}\newline
+    Find the steady state probabilites of the following Markov Process\newline
+    \begin{center}
+    \begin{tikzpicture}
+        % first add the node that we want to represent
+        \node[state]             (1) {$1$};
+        \node[state, right=of 1] (2) {$2$};
+        % draw the edges between the nodes
+        % bend left/right is from the persepective of the starting node
+        % and so is the auto=left/right which specifies the side to put text
+        \draw[every loop]
+            % right edges
+            (1) edge[bend left, auto=left] node {$0.5$} (2)
+            % left edges
+            (2) edge[bend left, auto=left] node {$0.2$} (1)
+            % self loops
+            (1) edge[loop above] node {$0.5$} (1)
+            (2) edge[loop above] node {$0.8$} (2);
+    \end{tikzpicture}
+    \end{center}
+    \hyperlink{a_steadymarkov}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_absorbmarkov}{\textbf{Absorption Probabilities}}\newline
+    \begin{center}
+    \begin{tikzpicture}
+        % first add the node that we want to represent
+        \node[state] at (0,0)     (5) {$5$};
+        \node[state] at (0,-2)    (3) {$3$};
+        \node[state] at (0,-5)    (1) {$1$};
+        \node[state] at (3,-5)    (2) {$2$};
+        \node[state] at (5,-5)    (4) {$4$};
+        % draw the edges between the nodes
+        % bend left/right is from the persepective of the starting node
+        % and so is the auto=left/right which specifies the side to put text
+        \draw[every loop]
+            % 5
+            (5) edge[loop left] node {$1$} (5)
+            % 3
+            (3) edge[auto=left]            node {$0.2$} (5)
+            (3) edge[bend left, auto=left] node {$0.5$} (1)
+            (3) edge[bend left, auto=left] node {$0.3$} (2)
+            % 1
+            (1) edge[bend left, auto=left] node {$0.4$} (3)
+            (1) edge[bend left, auto=left] node {$0.6$} (2)
+            % 2
+            (2) edge[bend left, auto=left] node {$0.8$} (1)
+            (2) edge[auto=left]            node {$0.2$} (4)
+            %4
+            (4) edge[loop above] node {$1$} (4);
+    \end{tikzpicture}
+    \end{center}    
+    Calculate the absorption probabilites for state $4$ and expected time to absortion from all states. (for absorption time, assume $p_{35} = 0$ and $p_{32} = 0.5$) \hyperlink{a_absorbmarkov}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_markovcourse}{\textbf{Selecting Courses with Markov Process}}\newline
+    \begin{center}
+    \begin{tikzpicture}
+        % first add the node that we want to represent
+        \node[state] at (0,0)     (61) {$6-1$};
+        \node[state] at (-3,3)    (62) {$6-2$};
+        \node[state] at (3,3)     (15) {$15$};
+        \node[state] at (-3,-3)   (63) {$6-3$};
+        \node[state] at (3,-3)    (9) {$9$};
+        % draw the edges between the nodes
+        % bend left/right is from the persepective of the starting node
+        % and so is the auto=left/right which specifies the side to put text
+        \draw[every loop]
+            % 6-1
+            (61) edge[out=60, in=30, loop, auto=left] node {$\frac{1}{2}$} (61)
+            (61) edge[bend left, auto=right] node {$\frac{1}{8}$} (62)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (63)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (9)
+            (61) edge[bend left, auto=left] node {$\frac{1}{8}$} (15)
+            % 6-2
+            (62) edge[bend left, auto=left] node {$\frac{3}{8}$} (61)
+            (62) edge[bend left, auto=right] node {$\frac{1}{8}$} (63)
+            (62) edge[bend left, auto=right] node {$\frac{1}{2}$} (15)
+            %6-3
+            (63) edge[bend left, auto=right] node {$\frac{3}{8}$} (61)
+            (63) edge[bend left, auto=right] node {$\frac{3}{8}$} (62)
+            (63) edge[bend right, auto=left] node {$\frac{1}{4}$} (9)
+            % 9
+            (9) edge[loop right] node {$1$} (9)
+            % 15
+            (15) edge[loop right] node {$1$} (15);
+    \end{tikzpicture}
+    \end{center}
+
+    Consider the above markov process for changing courses. The probability being in some course tomorrow given a course today is mentioned along the edges. Suppose we start with course 6-1 (Note that course 6 is the combination of courses 6-1, 6-2 and 6-3). Calculate the following
+    \begin{enumerate}
+        \item $P($eventually leaving course 6$)$.
+        \item $P($eventually landing in course 15$)$.
+        \item $E[$number of days till leaving course 6$]$.
+        \item At every switch for 6-2 to 6-1 or 6-3 to 6-1, we buy an ice cream (but a maximum of two). Calculate the $E[$number of ice creams before leaving course 6$]$.
+        \item Suppose we end up in 15. What is the $E[$number of steps to reach 15$]$.
+        \item Suppose we don't want to take course 15. Accordingly, when in 6-1, we stay there with probability $1/2$ while other three options have equal probabilities. If we are in 6-2, probability of going to 6-1 and 6-3 are in the same ratio as before. Calculate the $E[$number of days until we enter course 9$]$.
+        \item Assuming $P(X_{n+1}=15|X_{n}=9) = P(X_{n+1}=9|X_{n}=15) = P(X_{n+1}=15|X_{n}=15) = P(X_{n+1}=9|X_{n}=9) = 1/2$, what is $P(X_{n}=15)$ and $P(X_{n}=9)$ far into the future.
+        \item Suppose $P(X_{n+1}=6-1|X_{n}=9) = 1/8, P(X_{n+1}=9|X_{n}=9) = P(X_{n+1}=15|X_{n}=15) = 7/8$. What is the $E[$number of days till return to 6-1$]$.
+    \end{enumerate}  
+
+    \hyperlink{a_markovcourse}{Solution}
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_binclt}{\textbf{Estimating Binomial with CLT, 1/2 correction}}\newline
+    Given a Bernoulli Process with $n = 36$ and $p = 0.5$, find $P(S_{n} \leq 21)$. \hyperlink{a_binclt}{Solution}
+
+    
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_mleestimate}{\textbf{MLE Estimate}}\newline
+    Suppose we observe $n$ independent and identically distributed samples $x_{1}, x_{2}, \ldots, x_{n}$ from an exponential distribution. Estimate the parameter of the exponential.
+    
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_lmsestimate}{\textbf{LMS Estimate}}\newline
+    Given the prior $f_{\Theta|(\theta)}$, uniform in $[4,10]$, and $f_{X|\Theta}(x|\theta)$ is uniform in $[\theta-1, \theta+1]$, estimate the posterior of $\theta$. \hyperlink{a_lmsestimate}{Solution}
+
+    \item \hypertarget{q_convergence}{\textbf{Probability Convergence}}\newline
+    Let $X$ be uniformly distributed between $[-1,1]$. Let $X_{1}, X_{2},\ldots,X_{n}$ be independently and identically distributed with the same distribution as $X$. Find whether the following sequences are convergent in probability and also find the limit.
+    \begin{enumerate}
+        \item $X_{i}$
+        \item $Y_{i} = X_{i}/i$
+        \item $Z_{i} = (X_{i})^{i}$
+    \end{enumerate}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \end{enumerate}
+\end{document}

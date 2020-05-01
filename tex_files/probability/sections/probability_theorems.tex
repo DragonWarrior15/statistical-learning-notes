@@ -1,0 +1,115 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    \section{Probability Theorems}
+    \subsection{Set Theorems}
+    For any three sets, the following hold true
+    \begin{align*}
+        A &= (A \cap B) \cup (A \cap B^{c}) \;where\;B\;and\;B^{c}\;are\;disjoint \\
+        A \cap (B \cup C) &= (A \cap B) \cup (A \cap C) \\
+        A \cup (B \cap C) &= (A \cup B) \cap (A \cup C)
+    \end{align*}
+
+    \subsection{Basic Probability Rules}
+    \begin{align*}
+        &\text{If } A \cap B = \phi \text{, then } P(A \cup B) = P(A) + P(B)\\
+        &P(A|B)P(B) = P(B|A)P(A) = P(A \cap B) \tag*{Bayes' Theorem}\\
+        &P(A) = P(A \cap B) + P(A \cap B^{c}) = P(A|B)P(B) + P(A|B^{c})P(B^{c})\\
+        &P(A \cap B \cap C) = P(A) P(B|A) P(C|B,A) \tag*{Chain Rule}
+    \end{align*}
+
+    \subsubsection{Total Probability Theorem}
+    Let $A_{1}$, $A_{2}$, .. ,$A_{n}$ be n disjoint events that completely cover the event space, and B be another event, then
+    \begin{align*}
+        P(B) &= P(B|A_{1})P(A_{1}) + P(B|A_{2})P(A_{2}) + \cdots + P(B|A_{n})P(A_{n})\\
+        \text{or, } P(B) &= \sum_{i=1}^{n} P(B|A_{i})P(A_{i})
+    \end{align*}
+    \subsection{Independence}
+    Two events A and B are independent iff
+    \begin{align*}
+        &P(A \cap B) = P(A) P(B)
+    \end{align*}
+    Note that \emph{independence} is not the same as \emph{disjoint}
+    \begin{align*}
+    A \cap B = \phi \Rightarrow P(A \cap B) = 0 \text{ but } P(A) \neq P(B) \neq 0
+    \end{align*}
+    Multiple events $A_{1}, A_{2}, \ldots , A_{n}$ are independent iff
+    \begin{align*}
+        P(A_{i} \cap A_{j} \cap \ldots \cap A_{k}) = P(A_{i}) P(A_{j}) \;..\; P(A_{k}) \;\;\forall\;i,j,\ldots,k \;|\; i,j,\ldots,k \in {1,2,\ldots,n}
+    \end{align*}
+    Conditional Independence is similar to the above equation. For an event C,
+    \begin{align*}
+        P(A_{i} \cap A_{j} \cap \ldots \cap A_{k} | C) = P(A_{i}|C) P(A_{j}|C) \;..\; P(A_{k}|C) \;\;\forall\;i,j,\ldots,k \;|\; i,j,\ldots,k \in {1,2,\ldots,n}
+    \end{align*}
+    
+    \subsection{Joint Probability Distributions}
+    \emph{Joint Probability Distributions} are defined for two or more than two variables. In this section, we only consider two variables. The formal definition is
+
+    \begin{align*}
+        P_{XY}(x, y) = P(X = x \;and\; Y = y)
+    \end{align*}
+
+    Based on this definition, the following theorems follow
+
+    \begin{align*}
+        \sum_{x} \sum_{y} P_{XY}(x,y) &= 1 \\
+        P_{X}(x) &= \sum_{y} P_{XY}(x,y) \tag*{Marginal Probability} \\
+        P_{X|Y}(x|y) &= P_{X|Y}(X=x|Y=y) = \frac{P_{XY}(x,y)}{P_{Y}{y}} \\
+        \sum_{x} P_{X|Y}(x|y) &= 1 \tag*{Since Y is fixed and we sum over all X's} \\
+        P_{XYZ}(x,y,z) &= P_{X}(x) P_{Y|X}(y|x) P_{Z|X,Y}(z|x,y) \tag*{Chain Rule}
+    \end{align*}
+
+    \subsection{Expected Value}
+    Before going to expected value, let's define a Random Variable
+    \begin{align*}
+        \text{Random Variable } X \text{ is a linear map : } \mathbb{R} \to \mathbb{R} \text{. The value taken by the variable is denoted by } x
+    \end{align*}
+    
+    $X$ will have an associated probability distribution, i.e., $P_{X}(X = x)$ . Using these quantities, we have
+    \begin{align*}
+        E[X] = \sum_x xP_{X}(X = x) \tag*{Expected Value}
+    \end{align*}
+
+    Based on this definition, the following theorems for expected value follow
+    \begin{align*}
+        E[\alpha] &= \alpha
+        E[\alpha X] &= \alpha E[X] \\
+        E[\alpha X + \beta] &= \alpha E[X] + \beta \\
+        E[g(X)] &= \sum_x g(x)P_{X}(X = x) \\
+        E[X^{2}] &= \sum_x x^{2} P_{X}(X = x) \tag*{Also called \emph{Second Moment}}\\
+        E[X|A] &= \sum_{x} x P_{X|A}(X|A) \\
+        E[g(X)|A] &= \sum_{x} g(x) P_{X|A}(X|A) \\
+        E[X + Y + Z] &= E[X] + E[Y] + E[Z] \tag*{Linearity of Expectation}\\
+        E[XY] &= \sum_{X} \sum_{Y} xy P_{XY}(x,y) \\
+        E[g(X,Y)] &= \sum_{X} \sum_{Y} g(xy) P_{XY}(x,y) \\
+        E[XY] &= E[X]E[Y] \tag*{if X and Y are \emph{independent}}
+    \end{align*}
+    where $\alpha, \beta \in \mathbb{R}$, $g(X) : \mathbb{R} \rightarrow \mathbb{R}$, and $A$ is an event, $X, Y, Z$ are Random Variables
+
+    \subsubsection{Total Expectation Theorem}
+    The \emph{Total Expectation Theorem} is the natural extension of the \emph{Total Probability Theorem}
+    Let $A_{1}, A_{2}, \ldots, A_{n}$ be n disjoint events that completely cover the event space, and X be random variable, then
+    \begin{align*}
+        E[X] &= E[X|A_{1}]P(A_{1}) + E[X|A_{2}]P(A_{2}) + \cdots + E[X|A_{n}]P(A_{n})\\
+        \text{or, } E[X)] &= \sum_{i=1}^{n} E[X|A_{i}]P(A_{i})
+    \end{align*}
+
+    \subsection{Variance}
+    The formal definition of variance is
+    \begin{align*}
+        Var(X) = E[(X - \bar{X})^{2}] = E[X^{2}] - E[X]^{2}
+    \end{align*}
+    Using this definition, the following theorems follow
+    \begin{align*}
+        E[X^{2}] &= E[X]^{2} + Var(X) \\
+        Var(\alpha) &= 0 \\
+        Var(\alpha X + \beta) &= \alpha^{2} Var(X) \\
+        Var(X + Y) &= Var(X) + Var(Y) \text{  if $X$ and $Y$ are \emph{independent} random variables}
+    \end{align*}
+
+    \subsection{Cumulative Probability Distribution}
+    Cumulative probability distribution is defined for both discrete and continuous variables
+    \begin{align*}
+        F_{x}(X) = P(X \leq x) = \begin{cases} \int_{-\inf}^{x} p_{X}(t) dt &\mbox{$X$ is a discrete random variable}\\
+                                               \sum_{k <= x} P_{X}(k) &\mbox{$X$ is a continuous random variable} \end{cases}
+    \end{align*}
+\end{document}
