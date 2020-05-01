@@ -4,696 +4,140 @@
     \begin{enumerate}
         %%%%%%%%%%%%%%%%%%%%
         \item \hypertarget{a_indcomp}{\hyperlink{q_indcomp}{Question}}
-        \begin{enumerate}
-            \item 
-            \begin{align*}
-                P(A \cap B) &= P(A) P(B)\\
-                P(A) &= P((A \cap B) \cup (A \cap B^{c}))\\
-                    &= P(A \cap B) + P(A \cap B^{c}) \tag*{since disjoint}\\
-                P(A \cap B^{c}) &= P(A) - P(A)P(B)\\
-                    &= P(A)(1 - P(B)) = P(A)P(B^{c})
-            \end{align*}
-            \item 
-            \begin{align*}
-                (A \cup B)^{c} &= A^{c} \cap B^{c}\\
-                P(A^{c} \cap B^{c}) &= 1 - P(A \cup B)\\
-                                &= 1 - P(A) - P(B) + P(A \cap B)\\
-                                &= (1 - P(A))(1 - P(B))\\
-                                &= P(A^{c})P(B^{c})
-            \end{align*}
-        \end{enumerate}
+        \subfile{exercises/a_indcomp}
 
         %%%%%%%%%%%%%%%%%%%%
         \item \hypertarget{a_conind}{\hyperlink{q_conind}{Question}}
-        \begin{align*}
-            P(A \cap B | C) = \frac{P(A \cap B \cap C)}{P(C)} = P(A)P(B) = P(A|C)P(B|C) \tag*{Due to independence}
-        \end{align*}
+        \subfile{exercises/a_conind}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_geomeet}{\item} \hyperlink{q_geomeet}{Question} \newline
-        Suppose R arrives at $x$ hours. J has to arrive between $x$ hrs to $x$ hrs + 15 mins. Similarly if J arrives at $y$ hours, R has to arrive between $y$ hours to $y$ hours + 15 mins. These are regions enclosed by the regions $x \leq 1, y \leq 1, y \leq x + \frac{1}{4} \;and\; y \geq x - \frac{1}{4}$. The probability is then $ 1 - P(not\;meeting) = 1 - 2(\frac{1}{2} \frac{3}{4} \frac{3}{4}) = \frac{7}{16}$.
+        \subfile{exercises/a_geomeet}
     
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_expfn}{\item} \hyperlink{q_expfn}{Question}
-        \begin{align*}
-            E[Y] = \sum_{y}yp_Y(y) = \sum_{y}\sum_{x:g(x)=y}p_{X}(x) = \sum_{y} \sum_{x:g(x)=y} yp_{X}(x)\\
-            = \sum_{y} \sum_{x:g(x)=y}g(x)p_{X}(x) = \sum_{x}g(x)p_{X}(x) 
-        \end{align*}
+        \subfile{exercises/a_expfn}
     
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_cumuldistfn}{\item} \hyperlink{q_cumuldistfn}{Question} \newline
-        Cumulative Distribution of X can be found by integration and is as follows
-        \begin{align*}
-            f_{X}(x) = \begin{cases} 0 &\mbox{$x < 0$}\\
-                                     0.5x &\mbox{$0 \leq x < 0.5$}\\
-                                     0.75 &\mbox{x = 0.5}\\
-                                     0.75 + 0.5(x-0.5) &\mbox{$0.5 < x \leq 1$} \\
-                                     1 &\mbox {$1 < x$}\end{cases}
-        \end{align*}
+        \subfile{exercises/a_cumuldistfn}
         
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_tossh}{\item} \hyperlink{q_tossh}{Question} \newline
-        Let $X$ be the \# of tosses till first \emph{H}. Then, $(X = 1) \cap (X > 1) = \phi$.
-        Using \emph{Total Expectation Theorem}
-        \begin{align*}
-            E[X] &= P(X = 1)E[X|X = 1] + P(X > 1)E[X|X > 1] \\
-            &= 0.5 * 1 + 0.5 E[X] \\
-            \Rightarrow E[X] &= 2
-        \end{align*}
-        $P(X = 1) = 0.5$ because then we get the head in the first toss itself. Since $P(X = 1) + P(X > 1) = 1$, we have $P(X > 1) = 0.5$. $E[X] = E[X|X > 1]$ because the tosses are \emph{independent} and thus memoryless.
+        \subfile{exercises/a_tossh}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_itrexpproof}{\item} \hyperlink{q_itrexpproof}{Question} \newline
-        Note that $E[X|Y]$ is a function of $y$.
-        \begin{align*}
-            E[E[X|Y]] &= \sum_{y} E[X|Y] p_Y(y)\\
-                     &= \sum_{y} \sum_{x} xp_{X|Y}p_{Y}\\
-                     &= \sum_{y}\sum_{x} xp_{X,Y}(x,y)\\
-                     &= \sum_{x}x\sum_{y}p_{X,Y}(x,y)\\
-                     &= \sum_{x} x p_{X}(x)\\
-                     &= E[X]
-        \end{align*}
-
+        \subfile{exercises/a_itrexpproof}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_itrexpthree}{\item} \hyperlink{q_itrexpthree}{Question} \newline
-        Note that $E[Z|X,Y]$ will be a function of both $X$ and $Y$.
-        \begin{align*}
-            E[Z|X,Y] &= \sum_{z} z p_{Z|X,Y}(z|x,y)\\
-            E[E[Z|X,Y]|X] &= \sum_{y} E[Z|X,Y]p_{X,Y|X}(x,y|x)\\
-                        &= \sum_{y} \sum_{z} z p_{Z|X,Y}(z|x,y) p_{Y|X}(y|x)\\
-                        &= \sum_{y} \sum_{z} z \frac{p_{X,Y,Z}(x,y,z)}{p_{X}(x)}\\
-                        &= \sum_{z} z \sum_{y} \frac{p_{X,Y,Z}(x,y,z)}{p_{X}(x)}\\
-                        &= \sum_{z} z \frac{p_{X,Z}(x,z)}{p_{X}(x)}\\
-                        &= \sum_{z} z p_{Z|X}(z|x)\\
-                        &= E[Z|X]
-        \end{align*}
-
+        \subfile{exercises/a_itrexpthree}
     
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_itrexppractice}{\item} \hyperlink{q_itrexppractice}{Question}\newline
-        We use the formulae from iterated expectation to calculate these.
-        \begin{alignat*}{2}
-            P_{Y}(y) &= \begin{cases} \frac{1}{3} &y = 1\\
-                                    \frac{2}{3} &y = 2 \end{cases}\\
-            E[X] &= E[E[X|Y]] = \sum_{y}E[X|Y]P(Y)\\
-                &= 90 * \frac{1}{3} + 60 * \frac{2}{3}\\
-            Var(X) &= E[Var(X|Y)] + Var(E[X|Y])\\
-                  &= \sum_{y}Var(X|Y)P(Y) + ((90-E[E[X|Y])^{2}\frac{1}{3} + (60-E[E[X|Y]])^{2}\frac{2}{3})\\
-                  &= \frac{650}{3}
-        \end{alignat*}
+        \subfile{exercises/a_itrexppractice}
         
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_hatproblem}{\item} \hyperlink{q_hatproblem}{Question}\newline
-        Let $X$ denote the number of people who pick their own hat. We have been asked $E[X]$.\\
-        Let $X_{i}$ be a binary random variable denoting whether the $i^{th}$ person picked their own hat, i.e.,
-        \begin{alignat*}{2}
-            X_{i} &= \begin{cases} 1 &\mbox{if $i^{th}$ person picks their own hat}\\ 
-                                    0 &\mbox{otherwise} \end{cases} \\
-            P(X_{i} = 1) &= \frac{1}{n} \\
-            E[X_{i}] &= 1 * \frac{1}{n} + 0 * (1 - \frac{1}{n}) = \frac{1}{n}\\
-        \end{alignat*}
-        Consequently
-        \begin{align*}
-            E[X] = E[\sum_{i=1}^{n} X_{i}] = \sum_{n=1}^{n}E[X_{i}] = 1
-        \end{align*}
-
-        It is interesting to see the variance of X. Note that the formula for variance is $E[X^{2}] - E[X]^{2}$. Thus,
-        \begin{align*}
-            X^{2} = (\sum_{i=1}^{n} X_{i})^{2} = \sum_{i=1}^{n} X_{i}^{2} + \sum_{i=1}^{n} \sum_{j=1, j\neq i}^{n} X_{i}X{_j} \\
-            E[X^{2}] = \sum_{i=1}^{n}E[X_{i}^{2}] + \sum_{i=1}^{n} \sum_{j=1, j\neq i}^{n} E[X_{i}X{_j}] 
-        \end{align*}
-        Note that $X_{i}$ and $X_{j}$ are not independent since after the first person has picked the hat, only $n-1$ hats remain
-        \begin{alignat*}{3}
-            X_{i}X_{j} &= \begin{cases} 1 &\mbox{if $X_{i} = X_{j} = 1$}\\
-                                       0 &\mbox{otherwise} \end{cases} \\
-            P(X_{i}X_{j} = 1) &= P(X_{i} = 1) P(X_{j} = 1|X_{i} = 1) &&= \frac{1}{n} * \frac{1}{n-1}\\
-            E[X_{i}X_{j}] &= 1 * (\frac{1}{n} * \frac{1}{n-1}) + 0 * (1 - \frac{1}{n} * \frac{1}{n-1}) &&= \frac{1}{n(n-1)}\\
-            E[X_{i}^2] &= 1^{2} \frac{1}{n} + 0^{2} (1-\frac{1}{n}) &&= \frac{1}{n}
-        \end{alignat*}
-        Putting these values in the original equation for variance
-        \begin{alignat*}{2}
-            E[X_{2}] &= n \frac{1}{n} + \frac{1}{n} \frac{1}{n-1} (\frac{n(n-1)}{2} * 2) &&= 2\\
-            Var(X) &= 2 - 1^{2} &&= 1
-        \end{alignat*}
-        
+        \subfile{exercises/a_hatproblem}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_breakstick}{\item} \hyperlink{q_breakstick}{Question}\newline
-        The following is the joint probability distribution of $X$ and $Y$
-        \begin{align*}
-            f_{XY}(x, y) = f_{X}(x) f_{Y|X}(y|x) = \frac{1}{l} \frac{1}{x} = \frac{1}{xl} \;\forall\; 0 \leq y \leq x \leq 1
-        \end{align*}
-        
-        Using marginal probabilities, we can calculate $f_{Y}(y) and E[Y] as$
-        \begin{align*}
-            f_{Y}(y) = \int f_{XY}(x,y) dx = \int_{y}^{l} \frac{1}{xl} dx = \frac{1}{l} \log \frac{l}{y} \tag*{Note that for any $y$, $y \leq x \leq l$}\\
-            E[Y] = \int y f_{Y}(y) = \int_{0}{l} y \frac{1}{l} \log\frac{l}{y} = \frac{l}{4}
-        \end{align*}
-
-        This problem can also be approched using iterated expectation
-        \begin{align*}
-            E[Y] &= E[E[Y|X]] = E[\text{uniform random variable between $0$ and $x$}]\\
-                &= E[\frac{X}{2}] =\frac{1}{2}E[X]\\
-                &= \frac{l}{4} 
-        \end{align*}
+        \subfile{exercises/a_breakstick}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_trianglestick}{\item} \hyperlink{q_trianglestick}{Question}\newline
-        Assume that we break the stick at points $X$ and $Y$. Assume $X < Y$. Then for the stick to form a triangle, the three lengths $X, Y-X$ and $1-Y$ should satisfy the following three inequalities
-        \begin{align*}
-            X+(Y-X) &> 1-Y\\
-            (Y-X) + (1-Y) &> X\\
-            X + (1-Y) &> Y-X
-        \end{align*}
-        which is nothing but the triangluar region between the points $(0, 0.5), (0.5, 0.5)$ and $(0.5, 1)$ and has the area of $1/8$. We should also consider the case $Y < X$ and by symmetry, the area is same. Now, $X$ and $Y$ comprise of the entire square region $X \leq 1$ and $Y \leq 1$. Hence the required probability is $2 * 1/8 = 1/4$.
+        \subfile{exercises/a_trianglestick}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_pmffn}{\item} \hyperlink{q_pmffn}{Question}\newline
-        Always solve such questions using the cumulative distribution approach.
-        \begin{alignat*}{2}
-            P(X \leq x) &= \begin{cases} 0 &\mbox{$x < 0$}\\
-                                        \frac{1}{2} x &\mbox{$0 \leq x \leq 2$}\\
-                                        1 &\mbox{$2 < x$} \end{cases}\\
-            P(Y \leq y) &= P(X^{3} \leq y) = P(X \leq y^{\frac{1}{3}})\\
-                        &= \begin{cases}  0 &\mbox{$y < 0$}\\
-                                            \frac{1}{2} y^{\frac{1}{3}} &\mbox{$0 \leq y^{\frac{1}{3}} \leq 2$}\\
-                                            1 &\mbox{$2 < y^{\frac{1}{3}}$} \end{cases}\\
-            f_{Y}(y) &= \frac{dP(Y <= y)}{dy}(y)\\
-                     &= \begin{cases}  0 &\mbox{$y < 0$}\\
-                                            \frac{1}{6} y^{\frac{-2}{3}} &\mbox{$0 \leq y \leq 8$}\\
-                                            0 &\mbox{$8 < y$} \end{cases}
-        \end{alignat*}
+        \subfile{exercises/a_pmffn}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_waittaxi}{\item} \hyperlink{q_waittaxi}{Question}\newline
-        Let $X$ be the waiting time and $F_{X}(x)$ be the CDF. Then,
-        \begin{align*}
-            F_{X}(x) = \begin{cases} 0 &\mbox{ $x < 0$}\\
-                                    \frac{2}{3} &\mbox{ $x = 0$}\\
-                                    \frac{2}{3} + \frac{1}{30}x &\mbox{ $0 < x < 5$}\\
-                                    1 &\mbox{ $5 \leq x$} \end{cases}
-        \end{align*}
-        The PDF is simply the derivate of the CDF. Thus, expectation is
-        \begin{align*}
-            E[X] = \frac{2}{3}(0) + \int_{0}^{5} \frac{1}{30}x dx + \frac{1}{6}(5) = \frac{5}{4} mins
-        \end{align*}
+        \subfile{exercises/a_waittaxi}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_bayes}{\item} \hyperlink{q_bayes}{Question}\newline
-        From Bayes' theorem 
-        \begin{align*}
-            f_{Q|X}(q|x) &= \frac{f_{X|Q}(x|q) f_{Q}(q)}{f_{X}(x)}\\
-                        &= \frac{f_{X|Q}(x|q) f_{Q}(q)}{\int_{0}^{1} f_{X|Q}(x|q) f_{Q}(q) dq}
-        \end{align*}
-        We will need to solve separately for $x = 0$ and $x = 1$ as $x$ is discrete.
-        \begin{align*}
-            f_{Q|X=0}(q|x=0) &= \frac{(1-q)* 6q(1-q)}{\int_{0}^{1} (1-q)*6q(1-q) dq} = 12q(1-q)^{2}\\
-            f_{Q|X=1}(q|x=1) &= \frac{q* 6q(1-q)}{\int_{0}^{1} q*6q(1-q) dq} = 12q^{2}(1-q)
-        \end{align*}
+        \subfile{exercises/a_bayes}
         
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_normaltr}{\item} \hyperlink{q_normaltr}{Question}\newline
-        Questions of this type must only be approached through CDF. First find the CDF of Y and then it's PDF.
-        \begin{align*}
-            F_{Y}(y) &= P(Y \leq y) = P(g(X) <= y)\\
-                    &= P(X \in [-y, 0] \cup X \in [0, y^{2}])\\
-                    &= (F_{X}(0) - F_{X}(-y)) + (F_{X}(y^{2}) - F_{X}(0))\\
-                    &= F_{X}(y^{2}) - F_{X}(-y)\\
-            p_{Y}(y) &= \frac{F_{Y}(y)}{dy}\\
-                    &= \frac{dF_{X}(y^{2})}{dx} \frac{d(y^{2})}{dy} - \frac{dF_{X}(-y)}{dx} \frac{d(-y)}{dy}\\
-                    &= 2yp_{X}(y^{2}) + p_{X}(-y)\\
-                    &= 2y\frac{1}{\sqrt{2\pi}}e^{-\frac{y^{4}}{2}} + \frac{1}{\sqrt{2\pi}} e^{-\frac{y^{2}}{2}}
-        \end{align*}
+        \subfile{exercises/a_normaltr}
         
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_binshoot}{\item} \hyperlink{q_binshoot}{Question}
-        \begin{enumerate}
-            \item $P(X=k) = \binom{10}{k} 0.2^{k}0.8^{10-k}$
-            \item $P(no\;hits) = 0.8^{10}$
-            \item $P(X>=6) \ \sum_{k=6}^{10} \binom{10}{k} 0.2^{k}0.8^{10-k}$
-            \item $E[X] = np = 2, Var(X) = np(1-p) = 1.6$ for Bernoulli distribution
-            \item $Y = 2X - 3, E[Y] = 2E[X] - 3 = 1, Var(Y) = 4Var(X) = 6.4$
-            \item $Z = X^{2}, E[Z] = E[X^{2}] = Var(X) + E[X]^{2} = 5.6$
-        \end{enumerate}
+        \subfile{exercises/a_binshoot}
 
-        
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_mosquito}{\item} \hyperlink{q_mosquito}{Question}\newline
-        For the mosquito, $P(bite) =  P(land)P(bite|land) = 0.1$. $X$ is a geometric random variable. $E[X] = 1/p = 10$ and $Var(X) = \frac{1-p}{p^{2}} = 90$.\newline
-        For the mosquito and tick combined, $P($mosquito and tick$) = 0.1 + 0.1*0.7 - 0.1*0.1*0.7 = 0.163$. This is again a geometric random variable with $E[Y] = 1/0.163$ and $Var(Y) = (1-0.163)/(0.163^{2})$.
-
+        \subfile{exercises/a_mosquito}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_hhtt}{\item} \hyperlink{q_hhtt}{Question}\newline
-        This quantity can be calculated using the law of total expectation
-        \begin{align*}
-            E[X] = E[X|A_{1}]P(A_{1}) + E[X|A_{2}]P(A_{2}) + \cdots + E[X|A_{n}]P(A_{n}) \tag*{where $A_{i}$ are disjoint}
-        \end{align*}
-        Let $H_{1}$ denote heads at first toss, $H_{2}$ denote heads at the second toss, $T_{1}$ denote tails at first toss and $T_{2}$ denote tails at the second toss. Then,
-        \begin{align*}
-            E[X] &= E[X|H_{1}]P(H_{1}) + E[X|T_{1}]P(T_{1})\\
-            E[X|H_{1}] &= E[X|H_{1}H_{2}]P(H_{2}|H_{1}) + E[X|H_{1}T_{2}]P(T_{2}|H_{1})\\
-                    &= 2p + (1 + E[X|T_{1}])(1-p)\\
-            E[X|T_{1}] &= E[X|T_{1}T_{2}]P(T_{2}|T_{1}) + E[X|T_{1}H_{2}]P(H_{2}|T_{1})\\
-                    &= 2(1-p) + (1 + E[X|H_{1}])p\\
-        \end{align*}
-        $E[X|H_{1}T_{2}] = 1 + E[X|T_{1}]$ because the tails after the first heads implies the first heads is now irrelevant and we have wasted one toss on the heads. The remaining process is same as starting from the first coin toss as tails. \newline
-        Solving for the conditional expectations,
-        \begin{align*}
-            E[X|H_{1}] &= \frac{3 - 2p + p^{2}}{1 - p + p^{2}}\\
-            E[X|T_{1}] &= \frac{2 + p^{2}}{1 - p + p^{2}}\\
-            E[X] &= \frac{2 + p - p^{2}}{1 - p + p^{2}}
-        \end{align*}
+        \subfile{exercises/a_hhtt}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_threecoins}{\item} \hyperlink{q_threecoins}{Question}\newline
-        Define $X$ as the following random variable
-        \begin{alignat*}{1}
-            X = \begin{cases} 1, p = \frac{1}{4} &\mbox{$HHH$ or $TTT$}\\
-                             0, p = \frac{3}{4} &\mbox{otherwise} \end{cases}\\
-        \end{alignat*}
-
-        \begin{enumerate}
-            \item $K$ is simply a binomial distribution, where we want the $2^{nd}$ success to happen at the $K+1$th trial.
-            \begin{align*}
-                p_{K}(k) = \binom{k}{1}\frac{1}{4}^{2}\frac{3}{4}^{k-1} \tag*{since the last trial is success}
-            \end{align*}
-
-            \item $M$ = number of tails before first success. Let the success be at $N+1$. Defin $Y$ as
-            \begin{alignat*}{2}
-                Y &= \begin{cases} 1\;\; p=\frac{1}{2} &\mbox{$HHT$, $HTH$, or $THH$}\\
-                                 2\;\; p=\frac{1}{2} &\mbox{$HTT$, $THT$, or $TTH$} \end{cases}\\
-                E[Y] &= 1 * \frac{1}{2} + 2 * \frac{1}{2}\\
-                Var(Y) &= (1 - \frac{3}{2})^{2} * \frac{1}{2} + (2 - \frac{3}{2})^{2} * \frac{1}{2}\\
-                E[N+1] &= \frac{1}{p} = 4\\
-                Var(N+1) &= Var(N) = \frac{1-p}{p^{2}} = \frac{1 - \frac{1}{4}}{\frac{1}{4}^{2}}\\
-                M &= Y_{1} + Y_{2} + \cdots Y_{N}\\
-                E[M] &= E[Y_{1} + Y_{2} + \cdots Y_{N}]\\
-                Var(M) &= Var(Y_{1} + Y_{2} + \cdots Y_{N})\\
-            \end{alignat*}
-            Note that both $Y$ and $N$ are random variables here. Using the formulae for random number of random variables,
-            \begin{align*}
-                E[M] &= E[E[M|N]] = E[NE[Y]] = E[N]E[Y] = (4-1) * \frac{3}{2} = \frac{9}{2}\\
-                Var(M) &= Var(E[M|N]) + E[Var(M|N)] = Var(NE[Y]) + E[NVar(Y)]\\ 
-                    &= E[Y]^{2}Var(N) + E[N]Var(Y) = \frac{9}{4} * 12 + 3 * \frac{1}{4} = \frac{111}{4}
-            \end{align*}
-
-        \end{enumerate}
-
+        \subfile{exercises/a_threecoins}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_linexp}{\item} \hyperlink{q_linexp}{Question}\newline
-        Let $X$ be the number of tosses till the first coin is removed. This is a geometric random variable with $P($success$) = \frac{1}{8}$. then $E[X] = 1/p = 8$. Now $Y$ be the number of tosses till the second coin is removed (counting tosses after removal of first coin). Note that geometric random variables are memory less and what happened before the start of the "experiment" will not matter. Thus, $E[Y] = 1/(1/4) = 4$. Similarly, $Z$ is the tosses till the last coin is removed and $E[Z] = 1/(1/2) = 2$. Note that the number of tosses till the end of experiment is simply $X + Y + Z$. $E[X+Y+Z] = E[X] + E[Y] + E[Z] = 14$.
-
+        \subfile{exercises/a_linexp}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_papers}{\item} \hyperlink{q_papers}{Question}\newline
-        Note that the process till the end is a combination of multiple binomial process, such that any process lasts till the first success. Suppose we sign a paper and keep this in the drawer. Now the total signed papers in the drawer is $k$ out of $n$ and the $P($success$)$ = $\frac{n-k}{n}$ and $E[$draws till next unsigned paper$] = \frac{1}{p} = \frac{n}{n-k}$. Total draws
-        \begin{align*}
-            E &= \frac{n}{1} + \frac{n}{2} + \cdots + \frac{n}{n}\\
-             &= n(1 + \frac{1}{2} + \cdots + \frac{1}{n})\\
-            \lim_{n \to large} E &= n \log(n) 
-        \end{align*}
-
+        \subfile{exercises/a_papers}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_threevar}{\item} \hyperlink{q_threevar}{Question}\newline
-        A very straightforward way is to use a triple integral
-        \begin{align*}
-            P(X < Y < Z) = \int_{0}^{\inf} \int_{0}^{z} \int_{0}^{y} \lambda e^{-\lambda x} \mu e^{-\mu y} \nu e^{-\nu z} dx dy dz = \frac{\lambda \mu}{(\lambda + \mu + \nu)(\mu + \nu)}
-        \end{align*}
-        $P(X < Y < Z)$ can be broken down as $P(X < min(Y,Z)) P(Y < Z)$. Consider just P(Y < Z)
-        \begin{align*}
-            P(Y < Z) = \int_{0}^{\inf} \int_{0}^{z} \mu e{-\mu y} \nu e{-\nu z} dy dz = \frac{\mu}{\mu + \nu}
-        \end{align*}
-        Thus, when two exponential processes are considered, probaility of arrival of 1st before 2nd is simply the percentage ratio of parameters. Thus,
-        \begin{align*}
-            P(X < min(Y,Z)) &= \frac{\lambda}{\lambda + (\mu + \nu)} \tag*{$Y$ and $Z$ can be combined as a single process}\\
-            P(Y < Z) &= \frac{\mu}{\mu + \nu}\\
-            P(X < Y < Z) &= P(X < min(Y,Z)) P(Y < Z)\\
-                        &= \frac{\lambda \mu}{(\lambda + \mu + \nu)(\mu + \nu)}
-        \end{align*}
-
+        \subfile{exercises/a_threevar}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_poissonemails}{\item} \hyperlink{q_poissonemails}{Question}
-        We can model the arrival process like a Poisson process. $\lambda = 5$ and $\tau = \frac{1}{2}$
-        \begin{align*}
-                P(\lambda, \tau, k) &= \frac{(\lambda \tau)^{k} e^{-\lambda \tau}}{k!} \\
-                P(5, \frac{1}{2}, 0) &= \frac{(5 * \frac{1}{2})^{0} e^{-5 * \frac{1}{2}}}{0!} \\
-                P(5, \frac{1}{2}, 1) &= \frac{(5 * \frac{1}{2})^{1} e^{-5 * \frac{1}{2}}}{1!}
-        \end{align*}
+        \subfile{exercises/a_poissonemails}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_poissonfish}{\item} \hyperlink{q_poissonfish}{Question}
-        \begin{itemize}
-            \item P(fish for $> 2$ hours) = $P(k=0, \tau=2)$ = $e^{-0.6 * 2}$
-            \item P(fish for $> 2$ but $< 5$ hours) = P(first catch in $[2,5]$ hours) = $P(k=0,\tau=2)(1-P(k=0,\tau=3)$ which is no fish in $[0,2]$ but at least $1$ fish in the next $3$ hours (which will be independent of first $2$ hours)
-            \item P(catch at least two fish) = P(at least $2$ catches before $2$ hours) = $1 - P(k=0,\tau=2) - P(k=1,\tau=2)$
-            \item E[fish] has two possibilities, either single fish after $2$ hours, or many fist before $2$ hours. $E[fish] = E[fish|\tau \leq 2](1-P(\tau > 2)) + E[fish|\tau > 2] P(\tau > 2) = (0.6*2)*(1-P(k=0,\tau=2)) + 1*P(k=0,\tau=2)$
-            \item E[Total fishing time] = $2 + P(k=0,\tau=2)\frac{1}{\lambda}$, since we fish for atlest $2$ hours
-            \item E[future fishing time|fished for two hours] can be obtained using the memoryless property of Poisson process. The expected time till first arrival is independent of what has happened till now. Thus, $E[T_{1}] = \frac{1}{\lambda}$
-        \end{itemize}
+        \subfile{exercises/a_poissonfish}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_poissonbulb}{\item} \hyperlink{q_poissonbulb}{Question}\newline
-        Start with the merged Poisson process which will denote the time till the first bulb will fail. For this process, $\lambda^{'} = 3\lambda$. Hence, $E[\text{first bulb fails}] = \frac{1}{3\lambda}$.
-        After the first bulb dies out, we are left with a process with $\lambda^{'} = 3\lambda$. Due to memoryless property, $E[\text{second bulb fails}] = \frac{1}{2\lambda}$ and consequently $E[\text{last bulb fails}] = \frac{1}{\lambda}$. \newline
-        Note the above two times denote the time difference, i.e. the time taken for the bulb to die out after the last bulb died out. Thus, $E[\text{time until last bulb dies out}] = \frac{1}{3\lambda} + \frac{1}{2\lambda} + \frac{1}{\lambda}$
-
+        \subfile{exercises/a_poissonbulb}
         
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_poissonbulb2}{\item} \hyperlink{q_poissonbulb2}{Question}\newline
-        \begin{enumerate}
-            \item 
-            \begin{align*}
-                E[\text{time till failure}] &= E[\text{time till failure}|A]P(A) + E[\text{time till failure}|B]P(B)\\
-                &= \frac{1}{\lambda_{A}} \frac{1}{2} + \frac{1}{\lambda_{B}} \frac{1}{2}\\
-                &= \frac{1}{2}(1 + \frac{1}{3}) = \frac{2}{3}
-            \end{align*}
-
-            \item Let $C$ denote the event of no failure till time $t$. $P(C)$ for a given $\lambda$ will be $\int_{t}^{\inf} \lambda e^{-\lambda t}$. Then,
-            \begin{align*}
-                P(C) &= P(C|A)P(A) + P(C|B)P(B) \tag*{Using total probability theorem}\\
-                     &= e^{-t}(\frac{1}{2}) + e^{-3t}(\frac{1}{2})\\
-                     &= \frac{1}{2}(e^{-t} + e^{-3t})
-            \end{align*}
-
-            \item \label{itm:a_poissonbulb2_c} Let $C$ denote the event of no failure till time $t$. Then,
-            \begin{align*}
-                P(A|C) &= \frac{P(C|A)P(A)}{P(C)}\\
-                       &= \frac{P(C|A)P(A)}{P(C|A)P(A) + P(C|B)P(B)}\\
-                       &= \frac{\frac{1}{2} e^{-t}}{\frac{1}{2}(e^{-t} + e^{-3t})}\\
-                       &= \frac{1}{1 + e^{-2t}}
-            \end{align*}
-
-            \item Let $T_{B1}, T_{B2}$ and $T_{A}$ denote the life times of the first B bulb, second B bulb and the A bulb respectively. First consider the solution to $P(T_{B1} + T_{B2} = t)$
-            \begin{align*}
-                P(T_{B1} + T_{B2} = t) &= \int_{0}^{t} P(T_{B1} = t_{1})P(T_{B2} = t - t_{1}) dt_{1} \tag*{Using independence}\\
-                &= \int_{0}^{t} 3e^{-3t_{1}} 3e^{-3(t - t_{1})} dt_{1}\\
-                &= \int_{0}^{t} 9e^{-3t}dt_{1}\\
-                &= 9te^{-3t}
-            \end{align*}
-            
-            Now, we can rewrite the requred probability in a slightly different format
-            \begin{align*}
-                P(T_{B1} + T_{B2} > T_{A}) &= P(T_{B1} + T_{B2} = t)P(T_{A} \leq t)\\
-                &= \int_{0}^{\inf} 9te^{-3t} (\int_{0}^{t} e^{-t_{1}}dt_{1}) dt\\
-                &= \int_{0}^{\inf} 9te^{-3t} (1 - e^{-t}) dt\\
-                &= \int_{0}^{\inf} 9te^{-3t} - 9te^{-4t} dt\\
-            \end{align*}
-            Using integration by parts, $\int uv^{'} = uv - \int u^{'}v$ and choosing $u = t, v = e^{-3t}/3$,
-            \begin{align*}
-                P(T_{B1} + T_{B2} > T_{A}) &= \bigg[ 9[te^{-3t}]_{0}^{\inf} - 3\int_{0}^{\inf} e^{-3t}dt -9[te^{-4t}]_{0}^{\inf} + \frac{9}{4}\int_{0}^{\inf} e^{-4t}dt  \bigg]\\
-                &= 0 + 1 - 0 - \frac{9}{16} = \frac{7}{16}
-            \end{align*}
-
-            \item Let there be $N$  bulbs of type B out of the 12 bulbs. Clearly $N$ is a random variable and can be seen as the "successes" of choosing a given bulb as B. and the probability of choosing any $i$th bulb as B is $1/2$.\newline
-            Let the life time of any bulb of type B be $T$. Then the total lifetime of all the type B bulbs will be $NT$, which is nothing but the sum of a random number of random variables.\newline
-            \begin{align*}
-                E[NT] &= E[N]E[T] = np * \frac{1}{\lambda} = 12 * \frac{1}{2} * \frac{1}{3} = 2\\
-                Var(NT) &= E[Var(NT|N)] + Var(E[NT|N]) = E[N]Var(T) + E[T]^{2}Var(N)\\
-                &= np * \frac{1}{\lambda^{2}} + (\frac{1}{\lambda})^{2} np(1-p) = 1
-            \end{align*}
-
-            \item Let $D$ be the event that the lifetime is greater thatn $t$ or $T > t$. Then,
-            \begin{align*}
-                E[T|D] &= E[T|D,A]P(A|D) + E[T|D,B]P(B|D)\\
-                &= t + (E[T-t|D,A]P(A|D) + E[T-t|D,B]P(B|D))\\
-                &= t + (\frac{1}{1}P(A|D) + \frac{1}{3}P(B|D))\tag*{Using memoryless property}\\
-                &= t + (\frac{1}{1 + e^{-2t}} + \frac{1}{3}(1 - \frac{1}{1 + e^{-2t}})) \tag*{Using part \ref{itm:a_poissonbulb2_c}}\\
-                &= t + \frac{1}{3} + \frac{2}{3}\frac{1}{1 + e^{-2t}}
-            \end{align*}
-        \end{enumerate}
-        
+        \subfile{exercises/a_poissonbulb2}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_steadymarkov}{\item} \hyperlink{q_steadymarkov}{Question}\newline
-        Using balance equations, we have
-        \begin{align*}
-            \pi_{1} &= \pi_{1}p_{11} + \pi_{2}p_{21}\\
-            \pi_{2} &= \pi_{1}p_{12} + \pi_{2}p_{22}\\
-            \pi_{1} + \pi_{2} &= 1
-        \end{align*}
-        Solving, $\pi_{1} = \frac{2}{7}$ and $\pi_{2} = \frac{5}{7}$
+        \subfile{exercises/a_steadymarkov}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_absorbmarkov}{\item} \hyperlink{q_absorbmarkov}{Question}\newline
-        Let $a_{i}$ denote the abosorption probabilites into state $4$ starting from $i$
-        \begin{align*}
-            a_{5} &= 0, a{4} = 1 \\
-            a_{i} &= \sum_{j} a_{j}p_{ij}\\
-            a_{2} &= a_{1}p_{21} + a_{4}p_{24}\\
-            a_{3} &= a_{1}p_{31} + a_{2}p_{32} + a_{5}p_{35}\\
-            a_{1} &= a_{2}p_{12} + a_{3}p_{13}
-        \end{align*}
-        Solving, $a_{1} = \frac{9}{14}, a_{2} = \frac{5}{7}$ and $a_{3} = \frac{15}{28}$ \newline
-        
-        Let $\mu_{i}$ denote the expected time till absorption starting from $i$, then
-        \begin{align*}
-            \mu_{4} &= 0 \\
-            \mu_{1} &= 1 + \mu_{2}p_{12} + \mu_{3}p_{13} \\
-            \mu_{2} &= 1 + \mu_{1}p_{21} + \mu_{4}p_{24} \\
-            \mu_{3} &= 1 + \mu_{1}p_{31} + \mu_{2}p_{32}
-        \end{align*}
-        Solving, $\mu_{1} = \frac{55}{4}, \mu_{2} = 12$ and $\mu_{3} = \frac{111}{8}$
-
+        \subfile{exercises/a_absorbmarkov}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_markovcourse}{\item} \hyperlink{q_markovcourse}{Question}\newline
-        \begin{enumerate}
-            \item The probability of eventually leaving course 6 is 1 as states 15 and 9 are absorbing states.
-            \item \label{itm:a_markovcourse_2} Here we have to calculate the probability of absortion into state 15. Let $a_{i}$ denote the probability of absorption into state 15 from state $i$. Then, $a_{15} = 1$ and $a_{9} = 0$. Using equations from \ref{sec_markov_absorb},
-            \begin{align*}
-                a_{6-1} &= \frac{1}{2}a_{6-1} + \frac{1}{8} a_{6-2} + \frac{1}{8} a_{6-3} + \frac{1}{8}a_{9} + \frac{1}{8}a_{15}\\
-                a_{6-2} &= \frac{1}{2}a_{15} + \frac{3}{8}a_{6-1} + \frac{1}{8}a_{6-3}\\
-                a_{6-3} &= \frac{1}{4}a_{9} + \frac{3}{8}a_{6-1} + \frac{3}{8}a_{6-2}
-            \end{align*}
-            Solving the 3 equations, 3 variable system, $a_{6-1} = 105/184, a_{6-2} = 143/184$ and $a_{6-3} = 93/184$.
-            \item Let $\mu_{i}$ denote the expected number of steps to get absorbed starting from state $i$. Then, $\mu_{15} = \mu_{9} = 0$. Using equations from \ref{sec_markov_absorb},
-            \begin{align*}
-                \mu_{6-1} &= 1 + \frac{1}{2}\mu_{6-1} + \frac{1}{8} \mu_{6-2} + \frac{1}{8} \mu_{6-3} + \frac{1}{8}\mu_{9} + \frac{1}{8}\mu_{15}\\
-                \mu_{6-2} &= 1 + \frac{1}{2}\mu_{15} + \frac{3}{8}\mu_{6-1} + \frac{1}{8}\mu_{6-3}\\
-                \mu_{6-3} &= 1 + \frac{1}{4}\mu_{9} + \frac{3}{8}\mu_{6-1} + \frac{3}{8}\mu_{6-2}                
-            \end{align*}
-            Solving, $\mu_{6-1} = 81/23, \mu_{6-2} = 63/23$ and $\mu_{6-3} = 77/23$.
-
-            \item This question can be done in a manner similar to the equations described above but with a small adjustment. Note that, we can either have 0, 1, or 2 ice creams. Consider $v_{i}(j)$ as the probability of making $j$ additional ice creams from 6-2 to 6-1 or 6-3 to 6-1 transitions, given the current state is $i$. Note $v_{15}(0) = v_{9}(0) = 1$. Then,
-            \begin{align*}
-                v_{6-1}(0) &= \frac{1}{2}v_{6-1}(0) + \frac{1}{8} v_{6-2}(0) + \frac{1}{8} v_{6-3}(0) + \frac{1}{8}v_{9}(0) + \frac{1}{8}v_{15}(0)\\
-                v_{6-2}(0) &= \frac{1}{2} v_{15}(0) + \frac{3}{8}(0) + \frac{1}{8}v_{6-3}(0)\\
-                v_{6-3}(0) &= \frac{1}{4}v_{9}(0) + \frac{3}{8}(0) + \frac{3}{8}v_{6-2}(0)
-            \end{align*}
-            Some of the transitions have been directly replaced with 0 as we are considering 0 ice creams and thus those transitions are not possible (6-2 to 6-1 for instance). Solving, $v_{6-1}(0) = 46/61, v_{6-2}(0) = 34/61$ and $v_{6-3}(0) = 28/61$.\newline
-
-            The same way, we can construct equations for 1 additional steps where $v_{15}(1) = v_{9} = 0$.
-            \begin{align*}
-                v_{6-1}(1) &= \frac{1}{2}v_{6-1}(1) + \frac{1}{8} v_{6-2}(1) + \frac{1}{8} v_{6-3}(1) + \frac{1}{8}v_{9}(1) + \frac{1}{8}v_{15}(1)\\
-                v_{6-2}(1) &= \frac{1}{2} v_{15}(1) + \frac{3}{8}v_{6-1}(0) + \frac{1}{8}v_{6-3}(1)\\
-                v_{6-3}(1) &= \frac{1}{4}v_{9}(1) + \frac{3}{8}v_{6-1}(0) + \frac{3}{8}v_{6-2}(1)
-            \end{align*}
-            In the second equation, after going from 6-2 to 6-1, we can only get 0 more ice creams. Hence, some of the values have been replaced with the $v_{i}(0)$ calculated above. Solving, $v_{6-1}(1) = 690/3721, v_{6-2}(1) = 1242/3721$ and $v_{6-3}(1) = 1518/3721$.\newline
-
-            Note that since the total ice creams are 0, 1, or 2, we have $v_{6-1}(0) + v_{6-1}(1) + v_{6-1}(2) = 1$. $E[$ice creams$] = 0 * v_{6-1}(0) + 1 * v_{6-1}(1) + 2 * v_{6-1}(2) = 1140/3721$
-
-            \item We need to recalculate the the transition probabilities since we are conditioning on the event $A$ that we land up in state 15.
-            \begin{align*}
-                P_{ij|A} &= P(X_{n+1}=j|X_{i}=i,A)\\
-                &= \frac{P(X_{n+1}=j, X_{n}=i, A)}{P(X_{n}=i, A)}\\
-                &= \frac{P(A|X_{n+1}=j, X_{n}=i) P(X_{n+1}=j|X_{n}=i) P(X_{n}=i)}{P(A|X_{n}=i) P(X_{n}=i)}\\
-                &= \frac{P(A|X_{n+1}=j) P(X_{n+1}=j|X_{n}=i)}{P(A|X_{n}=i)}\\
-                &= \frac{a_{j}}{a_{i}} P_{ij}
-            \end{align*}
-            where $a_{i}$ is the probability of absorption into state 15 starting from state $i$. Since markov process is only dependent on the last state, absoprtion probabilities are not dependent on $n$.\newline
-
-            We can write equations similar to \ref{sec_markov_absorb} for calculating the expected number of steps with the adjusted transition probabilities
-            \begin{align*}
-                \mu_{6-1} &= 1 + \frac{a_{6-1}}{a_{6-1}}\frac{1}{2} \mu_{6-1} + \frac{a_{6-2}}{a_{6-1}}\frac{1}{8} \mu_{6-2} + \frac{a_{6-3}}{a_{6-1}}\frac{1}{8} \mu_{6-3} + \frac{a_{15}}{a_{6-1}}\frac{1}{8} \mu_{15}+ \frac{a_{9}}{a_{6-1}}\frac{1}{8} \mu_{9}\\
-                \mu_{6-2} &= 1 + \frac{a_{6-1}}{a_{6-2}}\frac{3}{8} \mu_{6-1} + \frac{a_{6-3}}{a_{6-2}}\frac{1}{8} \mu_{6-3} + \frac{a_{15}}{a_{6-2}}\frac{1}{2} \mu_{15}\\
-                \mu_{6-3} &= 1 + \frac{a_{6-1}}{a_{6-3}}\frac{3}{8} \mu_{6-1} + \frac{a_{6-2}}{a_{6-3}}\frac{3}{8} \mu_{6-2} + \frac{a_{9}}{a_{6-3}}\frac{1}{4} \mu_{9}\\
-            \end{align*}
-            where $\mu_{15} = \mu_{9} = 0, a_{15} = 1$, and $a_{9} = 0$. The absorption probabilities can be taken from the part \ref{itm:a_markovcourse_2}. Solving, $\mu_{6-1} = 1763/483$.
-
-            \item The changed probabilites become $P(X_{n+1}=15|X_{n}=6-1) = P(X_{n+1}=6-2|X_{n}=6-1) = P(X_{n+1}=6-3|X_{n}=6-1) = 1/6, P(X_{n+1}=6-1|X_{n}=6-2)=3/4$ and $P(X_{n+1}=6-3|X_{n}=6-2)=1/4$. We then use equations from \ref{sec_markov_absorb} to calculate the expected values
-            \begin{align*}
-                \mu_{6-1} &= 1 + \frac{1}{2}\mu_{6-1} + \frac{1}{6} \mu_{6-2} + \frac{1}{6} \mu_{6-3} + \frac{1}{6}\mu_{9}\\
-                \mu_{6-2} &= 1 + \frac{3}{4}\mu_{6-1} + \frac{1}{4}\mu_{6-3}\\
-                \mu_{6-3} &= 1 + \frac{1}{4}\mu_{9} + \frac{3}{8}\mu_{6-1} + \frac{3}{8}\mu_{6-2}
-            \end{align*}
-            where $\mu_{15} = 0$. Solving, $\mu_{6-1} = 86/13, \mu_{6-2} = 98/13$ and $\mu_{6-3} = 82/13$.
-
-            \item If we look carefully at the new probabilities, states 15 and 9 become recurrent. Far into the future, we are sure to land up in those states, and will be in either one of those. By symmetry, the two should be same. $\pi_{15} = \pi_{9} = 1/2$.
-
-            \item We assume that 6-1 is an absorbing state, and accordingly calculate the probabilities. Note that there will not be an equation for 6-1 since we are then already in the final state.
-            \begin{align*}
-                \mu_{6-2} &= 1 + \frac{1}{8} \mu_{6-3} + \frac{1}{2} \mu_{15}\\
-                \mu_{6-3} &= 1 + \frac{3}{8} \mu_{6-2} + \frac{1}{4} \mu_{9}\\
-                \mu_{9} &= 1 + \frac{7}{8} \mu_{9}\\
-                \mu_{15} &= 1 + \frac{7}{8} \mu_{15}\\
-            \end{align*}
-            Solving, $\mu_{6-2} = 344/61, \mu_{6-3} = 312/61$ and $\mu_{9} = \mu_{15} = 8$. Plugging these into the following equation (which corresponds to taking one step out of 6-1),
-            \begin{align*}
-                \mu_{6-1} = 1 + \frac{1}{2} \mu_{6-1} + \frac{1}{8} \mu_{15} + \frac{1}{8} \mu_{6-2} + \frac{1}{8} \mu_{6-3} + \frac{1}{8} \mu_{15} = \frac{265}{61}
-            \end{align*}
-        \end{enumerate}
-
+        \subfile{exercises/a_markovcourse}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_binclt}{\item} \hyperlink{q_binclt}{Question}
-        The exact answer will be
-        \begin{align*}
-            \sum_{k=0}^{21}\binom{36}{k}(\frac{1}{2})^{36} = 0.8785
-        \end{align*}
-        But the same can be estimated using the CLT as follows
-        \begin{align*}
-            \mu = np = 18\\
-            \sigma^{2} = np(1-p) = 9\\
-            P(S_{n} \leq 21) \approx P(\frac{S_{n} - 18}{3} \leq \frac{21-18}{3}) \approx 0.843
-        \end{align*}
-        Our estimate is in the rough range of the answer but not quite close. We can do better using the $\frac{1}{2}$ correction
-        \begin{align*}
-            P(S_{n} \leq 21) = P(S_{n} < 22) \text{\;\;since $S_{n}$ is an integer}\\
-            \text{Consider \;}P(S_{n} <= 21.5) \text{\;\;as a compromise between the two}\\
-            P(S_{n} <= 21.5) = P(\frac{S_{n} - 18}{3} \leq \frac{21.5 - 18}{3}) \approx 0.879
-        \end{align*}
-        In a similar manner, $P(S_{n}=19) = P(18.5 \leq S_{n} \leq 19.5)$ using $\frac{1}{2}$ correction.
-
+        \subfile{exercises/a_binclt}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_mleestimate}{\item} \hyperlink{q_mleestimate}{Question}\newline
-        Since the observations are independent, the likelihood of all the observations under some $\theta$ is given by
-        \begin{align*}
-            p_{X|\Theta}(x|\theta) &= \prod_{i=1}^{n} \theta \exp(-\theta x_{i})\\
-            log(p_{X|\Theta}(x|\theta)) &= n log(\theta) - \theta(\sum_{i=1}^{n} x_{i})
-        \end{align*}
-
-        Taking the derivatie and maximizing with respect to $\theta$, $\hat{\theta}_{MLE} = \frac{n}{\sum_{i=1}^{n}x_{i}}$
-
+        \subfile{exercises/a_mleestimate}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_lmsestimate}{\item} \hyperlink{q_lmsestimate}{Question}\newline
-        We need to evaluate $f_{\Theta|X}(\theta|x)$ in order to get $E[\Theta|X]$.
-        \newline
-        $f_{X,\Theta}(x,\theta) = f_{X}(x) f_{\Theta|X}(\theta|x)$ which is a parallelogram on the $\theta-x$ plane at the points  $(3,4)$, $(5,4)$, $(9,10)$ and $(11,10)$. Then $E[\Theta|X]$ can be obtained by drawing vertical lines on the planes and calculating the $E[\theta]$ over that line. It is a line which bends at two points.
-
-        % plot of f(theta)
-        \begin{tikzpicture}
-            \begin{axis}[
-                axis lines = left,
-                xlabel = $\theta$,
-                ylabel = {$f_{\Theta}(\theta)$},
-                xmin=3, xmax=11,
-                ymin=0, ymax=1
-            ]
-            %define the plot here
-            \addplot [
-                domain=4:10, 
-                samples=2, 
-                color=black,
-            ]
-            {1/6};
-            \end{axis}
-        \end{tikzpicture}
-        \hskip 5pt
-        % plot of f(X|theta)
-        \begin{tikzpicture}
-            \begin{axis}[
-                axis lines = left,
-                xlabel = $\theta$,
-                ylabel = {$f_{X|\Theta}(x|\theta)$},
-                xmin=0, xmax=4,
-                ymin=0, ymax=1,
-                xticklabels={$\theta-1$,$\theta+1$},
-                xtick={1,3}
-            ]
-            %define the plot here
-            \addplot [
-                domain=1:3,
-                samples=2, 
-                color=black,
-            ]
-            {1/2};
-            \end{axis}
-        \end{tikzpicture}
-        \hskip 5pt
-        % plot of theta vs x
-        \begin{tikzpicture}
-            \begin{axis}[
-                axis lines = left,
-                xlabel = $X$,
-                ylabel = {$\theta$},
-                xmin=0, xmax=12,
-                ymin=0, ymax=11,
-                legend pos=north west,
-            ]
-            %define the plot here
-            \addplot [
-                domain=3:5,
-                samples=2, 
-                color=black,
-            ]
-            {4};
-            \addplot [
-                domain=3:9,
-                samples=2, 
-                color=black,
-            ]
-            {x+1};
-            \addplot [
-                domain=9:11,
-                samples=2, 
-                color=black,
-            ]
-            {10};
-            \addplot [
-                domain=5:11,
-                samples=2, 
-                color=black,
-            ]
-            {x-1};
-            % \addlegendentry{$\theta\;vs\;x$}
-            \addplot [
-                domain=3:5,
-                samples=2, 
-                color=blue,
-            ]
-            {(x/2)+(5/2)};
-            \addplot [
-                domain=5:9,
-                samples=2, 
-                color=blue,
-            ]
-            {x};
-            \addplot [
-                domain=9:11,
-                samples=2, 
-                color=blue,
-            ]
-            {(x/2)+(9/2)};
-            \addlegendentry{$E[\theta|X]$}
-            \end{axis}
-        \end{tikzpicture}
-
-        %%%%%%%%%%%%%%%%%%%%
+        \subfile{exercises/a_lmsestimate}
 
         %%%%%%%%%%%%%%%%%%%%
         \hypertarget{a_convergence}{\item} \hyperlink{a_convergence}{Question}\newline
-        \begin{enumerate}
-            \item No, since $X_{i}$ is also uniform in $[-1,1]$
-            \item Yes, $E[Y_{i}] = 0$ by symmetry. For $\epsilon > 0$,
-            \begin{align*}
-                \lim_{i \to \inf}(P\vert Y_{i} - \mu_{i} \vert > \epsilon) &= \lim_{i \to \inf} P(\vert \frac{X_{i}}{i} - 0 \vert > \epsilon)\\
-                &= \lim_{i \to \inf} P(\frac{X_{i}}{i} > \epsilon \text{ and } \frac{X_{i}}{i} < -\epsilon)\\
-                &= \lim_{i \to \inf} [P(X_{i} > i\epsilon) + P(X_{i} < -i\epsilon)] = 0
-            \end{align*}
-            \item Yes, $E[Y_{i}] = 0$ by symmetry. For $\epsilon > 0$,
-            \begin{align*}
-                \lim_{i \to \inf}P(\vert Z_{i} - 0 \vert > \epsilon) &= \lim_{i \to \inf}P((X_{i})^{i} > \epsilon \text{ or } (X_{i})^{i} < -\epsilon)\\
-                &= \lim_{i \to \inf} [\frac{1}{2}(1 - \epsilon^{1/i}) + \frac{1}{2}(1 - \epsilon^{1/i})]\\
-                &= \lim_{i \to \inf}(1 - \epsilon^{1/i}) = 0
-            \end{align*}
-        \end{enumerate}
+        \subfile{exercises/a_convergence}
+    
     \end{enumerate}
 
 \end{document}
