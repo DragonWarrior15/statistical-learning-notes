@@ -57,33 +57,7 @@
         \item Correlation is dimensionless and $-1 \leq Corr(X,Y) \leq 1$ with value close to $0$ implying minimal relation and values close to $-1, 1$ implying perfect relation
     \end{itemize}
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Iterated Expectation and Variance}
-    The law of iterated expectation tells the following about expectation and variance
-    \begin{align*}
-        E[E[X|Y]] &= E[X] \\
-        Var(X) &= E[Var(X|Y)] + Var(E[X|Y])\\
-    \end{align*}
-
-    Proof for Iterated Expectation
-    \begin{align*}
-        P(X) &= \sum_{y} P(X|Y) P(Y) \\
-        \Rightarrow E[X] &= \sum_{x} xP(X) = \sum_{x} \sum{y} xP(X|Y)P(Y) \\
-            &= \sum_{y} P(Y) \sum_{x} xP(X|Y) = \sum_{y} P(Y) E[X|Y] \\
-        \text{or, } E[X] &= E[E[X|Y]] \tag*{$E[X|Y]$ is a function of $X$ and not $Y$}
-    \end{align*}
-    
-    Proof for Variance
-    \begin{align*}
-        Var(X) &= E[X^{2}] - E[X]^{2} \\
-        Var(X|Y) &= E[(X-\overline{X})^{2}|Y] = E[X^{2}|Y] - E[X|Y]^{2} \tag*{1}\\
-        Var[E(X|Y)] &= E[E(X|Y)^{2}] - E[E[X|Y]]^{2}\\
-                    &= E[E[(X|Y)]^{2}] - E[X]^{2} \tag*{2}\\
-        E[Var(X|Y)] &= E[E[X^{2}|Y]] - E[E[X|Y]^{2}] \tag*{from 1}\\
-                    &= E[X^{2}] - E[E[X|Y]^{2}] \tag*{3}\\
-        E[Var(X|Y)] + Var(E[X|Y]) &= E[X^{2}] - E[X]^{2} \tag*{adding 2 and 3}\\
-                                    &= Var(X)
-    \end{align*}
+    \subfile{sections/iterated_exp}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Random number of Random Variables}
@@ -98,6 +72,8 @@
             &= E[NVar(X)] + Var(NE[X])\\
             &= E[N]Var(X) + E[X]^{2}Var(N)
     \end{align*}
+
+    \subfile{sections/convolution}
 
     \subfile{sections/probability_distributions}
 
