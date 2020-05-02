@@ -57,117 +57,41 @@
     If $Y = aX + b$, then $Y \sim \mathcal{N}(a \mu + b, a^{2}\sigma^{2})$
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Counting Process}
+    Counting process is used in scenarios when we want to count the occurrence of a certain event. $N_{t}$ denotes the number of events till time $t$ starting from 0. It is assumed that $N_{0} = 0$. Formal definition is\newline
+
+    A random process $\{N_{t}, t \in [0, \inf)\}$ is said to be a counting process if $N_{t}$ is the number of events from time $t=0$ upto time $t$. For a counting process, we assume
+    \begin{enumerate}
+        \item $N_{0} = 0$
+        \item $N_{t} \in \{0, 1, 2, \cdots\}$ for all $t \in [0, \inf)$
+        \item for $0 \leq s < t, N_{t} - N_{s} $ shows the number of events that occur in the interval $(s,t]$ 
+    \end{enumerate}
+
+    \subsection{Independent Increments}
+    We say that a continuous time counting process $N_{t}$ has independent increments if for all $0 \leq t_{1} < t_{2} < \cdots < t_{n}$, the random variables
+    \begin{align*}
+         N_{t_{2}} - N_{t_{1}}, \;N_{t_{3}} - N_{t_{2}}, \ldots, \;N_{t_{n}} - N_{t_{n-1}}
+    \end{align*}
+    are independent.\newline
+
+    Note that these differences are nothing but the number of arrivals in a given time interval. Thus, we are equivalently saying that \textbf{the number of arrivals in any two disjoint intervals are independent}.\newline
+
+    A very simple consequence of this property is:\newline
+    Suppose we wise to find the probability of 2 arrivals in the interval $(1,2]$ and 3 arrivals in the interval $(3,5]$. Then,
+    \begin{align*}
+        P(2 \text{ arrivals in } (1,2] \text{ and } 3 \text{ arrivals in } (3,5]) = P(2 \text{ arrivals in } (1,2]) P(3 \text{ arrivals in } (3,5]))
+    \end{align*}
+    since the arrivals in disjoint intervals are independent.
+
+    \subsection{Stationary Increments}
+    We say that a continuous time counting process $N_{t}$ has stationary increments if for all $t_{2} > t_{1} \geq 0$ and for all $r > 0$, $N_{t_{2}} - N_{t_{1}}$ and $N_{t_{2} + r}$ and $N_{t_{1} + r}$ are independent.\newline
+
+    In other words, \textbf{the number of arrivals in a given time interval is invariant to it's location}. Note that the number of arrivals in the time interval between $t_{1}$ and $t_{2}$ is nothing but $N_{t_{2}} - N_{t_{1}}$. By the above statement, if the process has stationary increments, then this quantity is same as $N_{t_{2} - t_{1}}$, which is the distribution of the counting process itself.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Renewal Process}
-    This is a fundamental stochastic process useful in modelling arrivals and interarrival times. Some definitions will make the usage clear.\newline
-
-    Let $S_{i}$ denote the $i$th renewal time or the time when the $i$th arrival takes place. By definition, $S_{0} = 0$. We can also define
-    \begin{align*}
-        S_{n} &= S_{n-1} + \xi_{n}\\
-        S_{n} &= \xi_{1} + \xi_{2} + \cdots + \xi_{n-1}
-    \end{align*}
-    where $\xi_{i}$ are positive ($P(\xi > 0) = 1$) independent identically distributed variables representing the interarrival times. We also define
-    \begin{align*}
-        N_{t} &= \argmax_{k} \{ S_{k} \leq t \}\\
-        \{ S_{n} > t \} &= \{ N_{t} < n \}
-    \end{align*}
-    or, $N_{t}$ is simply the number of arrivals till the time $t$.\newline
-
-    Define the following quantity
-    \begin{align*}
-        F^{n*} &= F_{\xi} * \ldots * F_{\xi} \text{ $n$ times}\\
-        u(t) &= \sum_{i=1}^{\inf} F^{n*}(t)
-    \end{align*}
-    It can be shown that the function $u(t)$ converges. The expectation of $N_{t}$ then becomes
-    \begin{alignat*}{2}
-        E[N_{t}] &= E[\text{number of $n$ such that $S_{n} \leq t$}]\\
-        &= E[\sum_{n=1}^{\inf} I(S_{n} \leq t)] &\text{ sum of Indicators will equal $n$}\\
-        &= \sum_{n=1}^{\inf} P(S_{n} \leq t) &\text{ since $E[$Indicator$]$ is just the function inside indicator}\\
-        &= \sum_{n=1}^{\inf} F^{n*}(t) &\text{ by defining cumulative as sum of $\xi$s}\\
-        &= u(t)
-    \end{alignat*}
-
-    \subsection{Laplace Transform}
-    For a density function $f$ defined from $\mathbb{R}^{\geq 0} \to \mathbb{R}$, Laplace transform is
-    \begin{align*}
-        L_{f}(s) = \int_{\mathbb{R}^{\geq 0}} e^{-sx} f(x) dx
-    \end{align*}
-    The following properties hold for this transform
-    \begin{enumerate}
-        \item If $f$ is a probability density function, then
-        \begin{align*}
-            E[e^{-sx}] = L_{f}(s)
-        \end{align*}
-        
-        \item if $f_{1}$ and $f_{2}$ are two probability density functions, then
-        \begin{align*}
-            L_{f_{1}*f_{2}}(s) = L_{f_{1}}(s) L_{f_{2}}(s)
-        \end{align*}
-        
-        \item \label{itm:laplace3} If $F$ is the cumulative probability distribution for $X$ and $p$ is the probability density function, then
-        \begin{align*}
-            L_{F_{X}}(s) = \frac{L_{p_{X}}(s)}{s}
-        \end{align*}
-        which can be proven using integration by parts as follows
-        \begin{align*}
-            L_{F_{X}}(s) = \int_{\mathbb{R}^{\geq 0}} F_{X}(x) \frac{d(e(-sx))}{s} = 0 + \frac{1}{s} \int_{\mathbb{R}^{\geq 0}} p_{X}(x) e^{-sx} dx
-        \end{align*}
-    \end{enumerate}
-
-    \subsection{Calculating the Expectation}
-    Armed with the concept of a Laplace transform, we make the following observation first
-    \begin{align*}
-        u(t) &= \sum_{i=1}^{\inf} F^{n*}(t) = F(t) + \sum_{i=2}^{\inf} F^{n*}(t)\\
-        &= F(t) + \big( \sum_{i=1}^{\inf} F^{n*}(t) \big) * F(t)\\
-        &= F(t) + u(t) * F(t)\\
-       u(t) &= F(t) + u(t) * p(t)
-    \end{align*}
-    where $p$ is the probability density function and the last line stems from the fact that $\int u * F = \int u(x-y) dF(y) = \int u(x-y) p(y) dy$. Taking Laplace transform on both sides,
-
-    \begin{align*}
-        L_{u}(s) &= L_{F}(s) + L_{u}(s) L_{p}(s)\\
-        L_{u}(s) &= \frac{L_{p}(s)}{s} + L_{u}(s) L_{p}(s) \text{ from \ref{itm:laplace3}}\\
-        L_{u(s)} &= \frac{L_{p}(s)}{s(1-L_{p}(s))}
-    \end{align*}
-
-    The last equation can be used to calculate the laplace transform of $u(t)$ and consecutively guess the functional form of $u(t)$.
-
-    \subsection{Limit Theorems for Renewal Processes}
-    The following two theorems hold true for Renewal processes
-    \begin{enumerate}
-        \item If $E[\xi] = \mu < \inf$, then
-        \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{t} = \frac{1}{\mu}            
-        \end{align*}
-        which is analogous to the strong law of large numbers. This can be proven as follows
-        \begin{align*}
-            S_{N_{t}} \leq t \leq S_{N_{t} + 1} \text{ from the definition of $N_{t}$}\\
-            \text{or, } \frac{N_{t}}{S_{N_{t} + 1}} \leq \frac{N_{t}}{t} \leq \frac{N_{t}}{S_{N_{t}}}
-        \end{align*}
-        we can calculate the limits on the two bounds as
-        \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{S_{N_{t}}} = \lim_{n \to \inf} \frac{n}{S_{n}} = \frac{1}{\mu}
-        \end{align*}
-        from the strong law of large numbers applied to $\lim_{n \to \inf} \frac{S_{n}}{n}$. Similarly, one can show
-        \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{S_{N_{t} + 1}} = \lim_{t \to \inf} \frac{N_{t}}{N_{t} + 1} \lim_{t \to \inf} \frac{N_{t} + 1}{S_{N_{t} + 1}} = 1 * \frac{1}{\mu}
-        \end{align*}
-
-        \item If $Var(\xi) = \sigma^{2} < \inf$, then
-        \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} = \mathcal{N}(0,1)
-        \end{align*}
-        which is analogous to the central limit theorem. It can be proven by considering the CLT on $\xi$s
-        \begin{align*}
-            \lim_{n \to \inf} P(\frac{S_{n} - n\mu}{\sigma \sqrt{n}} \leq x) &= \text{CDF of }\mathcal{N}(0,1)\\
-            \text{or, } \lim_{n \to \inf} P(S_{n} \leq n\mu + \sigma \sqrt{n} x) &= \text{CDF of }\mathcal{N}(0,1)\\
-            \text{or, } \lim_{n \to \inf} P(N_{t} \geq n) &= \text{CDF of }\mathcal{N}(0,1) \text{ from definition of $N_{t}$, where $t = n\mu + \sigma \sqrt{n} x$}\\
-        \end{align*}
-        We substitute $n\mu = t$ for very large value of $n$, since the total time will become total variables into the expected time for one $\xi$ when $n$ is large. Hence,
-        \begin{gather*}
-            n = \frac{t}{\mu} - \frac{\sigma \sqrt{t}}{\mu^{3/2}}x\\
-            \lim_{n \to \inf} P(N_{t} \geq n) = \lim_{n \to \inf} P(\frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} \leq x) = \text{CDF of }\mathcal{N}(0,1)
-        \end{gather*}
-    \end{enumerate}
+    \subfile{renewal_process}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Bernoulli Process}
@@ -263,108 +187,6 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Poisson Process}
-    Poisson process also falls in the realm of random processes but is different from Bernoulli process as it is a continuous time process. This process is very commonly used to model arrival times and number of arrivals in a given time interval.
-    \begin{align*}
-        P(k, \tau) &= \text{Probability of $k$ arrivals in interval of duration $\tau$}\\
-        \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
-    \end{align*}
-    Assumptions
-    \begin{itemize}
-        \item The Probability is dependent only on $\tau$ and not the \emph{location} of the interval
-        \item Number of arrivals in disjoint time intervals are \emph{independent}
-    \end{itemize}
-    
-    \subsection{Derivation from Bernoulli Process}
-    For a very small interval $\delta$,
-    \begin{alignat*}{2}
-        P(k, \delta) &= \begin{cases} 1-\lambda \delta &\mbox{$k = 0$}\\
-                                     \lambda \delta &\mbox{$k = 1$}\\
-                                     0 &\mbox{$k > 2$} \end{cases} + O(\delta^{2})\\
-        \lambda &= \lim_{\delta \to 0}\frac{P(1,\delta)}{\delta} \tag*{arrival rate per unit time}\\
-        E[k] &= (\lambda \delta) * 1 + (1-\lambda \delta) * 0\\
-            &= \lambda \delta \\
-        \tau &= n \delta
-    \end{alignat*}
-    
-    The last equation clearly implies that we can approximate the whole process as a bernoulli process where we have $n$ miniscule time intervals with at most one arrival per interval.
-    \begin{align*}
-        P(k\; arrivals) &= \binom{n}{k} p^{k} (1-p)^{n-k} \\
-            &= \binom{n}{k} (\frac{\lambda \delta}{n})^{k} (1 - \frac{\lambda \delta}{n})^{n-k}\\
-        \lambda \tau &= np \tag*{or, arrival rate * time = E[arrivals]}\\
-        Poisson &= \lim_{\delta \to 0, n \to \inf} Bernoulli\\
-        or,\; P(k, \tau) &= \frac{(\lambda \tau)^{k} e^{-\lambda \tau}}{k!} \tag*{$k = 0,1, \cdots$, for a given $\tau$}\\
-        where,\; \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
-    \end{align*}
-
-    Let $N_{t}$ denote the no of arrivals till time t, then
-    \begin{align*}
-        E[N_{t}] &= \lambda t\\
-        Var(N_{t}) &= \lambda t
-    \end{align*}
-
-    \subsection{Time till kth arrival}
-    Suppose the $k^{th}$ arrival happens at a time $t$. Then we are saying that there have been $k-1$ arrivals till time $t$ and the $k^{th}$ arrival happens at time $t$ (precisely in an interval of $[t, t+\delta]$). Let $Y_{k}$ be the required time,
-    \begin{align*}
-        f_{Y_{k}}(t)\delta &= P(t \leq Y_{k} \leq t+\delta)\\
-                    &= P(\text{$k-1$ arrivals  in $[0,t]$}) (\lambda \delta)\\
-                    &= \frac{(\lambda t)^{k-1}}{(k-1)!}e^{-\lambda t}(\lambda \delta)\\
-        f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \tag*{Erland Distribution}
-    \end{align*}
-
-    \subsection{Time of 1st Arrival}
-    Using the Erlang Distribution described above, we have
-    \begin{align*}
-        f_{Y_{1}}(t) = \lambda e^{-\lambda t}
-    \end{align*}
-    $Y_{k} = T_{1} + T_{2} + \cdots + T_{k}$ where all $T_{i}$ are independent and exponential distributions.
-
-    \subsection{Merging of Poisson Processes}
-    Merging of two Poisson processes is also a Poisson process. Consider two flasbulbs of Red and Green colours, flashing as Possion processes with rates $\lambda_{1}$ and $\lambda_{2}$. Then the process denoting the combined flashing of the two bulbs is also Poisson.\newline
-    Consider a very small interval of time $\delta$. In this small interval, any of the individual bulbs can have at most one flashes (since we ignore higher order terms). Thus, the following four possibilities arise \newline
-    \begin{table}[h]
-    \centering
-    \begin{tabular}{c|c|c}
-        0 & $Red$ & $\overline{Red}$\\ \hline
-        $Green$ & $\lambda_{1} \delta \lambda_{2} \delta $ & $(1-\lambda_{1}\delta)  \lambda_{2} \delta$\\ \hline
-        $\overline{Green}$ & $\lambda_{1} \delta (1-\lambda_{2}\delta) $ & $(1-\lambda_{1}\delta) (1-\lambda_{2}\delta)$ \\
-    \end{tabular}
-    \caption{Base Probabilities for flashes}
-    \end{table}
-    \begin{table}[h]
-    \centering
-    \begin{tabular}{c|c|c}
-        0 & $Red$ & $\overline{Red}$\\ \hline
-        $Green$ & $0$ & $ \lambda_{2} \delta$\\ \hline
-        $\overline{Green}$ & $\lambda_{1} \delta$ & $(1-(\lambda_{1} + \lambda_{2}) \delta)$ \\
-    \end{tabular}
-    \caption{Probabilities after ignoring $\delta^{2}$ terms}
-    \end{table}
-
-    Thus, the combined process is Poisson with parameter $\lambda_{1} + \lambda_{2}$ \newline
-    \begin{align*}
-    P(\text{arrival happened from first process}) = \frac{\lambda_{1} \delta}{\lambda_{1} \delta + \lambda_2 \delta} = \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
-    \end{align*}
-
-    \subsection{Splitting of Poisson Process}
-    Suppose we have a Poisson process with parameter $\lambda$ which we split into two processes up and down, with probabilities $p$ and $1-p$. The two resulting processes are also Poisson with different parameters.\newline
-    Consider a small time slot of length $\delta$. Then,
-    \begin{align*}
-        P(\text{arrival in this time slot}) &= \lambda \delta\\
-        P(\text{arrival in up slot}) &= \lambda \delta p\\
-        P(\text{arrival in down slot}) &= \lambda \delta (1-p)
-    \end{align*}
-    Thus, up and down are themselves Poisson with parameters $\lambda p$ and $\lambda (1-p)$ respectively.
-
-    \subsection{Random Indcidence for Poisson}
-    Suppose we have a Poisson process with parameter $\lambda$ running forever. We show up at a random time instant. What is the length of the chosen interarrival time (the total of the time from the last arrival to the next arrival).\newline
-    Let $T_{1}^{'}$ denote the time that has elapsed since the last arrival and $T_{1}$ be the time till the next arrival. Note that the reverse process is also Poisson with the same parameter. Thus,
-    \begin{align*}
-        E[\text{interarrival time}] = E[T_{1}^{'} + T_{1}] = \frac{1}{\lambda} + \frac{1}{\lambda} = \frac{2}{\lambda}
-    \end{align*}
-
-    This may seem paradoxical since the time difference between any two arrivals in a Poisson process is same and it's expected length is $\frac{1}{\lambda}$, whereas we got an interval twice this length. The paradox is resolved by considering the fact that when we choose a random point in time, it is more likely to fall in an interval of larger size than the smaller ones (since probability will be proportional to the length of the interval).\newline
-
-    Consider a separate example where we want to compare two values $E[\text{size of a family}]$ and $E[\text{size of a family of a given person}]$.\newline
-    The two value will be different due to the underlying nature of the way experiment is conducted. For the first, we randomly choose families and average their sizes. Here, family of any size is equally likely to be picked. In the second case, we first pick a person from the population, get their family size, and then average the sizes of the families. Note that, this experiment is biased since the we are more likely to select people from larger families (or equivalently, it is more likely that we pick a person from a large family since the probability of picking is proportional to the family size). Hence, the second value will likely be larger and the two quantities are not equal.
+    \subfile{poisson}
 
 \end{document}

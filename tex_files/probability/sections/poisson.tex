@@ -1,0 +1,160 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    \subsection{Poisson Random Variable}
+    A random variable $X$ is said to be $Poisson(\mu)$ if it has the following probability distribution
+    \begin{align*}
+        p_{X}(x = k) = \begin{cases} e^{-\mu} \frac{\mu^{k}}{k!} &\text{ for all } x = \{ 0,\;1,\;2, \cdots \}\\
+                                    0 &\text{ otherwise} \end{cases}
+    \end{align*}
+
+    The sum of $n$ independent Poisson variables is also Poisson
+    \begin{align*}
+        X_{1} + X_{2} + \cdots + X_{n} \sim Poisson(\mu_{1} + \mu_{2} + \cdots + \mu_{n})
+    \end{align*}
+
+    \subsection{Mean and Variance}
+    Expected value is calculated as follows
+    \begin{align*}
+        E[X] &= \sum_{k=0}^{\inf} ke^{-\mu} \frac{\mu^{k}}{k!} = \mu e^{-\mu} \sum_{k=1}^{\inf} \frac{\mu^{k-1}}{(k-1)!}\\
+        &= \mu e^{-\mu} \sum_{k=0}^{\inf} \frac{\mu^{k}}{k!}\\
+        \Aboxed{E[X] &= \mu}
+    \end{align*}
+
+    Variance can be calculated using $Var(X) = E[X^{2}] - E[X]^{2}$
+    \begin{align*}
+        E[X^{2}] &= \sum_{k=0}^{\inf} k^{2} e^{-\mu} \frac{\mu^{k}}{k!} = \mu e^{-\mu} \sum_{k=1}^{\inf} k\frac{\mu^{k-1}}{(k-1)!}\\
+        &= \mu e^{-\mu} \sum_{k=0}^{\inf} (k+1) \frac{\mu^{k}}{k!}\\
+        &= \mu e^{-\mu} \big( \mu \sum_{k=1}^{\inf} \frac{\mu^{k-1}}{(k-1)!} + \sum_{k=0}^{\inf} \frac{\mu^{k}}{k!} \big)\\
+        &= \mu e^{-\mu} (\mu e^{\mu} + e^{\mu})\\
+        Var(X) &= E[X^{2}] - E[X]^{2}\\
+        \Aboxed{Var(X) &= \mu}
+    \end{align*}
+
+    Thus, mean and variance is the same for a Poisson variable.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Poisson Process}
+    Poisson process also falls in the realm of random processes but is different from Bernoulli process as it is a continuous time process. This process is very commonly used to model arrival times and number of arrivals in a given time interval.
+    \begin{align*}
+        P(k, \tau) &= \text{Probability of $k$ arrivals in interval of duration $\tau$}\\
+        \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
+    \end{align*}
+    Assumptions
+    \begin{itemize}
+        \item The Probability is dependent only on $\tau$ and not the \emph{location} of the interval
+        \item Number of arrivals in disjoint time intervals are \emph{independent}
+    \end{itemize}
+    
+    \subsection{A Special Counting Process}
+    A counting process $N_{t}:t \in [0,\inf)$ is a Poisson process with rate $\lambda$ if
+    \begin{enumerate}
+        \item $N_{0} = 0$
+        \item $N_{t}$ is composed of independent and stationary increments
+        \item The number of arrivals in any time interval $\tau > 0$ has $Possion(\lambda \tau)$ distribution 
+    \end{enumerate}
+    Hence, for a Poisson process, the number of arrivals in any interval is dependent only on the length of that interval and not the location. Further, the number of arrivals in the interval will follow a Poisson distribution.
+
+    \subsection{Derivation from Bernoulli Process}
+    For a very small interval $\delta$,
+    \begin{alignat*}{2}
+        P(k, \delta) &= \begin{cases} 1-\lambda \delta &\mbox{$k = 0$}\\
+                                     \lambda \delta &\mbox{$k = 1$}\\
+                                     0 &\mbox{$k > 2$} \end{cases} + O(\delta^{2})\\
+        \lambda &= \lim_{\delta \to 0}\frac{P(1,\delta)}{\delta} \tag*{arrival rate per unit time}\\
+        E[k] &= (\lambda \delta) * 1 + (1-\lambda \delta) * 0\\
+            &= \lambda \delta \\
+        \tau &= n \delta
+    \end{alignat*}
+    
+    The last equation clearly implies that we can approximate the whole process as a bernoulli process where we have $n$ miniscule time intervals with at most one arrival per interval.
+    \begin{align*}
+        P(k\; arrivals) &= \binom{n}{k} p^{k} (1-p)^{n-k} \\
+            &= \binom{n}{k} (\frac{\lambda \delta}{n})^{k} (1 - \frac{\lambda \delta}{n})^{n-k}\\
+        \lambda \tau &= np \tag*{or, arrival rate * time = E[arrivals]}\\
+        Poisson &= \lim_{\delta \to 0, n \to \inf} Bernoulli\\
+        or,\; P(k, \tau) &= \frac{(\lambda \tau)^{k} e^{-\lambda \tau}}{k!} \tag*{$k = 0,1, \cdots$, for a given $\tau$}\\
+        where,\; \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
+    \end{align*}
+
+    Let $N_{t}$ denote the no of arrivals till time t, then
+    \begin{align*}
+        E[N_{t}] &= \lambda t\\
+        Var(N_{t}) &= \lambda t
+    \end{align*}
+
+    \subsection{Time till kth arrival}
+    Suppose the $k^{th}$ arrival happens at a time $t$. Then we are saying that there have been $k-1$ arrivals till time $t$ and the $k^{th}$ arrival happens at time $t$ (precisely in an interval of $[t, t+\delta]$). Let $Y_{k}$ be the required time,
+    \begin{align*}
+        f_{Y_{k}}(t)\delta &= P(t \leq Y_{k} \leq t+\delta)\\
+                    &= P(\text{$k-1$ arrivals  in $[0,t]$}) (\lambda \delta)\\
+                    &= \frac{(\lambda t)^{k-1}}{(k-1)!}e^{-\lambda t}(\lambda \delta)\\
+        f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \tag*{Erlang Distribution}
+    \end{align*}
+
+    \subsection{Time of 1st Arrival}
+    Using the Erlang Distribution described above, we have
+    \begin{align*}
+        f_{Y_{1}}(t) = \lambda e^{-\lambda t}
+    \end{align*}
+    $Y_{k} = T_{1} + T_{2} + \cdots + T_{k}$ where all $T_{i}$ are independent and exponential distributions.
+
+
+    \subsection{Renewal Process}
+    Poisson process can be seen as a special case of a renewal process, when the interarrival times are all exponentially distributed.
+    \begin{alignat*}{3}
+        \text{Interarrival time }& \xi_{i}&& = \lambda e^{-\lambda t}\\
+        \text{Number of arrivals }& P(N_{t} = n)&& = \frac{(\lambda t)^{n}}{n!} e^{-\lambda t}\\
+        \text{Time till $n$th arrival }& P(S_{n} = t)&& = \lambda \frac{(\lambda t)^{n-1}}{(n-1)!} e^{-\lambda x} \text{ for $t > 0$}\\
+        \text{Cumulative distribution }& P(S_{n} \leq t)&& = \begin{cases} 1 - e^{-\lambda t} \sum_{k=1}^{n-1} \frac{(\lambda t)^{k}}{k!} &\mbox{if $t > 0$}\\
+        0 &\mbox{otherwise} \end{cases}
+    \end{alignat*}
+
+    \subsection{Merging of Poisson Processes}
+    Merging of two Poisson processes is also a Poisson process. Consider two flasbulbs of Red and Green colours, flashing as Possion processes with rates $\lambda_{1}$ and $\lambda_{2}$. Then the process denoting the combined flashing of the two bulbs is also Poisson.\newline
+    Consider a very small interval of time $\delta$. In this small interval, any of the individual bulbs can have at most one flashes (since we ignore higher order terms). Thus, the following four possibilities arise \newline
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c}
+        0 & $Red$ & $\overline{Red}$\\ \hline
+        $Green$ & $\lambda_{1} \delta \lambda_{2} \delta $ & $(1-\lambda_{1}\delta)  \lambda_{2} \delta$\\ \hline
+        $\overline{Green}$ & $\lambda_{1} \delta (1-\lambda_{2}\delta) $ & $(1-\lambda_{1}\delta) (1-\lambda_{2}\delta)$ \\
+    \end{tabular}
+    \caption{Base Probabilities for flashes}
+    \end{table}
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c}
+        0 & $Red$ & $\overline{Red}$\\ \hline
+        $Green$ & $0$ & $ \lambda_{2} \delta$\\ \hline
+        $\overline{Green}$ & $\lambda_{1} \delta$ & $(1-(\lambda_{1} + \lambda_{2}) \delta)$ \\
+    \end{tabular}
+    \caption{Probabilities after ignoring $\delta^{2}$ terms}
+    \end{table}
+
+    Thus, the combined process is Poisson with parameter $\lambda_{1} + \lambda_{2}$ \newline
+    \begin{align*}
+    P(\text{arrival happened from first process}) = \frac{\lambda_{1} \delta}{\lambda_{1} \delta + \lambda_2 \delta} = \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
+    \end{align*}
+
+    \subsection{Splitting of Poisson Process}
+    Suppose we have a Poisson process with parameter $\lambda$ which we split into two processes up and down, with probabilities $p$ and $1-p$. The two resulting processes are also Poisson with different parameters.\newline
+    Consider a small time slot of length $\delta$. Then,
+    \begin{align*}
+        P(\text{arrival in this time slot}) &= \lambda \delta\\
+        P(\text{arrival in up slot}) &= \lambda \delta p\\
+        P(\text{arrival in down slot}) &= \lambda \delta (1-p)
+    \end{align*}
+    Thus, up and down are themselves Poisson with parameters $\lambda p$ and $\lambda (1-p)$ respectively.
+
+    \subsection{Random Indcidence for Poisson}
+    Suppose we have a Poisson process with parameter $\lambda$ running forever. We show up at a random time instant. What is the length of the chosen interarrival time (the total of the time from the last arrival to the next arrival).\newline
+    Let $T_{1}^{'}$ denote the time that has elapsed since the last arrival and $T_{1}$ be the time till the next arrival. Note that the reverse process is also Poisson with the same parameter. Thus,
+    \begin{align*}
+        E[\text{interarrival time}] = E[T_{1}^{'} + T_{1}] = \frac{1}{\lambda} + \frac{1}{\lambda} = \frac{2}{\lambda}
+    \end{align*}
+
+    This may seem paradoxical since the time difference between any two arrivals in a Poisson process is same and it's expected length is $\frac{1}{\lambda}$, whereas we got an interval twice this length. The paradox is resolved by considering the fact that when we choose a random point in time, it is more likely to fall in an interval of larger size than the smaller ones (since probability will be proportional to the length of the interval).\newline
+
+    Consider a separate example where we want to compare two values $E[\text{size of a family}]$ and $E[\text{size of a family of a given person}]$.\newline
+    The two value will be different due to the underlying nature of the way experiment is conducted. For the first, we randomly choose families and average their sizes. Here, family of any size is equally likely to be picked. In the second case, we first pick a person from the population, get their family size, and then average the sizes of the families. Note that, this experiment is biased since the we are more likely to select people from larger families (or equivalently, it is more likely that we pick a person from a large family since the probability of picking is proportional to the family size). Hence, the second value will likely be larger and the two quantities are not equal.
+\end{document}
