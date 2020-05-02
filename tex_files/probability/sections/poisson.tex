@@ -157,4 +157,22 @@
 
     Consider a separate example where we want to compare two values $E[\text{size of a family}]$ and $E[\text{size of a family of a given person}]$.\newline
     The two value will be different due to the underlying nature of the way experiment is conducted. For the first, we randomly choose families and average their sizes. Here, family of any size is equally likely to be picked. In the second case, we first pick a person from the population, get their family size, and then average the sizes of the families. Note that, this experiment is biased since the we are more likely to select people from larger families (or equivalently, it is more likely that we pick a person from a large family since the probability of picking is proportional to the family size). Hence, the second value will likely be larger and the two quantities are not equal.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Non Homogenous Poisson Process}
+    Sometimes, it may not be accurate to use a simple Poisson process to model arrival. For example, a restaurant will not have the same rate of influx throughout the day. This rate itself is a function of time. In such cases, we model the arrivals as Non Homogenous Poisson Process.\newline
+
+    For such a process, we have $\lambda(t): [0,\inf) \to [0, \inf)$ and the counting process $N_{t}$ is non homogenous if the following hold
+    \begin{enumerate}
+        \item $N_{0} = 0$
+        \item The increments to $N_{t}$ are \textbf{independent but not stationary}
+        \item For any small time interval $\delta$, the probability of more than 1 arrival in the interval is zero
+    \end{enumerate}
+
+    The distribution of arrivals in a time interval is still Poisson, but the Poisson parameter is now dependent on the location of the interval itself (since the process does not have stationary increments)
+    \begin{align*}
+        N_{t+s} - N_{t} \sim Poisson(\int_{t}^{t+s} \lambda(\alpha) d\alpha)
+    \end{align*}
+
 \end{document}
