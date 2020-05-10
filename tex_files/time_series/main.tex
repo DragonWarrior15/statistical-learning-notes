@@ -1,0 +1,42 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tikz}
+% \usetikzlibrary{automata, positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=5cm,compat=1.9}
+
+% remove paragraph indent
+\setlength{\parindent}{0em}
+
+% hyperlinks for the table of contents
+% \usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=blue, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all % 'all' will create links for everything in the TOC
+}
+
+\usepackage{subfiles}
+
+% \DeclareMathOperator*{\minimize}{minimize}
+% \DeclareMathOperator*{\maximize}{maximize}
+% \DeclareMathOperator*{\argmin}{argmin}
+% \DeclareMathOperator*{\argmax}{argmax}
+
+\title{Time Series Analysis Notes}
+
+\begin{document}
+    \maketitle{}
+    \tableofcontents
+    \newpage
+
+    \pagenumbering{arabic}
+    \subfile{sections/characteristics}
+\end{document}
