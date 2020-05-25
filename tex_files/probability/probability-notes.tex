@@ -23,6 +23,10 @@
     linktoc=all % 'all' will create links for everything in the TOC
 }
 
+% to insert images
+\usepackage{graphicx}
+\graphicspath{ {./images/} {../images/}}
+
 \usepackage{subfiles}
 
 \DeclareMathOperator*{\minimize}{minimize}
@@ -75,7 +79,11 @@
 
     \subfile{sections/convolution}
 
+    \subfile{sections/moment_gen}
+
     \subfile{sections/probability_distributions}
+
+    \subfile{sections/gamma}
 
     \subfile{sections/markov_process}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
