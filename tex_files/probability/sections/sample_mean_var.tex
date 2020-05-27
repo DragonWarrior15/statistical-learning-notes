@@ -1,0 +1,112 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Distribution of Sample Mean and Variance}
+    Let $X_{1}, X_{2}, \ldots, X_{n}$ be independent random variables from a distribution having mean $\mu$ and variance $\sigma^{2}$. From the central limit theorem,
+    \begin{align*}
+        \frac{X_{1} + X_{2} + \cdots + X_{n} - n\mu}{\sigma \sqrt{n}} \sim \mathcal{N}(0, 1)
+    \end{align*}
+    or, the sum of the random variables follows the distribution of a standard normal as the value of $n$ becomes large. Typically, the property starts to manifest as soon as $n$ becomes around 30.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Sample Mean}
+    Let the random variable $\overline{X}$ denote the sample mean and is defined as
+    \begin{align*}
+        \overline{X} = \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}
+    \end{align*}
+    Note that any scaled version of a normal distribution is also normal. Thus, \textbf{The mean of n independent random variables coming from the same distribution also follows a normal distribution for sufficiently large n}.\newline
+
+    Note that sample mean is itself a random variable and thus has a distribution. This happens because the quantity itself is the average of several random variables, which are instances of the same probability distribution.
+    \begin{align}
+        E[\overline{X}] &= E[\frac{X_{1} + X_{2} + \cdots + X_{n}}{n}]\\
+        &= \frac{1}{n} \sum_{i=1}^{n} E[X_{i}]\\
+        \Aboxed{E[\overline{X}] &= \mu}
+    \end{align}
+
+    Similiarly, the variance of the sample mean can be computed as follows
+    \begin{align*}
+        Var(\overline{X}) &= Var(\frac{X_{1} + X_{2} + \cdots + X_{n}}{n})\\
+        &= Var(\frac{X_{1}}{n}) + Var(\frac{X_{2}}{n}) + \cdots + Var(\frac{X_{n}}{n}) \text{\; using independence}\\
+        &= n \frac{\sigma^{2}}{n^{2}} \text{\; using $Var(aX) = a^{2}Var(X)$}\\
+        \Aboxed{Var(\overline{X}) &= \frac{\sigma^{2}}{n}}
+    \end{align*}
+
+    Hence, for a population of mean $\mu$ and variance $\sigma^{2}$, the $E[$sample mean$]$ is still $\mu$ but the variance of the sample mean shrinks by a factor of $n$. Stated in a different manner, this means that the spread of the sample mean reduces as we take the mean from more and more observations. This directly translates into the fact that our confidence on the estimate of the sample mean increases with more observations.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Sample Variance}
+    The sample variance is defined as
+    \begin{align*}
+        S^{2} = \frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}
+    \end{align*}
+    where $\overline{X}$ is the sample mean. Similar to the sample mean, this is also a random variable.\newline
+
+    The mean of sample variance can be calculated as follows
+    \begin{align*}
+        E[S^{2}] &= E[\frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}]\\
+        &= \frac{1}{n-1} \sum_{i=1}^{n} E[(X_{i} - \overline{X})^{2}]\\
+        &= \frac{1}{n-1} \sum_{i=1}^{n} E[X_{i}^{2} - 2X_{i} \overline{X} + \overline{X}^{2}]\\
+        &= \frac{1}{n-1} \big( \sum_{i=1}^{n} E[X_{i}^{2}] - E[2\overline{X} \sum_{i=1}^{n}X_{i}] + \sum_{i=1}^{n}E[\overline{X}^{2}] \big)\\
+        &= \frac{1}{n-1} \big( \sum_{i=1}^{n} E[X_{i}^{2}] - E[2n\overline{X}^{2}] + nE[\overline{X}^{2}] \big)\\
+        \text{Using \;} E[X^{2}] &= Var(X) + E[X]^{2},\\
+        E[S^{2}] &= \frac{1}{n-1} \big( \sum_{i=1}^{n} E[Var(X_{i}) + E[X_{i}]^{2}] - nE[\overline{X}^{2}] \big)\\
+        &= \frac{1}{n-1}(n\sigma^{2} + n\mu^{2} - n(\frac{\sigma^{2}}{n} + \mu^{2}))\\
+        \Aboxed{E[S^{2}] &= \sigma^{2}}
+    \end{align*}
+    i.e., the mean of the sample variance is same as the variance of the distribution (population variance).\newline
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Distributions for a Normal Population}
+    Consider $X_{1}, X_{2}, \ldots, X_{n}$ be independently derived from a normal population with mean $\mu$ and variance $\sigma^{2}$\newline
+    i.e., $X_{i} \sim \mathcal{N}(\mu, \sigma^{2}) \forall i = 1, 2, \ldots, n$ \newline
+
+    Based on the derivations above,
+    \begin{align*}
+        E[\overline{X}] &= \mu\\
+        Var(\overline{X}) &= \frac{\sigma^{2}}{n}
+    \end{align*}
+
+    And since the sum of normal random variables is also normal,
+    \begin{align*}
+        \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)
+    \end{align*}
+    which is similar to the central limit theorem.\newline
+
+    From the derivation above for the sample variance,
+    \begin{align*}
+        E[S^{2}] = \sigma^{2}
+    \end{align*}
+
+    Now let's calcluate the distribution of $S^{2}$
+    \begin{align*}
+        S^{2} &= \frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n-1}\\
+        (n-1)S^{2} &= \sum_{i=1}^{n} (X_{i} - \overline{X})^{2}\\
+        &= \sum_{i=1}^{n} ((X_{i} - \mu) - (\overline{X} - \mu))^{2}\\
+        &= \sum_{i=1}^{n} ((X_{i} - \mu)^{2} + (\overline{X} - \mu)^{2} - 2(X_{i} - \mu)(\overline{X} - \mu))\\
+        &= \sum_{i=1}^{n} (X_{i} - \mu)^{2} + n(\overline{X} - \mu)^{2} - 2(\overline{X} - \mu)\sum_{i=1}^{n}(X_{i} - \mu)\\
+        &= \sum_{i=1}^{n} (X_{i} - \mu)^{2} + n(\overline{X} - \mu)^{2} - 2n(\overline{X} - \mu)^{2}\\
+        &= \sum_{i=1}^{n} (X_{i} - \mu)^{2} - n(\overline{X} - \mu)^{2}\\
+        \frac{(n-1)S^{2}}{\sigma^{2}} &= \sum_{i=1}^{n} (\frac{X_{i} - \mu}{\sigma})^{2} - (\frac{\overline{X} - \mu}{\sigma/\sqrt{n}})^{2} \text{\; to make standard normals}\\
+        \text{or, \;} \frac{(n-1)S^{2}}{\sigma^{2}} + (\frac{\overline{X} - \mu}{\sigma/\sqrt{n}})^{2} &= \sum_{i=1}^{n} (\frac{X_{i} - \mu}{\sigma})^{2}
+    \end{align*}
+
+    The right hand side is a chi-square variable with $n$ degrees of freedom and the second part of the right hand side is a chi-square variable with $1$ degree of freedom. We know that sum of independent chi-square variables is also a chi-square variable with degrees of freedom equal to the sum of individual degrees of freedom. Hence, it follows that
+    \begin{align*}
+        \frac{(n-1)S^{2}}{\sigma^{2}} \sim \chi_{n-1}^{2}
+    \end{align*}
+    and also the fact that \textbf{for a normal population, the sample mean and sample variance are independent variables with normal and chi-square distributions respectively}. This independence is a unique property for a normal distribution and is useful in parameter estimation and hypothesis testing.\newline
+
+    Another interesting observation from the above derivations is
+    \begin{align*}
+        \Aboxed{\sqrt{n}\frac{\overline{X} - \mu}{S} &\sim t_{n-1}}\\
+        \text{whereas\:} \sqrt{n}\frac{\overline{X} - \mu}{\sigma} &\sim \mathcal{N}(0,1)
+    \end{align*}
+    Note that the denominator is in the first equation is sample variance. The derivation is
+    \begin{align*}
+        \frac{Z}{\sqrt{\chi_{n}^{2}/n}} &\sim t_{n} \text{\: definition}\\
+        \text{or,\:} \frac{\frac{\overline{X} - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{(n-1)S^{2}}{\sigma^{2}} \frac{1}{n-1}}} &\sim t_{n-1}\\
+        \text{or, \:} \sqrt{n}\frac{\overline{X} - \mu}{S} &\sim t_{n-1}
+    \end{align*}
+
+\end{document}
