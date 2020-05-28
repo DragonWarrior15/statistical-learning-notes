@@ -253,9 +253,88 @@
     \end{align*}
     It is not tractable to calculate the confidence intervals from this formulation. Let $\hat{p} = X/n$ denote the MLE of the mean $p$. Substituiting in the denominator of above,
     \begin{align*}
-        P(-z_{\alpha/2} \leq \frac{X - np}{\sqrt{n\hat{p}(1-\hat{p})}} \leq z_{\alpha/2}) \approx 1-\alpha\\
-        \text{Two sided $1-\alpha$ confidence interval} = (\hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}})
+        P(-z_{\alpha/2} \leq \frac{X - np}{\sqrt{n\hat{p}(1-\hat{p})}} \leq z_{\alpha/2}) &\approx 1-\alpha\\
+        \text{Two sided $1-\alpha$ confidence interval} &\approx (\hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}})
     \end{align*}
     and one sided confidence intervals can be obtained in similar manner to previous derivations.
 
+    
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Evaluating an Estimator}
+    Let $\boldsymbol{X} = (X_{1}, X_{2}, \ldots, X_{n})$ be the set of random variables sampled from a population whose parameters are defined by $\theta$. Let $d(\boldsymbol{X})$ denote an estimator of $\theta$. Then
+    \begin{align*}
+        r(d, \theta) = E[(d(\boldsymbol{X}) - \theta)^{2}]
+    \end{align*}
+    denotes the mean squared estimator of $\boldsymbol{X}$. Although it is rare to find an estimator that minimizes this error, we can certainly find the minima under the set of estimators satisfying a certain criteria.\newline
+    The bias of an estimator is defined as
+    \begin{align*}
+        b_{\theta}(d) = E[d(\boldsymbol{X})] - \theta
+    \end{align*}
+    If the bias is zero, then the estimator is called an \textbf{unbiased estimator}. That is, the expected value of the estimator is same as the parameter being estimated.\newline
+
+    For an unbiased estimator, the mean square error is
+    \begin{align*}
+        r(d, \theta) &= E[(d(\boldsymbol{X}) - \theta)^{2}]\\
+        &= E[(d(\boldsymbol{X}) - E[d(\boldsymbol{X})])^{2}]\\
+        &= Var(d(\boldsymbol{X}))
+    \end{align*}
+    i.e., the mean squared error of an unbiased estimator is equal to its variance.\newline
+
+    Let $X_{1}, X_{2}, \ldots, X_{n}$ be sampled from a distribution whose mean is $\theta$. Then,
+    \begin{align*}
+        d(\boldsymbol{X}) &= \sum_{i=1}^{n} \lambda_{i} X_{i}\\
+        \text{and \:} \sum_{i=1}^{n}\lambda_{i} &= 1
+    \end{align*}
+    is also an unbiased estimator because
+    \begin{align*}
+        E[\sum_{i=1}^{n} \lambda_{i} X_{i}] &= \sum_{i=1}^{n} \lambda_{i} E[X_{i}]\\
+        &= \theta \sum_{i=1}^{n}\lambda_{i}\\
+        &= \theta
+    \end{align*}
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Combining Unbiased Estimators}
+    Suppose we have $n$ unbiased estimators $d_{1}, \ldots, d_{n}$ for a parameter $\theta$ with different independent variances
+    \begin{align*}
+        E[d_{i}] = \theta \quad Var(d_{i}) = \sigma_{i}^{2}
+    \end{align*}
+    Then, a weighted combination of these estimators is also an unbiased estimator of $\theta$ (assuming that the weights sum up to 1). Suppose we wish to find a set of weights that minimize the mean squared error to get the best estimator, then
+    \begin{gather*}
+        d = \sum_{i=1}^{n} w_{i} d_{i} \text{\: where $\sum_{i=1}^{n} w_{i} = 1$}\\
+        r(d, \theta) = Var(d) \text{\:(derived above)}\\
+        Var(d) = Var(\sum_{i=1}^{n} w_{i} d_{i})\\
+        = \sum_{i=1}^{n}w_{i} Var(d_{i}) \text{\: by independence}\\
+        = \sum_{i=1}^{n}w_{i} \sigma_{i}^{2}\\
+        \text{So we minimize\:} \sum_{i=1}^{n}w_{i} \sigma_{i}^{2} - \lambda(\sum_{i=1}^{n} w_{i}-1)\\
+        \text{Taking the derivative for any $i$, \:} 0 = 2\sigma_{i} w_{i} - \lambda\\
+        \text{Using \:}\sum_{i=1}^{n} w_{i} = 1\\
+        w_{i} = \frac{1/\sigma_{i}^{2}}{1/\sigma_{1}^{2} + 1/\sigma_{2}^{2} + \cdots + 1/\sigma_{n}^{2}}
+    \end{gather*}
+    or, the weights for the estimators are inversely proportional to their individual variances. This is useful in situations when we have $n$ independent results for evaluation of a parameter, and we want to increase our confidence in the estimator by combining all these independent results.\newline
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Relation between Bias and Variance}
+    The result obtained above that the mean squared error of an unbiased estimator is it's variance can be generalized for the case of any estimator as follows
+    \begin{align*}
+        r(d, \theta) &= E[(d - \theta)^{2}]\\
+        &= E[(d - E[d] + E[d] -\theta)^{2}]\\
+        &= E[(d - E[d])^{2} + (E[d] - \theta)^{2} + 2(d - E[d])(E[d] - \theta)]\\
+        &= E[(d - E[d])^{2}] + E[(E[d] - \theta)^{2}] + 2(E[d] - \theta)E[d - E[d]]\\
+        &= E[(d - E[d])^{2}] + (E[d] - \theta)^{2}\\
+        \Aboxed{r(d, \theta) &= Var(d) + b_{\theta}^{2}(d)}\\
+    \end{align*}
+    where we have noted that $E[d - E[d]] = E[d] - E[d] = 0$ and $E[d] - \theta$ is a constant since $E[d]$ itself is a constant.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Bayes Estimator}
+    The Bayes estimator is the expected value of the parameter given the data. It utilizes the Bayes theorem in order to arrive at the estimator value
+    \begin{align*}
+        E[\theta|X_{1} = x_{1}, X_{2} = x_{2}, \ldots, X_{n} = x_{n}] &= \int \theta f(\theta|x_{1}, x_{2}, \ldots, x_{n})\\
+        f(\theta|x_{1}, x_{2}, \ldots, x_{n}) &= \frac{p(\theta) f(x_{1}, x_{2}, \ldots, x_{n} | \theta)}{\int p(\theta) f(x_{1}, x_{2}, \ldots, x_{n} | \theta) d\theta}
+    \end{align*}
+    where $p(\theta)$ is the assumed prior distribution on the parameter $\theta$. Based on our knowledge of the process, this can be uniform, normal etc.
 \end{document}
