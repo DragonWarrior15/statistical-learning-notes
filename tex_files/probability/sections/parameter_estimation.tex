@@ -185,7 +185,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Estimating Difference in Means of Two Normal Populations}
+    \subsubsection{Estimating Difference in Means of Two Normal Populations}\label{mean_diff_normal}
     Suppose the following two independent sets of random variables
     \begin{align*}
         X_{1}, X_{2}, \ldots, X_{n} &\sim \mathcal{N}(\mu_{1}, \sigma_{1}^{2})\\
@@ -221,7 +221,7 @@
     \begin{align*}
         (n-1)\frac{S_{1}^{2}}{\sigma^{2}} &\sim \chi_{n-1}^{2}\\
         (m-1)\frac{S_{2}^{2}}{\sigma^{2}} &\sim \chi_{m-1}^{2}\\
-        (n-1)\frac{S_{1}^{2}}{\sigma^{2}} + (m-1)\frac{S_{2}^{2}}{\sigma^{2}} &\sim \mathcal{\chi_{n+m-2}^{2}}\\
+        (n-1)\frac{S_{1}^{2}}{\sigma^{2}} + (m-1)\frac{S_{2}^{2}}{\sigma^{2}} &\sim \chi_{n+m-2}^{2}\\
     \end{align*}
     since $S_{1}^{2}$ and $S_{2}^{2}$ are independent chi-square random variables and from section \ref{chi_square} that the sum of such variables is also chi-square.\newline
     We already know
@@ -234,7 +234,7 @@
     \end{align*}
     Let
     \begin{align*}
-        S_{p} &= \frac{(n-1)S_{1}^{2} + (m-1)S_{2}^{2}}{n + m - 2}
+        S_{p}^{2} &= \frac{(n-1)S_{1}^{2} + (m-1)S_{2}^{2}}{n + m - 2}
     \end{align*}
     Then,
     \begin{align*}
