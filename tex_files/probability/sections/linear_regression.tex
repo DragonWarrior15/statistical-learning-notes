@@ -16,21 +16,74 @@
     \end{align*}
     where we assume the noise $W_{i} \sim \mathcal{N}(0, \sigma^{2})$ and is independently and identically distributed. Observing some $X$ and $Y$ is same as observing the noise.
     \begin{align*}
-        P(X=x,Y=y) &= P(W=y-\theta_{0}-\theta_{1}x) = \frac{1}{\sqrt{2\pi}} \exp(-\frac{(y-\theta_{0}-\theta_{1}x)^{2}}{2})\\
+        P(X=x,Y=y) &= P(W=y-\theta_{0}-\theta_{1}x) = \frac{1}{\sqrt{2\pi \sigma_{2}}} \exp\bigg(-\frac{(y-\theta_{0}-\theta_{1}x)^{2}}{2 \sigma^{2}}\bigg)\\
         P(X_{1}=x_{1},Y_{1}=y_{1}, \ldots, X_{n}=x_{n},Y_{n}=y_{n}) &= \prod_{i=1}^{n} P(X_{1}=x_{i},Y_{i}=y_{i})\\
-        &= \prod_{i=1}^{n} W_{i} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}} \exp(-\frac{(y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}}{2})
+        &= \prod_{i=1}^{n} W_{i} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma_{2}}} \exp\bigg(-\frac{(y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}}{2\sigma^{2}}\bigg)
     \end{align*}
     Maximizing the above product is maximizing the likelihood of the occurrence of the data under the model parameters $\theta_{0}$ and $\theta_{1}$. Since taking log will not change the maxima, we usually maximize the log likelihood
     \begin{align*}
-        \maximize_{\theta_{0}, \theta_{1}} \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}} \exp(-\frac{(y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}}{2}) = \minimize_{\theta_{0}, \theta_{1}} \sum_{i=1}^{n} (y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}
+        \maximize_{\theta_{0}, \theta_{1}} \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^{2}}} \exp(-\frac{(y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}}{2\sigma^{2}}) = \minimize_{\theta_{0}, \theta_{1}} \sum_{i=1}^{n} (y_{i}-\theta_{0}-\theta_{1}x_{i})^{2}
     \end{align*}
 
     We can take derivatives with respect to the parameters of the above function to get the estimate for the parameters as
     \begin{align*}
-        \bar{x} &= \frac{1}{n} \sum_{i=1}^{n} x_{i} \text{, } \bar{y} &= \frac{1}{n} \sum_{i=1}^{n} y_{i}\\
-        \hat{\theta}_{1} &= \frac{\sum_{i=1}^{n} (x_{i} - \bar{x}) (y_{i} - \bar{y})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^{2}} = \frac{E[(X-\bar{X})(Y-\bar{Y})]}{E[(X-\bar{X})^{2}]} = \frac{Cov(X,Y)}{Var(X)}\\
+        \bar{x} &= \frac{1}{n} \sum_{i=1}^{n} x_{i} \text{,}\quad \bar{y} = \frac{1}{n} \sum_{i=1}^{n} y_{i}\\
+        \hat{\theta}_{1} &= \frac{\sum_{i=1}^{n} (x_{i} - \bar{x}) (y_{i} - \bar{y})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^{2}} = \frac{E[(X-\overline{X})(Y-\overline{Y})]}{E[(X-\overline{X})^{2}]} = \frac{Cov(X,Y)}{Var(X)}\\
         \hat{\theta}_{0} &= \bar{y} - \hat{\theta_{1}} \bar{x}
     \end{align*}
 
-    The above formulae can also be derived if the additives are a function of $X$. Since the linear relationship will still be respected and the loglikelihood can be maximized to get the estimates of the parameters.
+    The above formulae can also be derived if the additives are a function of $X$. Since the linear relationship will still be respected and the loglikelihood can be maximized to get the estimates of the parameters.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Mean and Variance of Coefficients}
+    First note that
+    \begin{align*}
+        E[Y_{i}] = E[\theta_{0} + \theta_{1}X_{i} + W_{i}] = \theta_{0} + \theta_{1}X_{i}\\
+        E[\overline{Y}] = (\sum_{i=1}^{n} E[Y_{i}])/n = \theta_{0} + \theta_{1}\overline{X}\\
+        Var(Y_{i}) = \sigma_{2}
+    \end{align*}
+    Thus,
+    \begin{align*}
+        E[\hat{\theta}_{1}] &= E\bigg[ \frac{\sum_{i=1}^{n} (x_{i} - \overline{x}) (Y_{i} - \overline{Y})}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg]\\ 
+        &= E\bigg[ \frac{\sum_{i=1}^{n} (x_{i} - \overline{x}) (E[Y_{i}] - E[\overline{Y}])}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg]\\
+        &= \theta_{1}\\
+        E[\hat{\theta}_{0}] &= E[\overline{Y} - \hat{\theta_{1}} \bar{x}] = \theta_{0}
+    \end{align*}
+    meaning that our estimates of the parameters are unbiased and their error will equal the variance
+    \begin{align*}
+        Var(\hat{\theta}_{1}) &= Var \bigg( \frac{\sum_{i=1}^{n} (x_{i} - \overline{x}) (Y_{i} - \overline{Y})}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)
+        = Var \bigg( \frac{\sum_{i=1}^{n} (x_{i} - \overline{x})Y_{i}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\\
+        &= \frac{1}{(\sum_{i=1}^{n}(x_{i} - \overline{x})^{2})^{2}} \sum_{i=1}^{n} (x_{i} - \overline{x})^{2} Var(Y_{i})
+        = \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}}\\
+        Var(\hat{\theta}_{0}) &= Var(\overline{Y} - \hat{\theta_{1}} \bar{x})
+        = Var \bigg( \sum_{i=1}^{n} \bigg( \frac{1}{n} - \frac{\bar{x}(x_{i} - \bar{x})}{\sum_{i=1}^{n}(x_{i} - \bar{x})^{2}} \bigg) \bigg)\\
+        &= \frac{\sigma^{2}}{n^{2}} \bigg( \sum_{i=1}^{n} \bigg( \frac{\sum_{i=1}^{n}x_{i}^{2} - n\bar{x}x_{i}}{\sum_{i=1}^{n}x_{i}^{2} - n\bar{x}^{2}} \bigg)^{2} \bigg)
+        = \frac{\sigma^{2}}{n^{2} (\sum_{i=1}^{n}x_{i}^{2} - n\bar{x}^{2})^{2}} (n(\sum_{i=1}^{n})^{2} - n^{2}\bar{x}^{2}(\sum_{i=1}^{n})^{2})\\
+        &= \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)}
+    \end{align*}
+    because both the estimators are linear combinations of independent identically distributed normal random variables $Y_{i}s$, and the variance of linear combination of independent random variables is simply the sum of variances multiplied by squares of coefficients.\newline
+
+    Also, \textbf{$\hat{\theta_{0}}$ and $\hat{\theta}_{1}$ are both normally distributed random variables.}
+
+    \begin{align*}
+        \hat{\theta}_{1} &\sim \mathcal{N}\bigg(\theta_{1}, \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\\
+        \hat{\theta}_{0} &\sim \mathcal{N}\bigg(\theta_{1}, \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)} \bigg)
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Distribution of Residual}
+    Residuals and the $SS_{R}$ are defined as
+    \begin{align*}
+        R &= Y - (\theta_{0} + \theta_{1}X)\\
+        SS_{R} &= \sum_{i=1}^{n} R_{i}^{2} = \sum_{i=1}^{n} (Y - \theta_{0} - \theta_{1}X)^{2}
+    \end{align*}
+
+    $SS_{R}$ is itself a random variable and it can be shown that
+    \begin{align*}
+        \frac{SS_{R}}{\sigma^{2}} \sim \chi_{n-2}^{2}\\
+        E[\frac{SS_{R}}{\sigma^{2}}] = n - 2\\
+        E[\frac{SS_{R}}{n-2}] = \sigma^{2}\\
+    \end{align*}
+    since $SS_{R}\sigma^{2}$ is the sum of squares of normally distributed variables ($E[Y] = \theta_{0} + \theta_{1}X$) and two degrees of freedoms are already taken up by the coefficients. Further, $SS_{R}$ is an unbiased estimator of the variance of the error terms $\sigma^{2}$, and is also independent of the coefficients.
 \end{document}
