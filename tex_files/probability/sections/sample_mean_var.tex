@@ -39,9 +39,7 @@
     \begin{align*}
         S^{2} = \frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}
     \end{align*}
-    where $\overline{X}$ is the sample mean. Similar to the sample mean, this is also a random variable.\newline
-
-    The mean of sample variance can be calculated as follows
+    where $\overline{X}$ is the sample mean. Similar to the sample mean, this is also a random variable. We divide by $n-1$ so that the estimator is unbiased, as shown below by calculating the mean of the estimator
     \begin{align*}
         E[S^{2}] &= E[\frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}]\\
         &= \frac{1}{n-1} \sum_{i=1}^{n} E[(X_{i} - \overline{X})^{2}]\\
@@ -53,7 +51,7 @@
         &= \frac{1}{n-1}(n\sigma^{2} + n\mu^{2} - n(\frac{\sigma^{2}}{n} + \mu^{2}))\\
         \Aboxed{E[S^{2}] &= \sigma^{2}}
     \end{align*}
-    i.e., the mean of the sample variance is same as the variance of the distribution (population variance).\newline
+    i.e., the mean of the sample variance is same as the variance of the distribution (population variance). Further, the division by $n-1$ to calculate sample variance comes from the fact that we are already using $\overline{X}$ as an estimate for sample mean which takes away one degree of freedom.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
