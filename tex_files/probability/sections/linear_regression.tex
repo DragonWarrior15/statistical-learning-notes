@@ -34,14 +34,21 @@
 
     The above formulae can also be derived if the additives are a function of $X$. Since the linear relationship will still be respected and the loglikelihood can be maximized to get the estimates of the parameters.\newline
 
+    Some useful notation
+    \begin{alignat*}{2}
+        S_{xY} &= \sum_{i=1}^{n} (x_{i} - \bar{x})(Y_{i} - \overline{Y}) &= (\sum_{i=1}^{n}x_{i}Y_{i}) - n\bar{x}\overline{Y}\\
+        S_{xx} &= \sum_{i=1}^{n} (x_{i} - \bar{x})^{2} &= (\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2}\\
+        S_{YY} &= \sum_{i=1}^{n} (Y_{i} - \overline{Y})^{2} &= (\sum_{i=1}^{n} Y_{i}^{2}) - n\overline{Y}^{2}
+    \end{alignat*}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Mean and Variance of Coefficients}
     First note that
-    \begin{align*}
+    \begin{gather*}
         E[Y_{i}] = E[\theta_{0} + \theta_{1}X_{i} + W_{i}] = \theta_{0} + \theta_{1}X_{i}\\
         E[\overline{Y}] = (\sum_{i=1}^{n} E[Y_{i}])/n = \theta_{0} + \theta_{1}\overline{X}\\
         Var(Y_{i}) = \sigma_{2}
-    \end{align*}
+    \end{gather*}
     Thus,
     \begin{align*}
         E[\hat{\theta}_{1}] &= E\bigg[ \frac{\sum_{i=1}^{n} (x_{i} - \overline{x}) (Y_{i} - \overline{Y})}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg]\\ 
@@ -63,7 +70,7 @@
     \end{align*}
     because both the estimators are linear combinations of independent identically distributed normal random variables $Y_{i}s$, and the variance of linear combination of independent random variables is simply the sum of variances multiplied by squares of coefficients.\newline
 
-    Also, \textbf{$\hat{\theta_{0}}$ and $\hat{\theta}_{1}$ are both normally distributed random variables.}
+    Thus, \textbf{$\hat{\theta_{0}}$ and $\hat{\theta}_{1}$ are both normally distributed random variables.} with the following distributions
 
     \begin{align*}
         \hat{\theta}_{1} &\sim \mathcal{N}\bigg(\theta_{1}, \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\\
@@ -76,7 +83,8 @@
     Residuals and the $SS_{R}$ are defined as
     \begin{align*}
         R &= Y - (\theta_{0} + \theta_{1}X)\\
-        SS_{R} &= \sum_{i=1}^{n} R_{i}^{2} = \sum_{i=1}^{n} (Y - \theta_{0} - \theta_{1}X)^{2}
+        SS_{R} &= \sum_{i=1}^{n} R_{i}^{2} = \sum_{i=1}^{n} (Y - \theta_{0} - \theta_{1}X)^{2}\\
+        &= \frac{S_{xx}S_{YY} - S_{xY}^{2}}{S_{xx}}
     \end{align*}
 
     $SS_{R}$ is itself a random variable and it can be shown that
@@ -85,5 +93,121 @@
         E[\frac{SS_{R}}{\sigma^{2}}] = n - 2\\
         E[\frac{SS_{R}}{n-2}] = \sigma^{2}\\
     \end{align*}
-    since $SS_{R}\sigma^{2}$ is the sum of squares of normally distributed variables ($E[Y] = \theta_{0} + \theta_{1}X$) and two degrees of freedoms are already taken up by the coefficients. Further, $SS_{R}$ is an unbiased estimator of the variance of the error terms $\sigma^{2}$, and is also independent of the coefficients.
+    since $SS_{R}/\sigma^{2}$ is the sum of squares of normally distributed variables ($E[Y] = \theta_{0} + \theta_{1}X$) and two degrees of freedoms are already taken up by the coefficients. Further, $SS_{R}$ is an unbiased estimator of the variance of the error terms $\sigma^{2}$, and is also independent of the coefficients.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Inferences Concerning Coefficients}
+    We are most interseted in checking whether a coefficient has an effect or not
+    \begin{align*}
+        H_{0}: \theta_{1} = 0 \quad \text{versus} \quad H_{1}: \theta_{1} \neq 0
+    \end{align*}
+
+    We know from above derivations that
+    \begin{align*}
+        \frac{\hat{\theta}_{1} - \theta_{1}}{\sigma^{2} / S_{xx}} \sim \mathcal{N}(0, 1)\\
+        \frac{SS_{R}}{\sigma^{2}} \sim \chi_{n-2}^{2}
+    \end{align*}
+    and both the random variables are independent of each other. Hence their division is t-distributed random variable and when $H_{0}$ is true, $\theta_{1} = 0$
+    \begin{align*}
+        \frac{\sqrt{S_{xx}}\hat{\theta}_{1}/\sigma}{\sqrt{\frac{SS_{R}}{\sigma^{2} (n-2)}}} = \hat{\theta}_{1}\sqrt{\frac{(n-2)S_{xx}}{SS_{R}}} = TS \sim t_{n-2}
+    \end{align*}
+    We do this since we do not know the exact value of $\sigma^{2}$ and need to eliminate it with a sample derived version. The hypothesis test at significance level $\alpha$ simply becomes
+    \begin{alignat*}{4}
+        \text{Reject\quad} &H_{0} \text{\quad if \quad} &\lvert TS \rvert &> &t_{\alpha/2, n-2}\\
+        \text{Accept\quad} &H_{0} \text{\quad if\quad} &\vert TS \rvert &\leq &t_{\alpha/2, n-2}
+    \end{alignat*}
+    which can be converted to a \emph{p-value} using the $TS$ and t-distribution. A small \emph{p-value} will lead to rejection of $H_{0}$ meaning that the data provides evidence of a relationship between dependent and independent variables.\newline
+
+    A confidence interval for $\theta_{1}$ at $1-\alpha$ confidence can be obtained as follows
+    \begin{gather*}
+        P(-t_{\alpha/2, n-2} < (\hat{\theta}_{1} - \theta_{1})\sqrt{\frac{(n-2)S_{xx}}{SS_{R}}} < t_{\alpha/2, n-2}) = 1-\alpha\\
+        \text{Confidence Interval is} \quad \bigg(\hat{\theta}_{1} - t_{\alpha/2, n-2}\sqrt{\frac{SS_{R}}{(n-2)S_{xx}}} < \theta_{1} < \hat{\theta}_{1} + t_{\alpha/2, n-2}\sqrt{\frac{SS_{R}}{(n-2)S_{xx}}} \bigg)
+    \end{gather*}
+
+    The hypothesis test for $\theta_{0}$ can be done in the exact same manner as $\theta_{1}$ by considering the following test statistic
+    \begin{align*}
+        TS = (\hat{\theta}_{1} - \theta_{1})\sqrt{\frac{n(n-2)S_{xx}}{(\sum_{i=1}^{n} x_{i}^{2})SS_{R}}} \sim t_{n-2}
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Inferences Concerning Mean Response}\label{sec:infer_mean_resp}
+    For any new point $x_{0}$, the unbiased estimator for the response is
+    \begin{align*}
+        y_{0} &= \hat{\theta}_{0} + \hat{\theta}_{1}x_{0}\\
+        E[y_{0}] &= E[\hat{\theta}_{0}] + E[\hat{\theta}_{1}]E[x_{0}] = \theta_{0} + \theta_{1}x_{0}
+    \end{align*}
+    To get the distribution of this mean response, note that
+    \begin{align*}
+        Y_{0} &= \hat{\theta}_{0} + \hat{\theta}_{1}x_{0} = \overline{Y} - \hat{\theta}_{1}\bar{x} + \hat{\theta}_{1}x_{0}\\
+        &= \frac{1}{n}\sum_{i=1}^{n} Y_{i} + (x_{0} - \bar{x})\frac{\sum_{i=1}^{n} (x_{i} - \bar{x})Y_{i}}{\sum_{i=1}^{n} (x-\bar{x})^{2}}\\
+        &= \sum_{i=1}^{n} \bigg( \frac{1}{n} + \frac{(x_{i} - \bar{x})(x_{0} - \bar{x})}{S_{xx}} \bigg)Y_{i}
+    \end{align*}
+    which is a linear combination of independent normally distributed random variables $Y_{i}s$. Thus, the mean response is also a normally distributed random variable and we can get the confidence intervals by considering the mean and variance of this random variable
+    \begin{align*}
+        Var(\hat{\theta}_{0} + \hat{\theta}_{1}x_{0}) &= \sum_{i=1}^{n} \bigg( \frac{1}{n} + \frac{(x_{i} - \bar{x})(x_{0} - \bar{x})}{S_{xx}} \bigg)^{2}Var(Y_{i})\\
+        \hat{\theta}_{0} + \hat{\theta}_{1}x_{0} &\sim \mathcal{N}\bigg(\theta_{0} + \theta_{1}x_{0}, \sigma^{2} \bigg[ \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg]\bigg)
+    \end{align*}
+    To eliminate $\sigma^{2}$,
+    \begin{gather*}
+        SS_{R}/\sigma^{2} \sim \chi_{n-2}^{2}\\
+        \frac{(\hat{\theta}_{0} + \hat{\theta}_{1}x_{0}) - (\theta_{0} + \theta_{1}x_{0})}{\sigma^{2} \bigg[ \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg]} \div \sqrt{\frac{SS_{R}}{(n-2)\sigma^{2}}} \sim t_{n-2}
+    \end{gather*}
+    and the confidence intervals for confidence $1-\alpha$ become
+    \begin{align*}
+        (\hat{\theta}_{0} + \hat{\theta}_{1}x_{0}) \pm t_{\alpha/2, n-2} \sqrt{\bigg( \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg) \bigg( \frac{SS_{R}}{n-2}\bigg)}
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Inferences Concerning Future Response}
+    The above section \ref{sec:infer_mean_resp} discussed the distribution of the mean response. In many scenarios, we are interested in the distribution of the actual response $Y$ at input $x_{0}$, which takes the noise into account as well. We note
+    \begin{align*}
+        Y_{0} &\sim \mathcal{N}(\theta_{0} + \theta_{1}x_{0}, \sigma^{2})\\
+        \hat{\theta}_{0} + \hat{\theta}_{1}x_{0} &\sim \mathcal{N}\bigg(\theta_{0} + \theta_{1}x_{0}, \sigma^{2} \bigg[ \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg]\bigg)\\
+        Y_{0} - \hat{\theta}_{0} - \hat{\theta}_{1}x_{0} &\sim \mathcal{N}\bigg(0, \sigma^{2}\bigg( 1 + \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg)\bigg)
+    \end{align*}
+
+    Now we utilise the distribution of $SS_{R}$ to eliminate $\sigma^{2}$ and get to the t-distribution
+    \begin{align*}
+        \frac{Y_{0} - \hat{\theta}_{0} - \hat{\theta}_{1}x_{0}}{\sigma\sqrt{1 + \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}}}} \div \sqrt{\frac{SS_{R}}{(n-2)\sigma^{2}}} \sim t_{n-2}
+    \end{align*}
+    and the \textbf{prediction} interval for the response (not mean response is) at $1-\alpha$ confidence
+    \begin{align*}
+        (\hat{\theta}_{0} + \hat{\theta}_{1}x_{0}) \pm t_{\alpha/2, n-2} \sqrt{\bigg( 1+ \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg) \bigg( \frac{SS_{R}}{n-2}\bigg)}
+    \end{align*}
+
+    Note that \textbf{prediction interval is the interval where we expect the value of a random variable to lie, whereas the confidence interval is the one where the value of a parameter estimate to lie.}
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Coefficient of Determination}
+    Let's consider the variation in respone Y
+    \begin{align*}
+        S_{Y} = \sum_{i=1}^{n} (Y_{i} - \overline{Y})^{2}
+    \end{align*}
+    and the variation in the response after removing the effect of inputs
+    \begin{align*}
+        SS_{R} = \sum_{i=1}^{n} (Y_{i} - \theta_{0} - \theta_{1}x_{0})^{2}
+    \end{align*}
+    and thus,
+    \begin{align*}
+        S_{YY} - SS_{R}
+    \end{align*}
+    is the variation explained by the inputs. We define $R^{2}$ as
+    \begin{align*}
+        R^{2} = \frac{S_{YY} - SS_{R}}{S_{YY}} = 1 - \frac{SS_{R}}{S_{YY}}
+    \end{align*}
+    \textbf{$R^{2}$ is the proportion of total variance explained by the inputs. A value close to 1 implies most of the variance is explained by the inputs whereas 0 means little variance is explained by inputs.}\newline
+
+    It can also be shown that the absolute value of correlation coefficient between $x$ and $Y$ equals the coefficient of determination. Thus, we know the value of $R^{2}$ for simple linear regression directly by $r$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Weighted Least Squares}
+    Suppose we know that the variance of $Y$ is dependent on $Y$ itself in the form $Var(Y_{i}) \propto \sigma^{2}/w_{i}$, i.e., the weights are known only upto a constant. In this case, we minimize the weighted least squares to obtain the coefficients
+    \begin{align*}
+        \minimize_{\theta_{0}, \theta_{1}} \sum_{i=1}^{n} w_{i}(Y_{i} - \theta_{0} - \theta_{1}x_{i})^{2}
+    \end{align*}
+
 \end{document}
