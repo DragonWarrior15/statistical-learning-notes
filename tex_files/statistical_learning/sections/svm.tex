@@ -1,34 +1,12 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% to insert images
-\usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
-
-% \usepackage{hyperref}
-% \hypersetup{
-    % colorlinks=true, % make the links colored
-    % linkcolor=blue, % color TOC links in blue
-    % urlcolor=red, % color URLs in red
-    % linktoc=all % 'all' will create links for everything in the TOC
-% }
-
-\setlength{\parindent}{0em}
-
-% \DeclareMathOperator*{\minimize}{minimize}
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Support Vector Machines}
+    \chapter{Support Vector Machines}
     Maximal margin classifier is the first idea for the development towards SVMs. Maximal margin classifier utilizes hyperplanes and requires that the data is linearly separable. The extension of this is Support Vector Classifier that can be applied to an even broader class of problems. SVMs are a further extension of SVCs to account for non linear separation boundaries.
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Maximal Margin Classifier}
+    \section{Maximal Margin Classifier}
     Maimum Margin Classifier uses hyper planes to find a separable boundary between the data points. Note that a hyperplane is simply a vector supspace of one less dimension. In 2 and 3 dimensions, hyperplanes are a line and a plane respectively. The general definition is
     \begin{align*}
         \beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{p}X_{p} = 0
@@ -37,7 +15,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Classification}
+    \subsection{Classification}
     Suppose we have a set of data points with $p$ predictors and they belong to two classes given by $y_{i} = \{-1 , 1\{$. Suppose the points are perfectly separable through a hyperplane. Then the following hold
     \begin{align*}
         \beta_{0} + \beta_{1}x_{i1} + \cdots + \beta_{p}x_{ip} > 0 \text{ when } y_{i} = -1\\
@@ -63,7 +41,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Algorithm}
+    \subsection{Algorithm}
     Finding the boundary is same as solving for the following optimization problem
     \begin{align*}
         \maximize_{\beta_{0},\ldots,\beta_{p}, M} M\\

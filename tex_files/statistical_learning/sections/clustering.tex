@@ -1,32 +1,13 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% to insert images
-\usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
-
-% \usepackage{tikz}
-% \usetikzlibrary{automata, positioning}
-
-% \usepackage{pgfplots}
-% \pgfplotsset{width=5cm,compat=1.9}
-\setlength{\parindent}{0em}
-
-\DeclareMathOperator*{\minimize}{minimize}
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Clustering}
+    \chapter{Clustering}
     Clustering is an unsupervised learning techniques that aims to finds clusters or groups in the data such that observations in the same group are similar to each other while observations in different groups are different from each other.\newline
 
     Clustering is useful for an exploratory analysis of the data and also useful in problems like customer segmentation.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{K-means Clustering}
+    \section{K-means Clustering}
     A very powerful technique that organizes the data into $K$ distinct groups such that each observation will fall into exactly one group and when all the groups are combined, they cover the entire data set. $K$ is determined beforehand and is the number of clusters we are going to make.\newline
 
     The fundamental idea of clustering is to reduce the within cluster variation. Let $C_{k}$ denote the set containing the indices of the points falling in the cluster $k$ and $W(C_{k})$ be the within cluster variation for cluster $k$. Then,
@@ -42,7 +23,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Algorithm}
+    \subsection{Algorithm}
     We repeat the following until some predefined convergence criteria
     \begin{enumerate}
         \item Random assign a cluster in $1, \ldots, K$ to each observation in the data.
@@ -82,7 +63,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Hierarchical Clustering}
+    \section{Hierarchical Clustering}
     $K$-means suffers from the disadvantage that the number of clusters needs to be specified beforehand. Hierarchical does not require such a consideration beforehand. here we dicsuss the \textbf{bottom-up} or \textbf{agglomerative clustering} approach. Hierarchical clustering is visualized using a \textbf{dendogram} which is a tree like diagram draw upside down. Starting from the bottom, branches are originate from the individual data points and slowly start merging as we move upward. The earlier the branches merge, the similar the data points are and vice versa. (Be careful to not judge the similarity from the proximity on the horizontal axis)\newline
 
     \begin{figure}[h]
@@ -99,7 +80,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Algorithm}
+    \subsection{Algorithm}
     Hierarchical Clustering is performed in a bottom-up approach. Start with $n$ clusters where each observation is it's own cluster. Define a dissimilarity measure between each pair of observation. This can be Euclidean distance as well. Now, cluster the observations that are least dissimilar into the same group, which will give us $n-1$ clusters. Again use the dissimilarity measure to group two similar observations until the total number of clusters is 1.\newline
 
     Consequently, there will be cases when we need to determine the dissimilarity between a group and an observation or a pair of groups. This is done using \textbf{linkage}. Four types of linkages used are \textbf{complete, average, single} and \textbf{centroid}. Average and complete linkages are preferred over single linkages, and all three are more popular than centroid linkage. Average and complete likages will usually give balanced dendograms.\newline
@@ -137,13 +118,13 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Dissimilarity Measures}
+    \subsection{Dissimilarity Measures}
     So far, euclidean distance has been considered as the defacto dissimilarity measure. In some cases, this may not work well if the magnitude of the observations vary significantly between the different predictors. In such cases, correlation based measures can be preferred since they will group observations with similar behaviour together and not focus on magnitude.\newline
     This can be useful in retail behaviour when we want to check profiles based on the whether similar products are purchased rather than how many of them are purchased.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Key Considerations}
+    \subsection{Key Considerations}
     Following are a set of general rules when doing clustering
     \begin{itemize}
         \item centering and bringing the variables to the same scale is useful when measuring Euclidean distance for the obvious reason of not letting magnitudes affect the distances.
