@@ -74,7 +74,7 @@
 
     \begin{align*}
         \hat{\theta}_{1} &\sim \mathcal{N}\bigg(\theta_{1}, \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\\
-        \hat{\theta}_{0} &\sim \mathcal{N}\bigg(\theta_{1}, \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)} \bigg)
+        \hat{\theta}_{0} &\sim \mathcal{N}\bigg(\theta_{0}, \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)} \bigg)
     \end{align*}
 
 
@@ -82,8 +82,8 @@
     \subsection{Distribution of Residual}
     Residuals and the $SS_{R}$ are defined as
     \begin{align*}
-        R &= Y - (\theta_{0} + \theta_{1}X)\\
-        SS_{R} &= \sum_{i=1}^{n} R_{i}^{2} = \sum_{i=1}^{n} (Y - \theta_{0} - \theta_{1}X)^{2}\\
+        R &= Y - (\hat{\theta}_{0} + \hat{\theta}_{1}X)\\
+        SS_{R} &= \sum_{i=1}^{n} R_{i}^{2} = \sum_{i=1}^{n} (Y - \hat{\theta}_{0} - \hat{\theta}_{1}X)^{2}\\
         &= \frac{S_{xx}S_{YY} - S_{xY}^{2}}{S_{xx}}
     \end{align*}
 
