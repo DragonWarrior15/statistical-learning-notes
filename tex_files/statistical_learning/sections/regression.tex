@@ -1,0 +1,114 @@
+\documentclass[../statistical_learning_notes.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Linear Regression}
+Linear Regression is a parametric model where we assume a linear relationship between the dependent and independent variables.
+\begin{align*}
+    X &= (X_{1}, X_{2}, \ldots, X_{p})\\
+    Y &= \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \cdots + \beta_{p}X_{p} + \epsilon
+\end{align*}
+Where $X$ represents a p dimensional input and $\beta$ are the coefficients, and $\epsilon$ is the error which is assumed to have $\mathcal{N}(0, \sigma^{2}$ distribution. Errors are assumed to be independent. We will usually not know the error or it's variance, and hence our estimate is denoted by $\hat{Y}$. Further, the estimted coefficients will also be denoted with a hat since we can never know the true model, but only get estimates of these parameters
+\begin{align*}
+    \hat{Y} &= \hat{\beta_{0}} + \hat{\beta_{1}}X_{1} + \beta_{2}X_{2} + \cdots + \hat{\beta_{p}}X_{p} + \epsilon
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simple Linear Regression}
+Here, the independent variable is assumed to have a single dimension, and thus we are only looking towards estimating two coefficients. Let $x_{i}$ be the $i^{th}$ observation and ${Y_{i}}$ be the associated response, then 
+\begin{gather*}
+    \hat{Y_{i}} = \hat{\beta_{0}} + \hat{\beta_{1}}x_{i}\\
+    \text{Minimize error to estimate coefficients} \quad \minimize_{\beta_{0}, \beta_{1}} \sum_{i=1}^{n} (y_{i} - \beta_{0} - \beta_{1}x_{i})^{2}\\
+    \hat{\beta_{1}} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(Y_{i} - \overline{Y})}{\sum_{i=1}^{n} (x_{i} - \bar{x})^{2}}, \quad \hat{\beta_{0}} = \overline{Y} - \hat{\beta_{1}}\bar{x}\\
+    \hat{\theta}_{1} \sim \mathcal{N}\bigg(\theta_{1}, \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\\
+    \hat{\theta}_{0} \sim \mathcal{N}\bigg(\theta_{1}, \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)} \bigg)
+\end{gather*}
+
+The mean squared error is used here as it is the natural error function that emerges when we try to obtain MLE estimates of the coefficients. As is visible from the fomulae for point estimates of coefficients, they are linear combinations of normal variables ($Y$) and thus are normally distributed.\newline
+Simple linear regression is discussed in detail in the \href{https://github.com/DragonWarrior15/statistical-learning-notes/blob/master/tex_files/probability/probability-notes.pdf}{probability notes}. It also discusses confidence intervals for the coefficients, the prediction intervals for the response and hypothesis testing for relation between input and response.\newline
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Coefficient of Determination}
+$R^{2}$ is often used as a metric for checking how good the regression model is. It's definition is invariant to the number of independent variables
+\begin{gather*}
+    R^{2} = \frac{S_{YY} - SS_{R}}{S_{YY}} = 1 - \frac{SS_{R}}{S_{YY}}\\
+    S_{YY} = \text{total variance in Y, }\quad SS_{R} = \text{sum of squares of residuals}\\
+    S_{YY} - SS_{R} = \text{total variance explained by inputs}
+\end{gather*}
+A good model will explain most of the variance in $Y$ usig the input variables. Hence, $R^{2}$ close to $1$ is a good model and vice versa. \textbf{$R^{2}$ usually increases as more and more variables are added to the model}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multiple Linear Regression}
+By minimizing the sum squared error in a fashion similar to simple linear regression case, we can obtain the regression coefficients as follows ($X$ is $n \times p+1$ size with the first column containing all $1s)$
+\begin{align*}
+    \hat{Y} &= X\hat{\beta}\\
+    MSE &= (Y-\hat{Y})^{T}(Y-\hat{Y})\\
+    \frac{\partial}{\partial \hat{\beta}} MSE &= 0 \\
+    \text{or,} \quad 0 &= \frac{\partial}{\partial \hat{\beta}} (Y^{T}Y - Y^{T}X\hat{\beta} - \hat{\beta}^{T}X^{T}Y + \hat{\beta}^{T}X^{T}X\hat{\beta})\\
+    0 &= -Y^{T}X - Y^{T}X + \hat{\beta}^{T}X^{T}X + \hat{\beta}^{T}X^{T}X\\
+    (X^{T}X)\hat{\beta} &= X^{T}Y\\
+    \hat{\beta} &= (X^{T}X)^{-1}X^{T}Y
+\end{align*}
+
+We note that the coefficients are linear combinations of $Y$ and thus normally distributed themselves.
+\begin{alignat*}{1}
+    E[\hat{\beta}] &= E[(X^{T}X)^{-1}X^{T}Y] = E[(X^{T}X)^{-1}X^{T}(X\beta + \epsilon)]\\
+    &= E[\beta] + (X^{T}X)^{-1}X^{T}E[\epsilon]\\
+    &= \beta\\
+    \text{Since} \quad Cov(\mathbf{x}) &= E[(\mathbf{x} - E[\mathbf{x}])(\mathbf{x} - E[\mathbf{x}])^{T}]\text{,}\\
+    \text{and} \quad Cov(\epsilon) &= E[(\epsilon - 0)(\epsilon - 0)^{T}] = E[\epsilon \epsilon^{T}] = \sigma^{2}\\
+    Cov(\hat{\beta}) &= Cov((X^{T}X)^{-1}X^{T}Y)\\ &= E[((X^{T}X)^{-1}X^{T}(X\beta + \epsilon) - \beta)((X^{T}X)^{-1}X^{T}(X\beta + \epsilon) - \beta)^{T}]\\
+    &= (X^{T}X)^{-1}X^{T}X(X^{T}X)^{-T}E[\epsilon \epsilon^{T}]\\
+    &= (X^{T}X)^{-1}X^{T}\sigma^{2}\\
+    \beta &\sim \mathcal{N}(\beta, (X^{T}X)^{-1}\sigma^{2})
+\end{alignat*}
+$\beta$ is a linear combination of independent $Y_{i}s$ and is normally distributed. Also, note that $X^{T}X$ is symmetric and so will be it's inverse.\newline
+
+An unbiased estimator of $\sigma^{2}$ is
+\begin{align*}
+    \hat{\sigma}^{2} = \frac{1}{n-p-1} \sum_{i=1}^{n} (y_{i} - \hat{y}_{i})^{2} \text{,}\quad E[\hat{\sigma}^{2}] = \sigma^{2}
+\end{align*}
+where the denominator is chosen to make the estimator unbiased. it can be shown that
+\begin{align*}
+    (n - p - 1) \frac{\hat{\sigma}^{2}}{\sigma^{2}} \sim \chi_{n-p-1}^{2}
+\end{align*}
+
+with $\hat{\beta}$ and $\hat{\sigma^{2}}$ independent random variables.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hypopthesis Testing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Single Coefficient}
+To test
+\begin{align*}
+    H_{0}: \beta_{j} = 0 \quad \text{versus} \quad H_{1}: beta_{j} \neq 0
+\end{align*}
+we utilize some of the above defined distributions
+\begin{gather*}
+    \hat{\beta}_{j} \sim \mathcal{N}(\beta_{j}, \sigma^{2}diag((X^{T}X)^{-1})_{j})\\
+    (n - p - 1) \frac{\hat{\sigma}^{2}}{\sigma^{2}} \sim \chi_{n-p-1}^{2}\\
+    \frac{\hat{\beta}_{j} - \beta_{j}}{\sigma\sqrt{diag((X^{T}X)^{-1})_{j}}} \div \sqrt{(n - p - 1) \frac{\hat{\sigma}^{2}}{\sigma^{2}(n-p-1)}} \sim t_{n-p-1}\\
+    \text{and under null hypothesis,} \quad \frac{\hat{\beta}_{j}}{\hat{\sigma}\sqrt{diag((X^{T}X)^{-1})_{j}}} \sim t_{n-p-1}\\
+    \text{where} \quad \frac{\hat{\beta}_{j}}{\hat{\sigma}\sqrt{diag((X^{T}X)^{-1})_{j}}} \quad \text{is often called \emph{Z-score}}
+\end{gather*}
+where variance utilizes the diagonal entry of variance of $\beta$. If we know the actual variance $\sigma^{2}$, we replace it in the above equation to get a normal distribution instead. A large value of the \emph{Z-score} will lead to the elimination of the null hypothesis meaning the coefficient is not zero. The $1-\alpha$ confidence intervals for $\beta_{j}$ then become
+\begin{gather*}
+    \beta_{j} \in \hat{\beta} \pm \hat{\sigma} t_{\alpha/2, n-p-1} \sqrt{diag((X^{T}X)^{-1})_{j}}
+\end{gather*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Group of Coefficients, F-test}
+Suppose we have a set of $k$ coefficients for a categorical variable and we wish to test
+\begin{align*}
+     H_{0}: \beta_{i} = \beta_{i+1} = \cdots = \beta_{k} = 0 \quad \text{versus} \quad H_{1}: \text{at least one of} \quad \beta_{j} \neq 0, j \in (i, \ldots, k)
+\end{align*}
+Then, we use the \textbf{F-test} assuming $H_{0}$ is true
+\begin{gather*}
+    F = \frac{(RSS_{0} - RSS_{1})/k}{RSS_{1}/(n-p-1)}\\
+    \text{where} \quad RSS_{0} = RSS \quad \text{of model without the $k$ coefficients}\\
+    \text{and} \quad RSS_{1} = RSS \quad \text{of model with all the coefficients}\\
+    F \sim F_{k, n - p - 1}
+\end{gather*}
+\end{document}

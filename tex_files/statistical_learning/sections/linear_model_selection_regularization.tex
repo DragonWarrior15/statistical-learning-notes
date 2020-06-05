@@ -1,28 +1,7 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-% \usepackage{algorithm}
-
-% to insert images
-\usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
-
-% \usepackage{tikz}
-% \usetikzlibrary{automata, positioning}
-
-% \usepackage{pgfplots}
-% \pgfplotsset{width=5cm,compat=1.9}
-\setlength{\parindent}{0em}
-
-\DeclareMathOperator*{\minimize}{minimize}
-\DeclareMathOperator*{\maximize}{maximize}
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Linear Model Selection and Regularization}
+    \chapter{Linear Model Selection and Regularization}
     Linear models are often simple and easy to interpret at the cost of having high bias if the relationship in the data is not linear. Some considerations about linear models
     \begin{itemize}
         \item If $n >> p$, least square estimates often have less variance. If $n$ is larger than $p$, then least square estimates can have some variance. While if $n < p$, we are looking at non unique solutions which can cause lot of variation in the test predictions.
@@ -37,9 +16,9 @@
     \end{itemize}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Subset Selection}
+    \section{Subset Selection}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Best Subset Selection}
+    \subsection{Best Subset Selection}
     This is a naive approach that essentially tries to find the best model among $2^{p}$ models that are trained on all possible subsets of the $p$ variables. As we increase the subset of variables, the training error will monotonically decrease whereas the same cannot be said for the test error. A number of criteria like test MSE, $R^{2}$, AIC etc can be used to pick the models.\newline
 
     In case of classification models, similar argument holds and a more general error metric $deviance$ can be used. $Deviance$ is defined as $-2 * \log likelihood$ of the data. The smaller the $deviance$, the better the model fit.\newline
@@ -48,7 +27,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Forward Stepwise Selection}
+    \subsection{Forward Stepwise Selection}
     This is a greedy approach that significantly shrinks the search space being checked (in comparison to the best subset selection approach).
 
     Forward Stepwise Selection Algorithm
@@ -66,7 +45,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Backward Stepwise Selection}
+    \subsection{Backward Stepwise Selection}
     This approach is the opposite of forward stepwise selection. We recursively reduce the number of variables in our model.
 
     \begin{enumerate}
@@ -84,7 +63,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Metrics for evaluating Subset Models}
+    \section{Metrics for evaluating Subset Models}
     In linear models, as we add more variables, the training error usually monotonically decreases. Test error may not behave in the same way. When training a model, the coefficients obtained are specific for minimizing the training error and hence will have less bias in comparison to the test error. \newline
     Hence, subset evaluation using training error will usually favour models with more number of variables. To overcome this
     \begin{itemize}
@@ -93,7 +72,7 @@
     \end{itemize}
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{$C_{p}$ Estimate}
+    \subsection{$C_{p}$ Estimate}
     For a least square fitted model,
     \begin{align*}
         C_{p} = \frac{1}{n}(RSS + 2p\hat{\sigma}^{2})
@@ -103,7 +82,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Akaike Information Criterion (AIC)}
+    \subsection{Akaike Information Criterion (AIC)}
     AIC is defined for a large class of models fit by the maximum likelihood estimate.\newline
     For least squares fit in linear models, the errors are assumed to be gaussian and thus, AIC and least squares mean the same thing. For this case
     \begin{align*}
@@ -114,7 +93,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Bayesian Information Criterion (BIC)}
+    \subsection{Bayesian Information Criterion (BIC)}
     BIC is derived from a Bayesian point of view, but ends up looking similar to the above defined errors.\newline
     For least squares error without constants, the BIC is
     \begin{align*}
@@ -124,7 +103,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Adjusted $R^{2}$}
+    \subsection{Adjusted $R^{2}$}
     Recall that $R^{2}$ is defined as $1 - RSS/TSS$. Adjusted $R^{2}$ is
     \begin{align*}
         Adjusted\;R^{2} = 1 - \frac{\frac{RSS}{n-p-1}}{\frac{TSS}{n-1}}
@@ -133,12 +112,12 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Shrinkage Methods}
+    \section{Shrinkage Methods}
     Instead of using a subset of predictors, we can also use all of the predictors and shrink the coefficients towards zero. This approach significantly reduces the variance in the model estimates. The famous ones here are \emph{Ridge Regression} and \emph{Lasso Regression}.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Ridge Regression}
+    \subsection{Ridge Regression}
     Ridge Regression is very similar to the least square estimate for linear regression except that we add a term corresponding to the squared sum of the regression coefficients in the error.
     \begin{align*}
         error &= RSS + \lambda \sum_{j=1}{p}\beta_{j}^{2}\\
@@ -170,7 +149,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Lasso Regression}
+    \subsection{Lasso Regression}
     Notice that Ridge Regression will try to reduce the value of some of the coefficients, but it will never set them to exactly zero. Hence, we will end up using all the $p$ predictors in the model which may not be interpretable if the value of $p$ is large.\newline
 
     Lasso Regression comes over this disadvantage by defining the error as
@@ -183,7 +162,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Alternative Formulation to Ridge and Lasso Regression}
+    \subsection{Alternative Formulation to Ridge and Lasso Regression}
     These regressions can also be considered as solving a constrained optimisation problem
     \begin{align*}
         &\minimize_{\beta}  \bigg\{\sum_{i=1}^{n} (y_{i} - \beta_{0} - \sum_{j=1}^{p}\beta_{j}x_{ij})^{2} \bigg\} \text{\;\;\;subject to\;} &&\sum_{j=1}^{p}\beta_{j}^{2} \leq s \\
@@ -195,7 +174,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Variable Selection Property of Lasso Regression}
+    \subsection{Variable Selection Property of Lasso Regression}
     \begin{figure}[h]
     \includegraphics[scale=0.4]{lasso_contours}
     \centering
@@ -208,7 +187,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Bayesian Interpretation}
+    \subsection{Bayesian Interpretation}
     Lasso and Ridge Regression are also natural solutions when the the coefficients are assumed to have certain specific priors.\newline
     \begin{figure}[h]
         \includegraphics[scale=0.4]{lasso_bayes}
@@ -234,7 +213,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Dimension Reduction Methods}
+    \section{Dimension Reduction Methods}
     The methods seen above achieve reduction in variance by either reducing the number of variables being used for estimation, or reduce the value of coefficients of those variables.\newline
     Dimensionality reduction uses a \textbf{linear map} to convert the original $p$ variables to $M$ variables where $M < p$.
     \begin{align*}
@@ -249,7 +228,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Principal Components Analysis (PCA)}
+    \subsection{Principal Components Analysis (PCA)}
     PCA is one of the most common methods used for dimensionality reduction. It is based on the principle of finding those directions that \textbf{maximize the variance of data}. The intuition behind finding this direction is that this separates the data best given the high variance. Hence, the performance of a classifier/regressor would be better if the training was done using the transformed predictors. \newline
 
     Assume that we want to find $M$ components for PCA, where $M <= p$. Then,
@@ -299,7 +278,7 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Partial Least Squares}
+    \subsection{Partial Least Squares}
     This method is closely related to PCA/PCR. In the previous methods, an unsupervised approach was used to project the matrix $M$ onto a lower dimensional space. This transformation did not take $Y$, the response, into consideration. PLS will incorporate $Y$ as well for finding the transformations.\newline
     The algorithm is as follows
     \begin{enumerate}
@@ -312,7 +291,7 @@
     Though this procedure looks slightly more involved, it performs not better than lasso regression and PCR in practice. Although this method reduces bias, it also leads to quite an increase in variance as well, making the method not very useful.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Curse of Dimensionality}
+    \section{Curse of Dimensionality}
     Most of the methods discuss here \textbf{work well when $n >> p$}. There can be many reasons why the model may not perform well in higher dimensions, but the major one will be the fact that as more and more dimensions are added to the model, chances of overfitting increase and so do the chances that the additional variables are simply noise.\newline
     We refer to the problem of training a model a high dimensional problem when $p > n$, or we have more data than number of predictors. Note that it is easy to obtain $R^{2} = 1$ in such a setting which consequently leads to $\hat{\sigma}^{2} \approx 0$. Metrics like $C_{p}$, AIC, BIC become useless.\newline
     Hence, in higher dimensional settings, it is important to obtain model performance on unseen data as there is a good chance of obtaining perfect results on the training set. Metrics associated with the training set can thus prove to be misleading.
@@ -326,7 +305,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Exercises}
+    \section{Exercises}
     \begin{enumerate}
         %%%%%Q1
         \item We perform the best subset, forward stepwise and backward stepwise on a single data set and obtain p+1 models containing $0, 1, \ldots, p$ predictors.

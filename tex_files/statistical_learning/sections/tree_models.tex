@@ -1,36 +1,13 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% to insert images
-% \usepackage{graphicx}
-% \graphicspath{ {./images/} {../images/}}
-
-% \usepackage{hyperref}
-% \hypersetup{
-    % colorlinks=true, % make the links colored
-    % linkcolor=blue, % color TOC links in blue
-    % urlcolor=red, % color URLs in red
-    % linktoc=all % 'all' will create links for everything in the TOC
-% }
-
-\setlength{\parindent}{0em}
-
-\DeclareMathOperator*{\minimize}{minimize}
-
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Tree Based Models}
+    \chapter{Tree Based Models}
     The idea behind this family of methods is to segment the region into subspaces and the prediction for any subspace is made by taking the \emph{mean} or \emph{mode} of the response in that region.\newline
     A simple decision tree may not give performance at par with linear regression or generalized additive models, but when combined with techniques like bagging and boosting, multiple trees can yield significant reduction in bias.\newline
     A simple decision tree finds its utility in being relatively simpler in interpretation than it's derived non-linear family.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Regression Trees}
+    \section{Regression Trees}
     The algorithm behind building trees consists of two basic steps
     \begin{enumerate}
         \item Divide the predictors $X_{1}, X_{2}, \ldots, X_{n}$ into $J$ \textbf{distinct} and \textbf{non-overlapping} regions $R_{1}, R_{2}, \ldots, R_{J}$.
@@ -45,7 +22,7 @@
     To overcome this, we build the trees in a greedy top down approach called \textbf{recursive binary splitting}. This method aims to find the best possible split at each level in a greedy manner.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{The Algorithm}
+    \subsection{The Algorithm}
     To start off, the alogithm will try to split the data into two regions $\{X|X_{j} < s\}$ and $\{X|X_{j} \geq s\}$ using the values of predictor $X_{j}$ and the search is performed across all the predictors to choose the one which minimizes the RSS. Mathematically
     \begin{align*}
         R_{1}(j,s) = \{X|X_{j} < s\} \text{ and } R_{2}(j,s) = \{X|X_{j} \geq s\}\\
@@ -59,7 +36,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Tree Pruning}
+    \subsection{Tree Pruning}
     The tree build using above strategy can have good results on the training set, but will yield poor performance on the test set due to the high complexity. A better strategy is to build \textbf{short trees which are less complex and produce lower variance at cost of little bias} and are more interpretable.\newline
 
     A simple strategy can be to build only when there is a decrease in RSS above a threshold. This approach can be short-sighted as some future good branches can be missed.\newline
@@ -87,12 +64,12 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Classification Trees}
+    \section{Classification Trees}
     Here we predict a qualitative variable and will report the \textbf{most occurring class in the region}. Since we are almost always also interested in the probabilistic aspects of the prediction, we also consider \textbf{the proportion of the classes occurring in a region}.
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{The Algorithm}
+    \subsection{The Algorithm}
     The algorithm is almost similar to the regression trees but instead of RSS, we need to use something that is related to class proportions and frequencies. A very straightforward metric is \textbf{classification error rate}
     \begin{align*}
         E = 1 - \max_{k}\hat{p}_{mk}
@@ -101,7 +78,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Gini Index}
+    \subsection{Gini Index}
     Gini Index is defined as
     \begin{align*}
         G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk})
@@ -110,7 +87,7 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Entropy}
+    \subsection{Entropy}
     Entropy is defined as
     \begin{align*}
         D = \sum_{k=1}^{K} -\hat{p}_{mk} \log(\hat{p}_{mk})
@@ -119,7 +96,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Bagging}
+    \section{Bagging}
     Decision tree suffer from a high variance. When the data is divided into smaller parts, it is quite likely to expect variance when the data set itself is changed. Bootstrap Aggregation of Bagging is a method to try to overcome this problem.\newline
 
     \textbf{Averaging a set of random variables reduces variance}. Consider $n$ random variables with the same variance $\sigma^{2}$, then the variance of their average is $\sigma^{2}/n$. Naturally, we can extend this idea to build several prediction models on different training data sets and average out their results to reduce the variance in the response.\newline
@@ -136,21 +113,21 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Out of Bag Error}
+    \subsection{Out of Bag Error}
     It can be shown the probability of an observation being present in a bootstrapped dataset is $1 - 1/e$ (this can be shown by considering that the probability that an observation is not present in the data set is $((1 - 1/n)^{n}$ and taking the limit $n \to \inf$). Thus, on an average, a data will only contain about $2/3$rd ($0.63$ to be exact) of the total observations in it. We can make use of the observations not used for training to estimate the error.\newline
 
     Any observation not part of the bootstrapped set is called \textbf{Out of Bag} and the error we are about to calculate is out of bag error. Now, we can take the $i$th observation, and get it's prediction from the sets where it was not used for training. This will be around $1/3$rd of the predictors. We can combine these results using average in case of regression or majority vote in case of classification. Thus, we have a "test error" for all the observations in the data.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Variable Importance}
+    \subsection{Variable Importance}
     We have been able to reduce the variance using the bagging approach, but the model is no longer interpretable due to the presence of multiple trees. We need to somehow aggregate all the trees to get this measure.\newline
 
     A simple workaround is to calculate the total amount the RSS (regression) or Gini Index (classification) has decreased across all the trees due to split on a particular variable. To make the values comparable, we simply take the average across $B$ trees. A large value means that the variable has high importance.
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Random Forests}
+    \section{Random Forests}
     Random forests overcome the problem of \textbf{decorrelation} in bagging. The trees built using bagging are similar because if there is a strong predictor, we expect it to dominate the splits in each of the trees and give similar trees.\newline
     
     Note that adding correlated variables will only change the variance of the mean slightly. Consider $Var(X + Y)$ which is $Var(X) + Var(Y)$ when $X$ and $Y$ are independent and $Var(X) + Var(Y) + 2Cov(X,Y)$ when $X$ and $Y$ are not independent. Clearly, the variance of the mean will be close to individual variances when the variables are not independent. Hence, to improve the classifier, the predictions must not be correlated or, the trees themselves must be decorrelated.\newline
@@ -163,7 +140,7 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Boosting}
+    \section{Boosting}
     Boosting is a general tecnique that can be applied to multiple statistical learning techniques and not just decision trees. Like Bagging, boosting is also trained on multiple data sets derived from the training data, but instead of building independent trees on different data sets, \textbf{boosting is a sequential process that builds trees on modified versions of the original data set}.\newline
 
     Given a model, boosting will try to fit a tree on the residuals obtained by the model instead of the response $Y$. The model is then updated by adding this tree and the residuals are calculated again. \textbf{Trees in boosting are typically small, just a few terminal nodes} controlled by the parameter $d$ and we allow the tree to fit the areas where improvement is needed in a slow manner. Shrinkage parameter $\lambda$ allows to further slow down this process allowing for a variety of trees.\newline

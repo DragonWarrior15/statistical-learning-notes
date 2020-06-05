@@ -1,25 +1,13 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% \usepackage{tikz}
-% \usetikzlibrary{automata, positioning}
-
-% \usepackage{pgfplots}
-% \pgfplotsset{width=5cm,compat=1.9}
-\setlength{\parindent}{0em}
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Classification}
+    % {\let\clearpage\relax \chapter{Classification}}
+    \chapter{Classification}
     For more than two classes, it is hard to maintain the ordering between them using linear regression. For two classes however, linear regression can be used to prepare an ordering of the data (although difficult to interpret as probability themselves).\newline 
     \textbf{Classification using linear regression to predict binary reponse will be same as Linear Discriminant Analysis (LDA).}\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Logistic Regression}
+    \section{Logistic Regression}
     Modelling binary response with linear regression might produce values outside the range $[0,1]$ ( and possibly negative as well). Hence we use a logistic function to compress the outputs to $[0,1]$ range.
     
     \begin{align*}
@@ -33,7 +21,7 @@
     \end{itemize}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Loss Function}
+    \subsection{Loss Function}
     \textbf{Maximum Likelihood} is used to determine the coefficients. Basic intuition is to choose such a pair of $\beta's$ that will make the predicted probability as close to the correct binary response ($0$ or $1$) as possible.
 
     \begin{align*}
@@ -56,7 +44,7 @@
     LDA first models the distribution of $X$ in each class, and then uses Bayes' rule to flip this and get $p(Y|X)$. When these distributions of $X$ are normal, the model is very similar in form to logistic regression.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Model Derivation}
+    \subsection{Model Derivation}
     Let the total number of classes be $K$ and the prior probability that a randomly chosen observation comes from the $k^{th}$ class be $\pi_{k} = P(Y=k)$. Also, let $f_{k}(x) = P(X=x|Y=k)$ denote the probability distribution function of $X$ for the data points belonging to the class $k$. By Bayes' Rule
     \begin{align*}
         \pi_{k} &= \frac{\text{Observations in class k}}{\text{Total observations}}\\
@@ -66,7 +54,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Gaussian Model with one Predictor}
+    \subsection{Gaussian Model with one Predictor}
     We assume the predictor to have a Gaussian distribution. For simplicity, also assume that the variances of $X$ for all the $K$ classes are also the same (fundamental assumption for linearity of decision boundary). Then,
     \begin{align*}
         f_{k}(x) &= \frac{1}{\sqrt{2\pi}\sigma}e^{\frac{(x-\mu_{k})^{2}}{2\sigma^{2}}}\\
@@ -91,7 +79,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Multivariate Gaussian}
+    \subsection{Multivariate Gaussian}
     A Multivariate Gaussian is an extension of the 1-D gaussian to multiple dimensions. Here, we assume that each of the individual dimensions is itself a Gaussian, with the different dimensions having correlation with each other, which are all specified in the correlation matrix.
     \begin{align*}
         X &\sim \mathcal{N}(\mu, \Sigma) \\
@@ -108,7 +96,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Quadratic Discriminant Analysis (QDA)}
+    \subsection{Quadratic Discriminant Analysis (QDA)}
     The assumption of same covariance matrix $\Sigma$ across all classes is fundamental to LDA in order to create the linear decision boundaries. \newline
     However, in QDA, we relax this condition to allow class specific covariance matrix $\Sigma_{k}$. Thus, for the $k^{th}$ class, $X$ comes from $X \sim \mathcal{N}(\mu_{k}, \Sigma_{k}$. \newline
     Plugging this into the classification rule to get the discriminants (removing denominators as they are common for all classes)
@@ -129,7 +117,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Comparison of Classifiers}
+    \section{Comparison of Classifiers}
     Logistic Regression and LDA are similar in the sense that they produce linear decision boundaries.
     \begin{itemize}
         \item Logistic Regression estimates coefficients using Maximum Likelihood Estimate
@@ -147,10 +135,10 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Classfication Metrics}
+    \section{Classfication Metrics}
     Several classification metrics are available for binary classifiers which are used based on the problem setting.
 
-    \subsubsection{Confusion Matrix}
+    \subsection{Confusion Matrix}
     This matrix tabulates the number of cases we are classifying and misclassifying.
     \begin{table}[h]
     \centering
@@ -172,7 +160,7 @@
         \item $F_{1}$ Score $= \frac{2 * precision * recall}{precision + recall}$
     \end{itemize}
 
-    \subsubsection{Receiver Operating Characteristics (ROC Curve)}
+    \subsection{Receiver Operating Characteristics (ROC Curve)}
     ROC curve is plot between \textbf{True Positive Rate} and \textbf{False Positive Rate}, or equivalently, between \textbf{sensitivity/recall} and \textbf{$1 - $ specificity}. The area under the plotted curve is know as AUC score. \newline
     The curve is plot by repeatedly constructing the confusion matrix at different probability thresholds (i.e. changing the decision boundary to see how the confusion matrix changes).\newline
     ROC Curve is agnostic of the class balancing in the data set, and is thus used frequently in case of class imbalance to judge a classifier. A random classifier will have AUC of $0.5$ as at any threshold, the number of correctly and incorrectly classified points will roughly be the same. A perfect classifier will be able to segregate the population perfectly and will have the value of AUC as $1.0$.

@@ -1,33 +1,11 @@
-\documentclass[11pt, a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage[a4paper, margin=1in]{geometry}
-\usepackage{amsfonts}
-\usepackage{mathtools}
-
-% to insert images
-\usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true, % make the links colored
-    linkcolor=blue, % color TOC links in blue
-    urlcolor=red, % color URLs in red
-    linktoc=all % 'all' will create links for everything in the TOC
-}
-
-\setlength{\parindent}{0em}
-
-\DeclareMathOperator*{\argmin}{argmin}
-
+\documentclass[../statistical_learning_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Moving Beyond Linearity}
+    \chapter{Moving Beyond Linearity}
     In this section, we explore some modifications to the linear regression model in order to incorportate some non linearity as well for reducing bias/
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Polynomial Regression}
+    \section{Polynomial Regression}
     This is a simply modification to the original linear regression setting where we incorporate higher powers of the predictor as well. This helps incorporate non linear trends in the data as well while retaining an additive relationship between the variables.
     \begin{align*}
         \hat{y} &= \hat{\beta_{0}} + \hat{\beta_{1}}x \tag*{Linear Regression}\\
@@ -46,7 +24,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Step Function}
+    \section{Step Function}
     Polynomial Regression, like Linear Regression, still imposes a global structure on the data. The functional form of the model is same throughout. Step Function on the other hand has a local structure and divided the range into \textbf{$k$ intervals such that each interval is fitted with a different constant}.
     \begin{align*}
         C_{0}(X) &= I(X < c_{1})\\
@@ -62,13 +40,13 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Basis Function}
+    \section{Basis Function}
     Basis function is the generalized form of the above two approaches. Basis are functions on $X$ that transform it. Thus, when doing regression with basis functions, we simply regress $y$ with a family of transformations of $x$.\newline
     For polynomial regression, the basis are powers of $x$ and for step function, the basis are constant values in different ranges.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Regression splines (Polynomials)}
+    \section{Regression splines (Polynomials)}
     This is a class of methods that extends upon the family of polynomial and step regressions.\newline
 
     Instead of fitting a global polynomial to $X$, we fit \textbf{local piecewise polynomials} to X such that they are continuous at the breakpoints. The points wherer the polynomials change are called \textbf{knots}.\newline
@@ -88,14 +66,14 @@
     A \hypertarget{naturalsplines}{\textbf{natural spline}} is a regression spline that has the additional constraint of being linear at the boundaries, i.e., outside the extreme knots. This reduced flexibility allows for stable estimates at the knots and also makes the confidence bands narrower.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Choosing the degrees of freedom}
+    \subsection{Choosing the degrees of freedom}
     While it may make sense to put knots at the points where the function seems to change rapidly (and not at the points where the function seems to be relatively stable), in practice the knots are usually placed at equal quantiles of the data, or generally are placed in an equidistant fashion.\newline
     For deciding the degree of freedoms, another popular choice is cross validation. We always use say $10\%$ of the data as test and gauge the RSS on this set across different degrees of freedom. A plot of RSS vs. the degrees of freedom (similar to elbow curve) can aid choosing the desired point where the RSS significantly drops.\newline
     In practice, cubic splines are popular as higher order polynomials tend to give high variance, and the plots with cubic splines also look relatively stable.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Smoothing Splines}
+    \section{Smoothing Splines}
     The idea is to fit a smooth function that predicts the reponse well. We minimize the following
     \begin{align*}
         Loss = \sum_{i=1}^{n} (y_{i} - g(x_{i}))^{2} + \lambda \int g^{''}(t)^{2}dt \tag*{$\lambda > 0$}
@@ -116,7 +94,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Choosing Reguularization Parameter}
+    \subsection{Choosing Reguularization Parameter}
     It is possible to show that as $\lambda$ increases from $0 \to \inf$, the effective degrees of freedom ($df_{\lambda}$) go from $n \to 2$.\newline
 
     Cross validation can also be a useful approach  to determine the value of $\lambda$. However, similar to linear regression, there exists a formula for computing the loss for LOOCV by just fitting a single model to the entire data set.
@@ -127,7 +105,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Local Regression}
+    \section{Local Regression}
     As the name suggests, we fit regression models in the neighborhood of the point for which we want to make a prediction. But the difference from a normal linear regression is that we give weights to the points such that the points closest get higher weights and points further away get zero.\newline
 
     Suppose we want to make the predicton at the point $x_{0}$. The algorithm is as follows
@@ -147,7 +125,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Generalized Additive Models}
+    \section{Generalized Additive Models}
     The approches discussed above are extensions of the linear regression model for a single predictor by introducing more flexbility into the models. This idea can be extended for $p$ predictors in the framework of \emph{Generalized Additive Models}. These are applicable for both classification and regression.
 
     \begin{align*}
@@ -178,7 +156,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Exercises}
+    \section{Exercises}
     \begin{enumerate}
         %%%%%%%%%%Q1
         \item Suppose that a curve $\hat{g}$ is icomputed to smoothly fit a set of $n$ points using the following formula
@@ -219,7 +197,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Solutions}
+    \section{Solutions}
     \begin{enumerate}
         %%%%%%%%%%A1
         \item \label{itm:ans1} Higher derivatives will allow for a higher degree polynomial to be fit to the data
