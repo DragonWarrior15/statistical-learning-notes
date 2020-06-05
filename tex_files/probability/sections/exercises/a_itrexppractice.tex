@@ -1,0 +1,13 @@
+\documentclass[../../probability-notes.tex]{subfiles}
+\begin{document}
+        We use the formulae from iterated expectation to calculate these.
+        \begin{alignat*}{2}
+            P_{Y}(y) &= \begin{cases} \frac{1}{3} &y = 1\\
+                                    \frac{2}{3} &y = 2 \end{cases}\\
+            E[X] &= E[E[X|Y]] = \sum_{y}E[X|Y]P(Y)\\
+                &= 90 * \frac{1}{3} + 60 * \frac{2}{3}\\
+            Var(X) &= E[Var(X|Y)] + Var(E[X|Y])\\
+                  &= \sum_{y}Var(X|Y)P(Y) + ((90-E[E[X|Y])^{2}\frac{1}{3} + (60-E[E[X|Y]])^{2}\frac{2}{3})\\
+                  &= \frac{650}{3}
+        \end{alignat*}
+\end{document}

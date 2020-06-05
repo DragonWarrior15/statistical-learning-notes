@@ -1,0 +1,114 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=5cm,compat=1.9}
+
+% remove paragraph indent
+\setlength{\parindent}{0em}
+
+% hyperlinks for the table of contents
+% \usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=blue, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all % 'all' will create links for everything in the TOC
+}
+
+% to insert images
+\usepackage{graphicx}
+\graphicspath{ {./images/} {../images/}}
+
+\usepackage{subfiles}
+
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\title{Probability Notes}
+
+\begin{document}
+    \maketitle{}
+    \tableofcontents
+    \newpage
+
+    \pagenumbering{arabic}
+    \subfile{sections/probability_theorems}
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Covariance and Correlation}
+    For any two random variables X and Y,
+    \begin{align*}
+        Cov(X,Y) &= E[(X - \overline{X})(Y - \overline{Y})] = E[XY] - E[X]E[Y]\\
+        Cov(X,X) &= Var(X)\\
+        Corr(X,Y) &= E[(\frac{X - \overline{X}}{\sigma_{X}}) (\frac{Y - \overline{Y}}{\sigma_{Y}})]\\
+        &= \frac{Cov(X,Y)}{\sigma_{X} \sigma_{Y}}
+    \end{align*}
+    Key points to note
+    \begin{itemize}
+        \item \emph{Inpdependence} $\Rightarrow Cov(X,Y) = Corr(X,Y) = 0$, but the converse is \emph{\textbf{not}} true
+        \item Correlation is dimensionless and $-1 \leq Corr(X,Y) \leq 1$ with value close to $0$ implying minimal relation and values close to $-1, 1$ implying perfect relation
+    \end{itemize}
+
+    \subfile{sections/iterated_exp}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Random number of Random Variables}
+    Let $X_{i}$ be independent identically distributed Random Variables and let $Y = \sum_{i=1}^{N} X_{i}$ be the sum of $N$ such random variables where $N$ itself is a random variable. Then,
+    \begin{align*}
+        Y &= X_{1} + X_{2} + \cdots + X_{N}\\
+        E[Y|N=n] &= \sum_{i=1}^{n}E[X_{i}]\\
+                &= NE[X]\\
+        E[Y] &= E[E[Y|N]] = E[NE[X]]\\
+            &= E[N]E[X] \tag*{since $E[X]$ will be a number}\\
+        Var(Y) &= E[Var(Y|N)] + Var(E[Y|N])\\
+            &= E[NVar(X)] + Var(NE[X])\\
+            &= E[N]Var(X) + E[X]^{2}Var(N)
+    \end{align*}
+
+    \subfile{sections/convolution}
+
+    \subfile{sections/moment_gen}
+
+    \subfile{sections/probability_distributions}
+
+    \subfile{sections/gamma}
+
+    \subfile{sections/chi_square}
+    \subfile{sections/t_dist}
+    \subfile{sections/f_dist}
+    \subfile{sections/logistic_dist}
+
+    \subfile{sections/markov_process}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{sections/clt}
+
+    \subfile{sections/sample_mean_var}
+
+    \subfile{sections/parameter_estimation}
+
+    \subfile{sections/hypothesis_testing}
+
+    \subfile{sections/linear_regression}
+
+    \subfile{sections/life_testing}
+
+    \subfile{sections/simulation}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Exercises}
+    \subfile{sections/problems}
+
+    \subfile{sections/solutions}
+\end{document}

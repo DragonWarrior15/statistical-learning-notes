@@ -1,0 +1,34 @@
+\documentclass[../../probability-notes.tex]{subfiles}
+\begin{document}
+        Let $X$ denote the number of people who pick their own hat. We have been asked $E[X]$.\\
+        Let $X_{i}$ be a binary random variable denoting whether the $i^{th}$ person picked their own hat, i.e.,
+        \begin{alignat*}{2}
+            X_{i} &= \begin{cases} 1 &\mbox{if $i^{th}$ person picks their own hat}\\ 
+                                    0 &\mbox{otherwise} \end{cases} \\
+            P(X_{i} = 1) &= \frac{1}{n} \\
+            E[X_{i}] &= 1 * \frac{1}{n} + 0 * (1 - \frac{1}{n}) = \frac{1}{n}\\
+        \end{alignat*}
+        Consequently
+        \begin{align*}
+            E[X] = E[\sum_{i=1}^{n} X_{i}] = \sum_{n=1}^{n}E[X_{i}] = 1
+        \end{align*}
+
+        It is interesting to see the variance of X. Note that the formula for variance is $E[X^{2}] - E[X]^{2}$. Thus,
+        \begin{align*}
+            X^{2} = (\sum_{i=1}^{n} X_{i})^{2} = \sum_{i=1}^{n} X_{i}^{2} + \sum_{i=1}^{n} \sum_{j=1, j\neq i}^{n} X_{i}X{_j} \\
+            E[X^{2}] = \sum_{i=1}^{n}E[X_{i}^{2}] + \sum_{i=1}^{n} \sum_{j=1, j\neq i}^{n} E[X_{i}X{_j}] 
+        \end{align*}
+        Note that $X_{i}$ and $X_{j}$ are not independent since after the first person has picked the hat, only $n-1$ hats remain
+        \begin{alignat*}{3}
+            X_{i}X_{j} &= \begin{cases} 1 &\mbox{if $X_{i} = X_{j} = 1$}\\
+                                       0 &\mbox{otherwise} \end{cases} \\
+            P(X_{i}X_{j} = 1) &= P(X_{i} = 1) P(X_{j} = 1|X_{i} = 1) &&= \frac{1}{n} * \frac{1}{n-1}\\
+            E[X_{i}X_{j}] &= 1 * (\frac{1}{n} * \frac{1}{n-1}) + 0 * (1 - \frac{1}{n} * \frac{1}{n-1}) &&= \frac{1}{n(n-1)}\\
+            E[X_{i}^2] &= 1^{2} \frac{1}{n} + 0^{2} (1-\frac{1}{n}) &&= \frac{1}{n}
+        \end{alignat*}
+        Putting these values in the original equation for variance
+        \begin{alignat*}{2}
+            E[X_{2}] &= n \frac{1}{n} + \frac{1}{n} \frac{1}{n-1} (\frac{n(n-1)}{2} * 2) &&= 2\\
+            Var(X) &= 2 - 1^{2} &&= 1
+        \end{alignat*}
+\end{document}

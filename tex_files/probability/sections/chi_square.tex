@@ -1,0 +1,54 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Chi-Square Distribution}\label{chi_square}
+    If $Z_{1}, Z_{2}, \ldots, Z_{n}$ are $n$ independent standard normal variables, then the random variable $X$
+    \begin{align*}
+        X &= Z_{1}^{2} + Z_{2}^{2} + \cdots + Z_{n}^{2}\\
+        \text{then, \;} X &\sim \chi_{n}^{2} 
+    \end{align*}
+    i.e., $X$ follows the chi-square distribution with $n$ degrees of freedom.\newline
+
+    If we add two chi-square distributed variables with degrees of freedom $n_{1}$ and $n_{2}$, then the resultant variable itself is chi-square distributed with $n_{1} + n_{2}$ degrees of freedom. This simply follows from the fact that the sum of the two random variables is nothing but sum of $n_{1} + n_{2}$ standard normal squared variables which is nothing but a chi-square variable with $n_{1} + n_{2}$ degrees of freedom.\newline
+
+    If $X \sim \chi_{n}^{2}$, then $\chi_{\alpha, n}^{2}$ is
+    \begin{align*}
+        P(X \geq \chi_{\alpha, n}^{2}) = \alpha
+    \end{align*}
+    This quantity is usually listed in mathematical tables since they are heavily used in hypothesis testing.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Relation between Chi-Square and Gamma Distribution}\label{sec:rel_gamma_chi}
+    Consider the moment generating function for a chi-square random variable with $n=1$ degrees of freedom
+    \begin{align*}
+        E[e^{tX}] &= E[e^{tZ^{2}}] \text{\; $Z \sim \mathcal{N}(0, 1)$}\\
+        &= \int_{-\inf}^{\inf} e^{tx^{2}} f_{Z}(x) dx \text{\; since $E[g(x)] = \sum_{x} g(x)p(x)$}\\
+        &= \frac{1}{\sqrt{2\pi}} \sum_{-\inf}^{\inf} e^{tx^{2}} e^{-x^{2}/2}\\
+        &= \frac{1}{\sqrt{2\pi}} \sum_{-\inf}^{\inf} e^{-x^{2}(1/2 - t)}\\
+        \text{Using \;} \int_{-\inf}^{\inf} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\\
+        E[e^{tX}] &= \frac{1}{\sqrt{2\pi}} \sqrt{\frac{\pi}{1/2 - t}}\\
+        &= \frac{1}{\sqrt{1 - 2t}}
+    \end{align*}
+
+    Extending this idea to the case of $n$ degrees of freedom,
+    \begin{align*}
+        E[e^{tX}] &= E[e^{t(Z_{1}^{2} + Z_{2}^{2} + \cdots + Z_{n}^{2})}]\\
+        &= E[\prod_{i=1}^{n} e^{t Z_{i}^{2}}]\\
+        &= \prod_{i=1}^{n} E[e^{t Z_{i}^{2}}] \text{\; since $Z_{i}$ are independent}\\
+        &= (1 - 2t)^{-n/2} \text{\; from the derivation above}
+    \end{align*}
+
+    But, the quantity just derived is nothing but the moment generating function of the Gamma distribution with parameters $(n/2, 1/2)$. Hence, by the uniqueness of the moment generating function, we are forced to conclude that the \textbf{probability density function of a chi-square variable with n degrees is same as that of a Gamma distribution with parameters (n/2, 1/2)}.\newline
+    Thus,
+    \begin{align*}
+        f_{X}(x) = \frac{\frac{1}{2} e^{-x/2} (\frac{x}{2})^{(n/2) - 1}}{\Gamma(\frac{n}{2})} \text{\; $x > 0$}
+    \end{align*}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Mean and Variance}
+    Since the distribution of a chi-square variable is identical to a Gamma distribution,
+    \begin{align*}
+        \Aboxed{E[X] &= n}\\
+        \Aboxed{Var(x) &= 2n}
+    \end{align*}
+
+\end{document}

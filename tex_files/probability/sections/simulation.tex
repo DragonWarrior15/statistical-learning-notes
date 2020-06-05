@@ -1,0 +1,111 @@
+\documentclass[../probability-notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Generating Random Numbers}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Random Numbers}
+    We can generate random numbers using the following equation
+    \begin{align*}
+        x_{n+1} = (ax_{n} + c) mod(m)
+    \end{align*}
+    $x_{n}$ takes the values $1,2,\ldots, m-1$ and we take $x_{n}/m$ as the pseudo random number, which is uniformly distributed between $(0,1)$ for suitable choice of $a, c, m$.\newline
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Permutation of Integers}
+    Suppose we want to generate a permutation of integers from $1, 2, \ldots, n$ such that each of the permutations is equally likely. Assuming we have a uniform random generator $U$ with us, 
+    \begin{align*}
+        P(Int(kU) + 1 = i) &= P(Int(kU) = i-1) = P(i-1 \leq kU < i)\\
+        &= P(\frac{i-1}{k} \leq U < \frac{i}{k}) = \frac{1}{k}
+    \end{align*}
+    which gives us randomly generated random integers between $1$ and $k$ with equal probability. An easy way to generate permutation is
+    \begin{enumerate}
+        \item Choose a permutation $r_{1}, r_{2}, \ldots, r_{n}$ which can just be $r_{j} = j$
+        \item Let $k = n$
+        \item Choose a random number $U$ and let $I = Int(kU) + 1$
+        \item Interchange numbers at position $k$ and $I$
+        \item $k = k-1$
+        \item if $k > 1$ goto step 3 else return permutation
+    \end{enumerate}
+
+    The above algorithm can also be used to get a random subset of size $r$ from a set $1, \dots, k$ by simply running the algorithm till $k = r$ since the elements in the last $r$ positions can be selected. For $r > n/2$, we find the $k=n-r$ elements not in the subset.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Generating Discrete Random Variables}
+    Suppose we want to generate the random variable $X$ with probability mass function
+    \begin{align*}
+        P(X = x_{i}) = p_{i}, i = 1, 2, \ldots, n\; \sum_{i=1}^{n} p_{i} = 1 
+    \end{align*}
+    Then using a uniform random generator $U$, we can generate the discrete random variable using
+    \begin{align*}
+        X = x_{i} \quad \text{if} \quad p_{1} + p_{2} +\cdots + p_{i-1} \leq U < p_{1} + p_{2} +\cdots + p_{i} 
+    \end{align*}
+    i.e., we divide the number line at points $p_{1}, p_{1}+p_{2}, \ldots, 1$ and choose the $i^{th}$ interval such that $U$ falls in that interval. This algorithm is valid since
+    \begin{gather*}
+        P(a \leq U < b) = b-a\\
+        P(\sum_{j=1}^{i-1}p_{j} \leq U < \sum_{j=1}^{i}p_{j}) = p_{i}
+    \end{gather*}
+
+    This method is known as \emph{discrete inverse transform method}.\newline
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Binomial Random Variable}
+    To generate a Bernoulli random variable, we simply select $X = 1$ if $U < p$ otherwise $X = 0$. Similarly a binomial random variable can be generated using individual Bernoulli variables as described. A more efficient method is to use the inverse transform method. For number of successes $0, 1, 2, \ldots, n$, we must calculate the probability mass function. This can be done efficiently using recursion
+    \begin{gather*}
+        p_{i} = P(X = i) = \binom{n, i} p^{i} (1-p)^{n-i}\\
+        \frac{p_{i+1}}{p_{i}} = \frac{n-i}{i+1} \frac{p}{1-p}
+    \end{gather*}
+
+    The algorithm is then simply
+    \begin{enumerate}
+        \item Assign $i = 0, P = p_{0} = (1-p)^{n}, F = P, b = p/(1-p)$
+        \item Generate random number $U \in (0, 1)$
+        \item if $U \leq F, X = i$, stop else continue
+        \item Update $P$ to get $p_{i+1}$, $P = Pb\frac{n-i}{i+1}$
+        \item Update the cumulative probability $F = F + P$
+        \item increase $i = i + 1$, goto 3
+    \end{enumerate}
+
+    The average number of iterations taken by the algorithm $= E[X + 1] = np + 1$ since total values checked are $n + 1$.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Generating Continuous Random Variables}
+    To generate a random variable $X$, We utilise it's cumulative distribution function $F$. Note that $F$ is strictly increasing from $0$ to $1$ and the probability density $f$ and $F$ have a one to one mapping, i.e., $F$ has an inverse $F^{-1}$. So, to get $X$, we first generate $U \in (0, 1)$ and then $X = F^{-1}(U)$.\newline
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Exponential Random Variable}
+    The distribution function $F = 1 - exp(-\lambda x)$. Then, the inverse is
+    \begin{align*}
+        x &= -\frac{1}{\lambda}log(1 - F)\\
+        \text{or, }\quad X &= \frac{1}{\lambda}log(1 - U)
+    \end{align*}
+    and $X$ will follow the exponential distribution. Further, replacing $U$ with $1-U$ will still remain a uniform distribution, meaning $X$ will still be exponential.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Normal Random Variable}
+    Consider $X, Y \sim \mathcal{N}(0, 1)$. Then,
+    \begin{align*}
+        f_{XY}(x,y) = \frac{1}{2\pi}exp(-\frac{x^{2}+y^{2}}{2})
+    \end{align*}
+    is the joint distribution. $(X, Y)$ is a point on the cartesian plane and thus, will have an equivalent polar coordinate $(R, \Theta)$ implying $R^{2} = X^{2} + Y^{2}$ which is a $\chi_{2}^{2}$ variable. From section \ref{sec:rel_gamma_chi},
+    \begin{align*}
+       f_{R^{2}}(r) &= \frac{1}{2}exp(-\frac{r}{2})\\
+       \text{and} \quad f_{XY}(x,y) &= \frac{1}{2\pi} exp(-\frac{r}{2}) \quad \text{when} \quad x^{2} + y^{2} = r
+    \end{align*}
+
+    Now, $R$ and $\Theta$ are independent variables and can be used to generate $X$ and $Y$. $\Theta$ is uniformly distributed in $[0, 2\pi]$. Taking the inverse of cumulative distribution of $R^{2}$ (Note that $f_{R^{2}}(r)$ is a distribution on $R^{2}$ and not $R$),
+    \begin{align*}
+        R^{2} &= -2log(1 - U_{1})\\
+        \Theta &= 2\pi U_{2}
+    \end{align*}
+    where $U_{1}$ and $U_{2}$ are uniform random variables. Using the transformation back to cartesian coordinates from polar ones,
+    \begin{align*}
+        X &= \sqrt{-2log(1 - U_{1})}cos(2\pi U_{2})\\
+        Y &= \sqrt{-2log(1 - U_{1})}sin(2\pi U_{2})
+    \end{align*}
+    This approach is called \emph{Box-Muller method}. To generate standard normals with mean $\mu$ and variance $\sigma^{2}$, we simply return $\mu + \sigma X, \mu+\sigma Y$.
+\end{document}

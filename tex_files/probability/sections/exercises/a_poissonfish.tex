@@ -1,0 +1,11 @@
+\documentclass[../../probability-notes.tex]{subfiles}
+\begin{document}
+        \begin{itemize}
+            \item P(fish for $> 2$ hours) = $P(k=0, \tau=2)$ = $e^{-0.6 * 2}$
+            \item P(fish for $> 2$ but $< 5$ hours) = P(first catch in $[2,5]$ hours) = $P(k=0,\tau=2)(1-P(k=0,\tau=3)$ which is no fish in $[0,2]$ but at least $1$ fish in the next $3$ hours (which will be independent of first $2$ hours)
+            \item P(catch at least two fish) = P(at least $2$ catches before $2$ hours) = $1 - P(k=0,\tau=2) - P(k=1,\tau=2)$
+            \item E[fish] has two possibilities, either single fish after $2$ hours, or many fist before $2$ hours. $E[fish] = E[fish|\tau \leq 2](1-P(\tau > 2)) + E[fish|\tau > 2] P(\tau > 2) = (0.6*2)*(1-P(k=0,\tau=2)) + 1*P(k=0,\tau=2)$
+            \item E[Total fishing time] = $2 + P(k=0,\tau=2)\frac{1}{\lambda}$, since we fish for atlest $2$ hours
+            \item E[future fishing time|fished for two hours] can be obtained using the memoryless property of Poisson process. The expected time till first arrival is independent of what has happened till now. Thus, $E[T_{1}] = \frac{1}{\lambda}$
+        \end{itemize}
+\end{document}
