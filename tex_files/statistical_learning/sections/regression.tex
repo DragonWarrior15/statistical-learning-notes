@@ -31,9 +31,9 @@ Simple linear regression is discussed in detail in the \href{https://github.com/
 \subsection{Coefficient of Determination}
 $R^{2}$ is often used as a metric for checking how good the regression model is. It's definition is invariant to the number of independent variables
 \begin{gather*}
-    R^{2} = \frac{S_{YY} - SS_{R}}{S_{YY}} = 1 - \frac{SS_{R}}{S_{YY}}\\
-    S_{YY} = \text{total variance in Y, }\quad SS_{R} = \text{sum of squares of residuals}\\
-    S_{YY} - SS_{R} = \text{total variance explained by inputs}
+    R^{2} = \frac{S_{YY} - RSS}{S_{YY}} = 1 - \frac{RSS}{S_{YY}}\\
+    S_{YY} = \text{total variance in Y, }\quad RSS = \text{sum of squares of residuals}\\
+    S_{YY} - RSS = \text{total variance explained by inputs}
 \end{gather*}
 A good model will explain most of the variance in $Y$ usig the input variables. Hence, $R^{2}$ close to $1$ is a good model and vice versa. \textbf{$R^{2}$ usually increases as more and more variables are added to the model}.
 
@@ -48,7 +48,7 @@ By minimizing the sum squared error in a fashion similar to simple linear regres
     \text{or,} \quad 0 &= \frac{\partial}{\partial \hat{\beta}} (Y^{T}Y - Y^{T}X\hat{\beta} - \hat{\beta}^{T}X^{T}Y + \hat{\beta}^{T}X^{T}X\hat{\beta})\\
     0 &= -Y^{T}X - Y^{T}X + \hat{\beta}^{T}X^{T}X + \hat{\beta}^{T}X^{T}X\\
     (X^{T}X)\hat{\beta} &= X^{T}Y\\
-    \hat{\beta} &= (X^{T}X)^{-1}X^{T}Y
+    \hat{\beta} &= (X^{T}X)^{-1}X^{T}Y \tag{\theequation}\label{eq:linear_reg_solution}
 \end{align*}
 
 We note that the coefficients are linear combinations of $Y$ and thus normally distributed themselves.
@@ -111,4 +111,13 @@ Then, we use the \textbf{F-test} assuming $H_{0}$ is true
     \text{and} \quad RSS_{1} = RSS \quad \text{of model with all the coefficients}\\
     F \sim F_{k, n - p - 1}
 \end{gather*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multiple Outputs}
+We want to predict multiple outputs $Y_{1}, Y_{2}, \ldots, Y_{k}$ from the same set of variables. The $RSS$ then becomes
+\begin{gather*}
+    RSS = \sum_{i=1}^{n} \sum_{j=1}^{k} (y_{i,j} - \hat{y}_{i,j})^{2} = \sum_{i=1}^{n} \sum_{j=1}^{k} (y_{i,j} - \beta_{k,0} - \sum_{u=1}^{p} \beta_{k,u}x_{i,u})^{2}\\
+    \text{Minimizing,} \quad \hat{\beta} = (X_{T}X)^{-1}X^{T}Y \quad \text{where $Y$ is a $n \times k$ matrix}
+\end{gather*}
+Thus, the problem is similar to doing the linear regression independently on each of the $Y_{j}s$. One important assumption here is that the errors between different $Y_{j}$ are not correlated with each other.
 \end{document}
