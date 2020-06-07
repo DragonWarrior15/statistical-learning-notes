@@ -21,19 +21,74 @@
     \end{itemize}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Loss Function}
+    \subsection{Loss Function}\label{sec:classification_loss_fn}
     \textbf{Maximum Likelihood} is used to determine the coefficients. Basic intuition is to choose such a pair of $\beta's$ that will make the predicted probability as close to the correct binary response ($0$ or $1$) as possible.
 
     \begin{align*}
+        \text{Denoting} \quad p(x_{i}) &= P(Y = 1 | X = x_{i}) = 1/(1 + exp(-\beta^{T}x_{i}))\\
         \text{likelihood function} &= l(\beta_{0},\beta_{1}) = \prod_{i:y_{i}=1} p(x_{i}) \prod_{i^{'}:y_{i^{'}}=0}(1-p(x_{i^{'}}))\\
         \text{Taking logarithm, } logloss &= \sum_{i:y_{i}=1} \log p(x_{i}) + \sum_{i^{'}:y_{i^{'}}=0}\log (1-p(x_{i^{'}}))\\
-        &= \sum_{i} y\log p_{i} + (1-y)\log (1-p_{i}) \tag*{since $y = 0$ or $1$}
+        &= \sum_{i=1}^{n} y\log p(x_{i}) + (1-y)\log (1+p(x_{i})) \tag*{since $y = 0$ or $1$}\\
+        &= \sum_{i=1}^{n} y\beta^{T}x_{i} - log(1 + exp(\beta^{T}x_{i}))
     \end{align*}
-    All the formulae listed here and above extend easily for the case of multiple variables, wherein we simply replace the sum $\beta_{0} + \beta_{1}X$ with $\beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{p}X_{p}$.
+    All the formulae listed here and above extend for the case of multiple variables, wherein we simply replace the sum $\beta_{0} + \beta_{1}X$ with $\beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{p}X_{p}$.\newline
 
+    For the below derivations, refer to section \ref{sec:appendix_classification_loss_fn} for complete matrix calculus
+    To solve for the $\beta$s, we consider the derivate of the \emph{log likelihood}
+    \begin{align*}
+        \frac{\partial l}{\partial \beta} = \sum_{i=1}^{n} x_{i}(y_{i} - p_{i}) = 0
+    \end{align*}
+    which are $p-1$ non linear equations. We use the Newton-Raphson method and Hessian matrix for solving them
+    \begin{align*}
+        \frac{\partial^{2}l}{\partial \beta \partial \beta^{T}} &= -\sum_{i=1}^{n} x_{i}x_{i}^{T}p(x_{i})(1 - p(x_{i}))\\
+        \beta^{new} &= \beta^{old} - \bigg( \frac{\partial^{2}l}{\partial \beta \partial \beta^{T}} \bigg)^{-1} \frac{\partial l}{\partial \beta}
+    \end{align*}
+
+    Converting the above equations to function form for ease of obtaining solution
+    \begin{align*}
+        \frac{\partial l}{\partial \beta} &= X^{T}(y - \mathbf{p})\\
+        \frac{\partial^{2}l}{\partial \beta \partial \beta^{T}} &= -X^{T}WX\\
+        \text{where} \quad W &= diag([p(x_{1})(1-p(x_{1})), \ldots, p(x_{n})(1-p(x_{n}))])
+    \end{align*}
+
+    and the Newton-Raphson update becomes
+    \begin{align*}
+        \beta^{new} &= \beta^{old} + (X^{T}WX)^{-1} X^{T}(y - \mathbf{p})\\
+        &= (X^{T}WX)^{-1} X^{T}W(X\beta^{old} + W^{-1}(y - \mathbf{p}))\\
+        &= (X^{T}WX)^{-1} X^{T}Wz
+    \end{align*}
+    where $z$ is called the adjusted response (target in regression). The equation is same as equation \ref{eq:linear_reg_solution} with an added weight term of $W$. Hence, this equation solves the weighted least squares problem
+    \begin{align*}
+        \beta^{new} = \argmin_{\beta} (z - X\beta)^{T}W(z - X\beta)
+    \end{align*}
+    and is known as \emph{iteratively reweighted least squares} (IRLS). The equation converges since \emph{log likelihood} is concave. In case of non convergence/huge jumps, reducing the step size helps.\newline
+
+    Further, the above formulation allows us to get the distribution of $\beta$
+    \begin{align*}
+        \hat{\beta} \sim \mathcal{N}(\beta, (X^{T}WX)^{-1})
+    \end{align*}
+
+    Wald test, rao score test\newline
+
+    In case of multiple classes, $y$ becomes a matrix of shape $n \times K$ and $W$ is non-diagonal, but the solution to IRLS is not simple. Methods like co-ordinate wise gradient descent works better.\newline
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Multiple Classes}
+    Note that the log of odds formula above is the ratio of probability of $Y=1$ to probability of $Y=0$. Here, $Y=0$ can be seen as a reference class. Similarly, in the case of $K$ classes, we will have $K-1$ classifiers, each classifying with respect to the last class (since the decision boundary has to be between two classes) and will take the form
+    \begin{align*}
+        log \big( \frac{P(Y=1|X=x)}{P(Y=K|X=x)} \big) &= \beta_{1,0} + \beta_{1}^{T}x\\
+        log \big( \frac{P(Y=2|X=x)}{P(Y=K|X=x)} \big) &= \beta_{2,0} + \beta_{2}^{T}x\\
+        \vdots\\
+        log \big( \frac{P(Y=K-1|X=x)}{P(Y=K|X=x)} \big) &= \beta_{K-1,0} + \beta_{K-1}^{T}x\\
+        \text{and} \quad \sum_{k=1}^{K} P(Y=k|X=x) &= 1\\
+        \text{Giving} \quad P(Y=k|X=x) &= \frac{exp(\beta_{k,0} + \beta_{k}^{T}x)}{1 + \sum_{j=1}^{K-1} exp(\beta_{j,0} + \beta_{j}^{T}x)} \quad \text{for $j<K$}\\
+        P(Y=K|X=x) &= \frac{1}{1 + \sum_{j=1}^{K-1} exp(\beta_{j,0} + \beta_{j}^{T}x)}\\
+        \text{Parameter Set} \quad \theta &= \{ \beta_{1,0}, \beta_{1}, \ldots, \beta_{K-1,0}, \beta_{K-1} \}
+    \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Linear Discriminant Analysis (LDA)}
+    \section{Linear Discriminant Analysis (LDA)}
     Why use LDA ?
     \begin{itemize}
         \item When the \textbf{classes are well separated}, the parameter estimates for the \textbf{logistic regression} model are surprisingly \textbf{unstable}. \textbf{LDA} does not suffer from this problem and is relatively \textbf{stable}.
@@ -92,7 +147,7 @@
         \log{p_{k}(x)} \propto \log{\pi_{k}} + x^{T}\Sigma^{-1}\mu_{k} - \frac{1}{2}\mu_{k}^{T}\Sigma^{-1}\mu_{k}    
     \end{align*}
 
-    To calculate the decision boundary, we simply do a pairwise equality between the discriminants of the individual classes and get the pairwise decision boundaries.
+    To calculate the decision boundary, we simply do a pairwise equality between the discriminants of the individual classes and get the pairwise decision boundaries which are all linear.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

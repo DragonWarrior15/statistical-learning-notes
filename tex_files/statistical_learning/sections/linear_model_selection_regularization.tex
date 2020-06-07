@@ -25,6 +25,8 @@
 
     The huge search space presented by this approach easily overfits as the search space presents more opportunities to find better fits. However, this causes a higher variance in the predictions on future data and can possibly also have higher test error.
 
+    \paragraph{Note regarding dummy variables} Whenever we have a group of variables that actually represent the same quantity, like a dummy variable for gender/income, it is important to keep either all of them, or none of them in the model. This is in accordance with keeping the degrees of freedom consistent. Hence, in any subset selection algorithm, all variables of the set are either considered together or not considered at all.
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Forward Stepwise Selection}
@@ -41,7 +43,9 @@
         \item From the models $M_{0}, M_{1}, \ldots, M_{p}$, select the one with the lowest cross validation error on the evaluation choosing the appropriate error metric
     \end{enumerate}
 
-    This approach effectively has reduced the search space from $2^{p}$ to $1 + p(p+1)/2$. Although, now it is not guaranteed that the model selected will be the best one among $2^{p}$.
+    This approach effectively has reduced the search space from $2^{p}$ to $1 + p(p+1)/2$. Although, now it is not guaranteed that the model selected will be the best one among $2^{p}$.\newline
+
+    Note that in linear regression, the forward stepwise method will start with first adding the intercept, and then the independent variables one by one.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,7 +117,7 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Shrinkage Methods}
-    Instead of using a subset of predictors, we can also use all of the predictors and shrink the coefficients towards zero. This approach significantly reduces the variance in the model estimates. The famous ones here are \emph{Ridge Regression} and \emph{Lasso Regression}.
+    Instead of using a subset of predictors, we can also use all of the predictors and shrink the coefficients towards zero. This approach significantly reduces the variance in the model estimates as the subset selection methods often suffer from high variance. The famous ones here are \emph{Ridge Regression} and \emph{Lasso Regression}.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +128,7 @@
               &= (Y-X\beta)^{T}(Y-X\beta) + \lambda \beta^{T}\beta
     \end{align*}
     $\lambda$ is a tuning parameter that needs to be chosen separately. It acts as a weight between the error in the data and how large are the regression coefficients. It is also known as the shrinkage penalty.\newline
-    Note that we will not include the intercept term in shrinkage because it is simply the mean estimate of the model when all the predictors are zero and may not necessarily zero.\newline
+    Note that we will not include the intercept term in shrinkage because it is simply the mean estimate of the model when all the predictors are zero and may not necessarily zero. Thus the above model includes $p$ terms in $\beta$. When the model inputs are all centered (which is always preferred), the intercept can be calculated in the end as simply $\sum_{i=1}^{n}y_{i}/n$\newline
 
     Using least squares estimate,
     \begin{align*}
@@ -141,7 +145,7 @@
     As is clear from the formula, the error term is sensitive to the actual scale of the coefficients which is ultimately dependent on the predictors themselves. In a simple least squares regression, the coefficients will scale up and down depending on how the data is scaled. The same is not true for Ridge Regression.\newline
     Hence when using \textbf{Ridge Regression, it is always advisable to \emph{standardize} the predictors} before training the model using
     \begin{align*}
-        \tilde{x}_{ij} = \frac{x_{ij}}{\sqrt{\frac{1}{n}\sum_{i=1}{n}(x_{ij}-\bar{x}_{j})^{2}}}
+        \tilde{x}_{ij} = \frac{x_{ij} - \bar{x_{j}}}{\sqrt{\frac{1}{n}\sum_{i=1}{n}(x_{ij}-\bar{x}_{j})^{2}}}
     \end{align*}
 
     The success of Ridge Regression is based in the \textbf{bias variance tradeoff}. If the data is linear, simple linear regression will have a very low bias but high variance, making it sensitive to the training data. As $\lambda$ is introduced, it forces the model to have less flexibility by reducing the coefficiets value and subsequently their power on the prediction. This causes a reduction in the variance at expense of slight increase in bias. However, this trend is not monotonic with increasing $\lambda$ and the appropriate value must be chosen based on the errors observed.\newline
@@ -157,8 +161,9 @@
         error &= RSS + \lambda \sum_{j=1}^{p}\mid \lambda_{j} \mid
     \end{align*}
 
-    When \textbf{$\lambda$ is sufficiently large, Lasso Regression forces some of the variables to be exactly zero}. This is very useful in reducing the subset of variables that we use in the model, thereby increasing model interpretability.\newline
-    \textbf{Lasso Regression can give different coefficient values to correlated variables.}
+    which does not include the intercept. When \textbf{$\lambda$ is sufficiently large, Lasso Regression forces some of the variables to be exactly zero}. This is very useful in reducing the subset of variables that we use in the model, thereby increasing model interpretability.\newline
+    \textbf{Lasso Regression can give different coefficient values to correlated variables.}\newline
+    Similar to Ridge Regression, if we have standardized the input variables, the intercept is simply the average of the $y$'s and can be computed in the end after obtaining the other coefficients.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,7 +189,6 @@
 
     In the figure \ref{fig:lasso_contour}, $\hat{\beta}$ corresponds to the least squares estimate of $\beta$ and the contours in red colour show the same value of RSS. The blue coloured regions correspond to the constraints defined above (diamond for lasso and circle for ridge).\newline
     Clearly, circle being a smooth shape, the lowest RSS contour will not usually touch it at one of the axis points. However, for the sharp diamond shape, the least RSS value is likely to be encountered along the axis. The shapes of the constraint regions can be controlled through $\lambda$ and for lasso, more constrained models (small $s$ or higher $\lambda$) will cause more of the coefficients to be zero. The argmuents are very well valid in higher dimensions as well.
-
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Bayesian Interpretation}
@@ -212,6 +216,25 @@
     From the visuals of the priors in figure \ref{fig:lasso_bayes}, double exponential is steeply peaked at zero, which clearly implies that the prior itself assumes some of the coefficients are likely zero. On the other hand, the gaussian priod is flatter and does not necessarily require the coefficients to be zero.
 
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Elastic Net}
+    Both Lasso and Ridge regression offer their own set of advantages. Ridge helps shrink down coefficients and variance, while lasso helps in variable selection. Elastic Net aims to combine both of these together to do both shrinkage and variable selection. The loss function for Elastic Net is
+    \begin{align*}
+        error &= (Y-X\beta)^{T}(Y-X\beta) + \lambda(\alpha\beta^{T}\beta + (1-\alpha)\sum_{j=1}^{p}\mid \beta_{j} \mid)\\
+        \text{or,} \quad &= RSS + \lambda\sum_{i=1}^{p} (\alpha \beta_{j}^{2} + (1-\alpha)\mid \beta_{j} \mid)
+    \end{align*}
+
+    Based on the Bayesian interpretation, one can expect that Elastic Net has the priors distributed in the form $\mid \beta \mid ^{q}, q \in (1,2)$. However, this formulation gives us rounded edges along the axis (as opposed to corners in case of lasso or $q=1$). Elastic Net slightly modifies this to have similar shape to $\mid \beta \mid ^{q}, q \in (1,2)$ but with sharp corners which allows enforcing some coefficients to zero.
+
+
+    \begin{figure}[h]
+        \includegraphics[scale=0.6]{elastic_net}
+        \centering
+        \caption {Contours of $\sum_{p} \mid \beta_{j} \mid^{q}$ in case of (a) Ridge ($q=2$) (b) $q=1.2$ (c) Elastic Net ($\alpha=0.2$) (d) Lasso $q=1$}
+        \label{fig:elastic_net}\ref{fig:elastic_net}
+    \end{figure}
+
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Dimension Reduction Methods}
     The methods seen above achieve reduction in variance by either reducing the number of variables being used for estimation, or reduce the value of coefficients of those variables.\newline
@@ -236,21 +259,22 @@
         \item Find the direction/projection of the data that gives the maximum variance under the constraint $\sum_{j=1}^{p}\phi_{jm}^{2} = 1$ (normalized vector) for obtaining the $m^{th}$ transformed predictor
         \item If the total components found is $< M$, repeat step 1 with the added constraint that the next component has zero correlation with the previous component
     \end{enumerate}
-    This constraint of finding components with zero correlation essentially means that in the multidimensional space, we are finding a set of \textbf{orthogonal vectors}. The order of choosing the new predictors is in decreasing order of the information they contain. Thus, the first predictor will now containt the most information. \newline
+    This constraint of finding components with zero correlation essentially means that in the multidimensional space, we are finding a set of \textbf{orthogonal vectors}. The order of choosing the new predictors is in decreasing order of the information they contain. Thus, the first predictor will now contain the most information. \newline
 
     %%%%%%%%%%%%%%%
     \paragraph{Derivation of PCA}
-    It is a good idea to \textbf{standardize the variables before running PCA}. Not only is it easier to derive the components, but they are also unaffected by the scale of the individual variables (since we know that scaling a variable multiplies the variance by square of the scaler and PCA is all about finding maximum variances !). \newline \newline
+    It is a good idea to \textbf{standardize/scale the variables before running PCA}. Not only is it easier to derive the components, but they are also unaffected by the scale of the individual variables (since we know that scaling a variable multiplies the variance by square of the scaler and PCA is all about finding maximum variances !). If the variables represent same/similar quantities with similar scales, scaling is not mandadtory. However, we usually have data consisting of several quantities measured on different scales and thus scaling comes in handy. Scaling can be done to get the data between $0 to 1$ or by divinding by $\sigma$ to get similar scale.\newline \newline
     After setting the the mean of all predictors to zero and standard deviation to one, the components can be derived by considering the following optimization problem
     \begin{gather*}
         \maximize_{\phi_{11},\ldots,\phi_{p1}} \big\{ \frac{1}{n} \sum_{i=1}^{n} (\sum_{j=1}^{p}\phi_{j1}x_{ij})^{2} \big\} \text{ subject to } \sum_{j=1}^{p} \phi_{j1}^{2} = 1\\
         \text{Or, } \maximize_{\Phi_{1}} \frac{1}{n} Z_{1}^{T}Z_{1} \text{ subject to } \sum_{j=1}^{p} \phi_{j1}^{2} = 1\\
         \text{Where } Z_{1} = X\Phi_{1}\\
-        \text{Define the Lagrangian } L(\Phi_{1}, \lambda) = \frac{1}{n} (\Phi_{1}^{T}X^{T}X\Phi_{1}) - \lambda (\Phi^{T}\Phi - 1)\\
+        \text{Define the Lagrangian } L(\Phi_{1}, \lambda) = \frac{1}{n} (\Phi_{1}^{T}X^{T}X\Phi_{1}) - \lambda (\Phi_{1}^{T}\Phi_{1} - 1)\\
         \frac{\partial L(\Phi_{1}, \lambda)}{\partial \lambda} = 0 \text{, and } \frac{\partial L(\Phi_{1}, \lambda)}{\partial \Phi_{1}} = 0 \\
         \text{Giving, } 2\frac{1}{n}(\Phi_{1}^{T}X^{T}X) - 2\lambda \Phi_{1}^{T} = 0 \text{ and } \Phi_{1}^{T}\Phi_{1} - 1 = 0\\
         \frac{X^{T}X}{n}\Phi_{1} = \lambda \Phi_{1}\\
         \text{Since all } X_{i} \text{ are centered, } \frac{X^{T}X}{n} \text{ is the covariance matrix } \Sigma_{X}\\
+         (=E[(X-E[X])^{T}(X - E[X])] \text{since we want $p\times p$ dimension})\\
         \Sigma_{X} \Phi_{1} = \lambda \Phi_{1} \text{ with } \Phi_{1}^{T}\Phi_{1} = 1\\
     \end{gather*}
     Which is nothing but the \textbf{Eigenvectors of the Covariance Matrix of $X$}. Notice that the maximization is achieved through the eigenvector with the highest eigenvalue. Since $\Sigma_{X}$ is positive semi-definite, all the eigenvalues will be $\geq 0$. \newline
@@ -262,7 +286,7 @@
     \paragraph{Explained Variance}
     The variance explained by the $m^{th}$ component is nothing but the ratio of variance of $Z_{m}$ and total variance of the data. Mathematically this is
     \begin{align*}
-        \text{Explained variance of component } m &= \frac{\frac{1}{n}\sum_{i=1}^{n} (\sum_{j=1}^{p} \phi_{jm} x_{ij})}{\frac{1}{n}\sum_{i=1}{n} \sum_{j=1}{p} x_{ij}^2}\\
+        \text{Explained variance of component } m &= \frac{\frac{1}{n}\sum_{i=1}^{n} (\sum_{j=1}^{p} \phi_{jm} x_{ij})^{2}}{\frac{1}{n}\sum_{i=1}{n} \sum_{j=1}{p} x_{ij}^2}\\
                 &= \frac{\frac{1}{n}Z_{m}^{T}Z_{m}}{tr(\frac{X^{T}X}{n})}\\
                 &= \frac{\Phi_{m}^{T}\frac{X^{T}X}{n}\Phi_{m}}{tr(\Sigma_{X})}\\
     \end{align*}
@@ -296,8 +320,7 @@
     We refer to the problem of training a model a high dimensional problem when $p > n$, or we have more data than number of predictors. Note that it is easy to obtain $R^{2} = 1$ in such a setting which consequently leads to $\hat{\sigma}^{2} \approx 0$. Metrics like $C_{p}$, AIC, BIC become useless.\newline
     Hence, in higher dimensional settings, it is important to obtain model performance on unseen data as there is a good chance of obtaining perfect results on the training set. Metrics associated with the training set can thus prove to be misleading.
 
-    \paragraph{Intuition}
-    for the curse of dimensionality can be easily obtained in the context of KNN.\newline
+    \paragraph{Intuition} for the curse of dimensionality can be easily obtained in the context of KNN.\newline
     Suppose the data is uniformly distributed along any dimension considered. Let the model be built in such a way that when making predictions, it uses $10\%$ of the data along all dimensions. \newline
     In the case of a single dimension, we need $10\%$ of the data. In the case of 10 dimensions, we will need to check $10\% ^{10} = 10^{-8}\%$ of data. Clearly this number grows as we consider more and more dimensions.\newline
     Thus, as the number of dimensions grow, we require substantially more data as the data observable in the neighborhood of the point is extremely small. This illustrates the fact that in higher dimensions, having less data will lead to a poor model.
@@ -306,6 +329,7 @@
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Exercises}
+    \subsection{Questions}
     \begin{enumerate}
         %%%%%Q1
         \item We perform the best subset, forward stepwise and backward stepwise on a single data set and obtain p+1 models containing $0, 1, \ldots, p$ predictors.
@@ -402,8 +426,7 @@
         \end{enumerate}
     \end{enumerate}
 
-    \textbf{Answers}
-    \newline
+    \subsection{Answers}
     \begin{enumerate}
         %%%%%Q1
         \item
