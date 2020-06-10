@@ -2,7 +2,8 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Appendix}
-\subsubsection{Matrix Calculus used in Logistic Regression Derivation}\label{sec:appendix_classification_loss_fn}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrix Calculus used in Logistic Regression Derivation}\label{sec:appendix_classification_loss_fn}
 The equations below present the extended version of the matrix calculus in section \ref{sec:classification_loss_fn}\newline
 
 Note the derivate of $\beta^{T}x$ which is a scalar. $\beta$ and $x$ are $p+1 \times 1$ vectors
@@ -21,7 +22,7 @@ Note the derivate of $\beta^{T}x$ which is a scalar. $\beta$ and $x$ are $p+1 \t
         \vdots\\
         x_{p}
     \end{bmatrix}
-    = x \tag{\theequation}\label{eq:betax_derivative}
+    = x \numberthiseqn\label{eq:betax_derivative}
 \end{gather*}
 
 We solve the single derivate first ($y_{i}$ and $p(x_{i}$ are scalars)
@@ -60,4 +61,14 @@ Hence, the hessian matrix is
     \end{bmatrix}\\
     &= \sum_{i=1}^{n} p(x_{i})(1-p(x_{i})) x_{i}x_{i}^{T}
 \end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comparison of different Classifiers}
+    \begin{figure}[h]
+        \includegraphics[scale=0.7]{method_comparison}
+        \centering
+        \caption {Comparison of Classifiers}
+        \label{fig:classifier_comparison} %\ref{fig:classifier_comparison}
+    \end{figure}
 \end{document}
