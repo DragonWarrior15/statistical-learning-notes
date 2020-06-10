@@ -4,7 +4,7 @@
     \section{Random Forests}
     Random forests overcome the problem of \textbf{decorrelation} in bagging. The trees built using bagging are similar because if there is a strong predictor, we expect it to dominate the splits in each of the trees and give similar trees.\newline
     
-    From equation \ref{eq:var_avg_trees}, with large number of trees $B$, the aim is to reduce $\rho$ to get significant reduction in $\sigma^{2}$. \textbf{Random Forests achieve decorrelation by using only a subset of variables for each split (typically $\sqrt{p}$)}. This subset is chosen randomly at each split to ensure that the trees differ enough in structure to give less correlated predictions. \textbf{The performance improvement through random forests is solely the result of variance reduction} since each individual tree is achieving low bias.\newline
+    From equation \eqref{eq:var_avg_trees}, with large number of trees $B$, the aim is to reduce $\rho$ to get significant reduction in $\sigma^{2}$. \textbf{Random Forests achieve decorrelation by using only a subset of variables for each split (typically $\sqrt{p}$)}. This subset is chosen randomly at each split to ensure that the trees differ enough in structure to give less correlated predictions. \textbf{The performance improvement through random forests is solely the result of variance reduction} since each individual tree is achieving low bias.\newline
 
     Similar to bagging, \textbf{random forests will not overfit if we increase the number of trees $B$}. Hence, the choice can be made based on whether the reduction in test error is sufficient. Although, too many trees may start to make the model too rich, causing the development of correlated trees which increases variance. Thus, the main difference between bagging and random forest is the random choice of variables at split points in random forest. Reducing $m$ will reduce the correlation between the trees. However, too much reduction in $m$ may cause an increase in bias.\newline
 
@@ -42,8 +42,8 @@
     \subsection{Variable Importance}
     The relative variable importance is calculated using the total improvement in split criteria across all the trees
     \begin{align*}
-        I_{l}^{2}(T) &= \sum_{t=1}^{J-1} \hat{i}_{t}^{2}I(node(t) = l) \quad \text{,the sum excludes the root node}\\
-        I_{l}^{2} &= \sum_{b=1}^{B} I_{l}^{2}(b)
+        \mathcal{I}_{l}^{2}(T) &= \sum_{t=1}^{J-1} \hat{i}_{t}^{2}I(node(t) = l) \quad \text{the sum only includes the splits}\\
+        \mathcal{I}_{l}^{2} &= \frac{1}{B}\sum_{b=1}^{B} I_{l}^{2}(T_{b})
     \end{align*}
     where $\hat{i}_{t}^{2}$ is the square of improvement criteria at node $t$ of the $T^{th}$ tree, and $I_{l}^{2}(T)$ is the importance at the $T^{th}$ tree. Since these are relative importance values, usually the variable with maximum importance is assigned a score of 100 and the remaining values of importances are scaled accordingly.\newline
 

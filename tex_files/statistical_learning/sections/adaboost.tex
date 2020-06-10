@@ -1,0 +1,121 @@
+\documentclass[../statistical_learning_notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Adaboost.M1}\label{sec:adaboost_m1}
+    The convention is $N$ is the number of training examples and $M$ is the number of trees.\newline
+    We consider the two class problem for simpler analysis, and denote them by $Y \in \{-1, 1 \}$. The error rate is defined as
+    \begin{align*}
+        \overline{err} = \sum_{i=1}^{N} I(y_{i} \neq G(x_{i}))
+    \end{align*}
+    and if the error rate is near $0.5$, then the classifier is no better than a random guess.\newline
+
+    Boosting builds trees in a sequential manner, and outputs of all the trees are weighted to get the final output from the classifier
+    \begin{align*}
+         y = \sum_{m=1}^{M} \alpha_{m}G_{m}(x)
+    \end{align*}
+    where we build a total of $M$ trees and $G_{m}$ is a weak clasifier.\newline
+
+    At each step, data weights are recalculated. Observations misclassified at the last step receive higher weight and vice versa. To start off, all observations receive the same weight $1/N$.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Basic Algorithm}
+    \begin{enumerate}
+        \item Initialize the weights of all observations as $w_{i} = \cdots = w_{n} = 1/N$
+        \item For $m = 1$ to $M$
+        \begin{enumerate}
+            \item Fit a classifier $G_{m}(x)$ to the training data with weights $w_{i}$
+            \item Compute weighted error
+            \begin{align*}
+                err_{m} = \frac{\sum_{i=1}^{N} w_{i} I(y_{i} \neq G_{m}(x_{i}))}{\sum_{i=1}^{N} w_{i}} \numberthiseqn\label{eq:adaboost_eq_1}
+            \end{align*}
+            \item Compute tree weight
+            \begin{align*}
+                \alpha_{m} = log \bigg( \frac{1 - err_{m}}{err_{m}} \bigg) \numberthiseqn\label{eq:adaboost_eq_3}
+            \end{align*}
+            \item Update the observation weights as
+            \begin{align*}
+                w_{i} \leftarrow w_{i} \cdot exp(\alpha_{m} \cdot I(y_{i} \neq G_{m}(x)), i = 1, \ldots, n  \numberthiseqn\label{eq:adaboost_eq_4}
+            \end{align*}
+        \end{enumerate}
+        \item Output the final classifier output $\sum_{m=1}^{M} \alpha_{m}G_{m}(x)$
+    \end{enumerate}
+
+    Note that the algorithm here returns discrete classes and is called \emph{Discrete Adaboost}.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Forward Stagewise Additive Modelling}
+    The boosting algorithm is one solution to a more general set of problems
+    \begin{align*}
+        \minimize_{\beta_{1}, \ldots, \beta_{m}, \gamma_{1}, \ldots, \gamma_{m}} \sum_{i=1}^{N} L \bigg( y_{i}, \sum_{m=1}^{M} \beta_{m} b(x_{i}; \gamma_{m}) \bigg)
+    \end{align*}
+    where $L(y, f(x))$ is a loss function (log likelihood or squared error) averaged over the data and $b(x; \gamma_{m})$ is a basis function that maps the input vector to a scalar. $\gamma_{m}$ is a set of parameters, which can be parameters of a decision tree like depth, number of nodes and samples in a node.\newline
+
+    The above loss function is difficult to directly minimize for a set of basis functions. Instead, the simpler problem to solve is
+    \begin{align*}
+        \minimize_{\beta, \gamma} L \bigg( y, \beta \cdot b(x; \gamma) \bigg)
+    \end{align*}
+    The general algorith then is
+    \begin{enumerate}
+        \item Initialize $f_{0}(x) = 0$
+        \item for $m = 1$ to $M$
+        \begin{enumerate}
+            \item Compute the parameters
+            \begin{align*}
+                \beta_{m}, \gamma_{m} = \argmin_{\beta, \gamma} \sum_{i=1}^{N} L(y_{i}, f_{m-1}(x_{i}) + \beta b(x_{i}; \gamma))
+            \end{align*}
+            \item Update $f_{m}(x) = f_{m-1}(x) + \beta_{m}b(x;\gamma_{m})$
+        \end{enumerate}
+    \end{enumerate}
+    
+    In the case of regression, the above formulation with least squares loss becomes
+    \begin{align*}
+        L = \sum_{i=1}^{N} (y_{i} - f_{m-1}(x_{i}) + \beta b(x_{i}; \gamma))^{2}
+        = \sum_{i=1}^{N} (r_{i,m} + \beta b(x_{i}; \gamma))^{2}
+    \end{align*}
+    which means we are fitting the new basis function on the residuals of the previous formulation. Though this loss is good for regression, we need different loss function for a classification problem.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Exponential Loss}
+    Using the class indicators as $Y \in \{-1, 1 \}$, we show that AdaBoost.M1 uses exponential loss to build the stagewise additive model
+    \begin{align*}
+        L(y, f(x)) &= exp(-y \cdot f(x))\\
+        \beta_{m}, G_{m} &= \argmin_{\beta, G} \sum_{i=1}^{N} exp(-y_{i}(f_{m-1}(x_{i}) + \beta G(x_{i})))\\
+        &= \argmin_{\beta, G} \sum_{i=1}^{N} w_{i}^{(m)} exp(-\beta y_{i} G(x_{i}))\\
+        \text{with} \quad w_{i}^{(m)} &= exp(-y_{i} f_{m-1}(x_{i})) \quad \text{independent of } \beta \text{ and } G(x) \numberthiseqn\label{eq:adaboost_eq_2}
+    \end{align*}
+    The weights keep changing with each iteration. We can rewrite the last equation as
+
+    \begin{align*}
+        \beta_{m}, G_{m} &= \argmin_{\beta, G} \sum_{i=1}^{N} w_{i}^{(m)} exp(-\beta y_{i} G(x_{i}))\\
+        &= \argmin_{\beta, G} e^{-\beta} \cdot \sum_{y_{i} = G(x_{i})} w_{i}^{(m)} + e^{\beta}  \cdot\sum_{y_{i} \neq G(x_{i})} w_{i}^{(m)}\\
+        &= \argmin_{\beta, G} e^{-\beta} \sum_{i=1}^{N} w_{i}^{(m)} (1 - I(y_{i} \neq G(x_{i}))) + e^{\beta} \sum_{i=1}^{N} w_{i}^{(m)} I(y_{i} \neq G(x_{i}))\\
+        &= \argmin_{\beta, G} (e^{\beta} - e^{-\beta}) \sum_{i=1}^{N} w_{i}^{(m)} I(y_{i} \neq G(x_{i})) + e^{-\beta} \sum_{i=1}^{N} w_{i}^{(m)}
+    \end{align*}
+    \begin{align*}
+        \text{Additionally, } \quad G_{m}(x) &= \argmin_{G(x)} \sum_{i=1}^{N} w_{i}^{(m)} I(y_{i} \neq G(x_{i}))\\
+        \text{Substituiting,}\quad \beta_{m} &= \argmin_{\beta} (e^{\beta} - e^{-\beta}) \sum_{i=1}^{N} G_{m}(x_{i}) + e^{-\beta} \sum_{i=1}^{N} w_{i}^{(m)}\\
+        \text{Differentiating,} \quad \beta_{m} &= \frac{1}{2}\log \bigg( \frac{\sum_{i=1}^{N}w_{i}}{\sum_{i=1}^{N}w_{i}I(y_{i} \neq G_{m}(x_{i}))} - 1 \bigg)\\
+        &= \frac{1}{2} \log \bigg( \frac{1 - err_{m}}{err_{m}} \bigg) \quad \text{from \eqref{eq:adaboost_eq_1}}
+    \end{align*}
+    Hence, the recursive $f(x)$ and $w(x)$ update becomes
+    \begin{align*}
+        f_{m}(x) &= f_{m-1}(x) + \beta_{m} G_{m}(x)\\
+        w_{i}^{(m+1)} &= exp(-y_{i} f_{m}(x_{i})) =  exp(-y_{i} (f_{m-1}(x) + \beta_{m} G_{m}(x_{i})))\\
+        &= w_{i} exp(-y_{i}\beta_{m}G_{m}(x_{i})) \tag*{from \eqref{eq:adaboost_eq_2}}\\
+        \text{Also, } \quad \alpha_{m} &= 2\beta_{m} \tag*{from \eqref{eq:adaboost_eq_3} and \eqref{eq:adaboost_eq_1}}\\
+        \text{and} \quad I(y_{i} \neq G(x_{i})) &= \frac{1 - y_{i}G(x_{i})}{2}\\
+        w_{i}^{(m+1)} &= w_{i} e^{-\beta_{m}} e^{\alpha I(y_{i} \neq G_{m}(x_{i}))}
+    \end{align*}
+
+    which is similar to the form obtained in equation \eqref{eq:adaboost_eq_4} with an added constant $exp(-\beta_{m})$ same across all the data points and hence makes no difference. The probability of prediction of the classes then becomes
+    \begin{gather*}
+        P(Y=1|X=x) = \frac{exp(f(x))}{exp(-f(x)) + exp(f(x))} = \frac{1}{1+exp(-2f(x))}\\
+        \text{and} \quad sign(f(x)) = sign \bigg(\frac{1}{2}\log \bigg(\frac{P(Y=1|X=x)}{P(Y=-1|X=x)} \bigg)\bigg)
+    \end{gather*}
+    meaning the output that is the sign of the function is sign of log likelihood and thus justified.
+
+
+
+
+\end{document}

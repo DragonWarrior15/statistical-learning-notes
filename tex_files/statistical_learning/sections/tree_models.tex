@@ -116,7 +116,7 @@
         Var(\frac{1}{B} \sum_{b=1}^{B} \hat{f}_{b}(x)) &= E[\big(\frac{1}{B} \sum_{b=1}^{B} \hat{f}_{b}(x)\big)^{2}] - E[\big(\frac{1}{B} \sum_{b=1}^{B} \hat{f}_{b}(x)\big)]^{2}\\
         &= \frac{1}{B^{2}} \big(E[\sum_{b=1}^{B} \hat{f}_{b}(x)^{2}] + \sum_{i<j}E[\hat{f}_{i}(x)\hat{f}_{j}(x)] \big) - \mu^{2}\\
         &= \frac{1}{B^{2}}\big( B\mu^{2} + B(B-1)(\sigma^{2} + \mu^{2}) \big) - \mu^{2}\\
-        &= \rho \sigma^{2} + \frac{1-\rho}{B} \sigma^{2} \tag{\theequation}\label{eq:var_avg_trees}
+        &= \rho \sigma^{2} + \frac{1-\rho}{B} \sigma^{2} \numberthiseqn\label{eq:var_avg_trees}
     \end{align*}
     When the number of trees is large enough, $\rho$ will decide how much the variance shrinks.\newline
 
@@ -175,4 +175,12 @@
              \hat{f}(x) = \sum_{b=1}^{B} \lambda \hat{f}^{b}(x)
          \end{align*}
      \end{enumerate}
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{adaboost}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{boosting_trees}
+
 \end{document}

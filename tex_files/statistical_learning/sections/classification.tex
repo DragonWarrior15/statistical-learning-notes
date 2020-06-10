@@ -57,7 +57,7 @@
         &= (X^{T}WX)^{-1} X^{T}W(X\beta^{old} + W^{-1}(y - \mathbf{p}))\\
         &= (X^{T}WX)^{-1} X^{T}Wz
     \end{align*}
-    where $z$ is called the adjusted response (target in regression). The equation is same as equation \ref{eq:linear_reg_solution} with an added weight term of $W$. Hence, this equation solves the weighted least squares problem
+    where $z$ is called the adjusted response (target in regression). The equation is same as equation \eqref{eq:linear_reg_solution} with an added weight term of $W$. Hence, this equation solves the weighted least squares problem
     \begin{align*}
         \beta^{new} = \argmin_{\beta} (z - X\beta)^{T}W(z - X\beta)
     \end{align*}

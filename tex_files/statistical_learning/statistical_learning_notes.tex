@@ -24,6 +24,9 @@
     bookmarksnumbered=true
 }
 
+% \setcounter{tocdepth}{4}
+\usepackage[level=subsection]{bookmark}
+
 % to insert images
 \usepackage{graphicx}
 \graphicspath{ {./images/} {../images/}}
@@ -34,6 +37,10 @@
 \DeclareMathOperator*{\maximize}{maximize}
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
+
+% \newcommand{\summation}[3]{\sum_{#1 = #2}^{#3}}
+% \renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
 
 \title{Statistical Learning Notes}
 \begin{document}
