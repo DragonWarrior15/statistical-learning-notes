@@ -1,7 +1,7 @@
-\documentclass[../main.tex]{subfiles}
+\documentclass[../time_series_notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Characteristics of Time Series}
+    \chapter{Characteristics of Time Series}
     The study of time series is devoted to application of statistical techniques to data collected over multiple time steps. Traditional techniques are not useful here due to strong correlation between successive observations.\newline
     Two separate but not necessarily mutually exclusive approaches exist to study time series
     \begin{enumerate}
@@ -16,9 +16,9 @@
     The sampling rate can serve an important purpose when representing time series data. An insufficient sampling rate can completely change the appearance of the data. For instance, when recording the motion of a wheel, it can appear moving backwards at a low enough recording rate. This distortion is called \textbf{aliasing}.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Time Series Formulations}
+    \section{Time Series Formulations}
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{White Noise}
+    \subsection{White Noise}
     The simplest time series is just a series of uncorrelated variables. It has three flavours
     \begin{enumerate}
         \item white noise $w_{t} \sim wn(0, \sigma_{w}^{2})$
@@ -28,7 +28,7 @@
     Just the noise is particularly difficult to model and we introduce some kind of correlation and smoothness into the model.
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Moving Average and Filtering}
+    \subsection{Moving Average and Filtering}
     Any time series can be smoothed by considering moving averages. A very simple example can be taking the average of three consecutive observations
     \begin{align*}
         v_{t} = \frac{1}{3}(x_{t-1} + x_{t} + x_{t+1})
@@ -38,7 +38,7 @@
     As is evident, if we take more number of such terms, the slower oscillations become more prominent in comparison to the faster oscillations making moving averages work as a kind of \textbf{filter}.
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Autoregression}
+    \subsection{Autoregression}
     This involves using a regression like function to predict the value of the time series at the current timestep. A simple example would be
     \begin{align*}
         x_{t} = x_{t-1} + 0.9x_{t-2} + w_{t}
@@ -46,7 +46,7 @@
     where $w_{t}$ is noise. Here we are using the observations from the last two timesteps to make our predictions. This idea can be extended to include more terms and even difference of terms as part of the equation. We make an assumption for some initial values to calculate $x_{1}$ and $x_{2}$.
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Random Walk with Drift}
+    \subsection{Random Walk with Drift}
     The prediction function can be defined as
     \begin{align*}
         x_{t} &= \delta + x_{t-1} + w_{t}\\
@@ -55,7 +55,7 @@
     where $\delta$ is the drift. Setting $\delta = 0$ is same as a random walk.
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Signal in Noise}
+    \subsection{Signal in Noise}
     Sometimes, the signal can be seen as having a periodic component with some noise
     \begin{align*}
         x_{t} = A\cos (2\pi \omega t + \phi) + w_{t}
@@ -79,7 +79,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Mean Function} \label{mean_fun}
+    \subsection{Mean Function} \label{mean_fun}
     The mean function is similar to the usual definition of the expected value
     \begin{align*}
         \mu_{xt} = E[x_{t}] =  \int_{-\inf}^{\inf} x f_{t}(x) dx
@@ -101,7 +101,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Autocovariance Function}
+    \subsection{Autocovariance Function}
     For any two time points $s$ and $t$,
     \begin{align*}
         \gamma_{x}(s, t) = E[(x_{s} - \mu_{s})(x_{t} - \mu_{t})]
@@ -112,7 +112,7 @@
 
     Consider the example of a white noise series. We know that any nearby points are not correlated with one another. The same will hold with the autocovariance values as well. It will be zero when $s \neq t$ and $\sigma_{w}^{2}$ when $s = t$.\newline
 
-    \subsubsection{Covariance of Linear Combinations}
+    \subsection{Covariance of Linear Combinations}
     For linear combinations of random variables $X_{i}$ and $Y_{j}$, the following holds
     \begin{align*}
         U &= \sum_{i=1}^{n} a_{i} X_{i}\\
@@ -143,7 +143,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Autocorrelation Function (ACF)}
+    \subsection{Autocorrelation Function (ACF)}
     This measure tries to bring the auto correlation value in the range of $[-1,1]$
     \begin{align*}
         \rho(s,t) = \frac{\gamma_{x}(s,t)}{\sqrt{\gamma_{x}(s,s) \gamma_{x}(t,t)}}
@@ -151,7 +151,7 @@
     With the \emph{Cauchy Schwarz Inequality}, the numerator is always less than or equal to the denominator, bringing the value in the range $[-1,1]$. This value also gives a rough measure of the ability to forecast the time series (correlation 1 implies perfect relationship and thus we can forecast with zero error).
 
     %%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Cross Covariance and Cross Correlation Function (CCF)}
+    \subsection{Cross Covariance and Cross Correlation Function (CCF)}
     The above defined formulae applied to two different points in the same time series. The definitions extend to different time series as well
     \begin{align*}
         \gamma_{xy}(s,t) = E[(x_{s} - \mu_{xs})(x_{t} - \mu_{yt})]\\
@@ -187,7 +187,7 @@
     \end{enumerate}
     Thus, we remove any claims for same probability distributions for values of $k > 2$.\newline
 
-    \subsubsection{Autocovariance and Autocorrelation Function}
+    \subsection{Autocovariance and Autocorrelation Function}
     The mean of a stationary series is constant. Let it be denoted by $\mu$.\newline
     The autocovariance is only dependent on the difference between the time steps
     \begin{align*}
@@ -202,7 +202,7 @@
 
     If we check at the stationarity of the moving average of white noise, we quickly notice that the mean is constant (from \ref{mean_fun}) and the autocovariance is only dependent on the difference of the two time steps (\hyperlink{ma_noise_cov}{from}). Thus the series is stationary (weakly).
 
-    \subsubsection{Joint Stationarity}
+    \subsection{Joint Stationarity}
     \textbf{Two stationary time series are said to be jointly stationary if the autocovariance of the two series is only dependent on the lag $h$}.\newline
     \begin{align*}
         \gamma_{xy}(h) = Cov(x_{t+h}, y_{t}) = E[(x_{t+h} - \mu_{x})(y_{t} - \mu_{y})]
