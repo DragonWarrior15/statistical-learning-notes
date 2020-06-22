@@ -30,9 +30,11 @@
     \end{align*}
     where $\bar{y}_{R_{1}}$ and $\bar{y}_{R_{2}}$ are the response mean in the region $R_{1}$ and $R_{2}$ respectively.\newline
 
-    The same algorithm is run recursively. The only change that is made that after the first split, we now wolr independently on two separate regions. For each region, we will not be able to consider all the possible values of $s$ since the region has been restricted. Otherwise, the RSS term will remain the same.\newline
+    The same algorithm is run recursively. The only change made after the first split is that we now work independently on two separate regions. For each region, we will not be able to consider all the possible values of $s$ since the region has been restricted. Otherwise, the RSS term will remain the same.\newline
 
-    The process is stopped when a pre-determined stopping criteria is reached. For making a prediction, we will first determine the region in which the test observation falls and then make the prediction based on the mean of the training samples in this region.
+    The process is stopped when a pre-determined stopping criteria is reached, such as minimum node size or depth (typically the tree is grown to a large depth and then pruned). For making a prediction, we will first determine the region in which the test observation falls and then make the prediction based on the mean of the training samples in this region (which has already been calculated while building the tree).\newline
+
+    At the first split, $O(pNlog(N))$ cost is needed to sort all the predictors. Then at each split, another $O(pNlog(N))$ cost must be spent to find the best predictor among all the predictors. Further, this cost will be much higher in case we use multiple splits at each level instead of binary splits. The multiple splits can anyways be captured in multiple levels of a binary tree. Hence we stick with binary trees due to easy and efficieny of implementation and computations. 
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,17 +51,19 @@
     \end{align*}
     where $\vert T \vert$ is the number of terminal nodes in the tree. The formulation is similar to lasso and here we are controlling the complexity of the tree via a parameter $\alpha$. Larger the $\alpha$, the less number of terminal nodes there would be in the tree.\newline
 
+    The same formula is valid for any of the internal nodes/subtrees also. Hence, for a given $\alpha$, we start pruning the tree starting with the terminal node that has the lowest reduction in the error metric (also called weakest link pruning). For a given $\alpha$ we obtain a sequence of subtrees and select the one with the minimum overall cost.\newline
+
     The algorithm can then be summarized as follows
     \begin{enumerate}
         \item Use \emph{binary recursive splitting} to obtain a large tree on the data set. Stop only when at a terminal node, the number of observations is less than a minimum.
-        \item Apply \emph{cost complexity pruning} in order to obtain a small tree $T$ as a function of the cost parameter $\alpha$ (fix a set of $\alpha$ and get a set of subtrees).
+        \item Apply \emph{cost complexity pruning} in order to obtain a sequence small trees $T$ and choose the best $T_{\alpha}$ with the minimum cost associated with the parameter $\alpha$.
         \item Use K-fold cross validation to choose $\alpha$. For each of the folds $k = 1, 2, \ldots, K$
         \begin{enumerate}
              \item Repeat steps 1 and 2 excluding the data from the $k$th fold to obtain a family of subtrees as a function of $\alpha$.
              \item Evaluate the mean predicted validation error as a function of $\alpha$.\newline
              Choose the value of $\alpha$ that minimizes the average error across all the folds.
          \end{enumerate}
-        \item Select the substree from step 2 that corresponds to the chosen value of $\alpha$.
+        \item Select the substree $T_{\alpha}$ from step 2 (trained on the whole dataset) that corresponds to the chosen value of $\alpha$.
     \end{enumerate}
     
 
@@ -70,29 +74,42 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{The Algorithm}
-    The algorithm is almost similar to the regression trees but instead of RSS, we need to use something that is related to class proportions and frequencies. A very straightforward metric is \textbf{classification error rate}
-    \begin{align*}
-        E = 1 - \max_{k}\hat{p}_{mk}
-    \end{align*}
-    where $\hat{p}_{mk}$ is the proportion of the $k$th class in the $m$th region. However, in practice, this metric is not sufficient to grow the trees.
+    The algorithm is almost similar to the regression trees but instead of RSS, we need to use something that is related to class proportions and frequencies. Different types of metrics are available
 
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Gini Index}
-    Gini Index is defined as
-    \begin{align*}
-        G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk})
-    \end{align*}
-    for a given region. Clearly, G is close to zero when the node is pure, i.e. most of the observations come from the same class. Gini index is also know as a measure of \textbf{purity} since it's low value implies predominance of a single class in the node.
-    
+    \begin{itemize}
+        \item \textbf{classification error rate} $= 1 - \max_{k}\hat{p}_{mk}$ where $\hat{p}_{mk}$ is the proportion of the $k$th class in the $m$th region. However, in practice, this metric is not sufficient to grow the trees.
+        \item \textbf{Gini Index}, $G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk})$ for a given region. Clearly, G is close to zero when the node is pure, i.e. most of the observations come from the same class. Gini index is also know as a measure of \textbf{purity} since it's low value implies predominance of a single class in the node.
+        \item \textbf{Entropy} $D = \sum_{k=1}^{K} -\hat{p}_{mk} \log(\hat{p}_{mk})$ for a region. Entropy takes value close to zero if the class probabilities are close to $0$ or $1$. Gini index and Entropy are somewhat similar numerically.
+    \end{itemize}
+    In addition to these impurity measures, we also need to weight the two left and right nodes based on the number of observations $N_{L}$ and $N_{R}$, since purifying a large node is preferable than ultra purifying a small node.\newline
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Entropy}
-    Entropy is defined as
-    \begin{align*}
-        D = \sum_{k=1}^{K} -\hat{p}_{mk} \log(\hat{p}_{mk})
-    \end{align*}
-    for a region. Entropy takes value close to zero if the class probabilities are close to $0$ or $1$. Gini index and Entropy are somewhat similar numerically.
+    Gini Index and entropy are preferable when going a tree because they are differentiable and thus friendly to numerical optimization. Also, entropy is slightly computationally expensive to compute due to the logarithm. Hence, most packages will prefer gini index over entropy.\newline
+    For pruning a tree, all three work and misclassification rate is frequently used.
+
+    %%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{Categorical Predictors}
+    The classes of a categorical predictor can be ordered based on the mean of the response (in case of classification trees, the mean of response is simply the fraction of 1s in that class). To use in a tree, we simply use this transformed version similar to continuous variable. The best split point is chosen and all classes with higher response mean fall on one side and the remaining on the other. This simple trick helps avoid checking all possible spilts with differing number of classes on each side (Proof can be found in Breiman et al. (1984) and Ripley (1996)). Larger number of classes help find better split point but also have a higher risk of overfit since examples in a particular class might become less.
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \subsubsection*{High Variance}
+    High variance is inherent to trees due to the nature of their construction. Slight changes in the data can cause an entirely different tree to be built. Errors at any level are propagated to all the levels below. This can cause instability in making interpretation and prediction. Bagging is an approach that helps alleviate the problem of variance at a slight cost of interpretability.
+
+
+    %%%%%%%%%%%%%%%%%%%%
+    \section{Patient Rule Induction Method (PRIM)}
+    The CART method tries to partition the whole input space into boxes and the aim is to make those boxes as different as possible. PRIM on the other hand, tries to find boxes which have higher response mean (or trying to find a \emph{bump} in the input space). This is achieved as follows
+
+    \begin{enumerate}
+        \item A big bounding box is created containing all the data in the training set.
+        \item A small fraction $\alpha$ (0.05 or 0.1) of observations are removed from one face (the higher or lower end of one of the predictors) such that the response of the mean is higher in the remaining box (\emph{peeling}).
+        \item The process is repeated under the box contains a minium number of observations.
+        \item Since the approach was greedy, it is possible that some optimal box was left out. Hence, we expand the box by expanding one face at a time as long as the box response mean is increasing (\emph{pasting}).
+        \item Among this sequence of boxes, the best one is chosen via cross validation.
+        \item All the data in this chosen box is removed and the process is continued with the reamining observations.
+    \end{enumerate}
+
+    This approach works well with regression and binary classification (0-1 encoding of classes). The advantage of PRIM over CART is it's patience and slow removal of data. CART splits data too quickly using at most $log_{2}(N)$ splits, while PRIM will use roughly $-log(N)/log(1-\alpha)$ steps (this can be seen by considering the approximate steps as $N(1-\alpha)^{steps} = 1$ and solving by taking the log). The rules for any box are a set of double sided inequalities, and may make the approach less interpretable than CART. 
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -74,13 +74,55 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Deviance}
+    LL denotes the log likelihood.\newline
+    Deviance is a goodness of fit statistic and commonly employed for generalized linear models. It is a replacement of RSS in the context of maximum likelihood. Deviance is a bivariate function and satisfies $d(y,y) = 0$ and $d(y, u) > 0 \; \forall \; y \neq u$. For the total deviance $D(y, \hat{y})$ over a set of data with observed response $y$ and predicted response $y$, we sum up the individual deviances, $D(y, \hat{y}) = \sum_{i} d(y_{i}, \hat{y}_{i})$.\newline
+
+    The total deviance can be written in the log likelihood form
+    \begin{align*}
+        D(y, \hat{y}) &= -2(LL(\text{fitted model}) - LL(\text{saturated model})))\\
+                      &= -2*LL(\text{fitted model}) \quad \text{for logistic regression}
+    \end{align*}
+
+    where $\theta_{0}$ are the parameters of the fitted model, and $\theta_{s}$ are the parameters of the saturated model. A saturated model is the one where we have different parameters for each of the observations so that the model is fit exactly. $p$ is the joint probability.\newline
+
+    \paragraph{Nested Models} is an important concept required to understand saturated models. A model is said to be nested within another model if the first model can be obtained by putting constraints on the parameters of the second model. For instance, a gaussian with $0$ mean is nested within any gaussian of single variable. Similarly, the regression $\beta_{0} + \beta_{1}x$ is nested within $\beta_{0} + \beta_{1}x + \beta_{2}x^{2}$.\newline
+
+    Thus, the saturated model is an higher dimensional/unconstrainted version of the fitted model, and they belong to the same family of models. If we further constraint the fitted model to have a single parameter, we will call it the null model.\newline
+
+    \paragraph{Null and Residual Deviance} are often discussed in the case of logistic regression and will be reported by a statistical software.
+    \begin{align*}
+         \text{Null Deviance} \quad &= \quad -2(LL(\text{fitted model}) - LL(\text{null model}))\\
+         \text{Residual Deviance} \quad &= \quad -2(LL(\text{fitted model}) - LL(\text{saturated model}))
+    \end{align*}
+
+    The coefficient of 2 allows both the deviances to have a $\chi^{2}$ distribution. Thus, the deviances can be used to calculate the \emph{p-values} and decide whether the deviances are strongly evidenced by the data or not.\newline
+
+    For logistic regression, the null model is an intercept only model
+    \begin{gather*}
+        \text{Null Model}\; \rightarrow P(Y=1|X) = \frac{1}{1 + exp(-\beta_{0})}\\
+        \beta_{0} = log \big( \frac{\text{count of 1s}}{\text{count of 0s}} \big), \quad p = \frac{1}{1 + exp(-\beta_{0})} = \text{fraction of 1s}
+    \end{gather*}
+    where the $\beta_{0}$ can be intuitively obtained by setting the probabilitiy equal to fractions of 1s, or maximising the log likelihood.\newline
+
+    The saturated model on the other hand has individual parameters for each observations and makes the perfect predictions. For this model, the likelihood is simply 1 and the LL becomes 0.
+
+    \paragraph{$\mathbf{R^{2}}$} is also defined in the context of LL as
+    \begin{align*}
+        R^{2} = \frac{LL(\text{fitted model}) - LL(\text{null model})}{LL(\text{saturated model}) - LL(\text{null model})}
+    \end{align*}
+
+    the numerator measures how better the model is over null model, and the denominator helps scale the $R^{2}$ between 0 (null model) and 1 (perfect model). Although very similar to $R^{2}$ from linear regression, this is defined slightly differently.
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Multiple Classes}
     Note that the log of odds formula above is the ratio of probability of $Y=1$ to probability of $Y=0$. Here, $Y=0$ can be seen as a reference class. Similarly, in the case of $K$ classes, we will have $K-1$ classifiers, each classifying with respect to the last class (since the decision boundary has to be between two classes) and will take the form
     \begin{align*}
-        log \big( \frac{P(Y=1|X=x)}{P(Y=K|X=x)} \big) &= \beta_{1,0} + \beta_{1}^{T}x\\
-        log \big( \frac{P(Y=2|X=x)}{P(Y=K|X=x)} \big) &= \beta_{2,0} + \beta_{2}^{T}x\\
+        log \bigg( \frac{P(Y=1|X=x)}{P(Y=K|X=x)} \bigg) &= \beta_{1,0} + \beta_{1}^{T}x\\
+        log \bigg( \frac{P(Y=2|X=x)}{P(Y=K|X=x)} \bigg) &= \beta_{2,0} + \beta_{2}^{T}x\\
         \vdots\\
-        log \big( \frac{P(Y=K-1|X=x)}{P(Y=K|X=x)} \big) &= \beta_{K-1,0} + \beta_{K-1}^{T}x\\
+        log \bigg( \frac{P(Y=K-1|X=x)}{P(Y=K|X=x)} \bigg) &= \beta_{K-1,0} + \beta_{K-1}^{T}x\\
         \text{and} \quad \sum_{k=1}^{K} P(Y=k|X=x) &= 1\\
         \text{Giving} \quad P(Y=k|X=x) &= \frac{exp(\beta_{k,0} + \beta_{k}^{T}x)}{1 + \sum_{j=1}^{K-1} exp(\beta_{j,0} + \beta_{j}^{T}x)} \quad \text{for $j<K$}\\
         P(Y=K|X=x) &= \frac{1}{1 + \sum_{j=1}^{K-1} exp(\beta_{j,0} + \beta_{j}^{T}x)}\\

@@ -4,7 +4,45 @@
     \chapter{Clustering}
     Clustering is an unsupervised learning techniques that aims to finds clusters or groups in the data such that observations in the same group are similar to each other while observations in different groups are different from each other.\newline
 
-    Clustering is useful for an exploratory analysis of the data and also useful in problems like customer segmentation.
+    Clustering is useful for an exploratory analysis of the data and also useful in problems like customer segmentation. It comes in three flavours
+    \begin{itemize}
+        \item \textbf{Combinatorial Algorithms} : such algorithms work using the provided data, without assuming any underlying probability distribution.
+        \item \textbf{Mixture Modelling} : such algorithms assume the data to be independently and identically distributed from a probability distribution whose parameters are unknown. The same distribution with different parameters is assumed for each of the clusters, and the intent is to find the parameters through the data, usually using Maximum Likelihood.
+        \item \textbf{Mode Seeking Algorithms} : these algorithms aim to find modal points in the data where the density of the points is highest. Observations close to the mode define the cluster. PRIM is a fine example of such bump hunting algorithm.
+    \end{itemize}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Distances and Dissimilarity Measures}
+    Clustering aims to group observations similar observations in the same group, while dissimilar observations fall in different groups. To achieve this mathematically, we need to define a way to measure dissimilarity between observations. If we have $N$ observations with $p$ variables, then
+    \begin{align*}
+        D(x_{a}, x_{b}) = \sum_{j=1}^{p}d_{j}(x_{aj}, x_{bj})
+    \end{align*}
+
+    where $D$ is a symmetric similarity matrix of size $N \times N$. To get this for any pairs of values, we sum up the similarity measure along all the variables. Most algorithms need this matrix to be symmetric and if that is not the case, replace $D$ with $(D + D^{T})/2$ will help.\newline
+
+    The most common choice for $d_{j}$ is squared distance, but it can also be replaced with the absolute difference. The desirable properties of any such measure is that the values should be positive and monotonically increasing.
+
+    \paragraph{Quantitative Variables} are the simplest to deal with. We can define a real valued monotonically increasing function in several possible ways
+    \begin{align*}
+        d_{j}(x_{aj}, x_{bj}) &= \lvert x_{aj} - x_{bj} \rvert\\
+        d_{j}(x_{aj}, x_{bj}) &= (x_{aj} - x_{bj})^{2}\\
+        D(x_{a}, x_{b}) &= \frac{\sum_{j=1}^{p} (x_{aj} - \overline{x}_{a})(x_{bj} - \overline{x}_{b})}{\sqrt{\sum_{j=1}^{p} (x_{aj} - \overline{x}_{a})^{2}} \sqrt{\sum_{j=1}^{p} (x_{bj} - \overline{x}_{b})^{2}}}, \quad \overline{x}_{a} = \frac{1}{p}\sum_{j=1}^{p} x_{aj}
+    \end{align*}
+
+    If we have standardized the observations, the last equation will simply be similar to squared distance, $\sum_{j=1}^{p} (x_{aj}-x_{bj})^{2} \propto 2(1 - \rho(x_{a}, x_{b}))$. Hence clustering based on correlation will be similar to the one based on squared distances.\newline
+    Correlation based measure can be useful in retail behaviour when we want to check profiles based on the whether similar products are purchased rather than how many of them are purchased.
+
+    \paragraph{Ordinal Variables} already have a pre defined ranking order. If we number such variable with $M$ levels from $1$ to $M$, the levels are replaced with
+    \begin{align*}
+        \frac{i - 1/2}{M}, \quad i = 1, 2, \ldots, M
+    \end{align*}
+    and treat them simply as a numeric variable.
+
+    \paragraph{Categorical Variables} are handled in a slightly different manner. If the variable has $M$ levels, we create an $M \times M$ matrix $L$ such that $L{ij}$ is the required measure of dissimilarity between $i^{th}$ and $j^{th}$ variables. A common choice is to have all entries of $L$ equal 1 except the diagonals which are filled with 0. This gives equal weightage to all pairings.\newline
+
+    For combining the different distance measures of the variables, we can use \\$D(x_{a}, x_{b}) = \sum_{j=1}^{p} w_{j} d_{j}(x_{aj}, x_{bj})$ with $\sum_{j=1}^{p} w_{j} = 1$ to get a weighted convex combination of the measures. Note that if the different variables are on different scales (different variances), the individual contributions will not be $w_{j}$ but rather $w_{j} Var(X_{j})$. Thus, setting $w_{j} \propto 1/Var(X_{j})$ will enable each variable getting the same weight.\newline
+
+    In case of missing values, it is often the case that those observations are simply ignored. For categorical variables, we usually treat them as a separate category. The imputation strategy for numerical variables will vary among problems and depend on the context.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{K-means Clustering}
@@ -26,7 +64,7 @@
     \subsection{Algorithm}
     We repeat the following until some predefined convergence criteria
     \begin{enumerate}
-        \item Random assign a cluster in $1, \ldots, K$ to each observation in the data.
+        \item Randomly assign a cluster in $1, \ldots, K$ to each observation in the data.
         \item Repeat the following till convergence
         \begin{enumerate}
             \item Calculate the centroid for each cluster where centroid is a $p$ dimensional vector whose each component is the average of the components of all the points that fall in the considered cluster.
@@ -59,7 +97,23 @@
     \textbf{The optimum found by K-means clustering is local which makes it important to run the algorithm with different random initializations to get the minima}.\newline
 
     \textbf{Elbow Curve} is a plot between the total intra cluster distance vs the number of cluster $K$ and is a visual method to obtain the optimum number of clusters to use. The elbow shape refers to the fact that if there is indeed clusters present in the data, the plot will see a sharp decline in the intra cluster distance for some $k$.\newline
-    Note that the curve is going to always keep decreasing as in the limiting case when we have $n$ points and $n$ clusters, the total distance will be zero. Hence, the number of clusters must be carefully chosen.
+    Note that the curve is going to always keep decreasing as in the limiting case when we have $n$ points and $n$ clusters, the total distance will be zero. Hence, the number of clusters must be carefully chosen.\newline
+
+    K-Means has a few problems when working with a dataset. Firstly, it requires all data to be numeric, and the distance metric used is the squared distance. Hence, the algorithm lacks robustness and is sensitive to outliers. Hence, it is worthwhile to explore other clustering strategies and dissimilarity measures that better suit the data
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{K-Mediods Clustering}
+    This method is very similar to K-Means with the difference that the cluster centres are restricted to be one of the data points in the training set. Thus, the algorithm becomes
+    \begin{enumerate}
+        \item Randomly select $K$ points as the cluster centres, and assign every observation in the training set to the cluster with the closest centre.
+        \item For each cluster, find the point in that cluster that has the minimum total cluster distance to all the other points in the cluster.
+        \item Repeat steps 1 and 2 till convergence.
+    \end{enumerate}
+
+    The restriction of cluster centre being an oberved data point increases the computational cost because now we do not have a direct solution of the next cluster centre, but must rather iterate through all the points in the cluster.\newline
+
+    This restriction gives rise to the property that while working with this algorithm, if we have the matrix corresponding to the dissimilarity measures, we do not need to know the individual attributes since we are not using those in the computations anymore. All the steps of the algorithm only require us to keep track of the indices that are cluster centres and the cluster assigned to each index. The dissimilarity measure can be directly used to compute the next cluster centre/cluster assignment.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,15 +170,11 @@
         \end{enumerate}
     \end{enumerate}
 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Dissimilarity Measures}
-    So far, euclidean distance has been considered as the defacto dissimilarity measure. In some cases, this may not work well if the magnitude of the observations vary significantly between the different predictors. In such cases, correlation based measures can be preferred since they will group observations with similar behaviour together and not focus on magnitude.\newline
-    This can be useful in retail behaviour when we want to check profiles based on the whether similar products are purchased rather than how many of them are purchased.
+    The above is the case of agglomerative clustering which is a bottom up appraoch. Top down approaches are called divisive clustering, since they will recursively split observations into two clusters such that the inter cluster dissimilarity is the highest.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Key Considerations}
+    \section{Key Considerations while Clustering}
     Following are a set of general rules when doing clustering
     \begin{itemize}
         \item centering and bringing the variables to the same scale is useful when measuring Euclidean distance for the obvious reason of not letting magnitudes affect the distances.
