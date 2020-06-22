@@ -33,7 +33,7 @@
         &\hdots\\
         C_{k-1}(X) &= I(c_{k-1} \leq X < c_{k})\\
         C_{k}(X) &= I(c_{k} \geq X)\\
-        \hat{y} = \beta_{0} + \beta_{1}C_{1}(x) + \cdots + \beta_{k}C_{k}(x)
+        \hat{y} &= \beta_{0} + \beta_{1}C_{1}(x) + \cdots + \beta_{k}C_{k}(x)
     \end{align*}
     Note that, $\beta_{0}$ and $C_{0}(x)$ are equivalent since both will act as the intercept and the mean value of $y$ in the range $x < c_{1}$. Similarly, each of the $\beta_{i}$ captures the average of the response in the corresponding interval defined by the indicator function.\newline
     This approach works well when there are natural breakpoints in the data and if there are indeed constant trends in those intervals. As soon as a non constant trend emerges locally, the approach fails.
