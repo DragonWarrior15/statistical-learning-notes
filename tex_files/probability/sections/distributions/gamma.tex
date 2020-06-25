@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Gamma Distribution}
+    \subsection{Gamma Distribution}
     A random variable is said to have a Gamma distribution if for parameters $\lambda > 0, \alpha > 0$ it has the following probability distribution
     \begin{align*}
         p_{X}(x) = \begin{cases} 
@@ -17,6 +17,11 @@
         &= (\alpha - 1) \Gamma (\alpha - 1)
     \end{alignat*}
 
+    In general,
+    \begin{align*}
+        \Gamma(\alpha) = \int_{0}^{\inf} x^{\alpha - 1}e^{-x}dx
+    \end{align*}
+
     Note that at $\alpha = 1$, $\Gamma (1) = \int_{0}^{\inf} \lambda e^{-\lambda x} = 1$. Hence, if $\alpha$ is an integer, $\Gamma(\alpha) = \alpha !$ using the recursion relation derived above.\newline
 
     For a fixed $\lambda$, as the value of $\alpha$ becomes large, the distribution takes the form of a normal distribution.
@@ -30,7 +35,7 @@
     \end{figure}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Mean and Variance}
+    \subsubsection{Mean and Variance}
     Mean and variance are easily obtainable for this using the moment generating function. Recall
     \begin{align*}
         \phi(t) &= E[e^{tX}]\\
@@ -54,7 +59,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Sum of Gamma Distributions}
+    \subsubsection{Sum of Gamma Distributions}
     Let $X_{1}, X_{2}, \ldots, X_{n}$ be $n$ random variables that are gamma distributed with parameters \newline$(\alpha_{1}, \lambda), (\alpha_{2}, \lambda), \ldots, (\alpha_{n}, \lambda)$. Then the distribution of the sum of these random variables is itself a gamma distribution with the parameters $\alpha^{\prime} = \sum_{i=1}^{n} \alpha_{i}$ and $\lambda^{\prime} = \lambda$
 
 \end{document}

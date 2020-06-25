@@ -1,0 +1,18 @@
+\documentclass[../../probability-notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Continuous Uniform Random Variable}
+    A uniform random variable has the following distribution function
+    \begin{align*}
+        f_{X}(x) = \begin{cases} \frac{1}{b-a} &\mbox{$if a \leq x \leq b$}\\
+                                    0 &\mbox{otherwise} \end{cases}
+    \end{align*}
+
+    \subsubsection{Mean and Variance}
+    \begin{align*}
+        E[X] &= \int_{a}^{b} x \frac{1}{b-a} dx = [\frac{x^{2}}{2(b-a)}]_{a}^{b}\\
+            &= \frac{a+b}{2}\\
+        Var(X) &= \int_{a}^{b} (x - \frac{a+b}{2})^{2} \frac{1}{b-a} dx \\
+            &= \frac{(b-a)^{2}}{12}
+    \end{align*}
+\end{document}

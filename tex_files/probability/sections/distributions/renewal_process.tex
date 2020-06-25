@@ -1,5 +1,6 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
+    \subsection{Renewal Process}
     This is a fundamental stochastic process useful in modelling arrivals and interarrival times. Some definitions will make the usage clear.\newline
 
     Let $S_{i}$ denote the $i$th renewal time or the time when the $i$th arrival takes place. By definition, $S_{0} = 0$. We can also define
@@ -28,7 +29,7 @@
         &= u(t)
     \end{alignat*}
 
-    \subsection{Laplace Transform}
+    \subsubsection{Laplace Transform}
     For a density function $f$ defined from $\mathbb{R}^{\geq 0} \to \mathbb{R}$, Laplace transform is
     \begin{align*}
         L_{f}(s) = \int_{\mathbb{R}^{\geq 0}} e^{-sx} f(x) dx
@@ -55,7 +56,7 @@
         \end{align*}
     \end{enumerate}
 
-    \subsection{Calculating the Expectation}
+    \subsubsection{Calculating the Expectation}
     Armed with the concept of a Laplace transform, we make the following observation first
     \begin{align*}
         u(t) &= \sum_{i=1}^{\inf} F^{n*}(t) = F(t) + \sum_{i=2}^{\inf} F^{n*}(t)\\
@@ -73,7 +74,7 @@
 
     The last equation can be used to calculate the laplace transform of $u(t)$ and consecutively guess the functional form of $u(t)$.
 
-    \subsection{Limit Theorems for Renewal Processes}
+    \subsubsection{Limit Theorems for Renewal Processes}
     The following two theorems hold true for Renewal processes
     \begin{enumerate}
         \item If $E[\xi] = \mu < \inf$, then

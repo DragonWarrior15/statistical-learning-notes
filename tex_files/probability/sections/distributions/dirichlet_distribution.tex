@@ -1,0 +1,11 @@
+\documentclass[../../probability-notes.tex]{subfiles}
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Dirichlet Distribution}
+    Dirichlet Distribution is an extension of the Beta distribution to multiple random variables and is also called \emph{Multivariate Beta Distribution} (MBD). For $K \geq 2$ it is defined as
+    \begin{gather*}
+        f(x_{1}, \ldots, x_{K}, \alpha_{1}, \ldots, \alpha_{K}) = \frac{1}{B(\bm{\alpha})} \prod_{i=1}^{K} x_{i}^{\alpha_{i} - 1}\\
+        \text{with} \quad \sum_{i=1}^{K} x_{i} = 1, \quad x_{i} \geq 0 \; \forall \; i=1,\ldots,K\\
+        B(\bm{\alpha}) = \frac{\prod_{i=1}^{K}\Gamma(\alpha_{i})}{\Gamma \bigg(\sum_{i=1}^{K} \alpha_{i} \bigg)} \quad \text{with} \; \bm{\alpha} = (\alpha_{1}, \ldots, \alpha_{K})
+    \end{gather*}
+\end{document}

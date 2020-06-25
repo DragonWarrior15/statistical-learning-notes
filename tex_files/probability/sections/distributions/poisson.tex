@@ -1,6 +1,7 @@
-\documentclass[../probability-notes.tex]{subfiles}
+\documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
-    \subsection{Poisson Random Variable}
+    \subsection{Poisson Process}
+    \subsubsection{Poisson Random Variable}
     A random variable $X$ is said to be $Poisson(\mu)$ if it has the following probability distribution
     \begin{align*}
         p_{X}(x = k) = \begin{cases} e^{-\mu} \frac{\mu^{k}}{k!} &\text{ for all } x = \{ 0,\;1,\;2, \cdots \}\\
@@ -12,7 +13,7 @@
         X_{1} + X_{2} + \cdots + X_{n} \sim Poisson(\mu_{1} + \mu_{2} + \cdots + \mu_{n})
     \end{align*}
 
-    \subsection{Mean and Variance}
+    \subsubsection{Mean and Variance}
     Expected value is calculated as follows
     \begin{align*}
         E[X] &= \sum_{k=0}^{\inf} ke^{-\mu} \frac{\mu^{k}}{k!} = \mu e^{-\mu} \sum_{k=1}^{\inf} \frac{\mu^{k-1}}{(k-1)!}\\
@@ -33,7 +34,7 @@
     Thus, mean and variance is the same for a Poisson variable.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Poisson Process}
+    \subsubsection{Poisson Process}
     Poisson process also falls in the realm of random processes but is different from Bernoulli process as it is a continuous time process. This process is very commonly used to model arrival times and number of arrivals in a given time interval.
     \begin{align*}
         P(k, \tau) &= \text{Probability of $k$ arrivals in interval of duration $\tau$}\\
@@ -45,7 +46,7 @@
         \item Number of arrivals in disjoint time intervals are \emph{independent}
     \end{itemize}
     
-    \subsection{A Special Counting Process}
+    \subsubsection{A Special Counting Process}
     A counting process $N_{t}:t \in [0,\inf)$ is a Poisson process with rate $\lambda$ if
     \begin{enumerate}
         \item $N_{0} = 0$
@@ -54,7 +55,7 @@
     \end{enumerate}
     Hence, for a Poisson process, the number of arrivals in any interval is dependent only on the length of that interval and not the location. Further, the number of arrivals in the interval will follow a Poisson distribution.
 
-    \subsection{Derivation from Bernoulli Process}
+    \subsubsection{Derivation from Bernoulli Process}
     For a very small interval $\delta$,
     \begin{alignat*}{2}
         P(k, \delta) &= \begin{cases} 1-\lambda \delta &\mbox{$k = 0$}\\
@@ -82,7 +83,7 @@
         Var(N_{t}) &= \lambda t
     \end{align*}
 
-    \subsection{Time till kth arrival}
+    \subsubsection{Time till kth arrival}
     Suppose the $k^{th}$ arrival happens at a time $t$. Then we are saying that there have been $k-1$ arrivals till time $t$ and the $k^{th}$ arrival happens at time $t$ (precisely in an interval of $[t, t+\delta]$). Let $Y_{k}$ be the required time,
     \begin{align*}
         f_{Y_{k}}(t)\delta &= P(t \leq Y_{k} \leq t+\delta)\\
@@ -91,7 +92,7 @@
         f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \tag*{Erlang Distribution}
     \end{align*}
 
-    \subsection{Time of 1st Arrival}
+    \subsubsection{Time of 1st Arrival}
     Using the Erlang Distribution described above, we have
     \begin{align*}
         f_{Y_{1}}(t) = \lambda e^{-\lambda t}
@@ -99,7 +100,7 @@
     $Y_{k} = T_{1} + T_{2} + \cdots + T_{k}$ where all $T_{i}$ are independent and exponential distributions.
 
 
-    \subsection{Renewal Process}
+    \subsubsection{Renewal Process}
     Poisson process can be seen as a special case of a renewal process, when the interarrival times are all exponentially distributed.
     \begin{alignat*}{3}
         \text{Interarrival time }& \xi_{i}&& = \lambda e^{-\lambda t}\\
@@ -109,7 +110,7 @@
         0 &\mbox{otherwise} \end{cases}
     \end{alignat*}
 
-    \subsection{Merging of Poisson Processes}
+    \subsubsection{Merging of Poisson Processes}
     Merging of two Poisson processes is also a Poisson process. Consider two flasbulbs of Red and Green colours, flashing as Possion processes with rates $\lambda_{1}$ and $\lambda_{2}$. Then the process denoting the combined flashing of the two bulbs is also Poisson.\newline
     Consider a very small interval of time $\delta$. In this small interval, any of the individual bulbs can have at most one flashes (since we ignore higher order terms). Thus, the following four possibilities arise \newline
     \begin{table}[h]
@@ -136,7 +137,7 @@
     P(\text{arrival happened from first process}) = \frac{\lambda_{1} \delta}{\lambda_{1} \delta + \lambda_2 \delta} = \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
     \end{align*}
 
-    \subsection{Splitting of Poisson Process}
+    \subsubsection{Splitting of Poisson Process}
     Suppose we have a Poisson process with parameter $\lambda$ which we split into two processes up and down, with probabilities $p$ and $1-p$. The two resulting processes are also Poisson with different parameters.\newline
     Consider a small time slot of length $\delta$. Then,
     \begin{align*}
@@ -146,7 +147,7 @@
     \end{align*}
     Thus, up and down are themselves Poisson with parameters $\lambda p$ and $\lambda (1-p)$ respectively.
 
-    \subsection{Random Indcidence for Poisson}
+    \subsubsection{Random Indcidence for Poisson}
     Suppose we have a Poisson process with parameter $\lambda$ running forever. We show up at a random time instant. What is the length of the chosen interarrival time (the total of the time from the last arrival to the next arrival).\newline
     Let $T_{1}^{'}$ denote the time that has elapsed since the last arrival and $T_{1}$ be the time till the next arrival. Note that the reverse process is also Poisson with the same parameter. Thus,
     \begin{align*}
@@ -160,7 +161,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Non Homogenous Poisson Process}
+    \subsubsection{Non Homogenous Poisson Process}
     Sometimes, it may not be accurate to use a simple Poisson process to model arrival. For example, a restaurant will not have the same rate of influx throughout the day. This rate itself is a function of time. In such cases, we model the arrivals as Non Homogenous Poisson Process.\newline
 
     For such a process, we have $\lambda(t): [0,\inf) \to [0, \inf)$ and the counting process $N_{t}$ is non homogenous if the following hold

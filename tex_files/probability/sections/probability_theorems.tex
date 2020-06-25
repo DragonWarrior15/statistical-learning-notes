@@ -23,6 +23,7 @@
         P(B) &= P(B|A_{1})P(A_{1}) + P(B|A_{2})P(A_{2}) + \cdots + P(B|A_{n})P(A_{n})\\
         \text{or, } P(B) &= \sum_{i=1}^{n} P(B|A_{i})P(A_{i})
     \end{align*}
+    
     \subsection{Independence}
     Two events A and B are independent iff
     \begin{align*}
@@ -83,7 +84,19 @@
         E[g(X,Y)] &= \sum_{X} \sum_{Y} g(xy) P_{XY}(x,y) \\
         E[XY] &= E[X]E[Y] \tag*{if X and Y are \emph{independent}}
     \end{align*}
-    where $\alpha, \beta \in \mathbb{R}$, $g(X) : \mathbb{R} \rightarrow \mathbb{R}$, and $A$ is an event, $X, Y, Z$ are Random Variables
+    where $\alpha, \beta \in \mathbb{R}$, $g(X) : \mathbb{R} \rightarrow \mathbb{R}$, and $A$ is an event, $X, Y, Z$ are Random Variables.\newline
+
+    The same formulas are valid in case of random vectors $\mathbf{X}$ and constants $\mathbf{b}$ and $\mathbf{A}$
+    \begin{align*}
+        E[\mathbf{X}] &= \begin{bmatrix}
+        &E[X_{1}]\\
+        &E[X_{2}]\\
+        \vdots\\
+        &E[X_{n}]
+        \end{bmatrix}
+        E[\mathbf{X_{1}} + \mathbf{X_{2}} + cdots + \mathbf{X_{n}}] = E[\mathbf{X_{1}}] + E[\mathbf{X_{2}}] + \cdots + E[\mathbf{X_{n}}]\
+        E[\mathbf{A}\mathbf{X}+\mathbf{b}] &= E[\mathbf{A}\mathbf{X}] + E[\mathbf{b}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b}\\
+    \end{align*}
 
     \subsubsection{Total Expectation Theorem}
     The \emph{Total Expectation Theorem} is the natural extension of the \emph{Total Probability Theorem}
@@ -110,6 +123,44 @@
     Cumulative probability distribution is defined for both discrete and continuous variables
     \begin{align*}
         F_{x}(X) = P(X \leq x) = \begin{cases} \int_{-\inf}^{x} p_{X}(t) dt &\mbox{$X$ is a discrete random variable}\\
-                                               \sum_{k <= x} P_{X}(k) &\mbox{$X$ is a continuous random variable} \end{cases}
+        \sum_{k <= x} P_{X}(k) &\mbox{$X$ is a continuous random variable} \end{cases}
+    \end{align*}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Covariance and Correlation}
+    For any two random variables $X$ and $Y$,
+    \begin{align*}
+        Cov(X,Y) &= E[(X - \overline{X})(Y - \overline{Y})] = E[XY] - E[X]E[Y]\\
+        Cov(X,X) &= Var(X)\\
+        Corr(X,Y) &= E[(\frac{X - \overline{X}}{\sigma_{X}}) (\frac{Y - \overline{Y}}{\sigma_{Y}})]\\
+        &= \frac{Cov(X,Y)}{\sigma_{X} \sigma_{Y}}
+    \end{align*}
+    Key points to note
+    \begin{itemize}
+        \item \emph{Inpdependence} $\Rightarrow Cov(X,Y) = Corr(X,Y) = 0$, but the converse is \emph{\textbf{not}} true
+        \item Correlation is dimensionless and $-1 \leq Corr(X,Y) \leq 1$ with value close to $0$ implying minimal relation and values close to $-1, 1$ implying perfect relation
+    \end{itemize}
+
+    In case of vectors, the covariances are defined as follows
+    \begin{align*}
+        Var(X) = Cov(\mathbf{X}, \mathbf{X}) &= E[(\mathbf{X} - E[\mathbf{X}])(\mathbf{X} - E[\mathbf{X}])^{T}]\\
+        &= E[\mathbf{X}\mathbf{X}^{T} - \mathbf{X}E[\mathbf{X}]^{T} - E[\mathbf{X}]\mathbf{X}^{T} + E[\mathbf{X}]E[\mathbf{X}]^{T}]\\
+        &= E[\mathbf{X}\mathbf{X}^{T}] - E[\mathbf{X}]E[\mathbf{X}]^{T} - E[\mathbf{X}]E[\mathbf{X}]^{T} + E[\mathbf{X}]E[\mathbf{X}]^{T}\\
+        &= E[\mathbf{X} \mathbf{X}^{T}] - E[\mathbf{X}]E[\mathbf{X}]^{T}\\
+        Cov(\mathbf{X}, \mathbf{Y}) &= E[(\mathbf{X} - E[\mathbf{X}])(\mathbf{Y} - E[\mathbf{Y}])^{T}]\\
+        &= E[\mathbf{X} \mathbf{Y}^{T}] - E[\mathbf{X}]E[\mathbf{Y}]^{T}\\
+    \end{align*}
+
+    Using the above definitions, we have the following formulae for variance of transformed random vectors
+    \begin{align*}
+        \mathbf{Y} &= \mathbf{A}\mathbf{X}+\mathbf{b}\\
+        E[\mathbf{Y}] &= \mathbf{A}E[\mathbf{X}]+\mathbf{b}
+        Var(\mathbf{Y}) &= E[(\mathbf{Y}-E[\mathbf{Y}])(\mathbf{Y}-E[\mathbf{Y}])^{T}] = E[\mathbf{Y}\mathbf{Y}^{T}] - E[\mathbf{Y}]E[\mathbf{Y}]^{T}\\
+        &= E[(\mathbf{A}\mathbf{X}+\mathbf{b})(\mathbf{A}\mathbf{X}+\mathbf{b})^T] - (\mathbf{A}E[\mathbf{X}]+\mathbf{b})(\mathbf{A}E[\mathbf{X}]+\mathbf{b})^{T}\\
+        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{A}\mathbf{X}\mathbf{b})^T + \mathbf{b}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T] - (\mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{A}E[\mathbf{X}]\mathbf{b})^{T} + \mathbf{b}E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T)\\
+        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T}] - \mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T} = \mathbf{A} (\mathbf{X}\mathbf{X}^{T} - E[\mathbf{X}]E[\mathbf{X}]^{T}) \mathbf{A}^{T}\\
+        Var(\mathbf{A}\mathbf{X}+\mathbf{b}) &= \mathbf{A} Var(\mathbf{X}) \mathbf{A}^{T}\\
+        Var(\mathbf{X} + \mathbf{Y}) &= Var(\mathbf{X}) + Cov(\mathbf{X}, \mathbf{Y}) + Cov(\mathbf{Y}, \mathbf{X}) + Var(\mathbf{Y})\\
     \end{align*}
 \end{document}
