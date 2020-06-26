@@ -1,6 +1,7 @@
-\documentclass[11pt, a4paper]{report}
+\documentclass[11pt, a4paper, notitlepage]{report}
 
 \usepackage{amsmath}
+\usepackage{bm}
 \usepackage[a4paper, margin=1in]{geometry}
 \usepackage{amsfonts}
 \usepackage{mathtools}
@@ -29,7 +30,7 @@
 
 % to insert images
 \usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
+\graphicspath{ {./images/} {../images/} {../../images/}}
 
 \usepackage{subfiles}
 
@@ -48,8 +49,10 @@
 \title{Statistical Learning Notes}
 \begin{document}
     \maketitle
+    \cleardoublepage
+    \pdfbookmark{\contentsname}{toc}
     \tableofcontents
-    \newpage
+    % \newpage
 
     \pagenumbering{arabic}
 

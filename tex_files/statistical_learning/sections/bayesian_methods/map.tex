@@ -1,0 +1,18 @@
+\documentclass[../../statistical_learning_notes.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Maximum A Priori (MAP)}
+Similar to MLE, we have another estimator method which evaluates $\theta$ using the posterior probability of $\theta$ given $X$
+\begin{align*}
+    \hat{\theta}_{MAP} &= \max_{\theta} P(\theta|X) = \max_{\theta} \frac{P(X|\theta)P(\theta)}{P(X)}\\
+    &= \max_{\theta}P(X|\theta)P(\theta)
+\end{align*}
+
+since $P(X)$ is just a normalization factor and thus constant. However, this sufferes from multiple problems
+\begin{enumerate}
+    \item Not invariant to reparametrization. Hence solution could change with algebraic manipulation.
+    \item Can't be used as a prior since we will be looking at delta functions in the prior then.
+    \item Finds untypical points (bumps) that are not smooth points in the curve.
+    \item Cannot compute confidence intervals since we only get point estimates.
+\end{enumerate}
+\end{document}

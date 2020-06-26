@@ -27,7 +27,7 @@
 
 % to insert images
 \usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
+\graphicspath{ {./images/} {../images/} {../../images/}}
 
 \usepackage{subfiles}
 
@@ -41,7 +41,9 @@
 \begin{document}
     \maketitle{}
     \tableofcontents
-    \newpage
+    \cleardoublepage
+    \pdfbookmark{\contentsname}{toc}
+    % \newpage
 
     \pagenumbering{arabic}
     \subfile{sections/probability_theorems}

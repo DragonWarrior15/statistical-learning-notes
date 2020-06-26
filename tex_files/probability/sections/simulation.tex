@@ -108,4 +108,17 @@
         Y &= \sqrt{-2log(1 - U_{1})}sin(2\pi U_{2})
     \end{align*}
     This approach is called \emph{Box-Muller method}. To generate standard normals with mean $\mu$ and variance $\sigma^{2}$, we simply return $\mu + \sigma X, \mu+\sigma Y$.
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Normal Random Variable from Uniform Distribution}
+    Using the central limit theorem, we can add up multiple uniform distributions to get a normal random variable.
+    \begin{gather*}
+        Y = \bigg(\sum_{i=1}^{12}X_{i} \bigg) - 6 \sim \mathcal{N}(0,1)
+    \end{gather*}
+    because the mean of 12 uniform random variables is $12 * 0.5 = 6$ and the variance of sum of 12 independent random variables is $12 \times (1-0)^{2}/12 = 1$. The same equation with 30 uniform distributions will become
+    \begin{gather*}
+        Y = \sqrt{\frac{2}{5}}\bigg[\bigg(\sum_{i=1}^{30}X_{i} \bigg) - 15\bigg] \sim \mathcal{N}(0,1)
+    \end{gather*}
+    and combining more variables will increase the accuracy of the approximation, but also increase computational time.
 \end{document}
