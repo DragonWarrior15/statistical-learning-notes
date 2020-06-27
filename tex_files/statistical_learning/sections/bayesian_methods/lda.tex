@@ -28,7 +28,7 @@ Then the generative model for the corpus becomes
 Our random variables then are $\bm{\Theta}, \bm{\Phi}, \bm{Z}$ and $\bm{W}$, with the data $\bm{W}$ known. The total likelihood of the model becomes
 \begin{gather*}
     P(\bm{W},\bm{Z},\bm{\Theta}, \bm{\Phi}) = \prod_{i=1}^{M} p(\bm{\theta}_{i}) \bigg(  \prod_{j=1}^{N_{i}} p(z_{i,j}|\bm{\theta}_{i}) p(w_{i,j}|z_{i,j}) \bigg)\\
-    \text{with} \quad p(\bm{\theta}_{i}) \sim Dir(\bm{\alpha}), \; p(z_{i,j}|\bm{\theta}_{i}) = \bm{\Theta}_{i,z_{i,j}}, \; p(w_{i,j}|z_{i,j}) = \bm{\Phi}_{z_{i,j},w_{i,j}}\\
+    \text{with} \quad \bm{\theta}_{i} \sim Dir(\bm{\alpha}), \; p(z_{i,j}|\bm{\theta}_{i}) = \bm{\Theta}_{i,z_{i,j}}, \; p(w_{i,j}|z_{i,j}) = \bm{\Phi}_{z_{i,j},w_{i,j}}\\
     LL(\bm{W},\bm{Z},\bm{\Theta}, \bm{\Phi}) = \sum_{i=1}^{M} log(p(\bm{\theta}_{i})) + \bigg(  \sum_{j=1}^{N_{i}} log(p(z_{i,j}|\bm{\theta}_{i})) + log(p(w_{i,j}|z_{i,j})) \bigg)\\
 \end{gather*}
 
