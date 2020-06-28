@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Chi-Square Distribution}\label{chi_square}
+    \section{Chi-Square Distribution}\label{chi_square}
     If $Z_{1}, Z_{2}, \ldots, Z_{n}$ are $n$ independent standard normal variables, then the random variable $X$
     \begin{align*}
         X &= Z_{1}^{2} + Z_{2}^{2} + \cdots + Z_{n}^{2}\\
@@ -18,7 +18,7 @@
     This quantity is usually listed in mathematical tables since they are heavily used in hypothesis testing.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Relation between Chi-Square and Gamma Distribution}\label{sec:rel_gamma_chi}
+    \subsection{Relation between Chi-Square and Gamma Distribution}\label{sec:rel_gamma_chi}
     Consider the moment generating function for a chi-square random variable with $n=1$ degrees of freedom
     \begin{align*}
         E[e^{tX}] &= E[e^{tZ^{2}}] \text{\; $Z \sim \mathcal{N}(0, 1)$}\\
@@ -44,7 +44,7 @@
         f_{X}(x) = \frac{\frac{1}{2} e^{-x/2} (\frac{x}{2})^{(n/2) - 1}}{\Gamma(\frac{n}{2})} \text{\; $x > 0$}
     \end{align*}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Mean and Variance}
+    \subsection{Mean and Variance}
     Since the distribution of a chi-square variable is identical to a Gamma distribution,
     \begin{align*}
         \Aboxed{E[X] &= n}\\

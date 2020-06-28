@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Distribution of Sample Mean and Variance}
+    \chapter{Distribution of Sample Mean and Variance}
     Let $X_{1}, X_{2}, \ldots, X_{n}$ be independent random variables from a distribution having mean $\mu$ and variance $\sigma^{2}$. From the central limit theorem,
     \begin{align*}
         \frac{X_{1} + X_{2} + \cdots + X_{n} - n\mu}{\sigma \sqrt{n}} \sim \mathcal{N}(0, 1)
@@ -9,7 +9,7 @@
     or, the sum of the random variables follows the distribution of a standard normal as the value of $n$ becomes large. Typically, the property starts to manifest as soon as $n$ becomes around 30.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Sample Mean}
+    \section{Sample Mean}
     Let the random variable $\overline{X}$ denote the sample mean and is defined as
     \begin{align*}
         \overline{X} = \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}
@@ -34,7 +34,7 @@
     Hence, for a population of mean $\mu$ and variance $\sigma^{2}$, the $E[$sample mean$]$ is still $\mu$ but the variance of the sample mean shrinks by a factor of $n$. Stated in a different manner, this means that the spread of the sample mean reduces as we take the mean from more and more observations. This directly translates into the fact that our confidence on the estimate of the sample mean increases with more observations.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Sample Variance}
+    \section{Sample Variance}
     The sample variance is defined as
     \begin{align*}
         S^{2} = \frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}
@@ -55,7 +55,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Distributions for a Normal Population}\label{dist_for_normal}
+    \section{Distributions for a Normal Population}\label{dist_for_normal}
     Consider $X_{1}, X_{2}, \ldots, X_{n}$ be independently derived from a normal population with mean $\mu$ and variance $\sigma^{2}$\newline
     i.e., $X_{i} \sim \mathcal{N}(\mu, \sigma^{2}) \forall i = 1, 2, \ldots, n$ \newline
 

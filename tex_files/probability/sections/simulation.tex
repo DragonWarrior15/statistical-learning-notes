@@ -1,9 +1,9 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Generating Random Numbers}
+    \chapter{Generating Random Numbers}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Random Numbers}
+    \section{Random Numbers}
     We can generate random numbers using the following equation
     \begin{align*}
         x_{n+1} = (ax_{n} + c) mod(m)
@@ -12,7 +12,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Permutation of Integers}
+    \subsection{Permutation of Integers}
     Suppose we want to generate a permutation of integers from $1, 2, \ldots, n$ such that each of the permutations is equally likely. Assuming we have a uniform random generator $U$ with us, 
     \begin{align*}
         P(Int(kU) + 1 = i) &= P(Int(kU) = i-1) = P(i-1 \leq kU < i)\\
@@ -32,7 +32,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Generating Discrete Random Variables}
+    \section{Generating Discrete Random Variables}
     Suppose we want to generate the random variable $X$ with probability mass function
     \begin{align*}
         P(X = x_{i}) = p_{i}, i = 1, 2, \ldots, n\; \sum_{i=1}^{n} p_{i} = 1 
@@ -51,7 +51,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Binomial Random Variable}
+    \subsection{Binomial Random Variable}
     To generate a Bernoulli random variable, we simply select $X = 1$ if $U < p$ otherwise $X = 0$. Similarly a binomial random variable can be generated using individual Bernoulli variables as described. A more efficient method is to use the inverse transform method. For number of successes $0, 1, 2, \ldots, n$, we must calculate the probability mass function. This can be done efficiently using recursion
     \begin{gather*}
         p_{i} = P(X = i) = \binom{n, i} p^{i} (1-p)^{n-i}\\
@@ -72,11 +72,11 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Generating Continuous Random Variables}
+    \section{Generating Continuous Random Variables}
     To generate a random variable $X$, We utilise it's cumulative distribution function $F$. Note that $F$ is strictly increasing from $0$ to $1$ and the probability density $f$ and $F$ have a one to one mapping, i.e., $F$ has an inverse $F^{-1}$. So, to get $X$, we first generate $U \in (0, 1)$ and then $X = F^{-1}(U)$.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Exponential Random Variable}
+    \subsection{Exponential Random Variable}
     The distribution function $F = 1 - exp(-\lambda x)$. Then, the inverse is
     \begin{align*}
         x &= -\frac{1}{\lambda}log(1 - F)\\
@@ -86,7 +86,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Normal Random Variable}
+    \subsection{Normal Random Variable}
     Consider $X, Y \sim \mathcal{N}(0, 1)$. Then,
     \begin{align*}
         f_{XY}(x,y) = \frac{1}{2\pi}exp(-\frac{x^{2}+y^{2}}{2})
@@ -111,7 +111,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Normal Random Variable from Uniform Distribution}
+    \subsection{Normal Random Variable from Uniform Distribution}
     Using the central limit theorem, we can add up multiple uniform distributions to get a normal random variable.
     \begin{gather*}
         Y = \bigg(\sum_{i=1}^{12}X_{i} \bigg) - 6 \sim \mathcal{N}(0,1)

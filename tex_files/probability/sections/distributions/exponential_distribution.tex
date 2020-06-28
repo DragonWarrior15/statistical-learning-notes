@@ -1,7 +1,7 @@
 \documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Exponential Distribution}
+    \section{Exponential Distribution}
     Exponential distribution is characterized by the parameter $\lambda$ and has the following probability distribution
     \begin{align*}
         f_{X}(x) = \begin{cases} 0 &\mbox{if $x < 0$}\\
@@ -17,7 +17,7 @@
     \end{alignat*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Mean and Variance}
+    \subsection{Mean and Variance}
     The mean of the distribution is given by
     \begin{align*}
         E[x] &= \int_{0}^{\inf} \lambda x e^{-\lambda x} dx\\
@@ -41,7 +41,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Memoryless Property}
+    \subsection{Memoryless Property}
     A fundamental mathematical property of the exponential distribution is the memoryless property. In summary, this means that whatever has transpired till now will not affect the future distribution. Mathematically $P(T > t+s) is independent of t$
     \begin{align*}
         P(T > t+s | T>t) &= \frac{P(T> t+s \text{ and }T > t)}{P(T > t)}\\

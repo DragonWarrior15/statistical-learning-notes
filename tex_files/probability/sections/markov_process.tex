@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Markov Process}
+    \chapter{Markov Process}
     Markov Process is a discrete time process that is not memoryless. Here the random variable takes several possible states, and the probability distribution is defined in such a way that $P(\text{transition from state 1 to state 2})$ is dependent on state 1.\newline
 
     Let $X_{n}$ be the random variable denoting the state after n transitions and $X_{0}$ will represent the starting state (which can be given or random). Markov assumption states that \emph{Given the current state, past does not matter}. Armed with these,
@@ -12,10 +12,10 @@
         r_{ij}(n) &= \sum_{k=1}^{m} r_{ik}(n-1)p_{kj}
     \end{align*}
 
-    \subsection{Recurring and Transient States}
+    \section{Recurring and Transient States}
     A state $i$ is called \emph{recurrent} if, starting from $i$, and travelling anywhere, it is always possible to return to $i$. If a state is not recurrent, it is \emph{transient}. States in a recurrent class are periodic if they can be grouped into $d > 1$ groups so that all transitions from one group lead to the next group.
 
-    \subsection{Steady State Probabilities}
+    \section{Steady State Probabilities}
     \label{sec_markov_steady}
     Do $r_{ij}(n)$ converge to some $\pi_{j}$ (independent of i) ? \newline
     Yes if,
@@ -33,7 +33,7 @@
         \text{frequency of transitions into $j$} &= \sum_{k} \pi_{k} p_{kj} \tag*{influx from all connected states}
     \end{align*}
 
-    \subsection{Birth Death Process}
+    \section{Birth Death Process}
     Consider the checkout counter example. The states are represented by the number of people currently being processed, and we always move $n$ to $[n-1, n, n+1]$, i.e., either the people in the queue decrease by one, remain same or increase by one. Let the probability for moving up be $p$ and moving down be $q$.
 
     \begin{center}
@@ -102,7 +102,7 @@
     \end{align*}
     When $\rho = 1$ or $p = q$, then all states are equally likely - symmetric random walk.
 
-    \subsection{Absorption Probabilities}
+    \section{Absorption Probabilities}
     \label{sec_markov_absorb}
     let $a_{i}$ denote the probability of absorption and $\mu_{i}$ denote the expected no of steps until absorption starting from state $i$. Then,
     \begin{align*}

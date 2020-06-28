@@ -1,6 +1,6 @@
 \documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
-    \subsection{Binomial Random Variable}
+    \section{Binomial Random Variable}
     \emph{Binomial Random Variable} $X$ is defined as the number of successes in an experiment with $n$ independent trials, where each trial can only have two outcomes, \emph{success} or \emph{failure}.\\
     Let $X_{i}$ denote the Random Variable corresponding to the individual trials, with probability of success $p$. Then we have the following
 
@@ -11,7 +11,7 @@
         P(X=k) &= \sum_{k=0}^{n} \binom{n}{k} p^{k} (1 - p)^{n-k}
     \end{alignat*}
 
-    \subsubsection{Mean and Variance}
+    \subsection{Mean and Variance}
     First let's calculate the mean and variance for a single trial $X_{i}$
     \begin{alignat*}{2}
         E[X_{i}] &= 1 * p + 0 * (1 - p) &&= p\\

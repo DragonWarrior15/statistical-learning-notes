@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
-    \section{Probability Theorems}
-    \subsection{Set Theorems}
+    \chapter{Probability Theorems}
+    \section{Set Theorems}
     For any three sets, the following hold true
     \begin{align*}
         A &= (A \cap B) \cup (A \cap B^{c}) \;where\;B\;and\;B^{c}\;are\;disjoint \\
@@ -9,7 +9,7 @@
         A \cup (B \cap C) &= (A \cup B) \cap (A \cup C)
     \end{align*}
 
-    \subsection{Basic Probability Rules}
+    \section{Basic Probability Rules}
     \begin{align*}
         &\text{If } A \cap B = \phi \text{, then } P(A \cup B) = P(A) + P(B)\\
         &P(A|B)P(B) = P(B|A)P(A) = P(A \cap B) \tag*{Bayes' Theorem}\\
@@ -17,14 +17,14 @@
         &P(A \cap B \cap C) = P(A) P(B|A) P(C|B,A) \tag*{Chain Rule}
     \end{align*}
 
-    \subsubsection{Total Probability Theorem}
+    \subsection{Total Probability Theorem}
     Let $A_{1}$, $A_{2}$, .. ,$A_{n}$ be n disjoint events that completely cover the event space, and B be another event, then
     \begin{align*}
         P(B) &= P(B|A_{1})P(A_{1}) + P(B|A_{2})P(A_{2}) + \cdots + P(B|A_{n})P(A_{n})\\
         \text{or, } P(B) &= \sum_{i=1}^{n} P(B|A_{i})P(A_{i})
     \end{align*}
     
-    \subsection{Independence}
+    \section{Independence}
     Two events A and B are independent iff
     \begin{align*}
         &P(A \cap B) = P(A) P(B)
@@ -42,7 +42,7 @@
         P(A_{i} \cap A_{j} \cap \ldots \cap A_{k} | C) = P(A_{i}|C) P(A_{j}|C) \;..\; P(A_{k}|C) \;\;\forall\;i,j,\ldots,k \;|\; i,j,\ldots,k \in {1,2,\ldots,n}
     \end{align*}
     
-    \subsection{Joint Probability Distributions}
+    \section{Joint Probability Distributions}
     \emph{Joint Probability Distributions} are defined for two or more than two variables. In this section, we only consider two variables. The formal definition is
 
     \begin{align*}
@@ -59,7 +59,7 @@
         P_{XYZ}(x,y,z) &= P_{X}(x) P_{Y|X}(y|x) P_{Z|X,Y}(z|x,y) \tag*{Chain Rule}
     \end{align*}
 
-    \subsection{Expected Value}
+    \section{Expected Value}
     Before going to expected value, let's define a Random Variable
     \begin{align*}
         \text{Random Variable } X \text{ is a linear map : } \mathbb{R} \to \mathbb{R} \text{. The value taken by the variable is denoted by } x
@@ -98,7 +98,7 @@
         E[\mathbf{A}\mathbf{X}+\mathbf{b}] &= E[\mathbf{A}\mathbf{X}] + E[\mathbf{b}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b}\\
     \end{align*}
 
-    \subsubsection{Total Expectation Theorem}
+    \subsection{Total Expectation Theorem}
     The \emph{Total Expectation Theorem} is the natural extension of the \emph{Total Probability Theorem}
     Let $A_{1}, A_{2}, \ldots, A_{n}$ be n disjoint events that completely cover the event space, and X be random variable, then
     \begin{align*}
@@ -106,7 +106,7 @@
         \text{or, } E[X)] &= \sum_{i=1}^{n} E[X|A_{i}]P(A_{i})
     \end{align*}
 
-    \subsection{Variance}
+    \section{Variance}
     The formal definition of variance is
     \begin{align*}
         Var(X) = E[(X - \bar{X})^{2}] = E[X^{2}] - E[X]^{2}
@@ -119,7 +119,7 @@
         Var(X + Y) &= Var(X) + Var(Y) \text{  if $X$ and $Y$ are \emph{independent} random variables}
     \end{align*}
 
-    \subsection{Cumulative Probability Distribution}
+    \section{Cumulative Probability Distribution}
     Cumulative probability distribution is defined for both discrete and continuous variables
     \begin{align*}
         F_{x}(X) = P(X \leq x) = \begin{cases} \int_{-\inf}^{x} p_{X}(t) dt &\mbox{$X$ is a discrete random variable}\\
@@ -128,7 +128,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Covariance and Correlation}
+    \section{Covariance and Correlation}
     For any two random variables $X$ and $Y$,
     \begin{align*}
         Cov(X,Y) &= E[(X - \overline{X})(Y - \overline{Y})] = E[XY] - E[X]E[Y]\\

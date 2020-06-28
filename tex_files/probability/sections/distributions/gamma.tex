@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Gamma Distribution}
+    \section{Gamma Distribution}
     A random variable is said to have a Gamma distribution if for parameters $\lambda > 0, \alpha > 0$ it has the following probability distribution
     \begin{align*}
         p_{X}(x) = \begin{cases} 
@@ -35,7 +35,7 @@
     \end{figure}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Mean and Variance}
+    \subsection{Mean and Variance}
     Mean and variance are easily obtainable for this using the moment generating function. Recall
     \begin{align*}
         \phi(t) &= E[e^{tX}]\\
@@ -59,7 +59,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Sum of Gamma Distributions}
+    \subsection{Sum of Gamma Distributions}
     Let $X_{1}, X_{2}, \ldots, X_{n}$ be $n$ random variables that are gamma distributed with parameters \newline$(\alpha_{1}, \lambda), (\alpha_{2}, \lambda), \ldots, (\alpha_{n}, \lambda)$. Then the distribution of the sum of these random variables is itself a gamma distribution with the parameters $\alpha^{\prime} = \sum_{i=1}^{n} \alpha_{i}$ and $\lambda^{\prime} = \lambda$
 
 \end{document}

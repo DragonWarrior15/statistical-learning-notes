@@ -1,7 +1,7 @@
 \documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Normal Distribution}
+    \section{Normal Distribution}
     The Normal distribution (or gaussian distribution) is defined between $-\inf$ and $\inf$. It is parametrized by mean $\mu$ and variance $\sigma$, $X \sim \mathcal{N}(\mu, \sigma^{2})$
     \begin{align*}
         f_{X}(x) = \frac{1}{\sqrt{2\pi \sigma^{2}}} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
@@ -21,7 +21,7 @@
         P(Z \leq z) = \Phi(z) \quad P(Z = z) = \phi(z) = \mathcal{N}(0,1)
     \end{align*}
 
-    \subsubsection{Multivariate Normal Distribution}
+    \subsection{Multivariate Normal Distribution}
     Multivariate normal distribution is an extension of a normal distribution into multiple dimensions
     \begin{align*}
         f_{\mathbf{X}}(\bm{x}) = \frac{1}{\sqrt{(2\pi)^{d} \lvert \Sigma \rvert}} exp(-\frac{1}{2}(\mathbf{x} - \bm{\mu})\Sigma^{-1}(\mathbf{x} - \bm{\mu})^{T})

@@ -1,8 +1,8 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
-    \section{Central Limit Theorem}
+    \chapter{Central Limit Theorem}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Weak Law of Large Numbers}
+    \section{Weak Law of Large Numbers}
     Suppose we want to know the mean height of penguins in the world. The absolutely correct answer can be obtained by taking the average of the entire population. But ths is not practical, and often we will have to resort to estimating the quantity through a sample. Let there be $n$ penguins in the sample and $X_{1}, X_{2}, \ldots, X_{n}$ be the random variables denoting their heights. Then,
     \begin{align*}
         M_{n} &= \frac{X_{1} + X_{2} + \cdots + X_{n}}{n}\\
@@ -10,7 +10,7 @@
     \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Markov Inequality/Chebychev Inequality}
+    \section{Markov Inequality/Chebychev Inequality}
     For nonnegative random variable $X$,
     \begin{alignat*}{2}
         E[X] &= \sum_{x}xp_{X}(x) &&\geq \sum_{x \geq a}xp_{X}(x) \tag*{discrete case}\\
@@ -41,7 +41,7 @@
     or, as $n \rightarrow \inf,\; M_{n} - \mu \rightarrow 0$, $\epsilon$ is the error bound/confidence.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Central Limit Theorem}
+    \section{Central Limit Theorem}
     Chebychev's inequality gives a loose bound. We can do better with CLT. Let $X$ be a random variable with mean $\mu$ and variance $\sigma^{2}$, and let $X_{i}$ be independent identically distributed random variables with the same distribution as $X$. Then,
     \begin{align*}
         S_{n} &= X_{1} + X_{2} + \cdots + X_{n}\\

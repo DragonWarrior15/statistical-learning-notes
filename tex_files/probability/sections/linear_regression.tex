@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Linear Regression}
+    \chapter{Linear Regression}
     We are given pairs of data $(x_{1},y_{1}), (x_{2},y_{2}), \ldots, (x_{n},y_{n})$ (all independent) where we assume that $x$ and $y$ are governed by the linear relation
     \begin{align*}
         y \approx \theta_{0} + \theta_{1}x
@@ -42,7 +42,7 @@
     \end{alignat*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Mean and Variance of Coefficients}
+    \section{Mean and Variance of Coefficients}
     First note that
     \begin{gather*}
         E[Y_{i}] = E[\theta_{0} + \theta_{1}X_{i} + W_{i}] = \theta_{0} + \theta_{1}X_{i}\\
@@ -79,7 +79,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Distribution of Residual}
+    \section{Distribution of Residual}
     Residuals and the $SS_{R}$ are defined as
     \begin{align*}
         R &= Y - (\hat{\theta}_{0} + \hat{\theta}_{1}X)\\
@@ -96,7 +96,7 @@
     since $SS_{R}/\sigma^{2}$ is the sum of squares of normally distributed variables ($E[Y] = \theta_{0} + \theta_{1}X$) and two degrees of freedoms are already taken up by the coefficients. Further, $SS_{R}$ is an unbiased estimator of the variance of the error terms $\sigma^{2}$, and is also independent of the coefficients.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Inferences Concerning Coefficients}
+    \section{Inferences Concerning Coefficients}
     We are most interseted in checking whether a coefficient has an effect or not
     \begin{align*}
         H_{0}: \theta_{1} = 0 \quad \text{versus} \quad H_{1}: \theta_{1} \neq 0
@@ -131,7 +131,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Inferences Concerning Mean Response}\label{sec:infer_mean_resp}
+    \section{Inferences Concerning Mean Response}\label{sec:infer_mean_resp}
     For any new point $x_{0}$, the unbiased estimator for the response is
     \begin{align*}
         y_{0} &= \hat{\theta}_{0} + \hat{\theta}_{1}x_{0}\\
@@ -160,7 +160,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Inferences Concerning Future Response}
+    \section{Inferences Concerning Future Response}
     The above section \ref{sec:infer_mean_resp} discussed the distribution of the mean response. In many scenarios, we are interested in the distribution of the actual response $Y$ at input $x_{0}$, which takes the noise into account as well. We note
     \begin{align*}
         Y_{0} &\sim \mathcal{N}(\theta_{0} + \theta_{1}x_{0}, \sigma^{2})\\
@@ -181,7 +181,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Coefficient of Determination}
+    \section{Coefficient of Determination}
     Let's consider the variation in respone Y
     \begin{align*}
         S_{Y} = \sum_{i=1}^{n} (Y_{i} - \overline{Y})^{2}
@@ -204,7 +204,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Weighted Least Squares}
+    \section{Weighted Least Squares}
     Suppose we know that the variance of $Y$ is dependent on $Y$ itself in the form $Var(Y_{i}) \propto \sigma^{2}/w_{i}$, i.e., the weights are known only upto a constant. In this case, we minimize the weighted least squares to obtain the coefficients
     \begin{align*}
         \minimize_{\theta_{0}, \theta_{1}} \sum_{i=1}^{n} w_{i}(Y_{i} - \theta_{0} - \theta_{1}x_{i})^{2}

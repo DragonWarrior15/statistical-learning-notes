@@ -1,12 +1,12 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Parameter Estimation}
+    \chapter{Parameter Estimation}
     In probability theory, we usually have the distribution known to us and we try to use this information to obtain theoretical results applicable on population of this distribution. However, in statistics, we are given the samples drawn from the population, and we are interested in estimating the parameters of this population. For instance, it can be known that the samples are drawn from a normal distribution and the objective is to use the samples to obtain the mean and variance of the normal distribution. It is possible to partially know the parameters in some cases, for example mean is unknown but the variance is known. Following are some methods to obtain the \emph{estimates} of these parameters.
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Maximum Likelihood Estimator}
+    \section{Maximum Likelihood Estimator}
     Maximum Likelihood Estimator or MLE is based on the idea to \textbf{find that value of $\theta$ that maximizes the probability of observing the given set of samples of the population}. Alternately, let $x_{i}$ for $i=1,2,\ldots,n$ be $n$ samples drawn from a population whose distribution is parametrized by $\theta$ (can be a vector as well). Then we define the likelihood function as
     \begin{align*}
         \text{likelihood\;} = f(x_{1}, x_{2}, \ldots, x_{n}|\theta)
@@ -14,7 +14,7 @@
     i.e., the joint probability (or density) of occurrence of all the samples under the given distribution for some value of $\theta$. We aim to maximize this likelihood to get the estimate of $\theta$. It is often the case that taking logarithm of both sides allows for an easy way of estimation. Note that both likelihood an log likelihood are maximized by the same value of estimator.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{MLE for Bernoulli Variable}
+    \subsection{MLE for Bernoulli Variable}
     Suppose we observe $n$ independent samples from a Bernoulli process and the aim is to find the MLE for the probability of success.\newline
     Let $p$ denote the probability of success. Then,
     \begin{align*}
@@ -36,7 +36,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{MLE for Poisson Variable}
+    \subsection{MLE for Poisson Variable}
     Suppose that we observe $n$ random samples obtained from a poisson process. Recall
     \begin{align*}
         P(X = k) = \frac{e^{-\lambda} \lambda^{k}}{k!}
@@ -54,7 +54,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{MLE for Normal Variable}
+    \subsection{MLE for Normal Variable}
     Suppose we observe $n$ samples from a normal population whose mean is $\mu$ and variance is $\sigma^{2}$. We will aim to obtain MLE estimates for both the mean and variance. Recall
     \begin{align*}
          P(X = x) = \frac{1}{\sqrt{2 \pi \sigma^{2}}} exp(-\frac{(x-\mu)^{2}}{2\sigma^{2}})
@@ -81,7 +81,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{MLE for Uniform Random Variable}
+    \subsection{MLE for Uniform Random Variable}
     Consider oberving $n$ samples from a uniform distribution with the parameter $\theta$. Then,
     \begin{align*}
         f(x_{1}, x_{2}, \ldots, x_{n}|\theta) = \frac{1}{\theta^{n}}
@@ -93,13 +93,13 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Interval Estimates}
+    \section{Interval Estimates}
     The MLE estimates calculated above are estimates and do not reflect the true value. We expect the true value of the parameter to be close to the estimate, but not exactly equal to it. Hence, it makes sense to give an interval instead of a single estimate to reflect our confidence in the estimated value of the parameter.\newline
 
     Note that the below confidence intervals imply that $\alpha$ percent of times, the constructed interval will contain the true mean $\mu$, when the same calculation is repeated with multiple samples. The calculations of intervals do not imply that $\mu$ is contained in the interval with $\alpha$ confidence. We calculate an interval that falls on $\mu$ rather than telling the interval that $\mu$ falls in.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Confidence interval for Mean of Normal Distribution when Variance is Known}
+    \subsection{Confidence interval for Mean of Normal Distribution when Variance is Known}
     Consider the problem of estimation of the mean of a normal distribution with known variance $\sigma^{2}$. Since we know that the MLE for mean is just the sample mean, and the sample mean follows a normal distribution,
     \begin{align*}
         P(-1.96 < \frac{\overline{X} - \mu}{\sigma / \sqrt{n}} < 1.96) &= 0.95 \text{\: using standard normal tables}\\
@@ -149,7 +149,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Confidence interval for Mean of Normal Distribution when Variance is Unknown}
+    \subsection{Confidence interval for Mean of Normal Distribution when Variance is Unknown}
     The derivation of confidence intervals in this case is similar to the above, with the only difference of using a t-distribution. Recall
     \begin{align*}
         \sqrt{n} \frac{\overline{X} - \mu}{S} \sim t_{n-1}
@@ -171,7 +171,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Confidence interval for Variance of Normal Distribution when Mean is Unknown}
+    \subsection{Confidence interval for Variance of Normal Distribution when Mean is Unknown}
     Recall that
     \begin{align*}
         (n-1)\frac{S^{2}}{\sigma^{2}} \sim \chi_{n-1}^{2}
@@ -185,7 +185,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Estimating Difference in Means of Two Normal Populations}\label{mean_diff_normal}
+    \subsection{Estimating Difference in Means of Two Normal Populations}\label{mean_diff_normal}
     Suppose the following two independent sets of random variables
     \begin{align*}
         X_{1}, X_{2}, \ldots, X_{n} &\sim \mathcal{N}(\mu_{1}, \sigma_{1}^{2})\\
@@ -246,7 +246,7 @@
     where $s_{p}$ is the sample estimate for $S_{p}$. Lower confidence interval is derived in a similar fashion to the previous derivations, but the upper confidence interval is the lower confidence interval of $\mu_{2} - \mu_{1}$.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Confidence Interval for Mean of Bernoulli Random Variable}
+    \subsection{Confidence Interval for Mean of Bernoulli Random Variable}
     Suppose we obtain a sample of $n$ independent Bernoulli random variables, where the probability of success is $p$. Let $X$ denote the no of successes. Using the CLT for large $n$,
     \begin{align*}
         \frac{X - np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0, 1)
@@ -261,7 +261,7 @@
     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Evaluating an Estimator}
+    \section{Evaluating an Estimator}
     Let $\boldsymbol{X} = (X_{1}, X_{2}, \ldots, X_{n})$ be the set of random variables sampled from a population whose parameters are defined by $\theta$. Let $d(\boldsymbol{X})$ denote an estimator of $\theta$. Then
     \begin{align*}
         r(d, \theta) = E[(d(\boldsymbol{X}) - \theta)^{2}]
@@ -295,7 +295,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Combining Unbiased Estimators}
+    \subsection{Combining Unbiased Estimators}
     Suppose we have $n$ unbiased estimators $d_{1}, \ldots, d_{n}$ for a parameter $\theta$ with different independent variances
     \begin{align*}
         E[d_{i}] = \theta \quad Var(d_{i}) = \sigma_{i}^{2}
@@ -316,7 +316,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Relation between Bias and Variance}
+    \subsection{Relation between Bias and Variance}
     The result obtained above that the mean squared error of an unbiased estimator is it's variance can be generalized for the case of any estimator as follows
     \begin{align*}
         r(d, \theta) &= E[(d - \theta)^{2}]\\
@@ -330,7 +330,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Bayes Estimator}
+    \section{Bayes Estimator}
     The Bayes estimator is the expected value of the parameter given the data. It utilizes the Bayes theorem in order to arrive at the estimator value
     \begin{align*}
         E[\theta|X_{1} = x_{1}, X_{2} = x_{2}, \ldots, X_{n} = x_{n}] &= \int \theta f(\theta|x_{1}, x_{2}, \ldots, x_{n})\\

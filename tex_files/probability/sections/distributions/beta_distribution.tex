@@ -1,7 +1,7 @@
 \documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Beta Distribution}
+    \section{Beta Distribution}
     Recall the definition of a gamma function
     \begin{align*}
         \Gamma(\alpha) = \int_{0}^{\inf} x^{\alpha - 1}e^{-x}dx
@@ -23,7 +23,7 @@
         &= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha - 1}(1-x)^{\beta - 1}
     \end{align*}
 
-    \subsubsection{Mean}
+    \subsection{Mean}
     \begin{align*}
         \mu &= E[X] = \int_{0}^{1} x \frac{x^{\alpha - 1}(1-x)^{\beta - 1}}{B(\alpha, \beta)}\\
         &= \frac{B(\alpha+1, \beta)}{B(\alpha, \beta)} \frac{x^{(\alpha + 1)-1}(1-x)^{\beta - 1}}{B(\alpha+1, \beta)}\\

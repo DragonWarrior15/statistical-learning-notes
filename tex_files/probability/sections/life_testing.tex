@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Life Testing}\label{sec:life_testing}
+    \chapter{Life Testing}\label{sec:life_testing}
     This section develops statistical methods around estimtating distribution of variables indicating the lifetime of a particular object. For instance, if the lifetime has an exponential distribution, we utilise the sample to obtain the parameters of the exponential distribution.\newline
 
     Let $X$ be a continuous random variable denoting lifetime of an item, having cumulative distribution $F$ and density function $f$, then
@@ -21,7 +21,7 @@
     \end{gather*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Exponential Distribution: Stopping at rth failure}
+    \section{Exponential Distribution: Stopping at rth failure}
     Suppose we have $n$ items with exponentially distributed lifetime with unknown parameter and we wish to estimate the mean $\theta (note \lambda = 1/\theta)$. We observe the items until $r$ failures and try to estimate $\theta$. Let $X_{i}$ denote the lifetime of the $i^{th}$ item with the following notation
     \begin{align*}
         x_{1} \leq x_{2} \leq \ldots \leq x_{r} \quad \text{for} \quad i_{1}, i_{2}, \ldots, i_{n}

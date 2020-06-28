@@ -1,7 +1,7 @@
 \documentclass[../probability-notes.tex]{subfiles}
 \begin{document}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section{Hypothesis Testing}
+    \chapter{Hypothesis Testing}
     Hypothesis testing is a set of procedures used to test a hypothesis about statistical parameters. Based on the results of the procedure, we decide whether to accept or reject the hypothesis. This can be as simple as deciding whether the mean of a population is more than 1 or not.\newline
 
     Whenever a hypothesis is accepted, it does not mean that the hypothesis is true, but rather that the data is consistent with it.\newline
@@ -28,9 +28,9 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Test around Mean of Normal Population}
+    \section{Test around Mean of Normal Population}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Known Variance}\label{sec:mean_normal_known_variance}
+    \subsection{Known Variance}\label{sec:mean_normal_known_variance}
     Consider $n$ samples $X_{1}, X_{2}, \ldots, X_{n}$ drawn from a normal distribution with unknown mean $\mu$ and known variance $\sigma^{2}$. We have the following hypothesis
     \begin{align*}
         \text{null hypothesis \:} H_{0}&: \mu = \mu_{0}\\
@@ -71,7 +71,7 @@
     \end{figure}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{p-value}\label{p_value}
+    \subsection{p-value}\label{p_value}
     We can also determine an inequality on the significance leve, meaning that $\alpha$ above a certain threshold, we will always reject the null hypothesis and vice versa.\newline
     This threshold is calculated via the probability that the estimator distribution is as large as the test statistic
     \begin{align*}
@@ -127,7 +127,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{One Sided Test}
+    \subsection{One Sided Test}
     In one sided test, we test the equality of the mean with a fixed value vs a single sided inequality of the mean being larger than, or smaller than that fixed value.
     \begin{align*}
         \text{null hypothesis \:} H_{0}&: \mu = \mu_{0}\\
@@ -163,7 +163,7 @@
     \paragraph{Special Note} The tests discussed above have been derived under the assumption that the sample mean has a normal distribution. But, by central limit theorem, the sample mean of any large population will tend towards a normal distribution. Hence, the hypothesis tests will remain valid provided the population has known variance $\sigma$.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Unknown Variance}\label{mean_normal_unknown_variance}
+    \subsection{Unknown Variance}\label{mean_normal_unknown_variance}
     We proceed in a manner similar to the known variance case but use sample variance instead. Recall
     \begin{align*}
         \sqrt{n} \frac{\overline{X} - \mu_{0}}{S} \sim T_{n-1}
@@ -196,9 +196,9 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Testing Equality of Means of Two Normal Populations}
+    \section{Testing Equality of Means of Two Normal Populations}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Known Variances} \label{mean_diff_normal_known_variance}
+    \subsection{Known Variances} \label{mean_diff_normal_known_variance}
     Consider the two populations as
     \begin{align*}
         X_{1}, X_{2}, \ldots, X_{n} &\sim \mathcal{N}(\mu_{x}, \sigma_{x}^{2})\\
@@ -243,7 +243,7 @@
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Unknown but Equal Variances}
+    \subsection{Unknown but Equal Variances}
     We consider the same two populations of $Xs$ and $Ys$, but this time the variances are unknown. for simplicity of analysis, we assume that the unknown variances are same
     \begin{align*}
         \sigma_{x} = \sigma_{y} = \sigma
@@ -278,7 +278,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Unknown and Unequal Variances}
+    \subsection{Unknown and Unequal Variances}
     We consider the natural test statistic as follows
     \begin{align*}
         \frac{(\overline{X} - \overline{Y}) - (\mu_{x} - \mu_{y})}{\sqrt{\frac{S_{x}^{2}}{n} + \frac{S_{y}^{2}}{m}}}
@@ -291,7 +291,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Unknown and Unequal Variances}
+    \subsection{Unknown and Unequal Variances}
     Suppose we want to observe the change in a quantity in a sample, after some kind of intervention. A simple example can be change in the mileage of a car after installation of a catalytic converter. Suppose we have $n$ samples with us, and for each of the sample, we associate $X_{i}$ with the measurement of the quantity before intervention and $Y_{i}$ with the quantity post intervention. Note that $X_{i}$ is not independent of $Y_{i}$ because they come from the same $i^{th}$ sample. Hence, the test discussed in section \ref{mean_diff_normal_known_variance} is not applicable.\newline
 
     Instead, we consider the quantity $W = X - Y$ and assume that $W_{i}$ come from a normal population. We can then consider the hypothesis
@@ -309,7 +309,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Tests around Variance of Normal Population}
+    \section{Tests around Variance of Normal Population}
     For a $n$ sized sample of independent observations from a normal population, we are interested in checking
     \begin{align*}
         H_{0}: \sigma^{2} = \sigma_{0}^{2} \quad \text{versus} \quad \sigma^{2} \neq \sigma_{0}^{2}
@@ -334,7 +334,7 @@
     One sided test can be done in a similar manner, comparing with $\chi_{1-\alpha, n-1}^{2}$ or $\chi_{\alpha, n-1}^{2}$ based on which side we want to reject $H_{0}$.\newline
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsubsection{Comparing Variance of Two Normal Populations}
+    \subsection{Comparing Variance of Two Normal Populations}
     We are interested in comparing
     \begin{align*}
         H_{0}: \sigma_{x}^{2} = \sigma_{y}^{2} \quad \text{versus} \quad \sigma_{x}^{2} \neq \sigma_{y}^{2}
@@ -352,7 +352,7 @@
     \end{alignat*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Tests around Bernoulli Population}
+    \section{Tests around Bernoulli Population}
     Suppose we have a set of $n$ samples and we want to test how many of them satisfy a property (or equivalently, success). Let $p$ be the fraction of population satisfying he property and we want to check if this equals $p_{0}$
     \begin{align*}
         H_{0}: p \leq p_{0} \quad \text{versus} \quad p > p_{0}
