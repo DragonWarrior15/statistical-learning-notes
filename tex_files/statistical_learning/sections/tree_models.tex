@@ -78,7 +78,7 @@
 
     \begin{itemize}
         \item \textbf{classification error rate} $= 1 - \max_{k}\hat{p}_{mk}$ where $\hat{p}_{mk}$ is the proportion of the $k$th class in the $m$th region. However, in practice, this metric is not sufficient to grow the trees.
-        \item \textbf{Gini Index}, $G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk})$ for a given region. Clearly, G is close to zero when the node is pure, i.e. most of the observations come from the same class. Gini index is also know as a measure of \textbf{purity} since it's low value implies predominance of a single class in the node.
+        \item \textbf{Gini Index}, $G = \sum_{k=1}^{K} \hat{p}_{mk} (1 - \hat{p}_{mk}) = 1 - \sum_{k=1}^{K} p_{k}^{2}$ for a given region. in the case of binary classification, this formula becomes $G = 2p(1-p)$ where $p = p(Y=1|X)$. Clearly, G is close to zero when the node is pure, i.e. most of the observations come from the same class. Gini index is also know as a measure of \textbf{purity} since it's low value implies predominance of a single class in the node.
         \item \textbf{Entropy} $D = \sum_{k=1}^{K} -\hat{p}_{mk} \log(\hat{p}_{mk})$ for a region. Entropy takes value close to zero if the class probabilities are close to $0$ or $1$. Gini index and Entropy are somewhat similar numerically.
     \end{itemize}
     In addition to these impurity measures, we also need to weight the two left and right nodes based on the number of observations $N_{L}$ and $N_{R}$, since purifying a large node is preferable than ultra purifying a small node.\newline

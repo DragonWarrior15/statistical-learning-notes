@@ -136,11 +136,21 @@
         Corr(X,Y) &= E[(\frac{X - \overline{X}}{\sigma_{X}}) (\frac{Y - \overline{Y}}{\sigma_{Y}})]\\
         &= \frac{Cov(X,Y)}{\sigma_{X} \sigma_{Y}}
     \end{align*}
-    Key points to note
+    where the correlation is also known as Pearson Correlation. Key points to note
     \begin{itemize}
         \item \emph{Inpdependence} $\Rightarrow Cov(X,Y) = Corr(X,Y) = 0$, but the converse is \emph{\textbf{not}} true
         \item Correlation is dimensionless and $-1 \leq Corr(X,Y) \leq 1$ with value close to $0$ implying minimal relation and values close to $-1, 1$ implying perfect relation
     \end{itemize}
+
+    \textbf{Spearman's correlation} is similar to Pearson correlation but applied on rank variables. We first rank order the variables $X$ and $Y$ independently and create a new variable $rg_{X}$ and $rg_{Y}$ that are ranks of those variables. In case of same values, the average of the positions is taken (if the order were 1 2 3 4, we would change it to 1 2.5 2.5 4, position 2 and 3 have the same value).
+    \begin{align*}
+        \rho = \frac{Cov(rg_{X}, rg_{Y})}{\sigma_{rg_{X}} \sigma_{rg_{Y}}}
+    \end{align*}
+    and there is a formula to this in the case when all ranks are distinct
+    \begin{align*}
+        d_{i} &= rg_{x,i} - rg_{y,i}\\
+        \rho &= 1 - \frac{6\sum_{i=1}^{n} d_{i}^{2}}{n(n^{2} - 1)}
+    \end{align*}
 
     In case of vectors, the covariances are defined as follows
     \begin{align*}

@@ -42,8 +42,8 @@
     where $\overline{X}$ is the sample mean. Similar to the sample mean, this is also a random variable. We divide by $n-1$ so that the estimator is unbiased, as shown below by calculating the mean of the estimator
     \begin{align*}
         E[S^{2}] &= E[\frac{\sum_{i=1}^{n} (X_{i} - \overline{X})^{2}}{n - 1}]\\
-        &= \frac{1}{n-1} \sum_{i=1}^{n} E[(X_{i} - \overline{X})^{2}]\\
-        &= \frac{1}{n-1} \sum_{i=1}^{n} E[X_{i}^{2} - 2X_{i} \overline{X} + \overline{X}^{2}]\\
+        &= \frac{1}{n-1} \sum_{i=1}^{n} E[(X_{i} - \overline{X})^{2}]
+        = \frac{1}{n-1} \sum_{i=1}^{n} E[X_{i}^{2} - 2X_{i} \overline{X} + \overline{X}^{2}]\\
         &= \frac{1}{n-1} \big( \sum_{i=1}^{n} E[X_{i}^{2}] - E[2\overline{X} \sum_{i=1}^{n}X_{i}] + \sum_{i=1}^{n}E[\overline{X}^{2}] \big)\\
         &= \frac{1}{n-1} \big( \sum_{i=1}^{n} E[X_{i}^{2}] - E[2n\overline{X}^{2}] + nE[\overline{X}^{2}] \big)\\
         \text{Using \;} E[X^{2}] &= Var(X) + E[X]^{2},\\
@@ -89,7 +89,7 @@
         \text{or, \;} \frac{(n-1)S^{2}}{\sigma^{2}} + (\frac{\overline{X} - \mu}{\sigma/\sqrt{n}})^{2} &= \sum_{i=1}^{n} (\frac{X_{i} - \mu}{\sigma})^{2}
     \end{align*}
 
-    The right hand side is a chi-square variable with $n$ degrees of freedom and the second part of the right hand side is a chi-square variable with $1$ degree of freedom. We know that sum of independent chi-square variables is also a chi-square variable with degrees of freedom equal to the sum of individual degrees of freedom. Hence, it follows that
+    The right hand side is a chi-square variable with $n$ degrees of freedom and the second part of the left hand side is a chi-square variable with $1$ degree of freedom. We know that sum of independent chi-square variables is also a chi-square variable with degrees of freedom equal to the sum of individual degrees of freedom. Hence, it follows that
     \begin{align*}
         \frac{(n-1)S^{2}}{\sigma^{2}} \sim \chi_{n-1}^{2}
     \end{align*}
