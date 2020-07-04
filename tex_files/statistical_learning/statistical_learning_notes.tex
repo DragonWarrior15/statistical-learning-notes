@@ -40,6 +40,23 @@
 
 \usepackage{subfiles}
 
+% make the chapter start from the same page instead of a new page
+% \usepackage{etoolbox}
+% \makeatletter
+% \patchcmd{\chapter}{\clearpage \newline}{}{}{}
+% to reduce the space before start of a chapter
+% \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{20pt}}{}{}%
+% \patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{20pt}}{}{}%
+% \makeatother
+% \let\oldchapter\chapter
+% \renewcommand{\chapter}{\begingroup\let\clearpage\relax\oldchapter \endgroup}
+
+% make the toc start on the same page as title
+\makeatletter
+\newcommand*{\tocontents}{\@starttoc{toc}}
+\makeatother
+
+
 \DeclareMathOperator*{\minimize}{minimize}
 \DeclareMathOperator*{\maximize}{maximize}
 % \DeclareMathOperator*{\min}{min}
@@ -52,15 +69,17 @@
 \newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\KL}[2]{KL(#1 \parallel #2)}
 
-\title{Statistical Learning Notes}
 \begin{document}
+    \pagenumbering{arabic}
+    \title{Statistical Learning Notes}
+    \date{}
     \maketitle
-    \cleardoublepage
+    % \cleardoublepage
     \pdfbookmark{\contentsname}{toc}
-    \tableofcontents
+    % \tableofcontents
+    \tocontents
     % \newpage
 
-    \pagenumbering{arabic}
 
     \subfile{sections/regression}
     \subfile{sections/classification}
