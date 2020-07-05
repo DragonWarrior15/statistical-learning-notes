@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper]{report}
+\documentclass[11pt, a4paper, notitlepage]{report}
 
 \usepackage{amsmath}
 \usepackage[a4paper, margin=1in]{geometry}
@@ -29,9 +29,14 @@
 
 % to insert images
 \usepackage{graphicx}
-\graphicspath{ {./images/} {../images/}}
+\graphicspath{ {./images/} {../images/} {../../images/}}
 
 \usepackage{subfiles}
+
+% make the toc start on the same page as title
+\makeatletter
+\newcommand*{\tocontents}{\@starttoc{toc}}
+\makeatother
 
 \DeclareMathOperator*{\minimize}{minimize}
 \DeclareMathOperator*{\maximize}{maximize}
@@ -41,13 +46,19 @@
 % \newcommand{\summation}[3]{\sum_{#1 = #2}^{#3}}
 % \renewcommand{\theequation}{\thesection.\arabic{equation}}
 \newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
-\title{Time Series Analysis Notes}
 
 \begin{document}
-    \maketitle{}
-    \tableofcontents
-    \newpage
-
     \pagenumbering{arabic}
-    \subfile{sections/characteristics}
+    \title{Time Series Analysis Notes}
+    \date{}
+    \maketitle
+    \pdfbookmark{\contentsname}{toc}
+    \tocontents
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{chapters/characteristics/characteristics}
+        \subfile{chapters/characteristics/formulations}
+        \subfile{chapters/characteristics/measures}
+        \subfile{chapters/characteristics/exercises}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
