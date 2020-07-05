@@ -14,14 +14,16 @@ x = 0.8*w[2:n] + 0.5*w[1:n-1] + 0.2*w[0:n-2]
 # 10 on either side of 0
 """
 the theoretical acf is
-gamma(0) = 1.5, gamma(+-1) = 0.4, gamma(+-2) = 0.16
+gamma(0) = 0.93, gamma(+-1) = 0.4, gamma(+-2) = 0.16
+we get rho by dividing gamma by gamma(0)
+rho(0) = 1, rho(+-1) = 0.43, rho(+-2) = 0.17
 all other lags have 0 acf
 """
 acf_actual_x = np.arange(-10,11)
 acf_actual_y = np.zeros(21)
-acf_actual_y[10] = 0.93
-acf_actual_y[9] = acf_actual_y[11] = 0.4
-acf_actual_y[8] = acf_actual_y[12] = 0.16
+acf_actual_y[10] = 1
+acf_actual_y[9] = acf_actual_y[11] = 0.43
+acf_actual_y[8] = acf_actual_y[12] = 0.17
 
 """
 estimated acf can be calculated using the formula
@@ -31,12 +33,16 @@ and the function is symmetric around 0
 
 acf_est_y = np.zeros(21)
 n = n - 2
-# positive lags
+# calculate gamma for positive lags only
 for i in range(21):
     h = i - 10
     if(h >= 0):
         acf_est_y[i] = (1.0/n) * np.dot(x[0:n-h], x[h:n])
         acf_est_y[10-h] = acf_est_y[i]
+# convert to rho
+rho_0 = acf_est_y[10]
+for i in range(21):
+    acf_est_y[i] /= rho_0
 
 fig, axs = plt.subplots(3,1, figsize=(16,10))
 # plot the time series

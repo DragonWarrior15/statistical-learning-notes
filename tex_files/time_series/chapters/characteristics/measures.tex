@@ -41,7 +41,7 @@ For any two time points $s$ and $t$,
 \begin{align*}
     \gamma_{x}(s, t) = E[(x_{s} - \mu_{s})(x_{t} - \mu_{t})]
 \end{align*}
-which is similar to the covariance between the two points. Note that the function is symmetric and $\gamma_{x}(s, t) = \gamma_{x}(t, s)$.\newline
+which is similar to the covariance between the two points. Note that the function is symmetric and $\gamma_{x}(s, t) = \gamma_{x}(t, s)$. The prefix auto before covariance distinguishes it from covariance used in the context of random variables.\newline
 
 The autocovariance is a measure of linear dependence between two points of the same time series. \textbf{For very smooth series, the autcovariance tends to take large values while for choppy series, it tends to take very small values}.\newline
 
@@ -123,7 +123,7 @@ and by differentiating this, we will get the joint density of $x_{t}, x_{s}$ whi
 \end{enumerate}
 Thus, we remove any claims for same probability distributions for values of $k > 2$.\newline
 
-\subsection{Autocovariance and Autocorrelation Function}
+\subsection{Autocovariance and Autocorrelation Function (ACF)}
 The mean of a stationary series is constant. Let it be denoted by $\mu$.\newline
 The autocovariance is only dependent on the difference between the time steps
 \begin{align*}
@@ -135,6 +135,8 @@ The autocorrelation can then be simply defined as
     \rho (h) = \rho(t+h, t) = \frac{\gamma (t+h,t)}{\sqrt{\gamma(t+h, t+h) \gamma(t, t)}} = \frac{\gamma(h)}{\gamma(0)}
 \end{align*}
 The denominator could be simplified because of the fact that the autocovariance is only dependent on the time difference and not the location of the time.\newline
+
+Note that correlation will always be between $[-1,1]$, and by definition of autocorrelation function (ACF), at lag 0, it is always 1. It decreases on either side of 0.
 
 If we check at the stationarity of the moving average of white noise, we quickly notice that the mean is constant (from \ref{mean_fun}) and the autocovariance is only dependent on the difference of the two time steps \eqref{eq:gamma_ma}. Thus the series is stationary (weakly).
 
@@ -187,7 +189,7 @@ denominator used is $n$ instead of $n-h$ to ensure that the resulting covariance
 \begin{figure}[h]
     \includegraphics[scale=0.4]{acf_1}
     \centering
-    \caption {Top figure shows a time series, with the theoretical and estimated ACFs shown by middle and bottom figures respectively. Figures plot using acf\_simulation.py}
+    \caption {Top figure shows a time series, with the theoretical and estimated ACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using acf\_simulation.py}
     \label{fig:acf_1} %\ref{fig:acf_1}
 \end{figure}
 \end{document}
