@@ -17,7 +17,7 @@ But this is rarely easy to calculate and takes a tractable form when the variabl
 \subsection{Mean Function} \label{mean_fun}
 The mean function is similar to the usual definition of the expected value
 \begin{align*}
-    \mu_{xt} = E[x_{t}] =  \int_{-\inf}^{\inf} x f_{t}(x) dx
+    \mu_{xt} = E[x_{t}] =  \int_{-\infty}^{\infty} x f_{t}(x) dx
 \end{align*}
 
 \textbf{Smoothing a series does not change it's mean}.
@@ -136,9 +136,29 @@ The autocorrelation can then be simply defined as
 \end{align*}
 The denominator could be simplified because of the fact that the autocovariance is only dependent on the time difference and not the location of the time.\newline
 
-Note that correlation will always be between $[-1,1]$, and by definition of autocorrelation function (ACF), at lag 0, it is always 1. It decreases on either side of 0.
+Note that correlation will always be between $[-1,1]$, and by definition of autocorrelation function (ACF), at lag 0, it is always 1. It decreases on either side of 0. ACF is useful to check the order of a MA process. For a MA process of order $q$, the ACF will cut off at $q$. Similarly, if some ARMA process has MA component, the same can be seen on the ACF plot.\newline
 
 If we check at the stationarity of the moving average of white noise, we quickly notice that the mean is constant (from \ref{mean_fun}) and the autocovariance is only dependent on the difference of the two time steps \eqref{eq:gamma_ma}. Thus the series is stationary (weakly).
+
+\subsection{Partial Autocorrelation Function (PACF)}
+PACF is an extension of ACF where we remove the effects of some variables before calculating the correlation values. Formally, PACF $\alpha$ is
+\begin{align*}
+    PACF(X_{t},X_{t+h}) = \frac{ACF(X_{t},X_{t+h}|X_{t+1},X_{t+2},\ldots,X_{t+h-1})}{\sqrt{Var(X_{t}|X_{t+1},X_{t+2},\ldots,X_{t+h-1})Var(X_{t+h}|X_{t+1},X_{t+2},\ldots,X_{t+h-1})}}
+\end{align*}
+And to calculate the conditional variances/covariances, we first do a regression to remove the effect of intermediate variables and then calculate correlations between the residuals. For different lags,
+\begin{align*}
+    \alpha(0) &= \frac{Cov(X_{t}, X_{t})}{\sqrt{Var(X_{t})Var(X_{t})}} = 1\\
+    \alpha(1) &= \frac{Cov(X_{t}, X_{t-1})}{\sqrt{Var(X_{t})Var(X_{t-1})}} = \rho(1) (\text{plain old ACF})\\
+    \alpha(2) = \frac{Cov(X_{t}, X_{t-2} \rvert X_{t-1})}{\sqrt{Var(X_{t} \lvert X_{t-1})Var(X_{t-2} \lvert X_{t-1})}}\\
+    &= \frac{Cov(X_{t} - \beta_{1}X_{t-1}, X_{t-2} - \beta_{2}X_{t-1})}{\sqrt{Var(X_{t} - \beta_{1}X_{t-1})Var(X_{t-2} - \beta_{2}X_{t-1})}}
+\end{align*}
+where $\beta_{1}$ and $\beta_{2}$ are least squares estimate of regression of $X_{t}$ on $X_{t-1}$ and of $X_{t-2}$ on $X_{t-1}$ respectively. For higher order lags, the regression will shift from a single variable to multivariable one, but the concept will remain the same. PACF are useful when determining the order of an AR process since as the name suggests, the PACF cuts of at lag $p$ for AR(p). Similarly, if a process has some AR component, the same will be reflected in the PACF plot.
+
+\begin{align*}
+    Var(X_{t}|X_{t+1},\ldots,X_{t+h-1}) = Var(X_{t} - \sum_{i=1}^{h-1}\beta_{i}X_{t+i})\\
+    Cov(X_{t},X_{t+h}|X_{t+1},\ldots,X_{t+h-1}) = Cov(X_{t} - \sum_{i=1}^{h-1}\beta_{1i}X_{t+i}, X_{t+h} - \sum_{i=1}^{h-1}\beta_{2i}X_{t+i})\\
+\end{align*}
+where all variances and covariances are calculated on residuals after removing any intermediate terms.
 
 \subsection{Joint Stationarity}
 \textbf{Two stationary time series are said to be jointly stationary if the autocovariance of the two series is only dependent on the lag $h$}.\newline

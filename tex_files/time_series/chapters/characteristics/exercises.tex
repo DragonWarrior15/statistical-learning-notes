@@ -13,7 +13,7 @@
     \begin{enumerate}
         \item Show that the model can be written as $x_{t} = \delta t + \sum_{k=1}^{t}\sigma_{w}^{k}$.
         \item Find the mean and autocovariance of $x_{t}$. Comment on the stationarity.
-        \item Show $\rho_{x}(t-1,t) = \sqrt{(t-1)/t}$ which converges as $t\rightarrow \inf$.
+        \item Show $\rho_{x}(t-1,t) = \sqrt{(t-1)/t}$ which converges as $t\rightarrow \infty$.
         \item Suggest a transformation to make the series stationary and prove stationarity of the new series.
     \end{enumerate}
 
@@ -54,7 +54,7 @@
         \item 
         \begin{align*}
             \rho(t-1,t) &= \frac{\gamma(t-1,t)}{\sqrt{\gamma(t-1,t-1) \gamma(t,t)}} = \frac{(t-1)\sigma_{w}^{2}}{\sqrt{(t-1)\sigma_{w}^{2} t \sigma_{w}^{2}}}\\
-            &= \sqrt{\frac{t-1}{t}} \to 1 \;\text{as}\; t \to \inf
+            &= \sqrt{\frac{t-1}{t}} \to 1 \;\text{as}\; t \to \infty
         \end{align*}
 
         \item The simplest transformation to make a stationary series will be

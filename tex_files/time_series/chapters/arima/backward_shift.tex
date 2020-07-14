@@ -35,7 +35,9 @@ To make time series analysis easier, it is often the case that we will take diff
     &= (X_{t} - X_{t-1}) - (X_{t-1} - X_{t-2}) = X_{t} - 2BX_{t} + B^{2}X_{t}\\
     \nabla^{d}X_{t} &= (1-B)^{d}X_{t} \numberthiseqn\label{eq:eq_arima_1}
 \end{align*}
-which illustrates how we can use the differencing operator to obtain successive differences. Higher powers of this operator can be expanded algebraically using the equation \eqref{eq:eq_arima_1}.
+which illustrates how we can use the differencing operator to obtain successive differences. Higher powers of this operator can be expanded algebraically using the equation \eqref{eq:eq_arima_1}.\newline
+
+Differencing is a technique frequently used to make the time series stationary. Usually a difference of order 1 or 2 suffices. In some cases, we may need to remove the seasonal trend in which case we will resort to order $m$ difference where $m$ is the length of a seasonal cycle.
 
 
 \end{document}
