@@ -149,14 +149,14 @@ And to calculate the conditional variances/covariances, we first do a regression
 \begin{align*}
     \alpha(0) &= \frac{Cov(X_{t}, X_{t})}{\sqrt{Var(X_{t})Var(X_{t})}} = 1\\
     \alpha(1) &= \frac{Cov(X_{t}, X_{t-1})}{\sqrt{Var(X_{t})Var(X_{t-1})}} = \rho(1) (\text{plain old ACF})\\
-    \alpha(2) = \frac{Cov(X_{t}, X_{t-2} \rvert X_{t-1})}{\sqrt{Var(X_{t} \lvert X_{t-1})Var(X_{t-2} \lvert X_{t-1})}}\\
+    \alpha(2) &= \frac{Cov(X_{t}, X_{t-2} \rvert X_{t-1})}{\sqrt{Var(X_{t} \lvert X_{t-1})Var(X_{t-2} \lvert X_{t-1})}}\\
     &= \frac{Cov(X_{t} - \beta_{1}X_{t-1}, X_{t-2} - \beta_{2}X_{t-1})}{\sqrt{Var(X_{t} - \beta_{1}X_{t-1})Var(X_{t-2} - \beta_{2}X_{t-1})}}
 \end{align*}
 where $\beta_{1}$ and $\beta_{2}$ are least squares estimate of regression of $X_{t}$ on $X_{t-1}$ and of $X_{t-2}$ on $X_{t-1}$ respectively. For higher order lags, the regression will shift from a single variable to multivariable one, but the concept will remain the same. PACF are useful when determining the order of an AR process since as the name suggests, the PACF cuts of at lag $p$ for AR(p). Similarly, if a process has some AR component, the same will be reflected in the PACF plot.
 
 \begin{align*}
-    Var(X_{t}|X_{t+1},\ldots,X_{t+h-1}) = Var(X_{t} - \sum_{i=1}^{h-1}\beta_{i}X_{t+i})\\
-    Cov(X_{t},X_{t+h}|X_{t+1},\ldots,X_{t+h-1}) = Cov(X_{t} - \sum_{i=1}^{h-1}\beta_{1i}X_{t+i}, X_{t+h} - \sum_{i=1}^{h-1}\beta_{2i}X_{t+i})\\
+    Var(X_{t}|X_{t+1},\ldots,X_{t+h-1}) &= Var(X_{t} - \sum_{i=1}^{h-1}\beta_{i}X_{t+i})\\
+    Cov(X_{t},X_{t+h}|X_{t+1},\ldots,X_{t+h-1}) &= Cov(X_{t} - \sum_{i=1}^{h-1}\beta_{1i}X_{t+i}, X_{t+h} - \sum_{i=1}^{h-1}\beta_{2i}X_{t+i})\\
 \end{align*}
 where all variances and covariances are calculated on residuals after removing any intermediate terms.
 
@@ -205,11 +205,19 @@ denominator used is $n$ instead of $n-h$ to ensure that the resulting covariance
     \hat{\rho}(h) = \frac{\hat{\gamma_{x}(h)}}{\hat{\gamma_{x}(0)}}
 \end{align*}
 
-\subsection{ACF and Sample ACF Plot}
+
 \begin{figure}[h]
-    \includegraphics[scale=0.4]{acf_1}
+    \includegraphics[scale=0.6]{acf_1}
     \centering
     \caption {Top figure shows a time series, with the theoretical and estimated ACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using acf\_simulation.py}
     \label{fig:acf_1} %\ref{fig:acf_1}
+\end{figure}
+
+
+\begin{figure}[h]
+    \includegraphics[scale=0.6]{pacf_1}
+    \centering
+    \caption {Top figure shows a time series, with the sample ACF and sample PACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using pacf\_simulation.py}
+    \label{fig:pacf_1} %\ref{fig:pacf_1}
 \end{figure}
 \end{document}

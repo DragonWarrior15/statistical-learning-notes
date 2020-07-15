@@ -44,17 +44,18 @@ rho_0 = acf_est_y[10]
 for i in range(21):
     acf_est_y[i] /= rho_0
 
-fig, axs = plt.subplots(3,1, figsize=(16,10))
+fig, axs = plt.subplots(3,1, figsize=(12,12))
 # plot the time series
-axs[0].plot(list(range(1,n+1)), x)
-axs[0].set_title('Time Series x(t) = 0.8w(t) + 0.5w(t-1) + 0.2w(t-2)')
+axs[0].plot(list(range(1,n+1)), x, color='blue')
+axs[0].set_title('Time Series x(t) = 0.8w(t) + 0.5w(t-1) + 0.2w(t-2), MA(2)')
 axs[0].set_xlabel('t')
 axs[0].set_ylabel('x(t)')
 
 # plot the actual acf
 axs[1].set_ylim((0,1))
 for i in range(8,13):
-    axs[1].axvline(acf_actual_x[i], ymin=0, ymax=acf_actual_y[i])
+    axs[1].plot([acf_actual_x[i], acf_actual_x[i]], [0, acf_actual_y[i]], color='blue')
+    # axs[1].axvline(acf_actual_x[i], ymin=0, ymax=acf_actual_y[i])
 axs[1].scatter(acf_actual_x, acf_actual_y, color='black')
 axs[1].set_title('Theoretical ACF')
 axs[1].set_xlabel('Lag')
@@ -63,7 +64,8 @@ axs[1].set_ylabel('ACF')
 # plot the estimated acf
 axs[2].set_ylim((0,1))
 for i in range(21):
-    axs[2].axvline(acf_actual_x[i], ymin=0, ymax=acf_est_y[i])
+    # axs[2].axvline(acf_actual_x[i], ymin=0, ymax=acf_est_y[i])
+    axs[2].plot([acf_actual_x[i], acf_actual_x[i]], [0, acf_est_y[i]], color='blue')
 axs[2].scatter(acf_actual_x, acf_est_y, color='black')
 axs[2].set_title('Estimated ACF')
 axs[2].set_xlabel('Lag')
