@@ -1,0 +1,80 @@
+\documentclass[11pt, a4paper, notitlepage]{report}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+% \usepackage{tikz}
+% \usetikzlibrary{automata, positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=5cm,compat=1.9}
+
+% remove paragraph indent
+\setlength{\parindent}{0em}
+
+% hyperlinks for the table of contents
+% \usepackage{color}
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=blue, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all, % 'all' will create links for everything in the TOC
+    bookmarksnumbered=true
+}
+
+% \setcounter{tocdepth}{4}
+\usepackage[level=subsection]{bookmark}
+
+% to insert images
+\usepackage{graphicx}
+\graphicspath{ {./images/} {../images/} {../../images/}}
+
+\usepackage{subfiles}
+
+% make the toc start on the same page as title
+\makeatletter
+\newcommand*{\tocontents}{\@starttoc{toc}}
+\makeatother
+
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+% \newcommand{\summation}[3]{\sum_{#1 = #2}^{#3}}
+% \renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
+
+\begin{document}
+    \pagenumbering{arabic}
+    \title{Time Series Analysis Notes}
+    \date{}
+    \author{}
+    \maketitle
+    \pdfbookmark{\contentsname}{toc}
+    \tocontents
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{chapters/characteristics/characteristics}
+        \subfile{chapters/characteristics/formulations}
+        \subfile{chapters/characteristics/measures}
+        \subfile{chapters/characteristics/exercises}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{ARIMA Models}
+        \subfile{chapters/arima/backward_shift}
+        \subfile{chapters/arima/smoothing}
+        \subfile{chapters/arima/ar}
+        \subfile{chapters/arima/ma}
+        \subfile{chapters/arima/arma}
+        \subfile{chapters/arima/arima}
+        \subfile{chapters/arima/example}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{chapters/ses/ses}
+        \subfile{chapters/ses/simple_exp_smoothing}
+        \subfile{chapters/ses/exp_smoothing_trend}
+        \subfile{chapters/ses/exp_smoothing_season}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
