@@ -43,7 +43,7 @@ the ratio of two normals is also a normal distribution, making the final distrib
 \begin{figure}[h]
 \includegraphics[scale=0.3]{gp_2}
 \centering
-\caption{Prediction using gaussian process for a $1d$ distribution. Variance of the prediction is $0$ at the observed points. The variance is constant far away from the observed points as $K(0)$ is predefined and finite. Prepared using $gaussian_process_prediction.py$}
+\caption{Prediction using gaussian process for a $1d$ distribution. Variance of the prediction is $0$ at the observed points. The variance is constant far away from the observed points as $K(0)$ is predefined and finite. Prepared using gaussian\_process\_prediction.py}
 \label{fig:gp_2} %\ref{fig:gp_2}
 \end{figure}
 
@@ -59,7 +59,7 @@ where $s^{2}$ is the variance of noise $\sim \mathcal{N}(0, s^{2})$.\newline
 We have introduced an additional parameter into our model. Suppose we use the RBF kernel. Then we have $\sigma^{2}$ and $l$ as the model parameters also. We can optimize for all of those instead of trying out various values by maximizing the (log)likelihood of the data
 \begin{align*}
     \max_{s^{2}, \sigma^{2}, l} p(f(x_{1}, \ldots, x_{n})|s^{2}, \sigma^{2}, l)
-    = \max{s^{2}, \sigma^{2}, l} \mathcal{N}(0, \tilde{K})
+    = \max_{s^{2}, \sigma^{2}, l} \mathcal{N}(0, \tilde{K})
 \end{align*}
 which can be done using a method like gradient descent. We can also use only a subset of the data to do the training (similar to SVM where few points near the boundary define it). This leads up to a significant reduction in the run time.
 
