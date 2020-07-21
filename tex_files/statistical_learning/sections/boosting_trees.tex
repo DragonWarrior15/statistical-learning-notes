@@ -43,7 +43,7 @@ where we have denoted $\mathbf{f}(x)$ as a vector in $\mathbb{R}^{N}$ space. Thu
 
 and $\mathbf{h}_{m}(x)$ are steps taken in such a way to reduce the loss. Thus, the final $\mathbf{f}(x)$ is simply a sum of these small steps. We usually start with $\mathbf{f}(x) = \mathbf{h}_{0}(x)$ as an initial guess.\newline
 
-At any point $m$, the gradient can be chosen as $\mathbf{h}_{m} = -\rho_{m} \mathbb{g}_{m}$ where $\rho_{m}$ is a scalar and the gradient $\mathbf{g}$ is calculated across all $i$ data points
+At any point $m$, the gradient can be chosen as $\mathbf{h}_{m} = -\rho_{m} \mathbf{g}_{m}$ where $\rho_{m}$ is a scalar and the gradient $\mathbf{g}$ is calculated across all $i$ data points
 \begin{align*}
     g_{i, m} = \bigg[ \frac{\partial L(y_{i}, f(x_{i}))}{\partial f(x_{i})} \bigg]_{f=f_{m-1}}
 \end{align*}
@@ -74,7 +74,7 @@ which has fast algorithms using regression trees. Note that the tree is built us
         \end{align*}
         \item Prepare a regression tree on the negative of gradients
         \begin{align*}
-            R_{m}, \gamma_{m} = \argmin_{r, \gamma} \sum_{i=1}^{N} (-g_{i,m} - T(x_{i}; R, \gamma))^{2}
+            R_{m}, \gamma_{m} = \argmin_{R, \gamma} \sum_{i=1}^{N} (-g_{i,m} - T(x_{i}; R, \gamma))^{2}
         \end{align*}
         to get the terminal regions/nodes of the tree $R_{j}, j=1,2,\ldots,J$
         \item Calculate the $\gamma$ on the above regions

@@ -11,9 +11,9 @@
     Proof for Iterated Expectation
     \begin{align*}
         P(X) &= \sum_{y} P(X|Y) P(Y) \\
-        \Rightarrow E[X] &= \sum_{x} xP(X) = \sum_{x} \sum{y} xP(X|Y)P(Y) \\
+        \Rightarrow E[X] &= \sum_{x} xP(X) = \sum_{x} \sum_{y} xP(X|Y)P(Y) \\
             &= \sum_{y} P(Y) \sum_{x} xP(X|Y) = \sum_{y} P(Y) E[X|Y] \\
-        \text{or, } E[X] &= E[E[X|Y]] \tag*{$E[X|Y]$ is a function of $X$ and not $Y$}
+        \text{or, } E[X] &= E[E[X|Y]] \quad \text{($E[X|Y]$ is a function of $Y$ and not $X$)}
     \end{align*}
     
     Proof for Variance
