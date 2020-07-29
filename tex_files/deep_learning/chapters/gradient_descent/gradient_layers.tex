@@ -1,0 +1,175 @@
+\documentclass[../../deep_learning_notes.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gradients for Common Layers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dense Layer}
+Let's consider the simplest case of linear transformations using 2-D matrices
+\begin{align*}
+    Y &= XW + b\\
+    X &\in \mathbb{R}^{N \times p}, W \in \mathbb{R}^{p \times k}, Y \in \mathbb{R}^{N \times k}, b \in \mathbb{R}^{k}
+\end{align*}
+where $N$ is the number of data points, $p$ is the dimension of the input vectors and $k$ is the dimension of output vectors. Instead of calculating the Jacobian, we skip directly to calculation of the gradients, and look at each element of that matrix
+\begin{align*}
+    \frac{dL}{dW} &= \frac{dL}{dY} \frac{dY}{dW}\\
+    \frac{dL}{dW_{ij}} &= \sum_{l=1}^{N} \frac{dL}{dY_{lj}} \frac{dY_{lj}}{dW_{ij}}
+\end{align*}
+because $W_{ij}$ is used in every example for calculating the $j^{th}$ column of the output matrix. Let's look at the formula for $Y_{lj}$ to get the derivative
+\begin{align*}
+    Y_{lj} &= X_{l1}W_{1j} + \cdots + X_{li}W_{ij} + \cdots + X_{lp}W_{pj} + b_{j}\\
+    \frac{dY_{lj}}{dW_{ij}} &= X_{li}\\
+    \implies \frac{dL}{dW_{ij}} &= \sum_{l=1}^{N} \frac{dL}{dY_{lj}} X_{li} = \sum_{l=1}^{N} X^{T}_{il}\frac{dL}{dY_{lj}}\\
+    \frac{dL}{dW} &= X^{T} \frac{dL}{dY}
+\end{align*}
+and consequently, we often loosely denote $dY/dW = X^{T}$, although technically this derivative is a Jacobian matrix of size $N \times k \times p \times k$ which is very difficult to not only compute, but also work with downstream. The error notation to directly work with the gradients comes in handy.\newline
+
+We also need to consider the gradient with input $X$, since that may be used downstream for calculating the gradients in parent layers.
+\begin{align*}
+    \frac{dL}{dX} &= \frac{dL}{dY} \frac{dY}{dX}\\
+    \frac{dL}{dX_{ij}} &= \sum_{l=1}^{k} \frac{dL}{dY_{il}} \frac{dY_{il}}{dX_{ij}}
+\end{align*}
+since the data point $i$ will only influence the data point $i$ in $Y$. Other data points will not be affected. Further, $X_{ij}$ is used in calculation of every dimension of $Y_{i,:}$. To calculate the gradient,
+\begin{align*}
+    Y_{il} &= \sum_{t=1}^{p} X_{it}W_{tl}\\
+    \frac{dY_{il}}{dX_{ij}} &= W_{jl}\\
+    \frac{dL}{dX_{ij}} &= \sum_{l=1}^{k} \frac{dL}{dY_{il}}W_{jl}
+    = \sum_{l=1}^{k} \frac{dL}{dY_{il}} W_{lj}^{T}\\
+    \implies \frac{dL}{dX} &= \frac{dL}{dY} W^{T}
+\end{align*}
+
+Finally, the gradient for the bias term $b$
+\begin{align*}
+    \frac{dL}{db} &= \frac{dL}{dY} \frac{dY}{db}\\
+    \frac{dL}{db_{i}} &= \sum_{l=1}^{N} \frac{dL}{dY_{li}} \frac{dY_{li}}{db}
+\end{align*}
+since the bias term $b_{i}$ is used in the evaluation of the entire column of $Y$.
+\begin{align*}
+    \frac{dY_{li}}{db_{i}} &= 1\\
+    \frac{dL}{db_{i}} &= \sum_{l=1}^{N} \frac{dL}{dY_{li}}\\
+    \frac{dL}{db} &= \bm{1}_{N}\frac{dL}{dY}
+\end{align*}
+where $\bm{1}_{N} \in \mathbb{R}^{N}$ and all it's elements are ones. This helps do a column wise sum of the gradients of $Y$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Convolutional Layers}
+A very simple demonstration of a convolution operation is 
+\begin{align*}
+    \begin{bmatrix}
+        11  &4 &13  &2 &24\\
+        5   &1  &7 &21 &20\\
+        6  &16 &22 &19  &3\\
+       14  &18  &0  &9 &15\\
+       10  &12 &23  &8 &17\\
+    \end{bmatrix} *
+    \begin{bmatrix}
+        1 &0 &0\\
+        0 &1 &0\\
+        0 &0 &1\\
+    \end{bmatrix} &= 
+    \begin{bmatrix}
+        \begin{bmatrix}
+            11  &4 &13\\
+            5   &1  &7\\
+            6  &16 &22
+        \end{bmatrix}
+        &\begin{bmatrix}
+            4 &13  &2\\
+            1  &7 &21\\
+            16 &22 &19
+        \end{bmatrix}
+        &\begin{bmatrix}
+            13  &2 &24\\
+            7 &21 &20\\
+            22 &19  &3\\
+        \end{bmatrix}\\
+        \begin{bmatrix}
+            5   &1  &7\\
+            6  &16 &22\\
+            14  &18 &0
+        \end{bmatrix}
+        &\begin{bmatrix}
+            1  &7 &21\\
+            16 &22 &19\\
+            18 &0 &9
+        \end{bmatrix}
+        &\begin{bmatrix}
+            7 &21 &20\\
+            22 &19  &3\\
+            0 &9  &15\\
+        \end{bmatrix}\\
+        \begin{bmatrix}
+            6  &16 &22\\
+            14  &18 &0\\
+            10  &12 &23
+        \end{bmatrix}
+        &\begin{bmatrix}
+            16 &22 &19\\
+            18 &0 &9\\
+            12 &23 &8
+        \end{bmatrix}
+        &\begin{bmatrix}
+            22 &19  &3\\
+            0 &9  &15\\
+            23 &8  &17
+        \end{bmatrix}
+    \end{bmatrix}.
+    \begin{bmatrix}
+        1 &0 &0\\
+        0 &1 &0\\
+        0 &0 &1\\
+    \end{bmatrix}\\ &=
+    \begin{bmatrix}
+        34 &30 &37\\
+        21 &32 &41\\
+        47 &24 &48\\
+    \end{bmatrix}
+\end{align*}
+The small $3 \times 3$ matrix slides over the entire $5 \times 5$ window (without going outside the boundary) to produce the smaller $3 \times 3$ matrix. This operation is a fundamental building block of Convolutional Neural Networks that uses such convolutional filters to detect edges and other image related features.\newline
+
+There is a third dimension to such filters as well. Our input image is usually of the dimensions Height $\times$ Width $\times$ Channels, where we have 3 channels in an RGB image. When we apply a convolution operation to this, we will also specify the number of such filters to apply. That is, instead of separately applying say $f$ different filters, we use a matrix of 4-D dimensions, where the third dimension is number of imput channels, and fourth dimension is the number of output channels $f$. The output will be of 3 dimensions where the third dimension is of size $f$. This means that we have stacked the outputs of all $f$ filters together to produce a 3D matrix. This multidimensional approach makes the whole process much more simpler and efficient. This concept extends across multiple convolutional layers as well.
+
+A typical convolution operation will work on 4-D tensors
+\begin{align*}
+    (N \times h_{i} \times w_{i} \times c_{i}) * (f_{1} \times f_{2} \times c_{i} \times c_{o}) \rightarrow (N \times h_{o} \times w_{o} \times c_{o})
+\end{align*}
+where $N$ is the number of data points, subscript $i$ and $o$ denote input and output, $h$ is height, $w$ is width and $c$ is the number of channels/filters.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Single Data Point, Single Filter, Single Channel}
+In this simplest case, assume we have an input of shape $h \times w$, a filter of size $f_{1} \times f_{2}$ and the output is of size $(h - f_{1} + 1) \times (w - f_{2} + 1)$. We assume no strides or padding. Then,
+\begin{align*}
+    Y &= X * F\\
+    Y_{ij} &= \begin{bmatrix}
+        X_{ij} &\cdots &X_{i(j + f_{2}-1)}\\
+        \vdots &\ddots &\vdots\\
+        X_{(i+f_{1}-1)j} &\cdots &X_{(i+f_{1}-1)(j+f_{2}-1)}
+    \end{bmatrix}.
+    \begin{bmatrix}
+        F_{11} &\cdots &F_{1f_{2}}\\
+        \vdots &\ddots &\vdots\\
+        F_{f_{1}1} &\cdots &F_{f_{1}f_{2}}
+    \end{bmatrix}
+    = \sum_{k=1}^{f_{1}} \sum_{l=1}^{f_{2}} F_{kl} X_{(i-1+k)(j-1+l)}\\
+    \frac{dY_{ij}}{dF_{kl}} &= X_{(i-1+k)(j-1+l)}
+\end{align*}
+But to calculate the total gradient to $F_{kl}$, we must sum up over all elements of $Y$ since $F_{kl}$ is involved in calculation of each one of them
+\begin{align*}
+    \frac{dL}{dF_{kl}} &= \sum_{i=1}^{h - f_{1} + 1} \sum_{j=1}^{w - f_{2} + 1} \frac{dL}{dY_{ij}} \frac{dY_{ij}}{dF_{kl}}
+    = \sum_{i=1}^{h - f_{1} + 1} \sum_{j=1}^{w - f_{2} + 1} \frac{dL}{dY_{ij}} X_{(i-1+k)(j-1+l)}\\
+    &= \frac{dL}{dY} * X_{(k:h-f_{1}+k)(l:w-f_{2}+l)}\\
+    \implies \frac{dL}{dF} &= \frac{dL}{dY} * X
+\end{align*}
+which is a convolution operation between the gradients and input. This is analogous to the dense layer case where we simply multiplied gradients with the matrix $X$. The key take away is that the gradient is being summed over multiple elements of matrix $X$ rather than just a single element.\newline
+
+We may also require the gradients for $X$, in case $X$ itself is the output of a convolutional layers
+\begin{align*}
+    Y &= X * F\\
+    Y_{ij} &= \sum_{k=1}^{f_{1}} \sum_{l=1}^{f_{2}} F_{kl} X_{(i-1+k)(j-1+l)}\\
+    \frac{dY_{ij}}{dX_{(i-1+k)(j-1+l)}} &= F_{kl}
+\end{align*}
+Similar to the gradients for $F$, we sum over all the elements of $Y$ that utilize $X_{kl}$ to get the total gradient at $X_{kl}$. All such elements of $Y$ 
+\begin{align*}
+    \frac{dL}{dX_{(i-1+k)(j-1+l)}} &= \sum_{i=1}^{h - f_{1} + 1} \sum_{j=1}^{w - f_{2} + 1} \frac{dL}{dY_{ij}} \frac{dY_{ij}}{dF_{kl}}
+\end{align*}
+\end{document}
