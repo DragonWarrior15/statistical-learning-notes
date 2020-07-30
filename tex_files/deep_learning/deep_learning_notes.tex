@@ -48,6 +48,15 @@
 % \renewcommand{\theequation}{\thesection.\arabic{equation}}
 \newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
 
+% for adjusting line spacing in matrices
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
 \begin{document}
     \pagenumbering{arabic}
     \title{Deep Learning Notes}
