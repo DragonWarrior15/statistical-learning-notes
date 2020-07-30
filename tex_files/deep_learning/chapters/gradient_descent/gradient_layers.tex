@@ -157,8 +157,8 @@ But to calculate the total gradient to $F_{kl}$, we must sum up over all element
 \begin{align*}
     \frac{dL}{dF_{kl}} &= \sum_{i=1}^{h - f_{1} + 1} \sum_{j=1}^{w - f_{2} + 1} \frac{dL}{dY_{ij}} \frac{dY_{ij}}{dF_{kl}}
     = \sum_{i=1}^{h - f_{1} + 1} \sum_{j=1}^{w - f_{2} + 1} \frac{dL}{dY_{ij}} X_{(i+k-1)(j+l-1)}\\
-    &= \frac{dL}{dY} * X_{(k:h-f_{1}+k)(l:w-f_{2}+l)}\\
-    \implies \frac{dL}{dF} &= \frac{dL}{dY} * X
+    &= X_{(k:h-f_{1}+k)(l:w-f_{2}+l)} * \frac{dL}{dY}\\
+    \implies \frac{dL}{dF} &= X * \frac{dL}{dY}
 \end{align*}
 which is a convolution operation between the gradients and input. This is analogous to the dense layer case where we simply multiplied gradients with the matrix $X$. The key take away is that the gradient is being summed over multiple elements of matrix $X$ rather than just a single element.\newline
 
@@ -233,6 +233,30 @@ We can also verify that the first two elements of $dL/dX$ are as expected
     \frac{dL}{dX_{12}} &= \frac{dL}{dY^{pad}_{11}} F^{Flip}_{f_{1}(f_{2}-1)} + \frac{dL}{dY^{pad}_{12}} F^{Flip}_{f_{1}f_{2}}\\ &= \frac{dL}{dY_{11}} F_{12} + \frac{dL}{dY_{12}} F_{11}\\
 \end{align*}
 
+Summarizing,
+\begin{align*}
+    Y &= X * F + b\\
+    \frac{dL}{dF} &= X * \frac{dL}{dY}\\
+    \frac{dL}{db} &= \bm{1}_{h+f_{1}-1}\frac{dL}{dY}\bm{1}_{w+f_{2}-1}\\
+    \frac{dL}{dX} &= \frac{dL}{dY^{pad}} * F^{flip}
+\end{align*}
+
+
+\subsubsection{Single Data Point, Single Filter, Multiple Channels}
+Assume we have an input of shape $h \times w \times d$, a filter of size $f_{1} \times f_{2} \times d$, bias of size $1 \times 1$, and the output is of size $(h - f_{1} + 1) \times (w - f_{2} + 1)$. We assume no strides or padding. Then,
+\begin{align*}
+    Y &= X * F + b\\
+\end{align*}
+
+The case is similar to the previous case, but instead of a 2D filter, we are now working in 3D. The formulae will remain the same, since the convolution operator will still be sliding on the 2D plane of height $\times$ width
+\begin{align*}
+    \frac{dL}{dF} &= X * \frac{dL}{dY}\\
+    \frac{dL}{db} &= \bm{1}_{h+f_{1}-1}\frac{dL}{dY}\bm{1}_{w+f_{2}-1}\\
+    \frac{dL}{dX} &= \frac{dL}{dY^{pad}} * F^{flip}
+\end{align*}
+
+where $Y^{pad}$ only has padding in the height and width dimensions. Similarly, $F^{flip}$ flips each 2D plane individually, there is no transformation along the depth.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Max Pooling 2D Layer}
@@ -271,7 +295,7 @@ In case multiple cells satisfy the maximum condition (discontinuity), there is n
 \begin{align*}
     X &= \begin{bmatrix} 1 &0\\ 2 &0\\\end{bmatrix}\\
     Y &= MaxPool2D(X) = 2, \; Y_{max} = (2,1)\\
-    \frac{dL}{dX} &= \frac{dL}{dY}\frac{dL}{dX}
+    \frac{dL}{dX} &= \frac{dL}{dY}\frac{dY}{dX}
     = \begin{bmatrix} 0 &0\\ \frac{dL}{dY} &0\\\end{bmatrix}
 \end{align*}
 
@@ -279,7 +303,12 @@ When implementing this layer, we will remember the index of the input where the 
 \begin{align*}
     X &= \begin{bmatrix} 1 &0 &1\\ 2 &0 &1\\ 0 &1 &0\end{bmatrix}\\
     Y &= MaxPool2D(X) = \begin{bmatrix} 2 &1\\ 2 &1\end{bmatrix}, \; Y_{max} = \begin{bmatrix} 2,1 &1,3\\ 2,1 &2,3\end{bmatrix}\\
-    \frac{dL}{dX} &= \frac{dL}{dY}\frac{dL}{dX}
+    \frac{dL}{dX} &= \frac{dL}{dY}\frac{dY}{dX}
     = \begin{bmatrix}[1.5] 0 &0 &\frac{dL}{dY_{12}}\\ \frac{dL}{dY_{11}} + \frac{dL}{dY_{21}} &0 &\frac{dL}{dY_{22}}\\ 0 &0 &0\end{bmatrix}
 \end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Flatten Layer}
+Similar to MaxPool, this layer has no learnable parameters and just restructres the input data into a flat 1D array. The gradient flow is simply remembering which index in the original tensor corresponds to the considered index in the 1D array. The total number of elements in the input and output remain the same.
 \end{document}
