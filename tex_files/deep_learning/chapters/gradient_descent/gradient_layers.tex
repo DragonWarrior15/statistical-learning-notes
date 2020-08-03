@@ -46,7 +46,7 @@ since the bias term $b_{i}$ is used in the evaluation of the entire column of $Y
 \begin{align*}
     \frac{dY_{li}}{db_{i}} &= 1\\
     \frac{dL}{db_{i}} &= \sum_{l=1}^{N} \frac{dL}{dY_{li}}\\
-    \frac{dL}{db} &= \bm{1}_{N}\frac{dL}{dY}
+    \frac{dL}{db} &= \bm{1}_{N}^{T}\frac{dL}{dY}
 \end{align*}
 where $\bm{1}_{N} \in \mathbb{R}^{N}$ and all it's elements are ones. This helps do a column wise sum of the gradients of $Y$.
 

@@ -18,7 +18,7 @@ Let $z$ be the output of model, and $p$ be obtained after the sigmoid operation
 \subsubsection*{Multiple Data Points}
 Let $z,p \in \mathbb{R}^{n}$. Since this is an element-wise transformation, we leverage the derivation in \eqref{eq:backprop_2} 
 \begin{align*}
-    \frac{dL}{dz} &= \frac{dL}{dp}\odot p^{T}\odot (1-p)^{T}
+    \frac{dL}{dz} &= \frac{dL}{dp}\odot p\odot (1-p)
 \end{align*}
 
 \subsection{Softmax}
@@ -44,24 +44,24 @@ where $s$ and $z$ are vectors with the same dimensions. Thus the derivative will
 \end{align*}
 Thus the off diagonal entries are simply products of the $y$ values at the corresponding indices. We form one matrix consisting of such values. For the diagonal entries, some additional manipulation is needed which is obtained by diagonal matrix consisting of $y$.
 \begin{align*}
-    \frac{ds}{dz} = diag(s) - s^{T}s = J
+    \frac{ds}{dz} = diag(s) - ss^{T} = J
 \end{align*}
 where $J$ is the Jacobian matrix. Next, let's calculate the gradient
 \begin{align*}
     \frac{dL}{dz} &= \frac{dL}{ds} \frac{ds}{dz}\\
-    &= \bigg( \frac{dL}{ds_{1}}, \ldots, \frac{dL}{ds_{k}} \bigg) J\\
+    &= J^{T} \bigg( \frac{dL}{ds_{1}}, \ldots, \frac{dL}{ds_{k}} \bigg)^{T}\\
     \frac{dL}{dz_{i}} &= s_{i}(1-s_{i})\frac{dL}{ds_{i}} - \sum_{j=1, j\neq i}^{k}s_{i}s_{j}\frac{dL}{ds_{j}}\\
     &= s_{i}\frac{dL}{ds_{i}} - s_{i} \bigg( \sum_{j=1}^{k}\frac{dL}{ds_{j}}s_{j} \bigg)
 \end{align*}
 We have a common calculation across all gradients
 \begin{align*}
-    \sum_{j=1}^{k}\frac{dL}{ds_{j}}s_{j} = \frac{dL}{ds}s = c
+    \sum_{j=1}^{k}\frac{dL}{ds_{j}}s_{j} = s^{T}\frac{dL}{ds} = c
 \end{align*}
-since $dl/ds$ is shape $1 \times k$ and $s$ is $k \times 1$. The gradient simplifies to
+since $dL/ds$ is shape $k \times 1$ and $s$ is $k \times 1$. The gradient simplifies to
 \begin{align*}
     \frac{dL}{dz_{i}} &= s_{i}\frac{dL}{ds_{i}} - s_{i}c = s_{i}(\frac{dL}{ds_{i}} - c)\\
-    \frac{dL}{dz} &= \bigg(\frac{dL}{ds} - c \bigg) \odot s^{T}\\
-    &= \bigg( \frac{dL}{ds} - \frac{dL}{ds}s \bigg) \odot s^{T}
+    \frac{dL}{dz} &= \bigg(\frac{dL}{ds} - c \bigg) \odot s\\
+    &= \bigg( \frac{dL}{ds} - s^{T}\frac{dL}{ds} \bigg) \odot s
 \end{align*}
 which involves far less calculations than the original formula involving the Jacobian.
 
@@ -105,7 +105,7 @@ The defintion of \textbf{Rectified Linear Unit} is
 \end{align*}
 and the derivative becomes
 \begin{align*}
-    \frac{dz}{dz} = \begin{cases}
+    \frac{dz}{dx} = \begin{cases}
         0 &\mbox{if $x < 0$}\\
         1 &\mbox{otherwise}
     \end{cases}

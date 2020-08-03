@@ -15,9 +15,9 @@ The predictions and loss are given by
 Taking the derivatives,
 \begin{align*}
     \frac{dL}{d\hat{y}} &= -(y - \hat{y})\\
-    \frac{d\hat{y}}{dW} &= \big( x_{1}, x_{2}, \ldots, x_{p} \big) = x^{T}\\
+    \frac{d\hat{y}}{dW} &= \big( x_{1}, x_{2}, \ldots, x_{p} \big)^{T} = x\\
     \frac{dL}{dW} &= \frac{dL}{d\hat{y}} \frac{d\hat{y}}{d}\\
-    &= (\hat{y} - y) x^{T}
+    &= (\hat{y} - y) x
 \end{align*}
 
 
@@ -32,11 +32,11 @@ Now, we have a matrix $X$ ($N$ data points) instead of a vector $x$
 \end{align*}
 Note that $b$ will be broadcasted across $XW$ when used. Another possibility is to include a columns of ones in the matrix and remove the additional bias term altogether. Taking the derivatives
 \begin{align*}
-    \frac{dL}{d\hat{y}} &= \big( \frac{dL}{d\hat{y}_1}, \frac{dL}{d\hat{y}_2}, \ldots, \frac{dL}{d\hat{y}_N} \big)\\
+    \frac{dL}{d\hat{y}} &= \big( \frac{dL}{d\hat{y}_1}, \frac{dL}{d\hat{y}_2}, \ldots, \frac{dL}{d\hat{y}_N} \big)^{T}\\
     L &= \frac{1}{2N}\lVert (y - \hat{y}) \rVert^{2} = \frac{1}{2N} \sum_{i=1}^{N} (y_{i} - \hat{y}_{i})^{2}\\
     \frac{dL}{d\hat{y}_{i}} &= \frac{1}{2N} \times 2(y_{i} - \hat{y}_{i})(-1)
     = \frac{1}{N}(\hat{y}_{i} - y_{i})\\
-    \frac{dL}{d\hat{y}} &= \frac{1}{N}(\hat{y} - y)^{T} \quad \text{dimensions}\; 1 \times N\\
+    \frac{dL}{d\hat{y}} &= \frac{1}{N}(\hat{y} - y) \quad \text{dimensions}\; N \times 1\\
 \end{align*}
 Now let's consider the derivative of $\hat{y}$ with $W$
 \begin{align*}
@@ -49,7 +49,7 @@ Now let's consider the derivative of $\hat{y}$ with $W$
     &= X_{ji}\\
     \frac{d\hat{y}}{dW} &= X\\
     \frac{dL}{dW} &= \frac{dL}{d\hat{y}} \frac{d\hat{y}}{dW}
-    = \frac{1}{N}(\hat{y} - y)^{T} X \quad \text{dimensions}\; 1 \times p\\
+    = \frac{1}{N}X^{T}(\hat{y} - y) \quad \text{dimensions}\; p \times 1\\
 \end{align*}
 
 
@@ -72,13 +72,13 @@ The gradient becomes
 \subsubsection*{Multiple Data Points}
 Instead of a single prediction, now $\hat{y} \in \mathbb{R}^{N}$. The same is true for $y$. The Loss is calculated as
 \begin{align*}
-    L = -\frac{1}{N} \big( y^{T}log(\hat{y} + (1-y)^{T}log(1-\hat{y})) \big)
+    L = -\frac{1}{N} \big( y^{T}log(\hat{y}) + (1-y)^{T}log(1-\hat{y})) \big)
 \end{align*}
 where $L \in \mathbb{R}$ and log operations are applied element-wise. The gradient with $\hat{y}$ becomes
 \begin{align*}
     \frac{dL}{d\hat{y}} &= -\frac{1}{N}\big( \frac{dL}{d\hat{y}_{1}}, \ldots, \frac{dL}{d\hat{y}_{N}} \big)\\
     \frac{dL}{d\hat{y}_{i}} &= -\frac{1}{N} \bigg( \frac{y_{i}}{\hat{y}_{i}} - \frac{1-y_{i}}{1-\hat{y}_{i}} \bigg)\\
-    \frac{dL}{d\hat{y}} &= -\frac{1}{N} \big( \frac{y}{\hat{y}} - \frac{1-y}{1-\hat{y}} \big)^{T}
+    \frac{dL}{d\hat{y}} &= -\frac{1}{N} \big( \frac{y}{\hat{y}} - \frac{1-y}{1-\hat{y}} \big)
 \end{align*}
 where the division operations are element wise.
 
@@ -93,9 +93,9 @@ Suppose in the output $\hat{y}$, we have $k$ dimensions which represent a valid 
 \end{align*}
 and the gradient becomes
 \begin{align*}
-    \frac{dL}{d\hat{y}} = -\bigg(\frac{dL}{d\hat{y}_{1}}, \ldots, \frac{dL}{d\hat{y}_{k}} \bigg)
-    =-\bigg(\frac{y_{1}}{\hat{y}_{1}}, \ldots, \frac{y_{k}}{\hat{y}_{k}} \bigg)
-    = -\bigg(\frac{y}{\hat{y}} \bigg)^{T}
+    \frac{dL}{d\hat{y}} = -\bigg(\frac{dL}{d\hat{y}_{1}}, \ldots, \frac{dL}{d\hat{y}_{k}} \bigg)^{T}
+    =-\bigg(\frac{y_{1}}{\hat{y}_{1}}, \ldots, \frac{y_{k}}{\hat{y}_{k}} \bigg)^{T}
+    = -\bigg(\frac{y}{\hat{y}} \bigg)
 \end{align*}
 where the division operation is element-wise. This gradient is a case of scalar by vector since $\hat{y}$ is a $k$-dimensional output.
 

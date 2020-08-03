@@ -10,9 +10,10 @@ We review and establish some notation for dealing with gradients beyond just sca
 Let $f$ be a real valued function and $\bm{x}$ be a vector
 \begin{align*}
     f(\bm{x})&: \mathbb{R}^{n} \rightarrow \mathbb{R}\\
-    \frac{\partial f}{\partial \bm{x}} &= \bigg(\frac{\partial f(\bm{x})}{\partial x_{1}}, \frac{\partial f(\bm{x})}{\partial x_{2}},  \ldots, \frac{\partial f(\bm{x})}{\partial x_{n}} \bigg)
+    \frac{\partial f}{\partial \bm{x}} &= \bigg(\frac{\partial f(\bm{x})}{\partial x_{1}}, \frac{\partial f(\bm{x})}{\partial x_{2}},  \ldots, \frac{\partial f(\bm{x})}{\partial x_{n}} \bigg)^{T}
 \end{align*}
 
+In texts, usually $\partial f/\partial \bm{x}$ will be written as a row vector instead of a column vector (above). This is done since all vectors in this text will be column vectors, and the gradients should be the same shape as the original vectors for the update equations to work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Gradient of a Vector valued Function with Scalar}
