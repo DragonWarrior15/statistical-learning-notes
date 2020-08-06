@@ -7,6 +7,12 @@
 \usepackage{mathtools}
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning}
+% for writing indented code
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
 
 \usepackage{pgfplots}
 \pgfplotsset{width=5cm,compat=1.9}
@@ -74,6 +80,11 @@
     \subfile{chapters/gradient_descent/gradient_loss}
     \subfile{chapters/gradient_descent/gradient_layers}
     \subfile{chapters/gradient_descent/backprop_example_1}
+    \subfile{chapters/gradient_descent/optimizers}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Weights Initialization}
+    \subfile{chapters/weight_initialization/gradient_explosion}
+    \subfile{chapters/weight_initialization/correct_init}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
