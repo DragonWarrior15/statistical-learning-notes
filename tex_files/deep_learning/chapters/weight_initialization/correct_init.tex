@@ -177,7 +177,7 @@ When the activation function is ReLU, the assumption that activations have mean 
 since all weights are from the same distribution, and all activations are from same distribution. Let's focus on $E[a_{l-1}^{2}]$
 \begin{align*}
     E[a_{l-1}^{2}] &= E[\max(0, z_{l-1})^{2}]\\
-     &= E[\max(0, z_{l-1})^{2}|z_{l-1} \leq 0]P(z_{l-1} <= 0) + E[\max(0, z_{l-1})^{2}|z_{l-1} > 0]P(z_{l-1} > 0)\\
+     &= E[\max(0, z_{l-1})^{2}|z_{l-1} \leq 0]P(z_{l-1} \leq 0) + E[\max(0, z_{l-1})^{2}|z_{l-1} > 0]P(z_{l-1} > 0)\\
      &= 0 + E[z_{l-1}^{2}|z_{l-1} > 0]P(z_{l-1} > 0)
 \end{align*}
 
@@ -190,6 +190,18 @@ Since the weights have a symmetic distribution around $0$, we can expect $z$ to 
     Var(z_{l-1}) &= E[z_{l-1}^{2}] - E[z_{l-1}]^{2} = E[z_{l-1}^{2}] \tag*{E[z]=0}\\
     E[a_{l-1}^{2}] &= \frac{1}{2}Var(z_{l-1})
 \end{align*}
+
+Since elements of $W_{l}$ have a normal distribution, with a certain degree of confidence, we can expect $z_{l}$ to also have a normal distribution around mean, but with a different variance
+\begin{align*}
+    \text{Let } \sigma^{2} &= Var(z_{l-1})\\
+    E[a_{l-1}] &= \int_{-\inf}^{\inf} \max(0, z_{l-1})P(z_{l-1}) = \int_{0}^{\inf} z_{l-1}\frac{1}{\sqrt{2 \pi \sigma^{2}}} exp \bigg(-\frac{z_{l-1}^{2}}{2 \sigma^{2}}\bigg) dz\\
+    \text{Let } y &= -\frac{z_{l-1}^{2}}{2 \sigma^{2}}\\
+    E[a_{l-1}] &= \int_{0}^{\inf} -\frac{\sigma}{\sqrt{2\pi}} y dy = \frac{\sigma}{\sqrt{2\pi}}\\
+    Var(a_{l-1}) &= E[a_{l-1}^{2}] - E[a_{l-1}]^{2} = Var(z_{l-1})(\frac{1}{2} - \frac{1}{2\pi})\\
+    \implies \frac{Var(a_{l})}{Var(a_{l-1})} &= \frac{Var(z_{l})}{Var(z_{l-1})}
+\end{align*}
+
+Hence, the second assumption that the variance of activations is same, is equivalent to saying variance of inputs to activation are same.
 
 Note that these derivations will need to be slightly modified in case of other variants of ReLU. Going back to the calculation of variance for current layer
 \begin{align*}
@@ -225,7 +237,7 @@ By using symmetry argument for $z$, similar to equations \eqref{eq:correct_init_
     Var(W_{l}) &= \frac{2}{n_{l-1}(1 + \alpha^{2})} \\
     W_{l} &\sim \mathcal{N}\bigg(0, \frac{2}{n_{l-1}(1 + \alpha^{2})}\bigg)
 \end{align*}
-since we expect variance of input signals being same because activations are nothing but inputs to next layer. Setting $\alpha = 0$ is the same as ReLU and $\alpha = 1$ is same as linear activation.\newline
+Setting $\alpha = 0$ is the same as ReLU and $\alpha = 1$ is same as linear activation.\newline
 
 When using both input and current layer weights,
 \begin{align*}
