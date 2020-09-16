@@ -1,0 +1,99 @@
+\documentclass[../../linear_algebra.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Linear Maps}
+Let $\setv$ and $\setw$ denote two vector spaces. Then, a linear map $T$ is a function from $\setv$ to $\setw$ that satisfies the following properties
+\begin{itemize}
+    \item \textbf{Additivity}\newline
+    $T(u + v) = Tu + Tv$ for all $u,v \in \setv$
+    \item \textbf{Homogeneity}\newline
+    $T(\lambda v) = \lambda(Tv)$ for all $v \in \setv$
+\end{itemize}
+Some people can refer to linear maps as linear transformations. We can also see the notation $T(v)$ instead of $Tv$ to represent $T$ as an operator, although both are correct.\newline
+
+The set of all linear maps from $\setv$ to $\setw$ is denoted by $\setlm(\setv, \setw)$. Examples of linear maps are the \textbf{identity map} (maps an element to itself, identity map $\in \setlm(\setv, \setv)$), differentiation, integration etc.\newline
+
+An important class of linear maps is from $\field^{n}$ to $\field^{m}$ and can be denoted by the following transformation
+\begin{gather*}
+(x_{1}, x_{2}, \ldots, x_{n}) \in \field^{n}\\
+    T(x_{1}, \ldots, x_{n}) = (A_{1,1}x_{1} + \cdots + A_{1,n}x_{n}, \ldots, A_{m,1}x_{1} + \cdots + A_{m,n}x_{n})
+\end{gather*}
+
+If we are working with the basis vectors for $\setv$ and $\setw$ of same dimensions, then there exists a unique linear map such that 
+\begin{align*}
+    Tv_{j} = w_{j} \quad \forall \quad j = 1,2,\ldots,n
+\end{align*}
+where $v$ and $w$ are basis vectors for $\setv$ and $\setw$ respectively.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties}
+We can define addition and scalar multiplication on the set of linear maps $\setlm(\setv, \setw)$ as follows
+\begin{gather*}
+    (S + T)(v) = S(v) + T(v) \quad \text{and} \quad (\lambda T)(v) = \lambda(Tv)\\
+    S,T \in \setlm(\setv, \setw), \lambda \in \field, v \in \setv
+\end{gather*}
+
+With the addition and multiplication operations defined, we notice that this set of linear maps $\setlm(\setv, \setw)$ is a vector space.\newline
+
+\textbf{Product of Linear Maps}\newline
+Product of linear maps is defined as follows
+\begin{gather*}
+    (ST)(u) = S(Tu)\\
+    T \in \setlm(U, \setv), S \in \setlm(\setv, \setw), ST \in \setlm(U, \setw)
+\end{gather*}
+for all $u \in U$. $ST$ is only defined when $T$ maps into the domain of $S$. Note that $ST \neq TS$ always. For the equality to hold, both left and right side of the equations must make sense, and the products must indeed be equal.\newline
+
+Additionally, linear maps will satisfy several additional algebraic properties
+\begin{itemize}
+    \item \textbf{Associativity}\newline
+    $(T_{1}T_{2})T_{3} = T_{1}(T_{2}T_{3})$ whenever both $T_{1}T_{2}$ and $T_{2}T_{3}$ make sense. All these three linear maps will be defined on different sets.
+    \item \textbf{Identity}\newline
+    $TI = IT = T$ where the first identity map is on $\setv$ while the second identity map is on $\setw$ for the product of linear maps to make sense.
+    \item \textbf{Distributive Property}\newline
+    $(S_{1} + S_{2})T = S_{1}T + S_{2}T$ and $S(T_{1} + T_{2}) = ST_{1} + ST_{2}$\newline where all the products make sense and $S_{1}, S_{2}, S \in \setlm(U, \setv)$ and $T_{1}, T_{2}, T \in \setlm(\setv, \setw)$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Null Space}
+Null space is the subset that get mapped to 0. Mathematically
+\begin{gather*}
+    \text{null }T = \{ v \in \setv \; \text{ such that } \; Tv = 0 \}, T \in \setlm(\setv, \setw)
+\end{gather*}
+
+We can easily verify that Null space is a subspace of $\setv$ since it contains the additive identity ($T0 = 0$), is closed under addition ($T(u + v) = Tu + Tv = 0$), and closed under scalar multiplication ($T(\lambda v) = \lambda(Tv) = 0$).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Injective or one-to-one}
+A linear map is injectie if it maps distinct elements of $\setv$ to distinct elements of $\setw$
+\begin{align*}
+    T \in \setlm(\setv, \setw) \; \text{is injective if} \; Tv = Tw \Rightarrow v = w
+\end{align*}
+for all $v \in \setv$ and $w \in \setw$.\newline
+
+Injectivity is also equivalent to saying that the null space is a singleton set $\{0 \}$. To prove this, both $Tv = Tw \Rightarrow v = w$ and $v = w \Rightarrow Tv = Tw$ needs to be shown.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Range}
+Range of a linear map is the set of elements that are the outputs of the linear map
+\begin{align*}
+    range T = \{ w \in \setw \text{ such that } Tv = w \text{ for some } v \in \setv\} = \{ Tv \text{ for all } v \in \setv \}
+\end{align*}
+This range $T$ is a subspace of $\setw$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Surjective or onto}
+A linear map is said to be surjective if range $T$ = $\setw$. i.e., every element of $\setw$ is mapped to by an element in $\setv$.
+
+\subsection{Fundamental theorem of linear maps}
+Let $\setv$ is finite dimensional and $T \in \setlm(\setv, \setw)$, then
+\begin{align*}
+    \text{dim } \setv = \text{dim null } T + \text{dim range } T 
+\end{align*}
+
+Suppose $\setv$ and $\setw$ are finite dimensional vector spaces with dim $\setv >$ dim $\setw$, then there is no injective linear map from $\setv$ to $\setw$. This can also be shown using the fundamental theorem of linear maps by proving dim null $T > 0$.\newline
+
+Further, if dim $\setv < $ dim $\setw$, then any linear map from $\setv$ to $\setw$ is not surjective. This can be shown by proving that range $T <$ dim $\setw$ using fundamental theorem of linear maps.
+\end{document}

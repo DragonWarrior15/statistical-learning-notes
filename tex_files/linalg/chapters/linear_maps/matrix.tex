@@ -1,0 +1,51 @@
+\documentclass[../../linear_algebra.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrix}
+The matrix of a linear map $\matm(T)$ is defined with respect to a set of basis for $\setv$ and $\setw$. The entries of $\matm(T)$ are defined as
+\begin{align*}
+    Tv_{k} = A_{1,k}w_{1} + A_{2,k}w_{2} + \cdots + A_{m,k}w_{m} \; k=1,\ldots, n
+\end{align*}
+where $v_{1}, \ldots, v_{n}$ and $w_{1}, \ldots, w_{m}$ are the basis vectors of $\setv$ and $\setw$ respectively. $\matm(T)$ is a $m$-by-$n$ matrix and each element $\in \field$. Unless stated otherwise, we will use the standard basis.\newline
+It is important to note that the matrix of a linear map is always defined with respect to a set of basis vectors.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Addition and Multiplication}
+Addition of matrices of the same size is defined as matrix whose each element is the sum of the corresponding elements of the two matrices.
+\begin{align*}
+    (A+B)_{i,j} = A_{i,j} + B_{i,j}
+\end{align*}
+
+Thus, the matrix of sum of linear maps is the sum of matrices of those linear maps
+\begin{align*}
+    \matm(S + T) = \matm(S) + \matm(T) \quad S, T \in \setlm(\setv, \setw)
+\end{align*}
+
+The scalar multiplication with $\lambda \in \field$ is same as multiplying each element of the original matrix with $\lambda$
+\begin{align*}
+    (\lambda A)_{i,j} = \lambda (A_{i,j})     
+\end{align*}
+
+Thus, the matrix of a scalar times a linear map is same as the scalar times the matrix of the linear map
+\begin{align*}
+    \matm(\lambda T) = \lambda \matm(T) \quad T \in \setlm(\setv, \setw)
+\end{align*}
+
+We will denote the set of all $m-$by$-n$ matrices with elements in $\field$ by $\field^{m,n}$. This set of all matrices is also a vector space on the addition and scalar multiplication rules for matrices defined above. The basis for such space is the collection of all matrices with all but one element zeros, and one element 1. There are $mn$ such matrices meaning dim $\field^{m,n} = mn$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Matrix Multiplication}
+Matrix multiplication is important to define in order to work with product of linear maps. We wish to have the following hold
+\begin{align*}
+    \matm(ST) = \matm(S) \matm(T) \quad T \in \setlm(U, \setv), S \in \setlm(\setv, \setw)
+\end{align*}
+For two matrices $A$ and $B$ of sizes $m$-by-$n$ and $n$-by-$p$ respectively, their matrix multiplication is defined as
+\begin{align*}
+    (AB)_{i,j} = \sum_{k=1}^{p} A_{i,k}B_{k,j}
+\end{align*}
+Which is the sum product of the $i^{th}$ row of $A$ and $j^{th}$ column of $B$. Notice that the matrices have one dimension same. It is a necessary condition for the multiplication to be valid and also implies that the range of $T$ is same as domain of $S$. Furthermore, $AB$ is of size $m$-by-$p$.\newline
+
+Matrix multiplication is not commutative (since the multiplication may not be defined or the products may not be the same otherwise), but is distributive and associative.
+\end{document}
