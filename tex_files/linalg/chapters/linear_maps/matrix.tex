@@ -48,4 +48,22 @@ For two matrices $A$ and $B$ of sizes $m$-by-$n$ and $n$-by-$p$ respectively, th
 Which is the sum product of the $i^{th}$ row of $A$ and $j^{th}$ column of $B$. Notice that the matrices have one dimension same. It is a necessary condition for the multiplication to be valid and also implies that the range of $T$ is same as domain of $S$. Furthermore, $AB$ is of size $m$-by-$p$.\newline
 
 Matrix multiplication is not commutative (since the multiplication may not be defined or the products may not be the same otherwise), but is distributive and associative.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inverse Linear Map}
+A linear map $T \in \setlm(\setv, \setw)$ is invertible if there exists $T \in \setlm(\setw, \setv)$ such that $ST$ is the identity map on $\setv$ and $TS$ is the identity map on $\setw$. $S$ is said to be the inverse of $T$ with $ST = I$ and $TS = I$, and there exists a unique inverse for a linear map (can be proven by contradiction).\newline
+
+We denote the unique inverse of a linear map $T \in \setlm(\setv, \setw)$ with $T^{-1} \in \setlm(\setw, \setv)$ and they satisfy $TT^{-1} = I$ and $T^{-1}T = I$.\newline
+
+A linear map is invertible if and only if it is both injective and surjective. To prove this, we first assume the linear map to be invertible and show that the latter part of statement is true and vice versa.\newline
+
+Two vector spaces are isomorphic if there is an isomorphism (an invertible linear map) from one vector space onto the other.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Operator}
+A linear map from a vector space onto itself is called an operator. $\setlm(\setv)$ denotes the set of all operators from $\setv$ onto itself. It is the same notation as $\setlm(\setv) = \setlm(\setv, \setv)$.\newline
+
+On a finite dimensional vector space $\setv$, any linear map $T \in \setlm(\setv)$ is \textbf{invertible}, \textbf{injective} and \textbf{surjective}.
 \end{document}

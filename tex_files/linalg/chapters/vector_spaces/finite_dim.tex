@@ -24,11 +24,20 @@ If $span(v_{1}, \ldots, v_{n}) = \setv$, we say that $v_{1}, \ldots, v_{n}$ span
 A vector space $\setv$ is called finite dimensional if some list of vectors in $\setv$ spans the space. Any space which is not finite dimensional will be called as infinite dimensional space.\newline
 
 \textbf{Linearly Independent}\newline
-Let $v_{1}, \ldots v_{n}$ be a set of vectors. This set of vectors is said to be linearly independent if $a_{1}v_{1} + \ldots + a_{n}v_{n} = 0$ for $a_{1}, \ldots a_{n} \in \field$ only if $a_{1} = \ldots = a_{n} = 0$. Empty set is also declared to be linearly independent.\newline
-
-If a set of vectors is removed from a linearly independent list, the remaining vectors in the list are also independent. A list of vectors that is not linearly independent is known as linearly dependent.\newline
-
-The length of a list of linearly independent vectors $<$ the length of the list of vectors that span the vector space.
+\begin{itemize}
+    \item Let $v_{1}, \ldots v_{n}$ be a set of vectors. This set of vectors is said to be linearly independent if $a_{1}v_{1} + \ldots + a_{n}v_{n} = 0$ for $a_{1}, \ldots a_{n} \in \field$ only if $a_{1} = \ldots = a_{n} = 0$. Empty set is also declared to be linearly independent.
+    \item If a set of vectors is removed from a linearly independent list, the remaining vectors in the list are also independent. A list of vectors that is not linearly independent is known as linearly dependent. Any superset of a list of linearly dependent vectors will also be linearly dependent.
+    \item The length of a list of linearly independent vectors $<$ the length of the list of vectors that span the vector space.
+    \item In a list of linearly \emph{dependent} vectors, it is possible to express at least one vector as a linear combination of the other vectors in that list. The converse also holds true which can be used to esatablish if a list of vectors is linearly independent or dependent.
+    \item If we express a vector as linear combination of a list of vectors that are linearly independent, the coefficients used in the process are unique. Assume that two representations of the same vector exist
+    \begin{align*}
+        v &= \alpha_{1}v_{1} + \cdots + \alpha_{m}v_{m}\\
+        v &= \gamma_{1}v_{1} + \cdots + \gamma_{m}v_{m}\\
+        \Rightarrow 0 &= (\alpha_{1} - \gamma_{1})v_{1} + \cdots + (\alpha_{m} - \gamma_{m})v_{m}\\
+        \Rightarrow (\alpha_{1} - \gamma_{1}) &= \cdots = (\alpha_{m} - \gamma_{m}) = 0
+    \end{align*}
+    since the only possible way to get the $0$ vector is to have all the coefficients $0$.
+\end{itemize}
 
 \subsection{Basis}
 A basis of $\setv$ is a list of vectors that is linearly independent and spans $\setv$. For $\field^{n}$, the list of vectors of length $n$ such that the $j^{th}$ element in the list contains all $0$s except the element at position $j$ which is $1$ is called the \textbf{standard basis}.\newline
