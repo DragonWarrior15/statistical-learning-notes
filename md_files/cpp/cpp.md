@@ -518,3 +518,57 @@ Array and linked list operations compared
 | Resizing | O(n) | O(1) |
 
 Hence, there is a tradeoff between element access and resizing. The data structure should be chosen according to which operation will be performed more frequently.
+
+### `std::pair`
+C++ provides a useful utility to create pairs of objects by clubbing two different data types together into a single object (thus saving the effor to make a custom class for this purpose). The syntax for creating a pair is
+```c++
+#include <utility>
+std::pair<std::string, int> myPair;
+myPair.first = "a string element";
+myPair.second = 42;
+```
+
+It is also possible to directly make a pair using the helper function `make_pair`
+```c++
+std::pair<std::string, int> myPair;
+myPair = std::make_pair("another string", 56);
+```
+
+Some implementations of an unordered map discussed below utilise pairs in their internal representation.
+
+### `std::unordered_map`
+These are different from `std::map` because they are unordered. This means that when iterating over the keys of the map, there is no particular order. The key difference between the two can be summarized as
+| Map Type | Lookup | Ordering |
+| -------- | ------ | -------- |
+| `std::unordered_map` | O(1) | Unordered |
+| `std::map` | O(log n) | Ordered, stored as tree |
+
+The syntax to declare an unordered map is
+```c++
+std::unordered_map<Template type for key, Template type for value> name_of_map;
+std::unordered_map<std::string, int> count_map; // can be used to store count of occurrences of strings
+```
+
+Use the `[]` operator to add keys and retrieve values (referencing any key with `[]` operator will automatically create an entry for the same in the map, somewhat corrupting it)
+```c++
+count_map["five"] = 1;
+std::cout << count_map["five"] << std::endl;
+``` 
+
+The size operator can be used to get the total entries in the map
+```c++
+std::cout << "total entries in the map " << count_map.size() << std::endl;
+```
+
+To check for existence of a key in the map, we can use the count operator. It will return a 1 or 0 indicating the existence of the key, and should not be confused with counting the keys in the map.
+```c++
+if(count_map.count("five")){
+    std::cout << "key five exists in map" << std::endl;
+}else{
+    std::cout << "key five does not exist in map" << std::endl;
+}
+```
+This is a useful function if we don't wont to corrupt the map with new entries since a lookup with the `[]` operator will create the entry in the map.
+
+The `find` function returns an iterator which is a pair type corresponding to the key value pair. In case the key does not exist in the map, the `end()` iterator of the map is returned.
+
