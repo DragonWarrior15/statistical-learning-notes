@@ -1397,7 +1397,7 @@ void downHeap(Node *n) {
 
 ***
 
-#### Answers 04
+#### Answers 01
 | Question | Answer |
 | -------- | ------ |
 | 1 | iii |
@@ -1414,5 +1414,200 @@ void downHeap(Node *n) {
 
 Answer 4: insert is always O(1), find depends on load factor
 Answer 6: calculate load factor
+
+***
+
+### Quiz 02
+
+1. Using the convention followed by the video lessons, given three disjoint sets (1,3,5,7), (2,8) and (4,6), which one of these sets would be referenced by the value 3?
+    1. (1,3,5,7)
+    1. (2,8)
+    1. (4,6)
+    1. None of the above.
+
+2. What is the union of the disjoint sets (1,3,5,7) and (2,8)?
+    1. (1,2,3,5,7,8)
+    1. ((1,2),(1,8),(3,2),(3,8),(5,2),(5,8),(7,2),(7,8))
+    1. (2,6,8,10,14,16,24,40,56)
+    1. (3,11)
+
+3. What happens when you take the union of two disjoint sets that contain the same value?
+    1. Two different disjoint sets by definition can never share the same value.
+    1. Any element found in both disjoint sets will appear twice in the union of these two disjoint sets.
+    1. The union operation must first check to see if the same element appears in both disjoint sets and then ensures the element appears only once in the resulting union set.
+    1. The elements cancel and neither appears in the union of the two disjoint sets.
+
+4. According to the distjoint set array representation in the video lessons, Which of the following arrays would **NOT** be a valid representation of the disjoint set (1,3,5,7)?
+    1. 
+        ```c++
+        index-> | 1 |  2 |  3 |  4 | 5 |  6 | 7 |  8 |
+        value-> | 5 | -1 | -1 | -1 | 3 | -1 | 1 | -1 |
+        ```
+    1. 
+        ```c++
+        index-> |  1 |  2 | 3 |  4 | 5 |  6 | 7 |  8 |
+        value-> | -1 | -1 | 1 | -1 | 1 | -1 | 1 | -1 |
+        ```
+    1. 
+        ```c++
+        index-> | 1 |  2 | 3 |  4 | 5 |  6 | 7 |  8 |
+        value-> | 3 | -1 | 5 | -1 | 7 | -1 | 1 | -1 |
+        ```
+    1. 
+        ```c++
+        index-> |  1 |  2 | 3 |  4 | 5 |  6 | 7 |  8 |
+        value-> | -1 | -1 | 1 | -1 | 3 | -1 | 5 | -1 |
+        ```
+
+5. When encoding **height** into the root of an up-tree, what value should be placed in element 7 of the following array?
+    | index | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+    | ----- | - | - | - | - | - | - | - |
+    | value | 3 | -1 | 7 | -1 | 7 | -1 | ? |
+    1. -3
+    1. -2
+    1. -1
+    1. -4
+
+6. When encoding **size** into the root of an up-tree, what value should be placed in element 7 of the following array?
+    | index | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+    | ----- | - | - | - | - | - | - | - |
+    | value | 3 | -1 | 7 | -1 | 7 | -1 | ? |
+    1. -3
+    1. -1
+    1. -4
+    1. -2
+
+7. When computing the union of two disjoint sets represented as up-trees in an array, (using proper path compression) which of these strategies results in a better overall run time complexity than the other options?
+    1. Always make the up-tree with fewer elements a subtree of the root of the up-tree with more elements.
+    1. Always make the up-tree with a shorter height a subtree of the root of the up-tree with a larger height.
+    1. The overall run time complexity is not affected by which up-tree is chosen to become a subtree of the other up-tree.
+    1. Using either size or height strategies above results in the same overall run time complexity.
+
+8. Recall that the iterated log function is denoted log* (n) and is defined to be
+    ```c++
+    log* (n) = 0                 for n <= 1, and
+               1 + log* (log(n)) for n > 1
+    ```
+    Let lg* (n) be this iterated log function computed using base 2 logarithms.
+    Blue Waters, housed at the University of Illinois, is the fastest university supercomputer in the world. It can run about 2^53 (about 13 quadrillion) instructions in a second. There are about 2^11 seconds in half an hour, so Blue Waters would run 2^64 instructions in about half an hour.
+    Which one of the following is equal to lg* (2^64)?
+    1. 64
+    1. 5
+    1. 6
+    1. 65536
+
+9. Which of these is considered the least run-time complexity?
+    1. O(log log N)
+    1. O(log* N)
+    1. O(log N)
+    1. O(1)
+
+10. Which of the following best describes "path compression" as described in the video lessons to accelerate disjoint set operations? (Here we say "parent pointer" to mean whatever form of indirection is used to refer from a child to its parent; this could be a literal pointer or it could be an array index as in the lectures.)
+    1. When the root of an element's node is found, all of the descendants of the root have their parent pointer set to the root.
+    1. When traversing the up-tree from an element to its root, if any elements in the traversal (including the first element, but excluding the root itself) do not point directly to the root as their parent yet, they will have their parent pointer changed to point directly to the root.
+    1. When the root of the up-tree containing an element is found, both the element and its parent will always have their parent pointers set to point to the root node.
+    1. When the root of the up-tree containing an element is found, the element and all of its siblings that share the same parent have their parent pointers reset to point to the root node.
+
+***
+
+#### Answers 02
+| Question | Answer |
+| -------- | ------ |
+| 1 | i |
+| 2 | i |
+| 3 | i |
+| 4 | iii |
+| 5 | i |
+| 6 | iv |
+| 7 | iv |
+| 8 | ii |
+| 9 | iv |
+| 10 | ii |
+
+5. value stores id -(height + 1)
+6. count the root too !
+
+***
+
+### Assignment 01
+
+Modify the implementation of `DisjointSets::find(int i)` below so that it uses path compression during queries.
+
+The DisjointSets class here models a collection of one or more disjoint sets of items. This is very similar to the professor's description of *up trees*; imagine that each set is a tree, where the root of the tree represents the set it belongs to, while other items in the same set refer to it (directly or indirectly). 
+
+Given a DisjointSets instance `d`, the array `d.s` contains one `integer` for each item in the entire collection. Currently, this array is statically allocated with 256 integers, so the entire collection can involve at most 256 items. For any given item with index `i`, the value recorded at `d.s[i]` represents either the parent of item `i`, or a more distant ancestor of item `i`, or the root of the entire set that item `i` belongs to. If the value of `d.s[i]` is -1, then this means that item `i` is the root of its own set. 
+
+The provided code for find does this much already:
+1. The find function queries for the ultimate root of a given item, with index `i`.
+2. If the array entry for index `i` is less than 0, then return `i`, as it is the root of its own set. (This is the base case.)
+3. Otherwise, the array entry currently records an ancestor of node `i` in the tree, but not the root. So, recurse on the ancestor index. Assume that `find()` succeeds in recursion: it returns the root of this set. (This assumption would be the inductive hypothesis if you were writing a proof of correctness by induction.)
+4. Return the root that was found. (This fulfills the assumption that was made when we recursed in the previous step.)
+
+You need to add the path compression feature to this `find` function. This means you must record the information that was found recursively as an update to the array before the function returns. This optimizes subsequent calls to the function. 
+
+In summary, after calling `find(i)` on one of the elements in the set, `i`, the find function should return the root index of the disjoint set (the index of its root element) and also update the `s` array to ensure that element `i` and every ancestor of `i` will refer directly to the root.
+
+```c++
+#include <iostream>
+
+class DisjointSets {
+public:
+    int s[256];
+
+    DisjointSets() { for (int i = 0; i < 256; i++) s[i] = -1; }
+
+    int find(int i);
+};
+
+/* Modify the find() method below to
+ * implement path compression so that
+ * element i and all of its ancestors
+ * in the up-tree refer directly to the
+ * root after that initial call to find()
+ * returns.
+ */
+
+int DisjointSets::find(int i) {
+  if ( s[i] < 0 ) {
+    return i;
+  } else {
+    return find(s[i]);
+  }
+}
+
+int main() {
+  DisjointSets d;
+
+  d.s[1] = 3;
+  d.s[3] = 5;
+  d.s[5] = 7;
+  d.s[7] = -1;
+
+  std::cout << "d.find(3) = " << d.find(3) << std::endl;
+  std::cout << "d.s(1) = " << d.s[1] << std::endl;
+  std::cout << "d.s(3) = " << d.s[3] << std::endl;
+  std::cout << "d.s(5) = " << d.s[5] << std::endl;
+  std::cout << "d.s(7) = " << d.s[7] << std::endl;
+
+  return 0;
+}
+```
+
+***
+
+#### Answer Assignment 01
+
+Updated definition of `find`
+```c++
+int DisjointSets::find(int i) {
+  if ( s[i] < 0 ) {
+    return i;
+  } else {
+    int root = find(s[i]);
+    s[i] = root;
+    return root;
+  }
+}
+```
 
 ***
