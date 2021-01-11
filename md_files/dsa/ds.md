@@ -343,4 +343,54 @@ log * (2 ^ 65536) = 5
 
 For disjoint-sets implemented with smart union and path compression, the runtime for m queries (combination of union and find operations) is O(m * log * (n)) where n is the size of disjoint-set. Since iterative log is a very small value for even very large values of n, the amortized time can be said to be same as O(m)* , making one operation on the disjoint set constant time (amortized).
 
+## Graphs
+
+Graphs are a collection of vertices (nodes) and edges denoted by G = (V, E). The number of vertices is denoted by n and the number of edges by m.
+
+Key terms
+| Term | Definition |
+| ---- | ---------- |
+| Incident Edges (v) | For a vertex, it is the collection of all edges directly connected to it {(x,v) in E} |
+| Degree (v) | The number of incident edges |
+| Adjacent Vertices (v) | Collections of all vertices that are connected to v by an edge, {x : (x,v) in E} |
+| Path | Sequence of vertices connected by edges |
+| Cycle | Path with a common begin and end vertex |
+| Simple Graph | A graph with no cycles or multiple-edges |
+| Subgraph | A graph whose vertices and edges are a subset of another (parent) graph |
+
+### Graph Implementations
+#### Edge List
+In an edgelist implementation, we store a list of vertices (as a vector), and a list of edges (as a vector). Every element in the list of edges contains information about the two vertices connected by the edge, and any other information, like the edge weight, stored as well.
+
+Different operations on this implementation
+| Operation | Description |
+| --------- | ----------- |
+| InsertVertex(v) | simply expand the vertex list to add the new node, O(1) amortized |
+| RemoveVertex(v) | O(m) since we will also remove all edges which have vertex v; this requires traversal through the entire list of edges |
+| areAdjacent(vertex v1, vertex v2) | O(m) since we need to traverse the entire edge list and check if the two vertices are part of the same edge anywhere in the list |
+| IncedentEdges(v) | O(m) since we will traverse the entire list to check all edges and count the ones which have the vertex v present in them |
+
+#### Adjacency Matrix
+In the implementation, we still store a list of vertices, along with a matrix whose rows and columns are all the vertices. The value at any location indicates whether an edge is present between the two vertices. Usually, 0 will denote the absence of any edge.
+
+For a more exhaustive implementation, we could store edges and related information in a separate list of edges (as above), and store pointers to this edge list in the adjacency matrix. With this extra storage, we have the flexibility to traverse the list of edges for certain operations, while still retaining the ability to find edges corresponding to any vertex via the matrix.
+
+Different operations and their runtimes
+| Operation | Description |
+| --------- | ----------- |
+| InsertVertex(v) | this now becomes O(n) since a new row and column must be added to the adjaceny matrix |
+| RemoveVertex(v) | O(m) + O(n) since we remove one row and column from the adjacency matrix |
+| areAdjacent(vertex v1, vertex v2) | O(1) because its a simple lookup in the matrix |
+| IncedentEdges(v) | O(n) as we lookup in the corresponding row and column of the matrix to check for existence of edges |
+
+#### Adjacency List
+This implementation extends the idea of an edge list. In addition to the vertex list and the edge list, each element of the vertex list points to a linked list which is the list of all edges adjacent to that vertex in the graph. Each element of this list points to the corresponding edge in the list of edges.
+
+Different operations and their runtimes
+| Operation | Description |
+| --------- | ----------- |
+| InsertVertex(v) | Still O(1)* since we will be adding an element to the array |
+| RemoveVertex(v) | O(deg(v)) where deg denotes degree, since we need to traverse through all the edges having v as one of the vertices |
+| areAdjacent(vertex v1, vertex v2) | min(O(deg(v1), deg(v2))) as we will traverse the smaller list of one of the two nodes and check all the edges |
+| IncedentEdges(v) | O(deg(v)) since the entire linked list of the node needs to be traversed |
 

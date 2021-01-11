@@ -1611,3 +1611,329 @@ int DisjointSets::find(int i) {
 ```
 
 ***
+
+### Quiz 03
+
+1. Let G = (V,E) be a simple graph consisting of a set of vertices V and a set of (undirected) edges E where each edge is a set of two vertices. Which one of the following is **not** a simple graph?
+    1. G = ( V = (a,b,c), E = ((a,b),(b,c),(a,c)) )
+    1. G = ( V = (a,b,c), E = ((a,b), (a,c), (b,a), (b,c), (a,c), (b,c)) )
+    1. G = ( V = (a,b,c), E = ((a,b)) )
+    1. G = ( V = (a,b,c), E = () )
+
+2. For a simple graph with n vertices, what is the worst case (largest possible) for the number of edges?
+    1. O(2^n)
+    1. O(n^2)
+    1. O(n log n)
+    1. O(n)
+
+3. Which graph representation has a better worst-case storage complexity than the others for storing a simple graph of n vertices?
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three graph representations have the same worst-space storage complexity for a simple graph of n nodes.
+
+4. Suppose you have a rapid data feed that requires you to add new data point vertices quickly to a graph representation. Which graph representation would you **NOT** want to utilize?
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three graph representations have the same time complexity for adding vertices to a simple graph.
+
+5. Suppose you have a rapid data feed that requires you to remove existing data point vertices (and any of their edges to other vertices) quickly to a graph representation. Which graph representation would you WANT to utilize?  
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three representations have the same time complexity for removing a vertex from a simple graph of n vertices.
+
+6. Suppose you want to implement a function called neighbors(v) that returns the list of vertices that share an edge with vertex v. Which representation would be the better choice for implementing this neighbors() function?
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three representations result in the same time complexity for the neighbor() function.
+
+7. Suppose you want to implement a function called neighborsQ(v1,v2) that returns true only if vertices v1 and v2 share an edge. Which representation would be the better choice for implementing this neighborsQ() function?
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three representations support the same time complexity for implementing the neighborQ() function.
+
+8. Which of these edge lists has a vertex of the highest degree?
+    1. (a, c), (e, g), (c, e), (g, a)
+    1. (a, b), (a, c), (a, d), (b, d)
+    1. (a,b), (b, c), (d, b), (g, b)
+    1. (d,b), (g,a), (h,f), (c, e)
+
+9. Which adjacency matrix corresponds to the edge list: (1,2), (2,3), (3,4), (1,4) (where the rows/columns of the adjacency matrix follow the same order as the vertex indices)?
+    1. 
+        |  | 1 | 2 | 3 | 4 |
+        | - | - | - | - | - |
+        | 1 | 0 | 0 | 1 | 1
+        | 2 | | 0 | 1 | 1 |
+        | 3 | | | 0 | 0 |
+        | 4 | | | | 0 |
+    1. 
+        |  | 1 | 2 | 3 | 4 |
+        | - | - | - | - | - |
+        | 1 | 0 | 1 | 0 | 1
+        | 2 | | 0 | 1 | 0 |
+        | 3 | | | 0 | 1 |
+        | 4 | | | | 0 |
+    1. 
+        |  | 1 | 2 | 3 | 4 |
+        | - | - | - | - | - |
+        | 1 | 1 | 0 | 0 | 1
+        | 2 | | 1 | 0 | 0 |
+        | 3 | | | 1 | 0 |
+        | 4 | | | | 1 |
+    1. 
+        |  | 1 | 2 | 3 | 4 |
+        | - | - | - | - | - |
+        | 1 | 0 | 1 | 1 | 0
+        | 2 | | 0 | 1 | 1 |
+        | 3 | | | 0 | 1 |
+        | 4 | | | | 0 |
+
+10. Which graph representation would be the best choice for implementing a procedure that only needs to build a graph from a stream of events.
+    1. Edge List
+    1. Adjacency Matrix
+    1. Adjacency List
+    1. All three representations would share the same storage and time complexity for the procedure.
+
+***
+
+#### Answers 03
+| Question | Answer |
+| -------- | ------ |
+| 1 | ii |
+| 2 | ii |
+| 3 | i |
+| 4 | ii |
+| 5 | iii |
+| 6 | iii |
+| 7 | ii |
+| 8 | iii |
+| 9 | ii |
+| 10 | i |
+
+refer to the data structures and algorithms notes as well
+
+***
+
+### Assignment 02
+
+Suppose you are given a undirected graph specified as a list of edges. In this challenge problem, we'll use a simplified disjoint sets data structure to count how many _connected components_ the graph has, and whether each one contains a cycle or not.
+
+First, some background information: In an undirected graph, two vertices have connectivity if there is any path leading from one to the other using any number of edges. So, a lone vertex by itself, with no edges, is not _connected_ to the other parts of the graph. A _connected component_ is any subset of the graph vertices where all the vertices have paths to each other, and where that set is maximal, meaning that no reachable vertices are left out of the set. A connected component contains a _cycle_ if there are two (or more) distinct paths connecting any two vertices--that means there is a closed loop somewhere.
+
+Example: An edge label like _(0,1)_ means an edge between vertex 0 and vertex 1. Suppose we have vertices numbered 0 through 8, and we have these edges:
+
+(0,1), (1,2), (0,2), (3,4), (5,6), (6,7), (7,8)
+
+Try drawing it on a sheet of paper. The three connected components are these sets of vertices:
+
+{0, 1, 2}, {3, 4}, {5, 6, 7, 8}
+
+You'll see the connected components are like islands of vertices. Here, {0, 1, 2} contains a cycle, and the other two connected components do not contain cycles. Also, notice that for a set to be a connected component, it must be maximal, meaning no vertices can be left out--and so {0, 1} is not called a connected component, because the 2 is also reachable there. (Maximal does not mean _maximum_. A single, lone vertex is a connected component by itself, because the subset containing only that one vertex is maximal, considering what can be reached from it. So, the sizes of the other connected components elsewhere do not matter.)
+
+In graph theory, it's common to say `n` for the number of vertices and `m` for the number of edges in some graph. For this problem, we'll say we have some undirected graph of some n vertices, which are arbitrarily labeled with indices from 0 through n-1. (This is reasonable because we could otherwise relabel the vertices using a hash table for lookups. Also, we won't assume that subsequent numbers are connected by edges, although that may happen in our unit tests.) Then, we'll initialize a collection of disjoint sets as n singletons (single element sets), one for each vertex; we have a DisjointSets class to represent this collection.
+
+To create sets representing connected components, we can iterate over the graph edges: For each edge (A,B) connecting vertex A to vertex B, we can union the sets that A and B belong to, so the disjoint sets data structure now indicates now that A and B belong to the same set. Our member function for the union operation is called `dsunion` to avoid conflicting with the C++ keyword `union`.
+
+At the end of the process of calling `dsunion()` on every pair of vertices in the edge list, the number of disjoint sets should correspond to the number of connected components in the graph.
+
+The disjoint sets data structure can also detect cycles. As the edges are being processed, if the edge currently being processed connects vertex A and vertex B, and both vertex A and vertex B are already in the same disjoint set, then the edge connecting vertex A and vertex B completes a cycle.
+
+In the source code provided below, you should modify the definition of `DisjointSets::dsunion` (under TASK 1) and the definition of `DisjointSets::count_comps` (under TASK 2) according to the hints in the code comments. We'll detect cycles during the union procedure and we can count the number of components after all union operations are completed.
+
+The starter code `main()` also contains an example graph with expected output. When you're ready to submit, we'll run your code through some randomized unit tests for grading.
+
+```c++
+
+#include <iostream>
+
+// You are provided this version of a DisjointSets class.
+// See below for the tasks to complete.
+// (Please note: You may not edit the primary class definition here.)
+class DisjointSets {
+public:
+  // We'll statically allocate space for at most 256 nodes.
+  // (We could easily make this extensible by using STL containers
+  //  instead of static arrays.)
+  static constexpr int MAX_NODES = 256;
+
+  // For a given vertex of index i, leader[i] is -1 if that vertex "leads"
+  // the set, and otherwise, leader[i] is the vertex index that refers back
+  // to the eventual leader, recursively. (See the function "find_leader".)
+  // In this problem we'll interpret sets to represent connected components,
+  // once the sets have been unioned as much as possible.
+  int leader[MAX_NODES];
+
+  // For a given vertex of index i, has_cycle[i] should be "true" if that
+  // vertex is part of a connected component that has a cycle, and otherwise
+  // "false". (However, this is only required to be accurate for a current
+  // set leader, so that the function query_cycle can return the correct
+  // value.)
+  bool has_cycle[MAX_NODES];
+  
+  // The number of components found.
+  int num_components;
+
+  DisjointSets() {
+    // Initialize leaders to -1
+    for (int i = 0; i < MAX_NODES; i++) leader[i] = -1;
+    // Initialize cycle detection to false
+    for (int i = 0; i < MAX_NODES; i++) has_cycle[i] = false;
+    // The components will need to be counted.
+    num_components = 0;
+  }
+
+  // If the leader for vertex i is set to -1, then report vertex i as its
+  // own leader. Otherwise, keep looking for the leader recursively.
+  int find_leader(int i) {
+    if (leader[i] < 0) return i;
+    else return find_leader(leader[i]);
+  }
+
+  // query_cycle(i) returns true if vertex i is part of a connected component
+  // that has a cycle. Otherwise, it returns false. This relies on the
+  // has_cycle array being maintained correctly for leader vertices.
+  bool query_cycle(int i) {
+    int root_i = find_leader(i);
+    return has_cycle[root_i];
+  }
+
+  // Please see the descriptions of the next two functions below.
+  // (Do not edit these functions here; edit them below.)
+  void dsunion(int i, int j);
+  void count_comps(int n);
+};
+
+// TASK 1:
+// dsunion performs disjoint set union. The reported leader of vertex j
+// will become the leader of vertex i as well.
+// Assuming it is only called once per pair of vertices i and j,
+// it can detect when a set is including an edge that completes a cycle.
+// This is evident when a vertex is assigned a leader that is the same
+// as the one it was already assigned previously.
+// Also, if you join two sets where either set already was known to
+// have a cycle, then the joined set still has a cycle.
+// Modify the implementation of dsunion below to properly adjust the
+// has_cycle array so that query_cycle(root_j) accurately reports
+// whether the connected component of root_j contains a cycle.
+void DisjointSets::dsunion(int i, int j) {
+  bool i_had_cycle = query_cycle(i);
+  bool j_had_cycle = query_cycle(j);
+  int root_i = find_leader(i);
+  int root_j = find_leader(j);
+  if (root_i != root_j) {
+    leader[root_i] = root_j;
+    root_i = root_j;
+  }
+  else {
+    // A cycle is detected when dsunion is performed on an edge
+    // where both vertices already report the same set leader.
+    // TODO: Your work here! Update has_cycle accordingly.
+  }
+
+  // Also, if either one of the original sets was known to have a cycle
+  // already, then the newly joined set still has a cycle.
+  // TODO: Your work here!
+}
+
+// TASK 2:
+// count_comps should count how many connected components there are in
+// the graph, and it should set the num_components member variable
+// to that value. The input n is the number of vertices in the graph.
+// (Remember, the vertices are numbered with indices 0 through n-1.)
+void DisjointSets::count_comps(int n) {
+
+  // Insert code here to count the number of connected components
+  // and store it in the "num_components" member variable.
+  // Hint: If you've already performed set union on all the apparent edges,
+  //  what information can you get from the leaders now?
+
+  // TODO: Your work here!
+
+}
+
+int main() {
+
+  constexpr int NUM_EDGES = 9;
+  constexpr int NUM_VERTS = 8;
+
+  int edges[NUM_EDGES][2] = {{0,1},{1,2},{3,4},{4,5},{5,6},{6,7},{7,3},{3,5},{4,6}};  
+
+  DisjointSets d;
+
+  // The union operations below should also maintain information
+  // about whether leaders are part of connected components that
+  // contain cycles. (See TASK 1 above where dsunion is defined.)
+  for (int i = 0; i < NUM_EDGES; i++)
+    d.dsunion(edges[i][0],edges[i][1]);
+
+  // The count_comps call below should count the number of components.
+  // (See TASK 2 above where count_comps is defined.)
+  d.count_comps(NUM_VERTS);
+
+  std::cout << "For edge list: ";
+  for (int i = 0; i < NUM_EDGES; i++) {
+    std::cout << "(" << edges[i][0] << ","
+         << edges[i][1] << ")"
+         // This avoids displaying a comma at the end of the list.
+         << ((i < NUM_EDGES-1) ? "," : "\n");
+  }
+
+  std::cout << "You counted num_components: " << d.num_components << std::endl; 
+
+  // The output for the above set of edges should be:
+  // You counted num_components: 2
+
+  std::cout << "Cycle reported for these vertices (if any):" << std::endl;
+  for (int i=0; i<NUM_VERTS; i++) {
+    if (d.query_cycle(i)) std::cout << i << " ";
+  }
+  std::cout << std::endl;
+
+  // The cycle detection output for the above set of edges should be:
+  // Cycle reported for these vertices (if any):
+  // 3 4 5 6 7 
+
+  return 0;
+}
+```
+
+***
+
+#### Answer Assignment 02
+
+```c++
+void DisjointSets::dsunion(int i, int j) {
+  bool i_had_cycle = query_cycle(i);
+  bool j_had_cycle = query_cycle(j);
+  int root_i = find_leader(i);
+  int root_j = find_leader(j);
+  if (root_i != root_j) {
+    leader[root_i] = root_j;
+    root_i = root_j;
+  }
+  else {
+    has_cycle[root_i] = true;
+    has_cycle[root_j] = true;
+  }
+  if(i_had_cycle | j_had_cycle){
+    has_cycle[root_i] = true;
+    has_cycle[root_j] = true;
+  }
+}
+
+void DisjointSets::count_comps(int n) {
+    int ans = 0;
+    for(unsigned int i = 0; i < n; i++){
+        if(leader[i] == -1){
+            ans++;
+        }
+    }
+    num_components = ans;
+}
+```
+
+***
