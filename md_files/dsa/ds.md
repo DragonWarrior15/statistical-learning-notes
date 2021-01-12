@@ -394,3 +394,66 @@ Different operations and their runtimes
 | areAdjacent(vertex v1, vertex v2) | min(O(deg(v1), deg(v2))) as we will traverse the smaller list of one of the two nodes and check all the edges |
 | IncedentEdges(v) | O(deg(v)) since the entire linked list of the node needs to be traversed |
 
+### Graph Traversal
+The objective of traversal is to visit every vertex and edge in the graph. This helps find interesting sub-structures within the graph.
+
+Graph traversal is quite different from tree traversal because there is no obvious order in the graph, no starting point, and possible cycles.
+
+#### Breadth First Traversal
+* The idea is to visit every vertex before visiting their children. This is achieved via a queue (First in First out). in principle, we can start with any random starting point.
+* Since there can be multiple connections across edges, we keep an additional data structure that keeps track of all visited nodes. This way, we will not add any vertex to the queue that has already been visited.
+* In case the queue becomes empty, we will need to check the entire data structure that stores the visited flag in order to look for a node that might not be connected to the graph traversed so far. This concept is important in case there are more than one connected components in the graph.
+* This search method also detects cycles since whenever we encounter a node that has already been visited, we have found one more path to reach from the current node to this node.
+* The runtime of this algorithm is O(n + 2m) since each edge is visited twice (once when the edge is first encountered, and a second time when BFS is run on the second node of this edge), and we also do n enqueue + dequeue operations.
+* Let discovery edges denote those edges along which we first encounter new vertices. The collection of such edges will give the shortest path from the starting point to any other vertex in the graph (although, the path between any two other vertices along these discovery edges will not be the shortest one).
+* The collection of discovery edges is also called a _spanning tree_ since it connects every vertex of a connected component to every other vertex.
+
+#### Depth First Traversal
+* We visit the children first before visiting other vertices. This is achieved via a stack (First in Last out). Thus, the deeper vertices are visited earlier than the wider ones.
+* The run time is again O(n + m). The argument for this along the same lines as BFT.
+
+### Minimum Spanning Trees
+A minimum spanning tree of a graph is a spanning tree that has the minimum number of edges/weight of edges across all possible spanning trees. By definition, MST is completely connected.
+
+#### Kruskal's Algorithm
+Consider an undirected graph with weighted edges. To get the MST with Kruskal's algorithm, we will utilize a min-heap and a disjoint-set.
+* As the first step, we will add all the edges of the graph to the min heap. This way, we can always retrieve the smalles edge in O(log(m)) (since heapify will take some time to rearrange the tree).
+* We initially add all the vertices of the graph to the disjoint-set such that every vertex is in a different subset.
+* One by one, we will get the minimum edge from the min-heap. 
+  * If the two vertices of that edge are are not in the same subset, we consider this edge as part of the MST and union the corresponding two subsets together.
+  * If the two vertices are already in the same subset, we simply ignore this edge and continue to the next edge
+* The algorithm terminates once the number of subsets in the disjoint-set is reduced to 1. The edges collected so far form the MST.
+
+#### Prim's Algorithm
+The founding idea of this algorithm is a partition property of the graph:
+
+Let U and V be two connected components of the graph G. The edge e, that is of the minimum weight that connects these two partitions is part of some MST.
+
+We can build from this idea by starting from a single vertex as one partition:
+* We will use a min-heap to maintain a list of vertices
+* Initially, all vertices have a distance of +inf, except the starting vertex that has a distance of 0
+* For all the neighbors of the starting vertex, update the distance in the min heap as 0 + weight of the connecting edge.
+* Pick the vertex with the minimum distance and remove it from the min-heap.
+* Now, update the distances of all neighbors of this partition of two vertices as weight of the connecting edge.
+  * The update only needs to be done for the neighbors of the new added vertex in principle because for the others, the path will not include the new added vertex. Also, the distances are updated if the new distance is smaller than the distance already stored (in the min-heap).
+* As done earlier, select the vertex at minimum distance and remove it from the min-heap.
+* The process is repeated until all the vertices in the min-heap have been exhausted.
+* The list of edges used to find the vertices is the MST.
+
+### Shortest Path Algorithms
+#### Dijkstra's Algorithm
+This algorithm is very similar to Prim's algorithm except for the distance update step. The distance of all neighbors is updated as distance of self + weight of the connecting edge if distance already present on the vertex is less than this new calculated distance.
+
+At every iteration of the algorithm, the vertex with the least distance is picked from the min-heap and added to the connected graph created so far.
+
+One major pitfall of Dikstra's algorithm is that it **does not work on graphs with negative weights**. This is not limited to graphs with a negative weight cycle, but also graphs with any negative weight.
+
+The runtime of this algorithm is O(m + n * log(n)).
+
+#### Landmark Path Problem
+Consider an undirected graph where all edges are equal in weight. We want to find the shortest path between two vertices A and F which passes through some fixed vertex L.
+
+To get the shortest path, we can simply get the MST using BFS as only the number of edges matter and not the weights. One simple approach is to first run BFS on A to get the shortest path from A to L, and then run the algorithm again to get the shortest path from L to F.
+
+However, note that the shortest path from A to L is also the shortest path from L to A. Thus, when we run BFS on L, we get shortest paths from L to F and L to A or A to L. Only running BFS once will provide us with the required answer.
+
