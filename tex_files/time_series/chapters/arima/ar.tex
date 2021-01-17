@@ -4,7 +4,7 @@
 \section{Autoregressive Model (AR)}
 As the name suggests, we use linear combinations of values at some of the previous instants to get the value at current time step for a \textbf{stationary series}
 \begin{align*}
-    X_{t} = \phi_{1}X_{t-1} + \phi_{2}X_{t-2} + \cdots + \phi_{p}X_{t-p} + w_{t} \; \phi_{p} \neq 0
+    X_{t} = \phi_{1}X_{t-1} + \phi_{2}X_{t-2} + \cdots + \phi_{p}X_{t-p} + W_{t}, \quad \phi_{p} \neq 0
 \end{align*}
 is known as \textbf{Autoregressive Process AR(p) of order p} since we are using lagged variables till $p$ steps. $w_{t}$ is the white noise with unknown variance. Note that the \textbf{time series} used for this equation \textbf{must have mean 0}. If that is not the case, the series must be transformed to subtract the mean from all terms (the mean is constant since the series is stationary).\newline
 
@@ -78,7 +78,7 @@ which although stationary ($\lvert \phi_{1}^{-1} \rvert < 1$), is not causal (bu
 The autocovariance of AR(1) is given by
 \begin{align*}
     Cov(X_{t}, X_{t+h}) &= E \bigg[\bigg(\sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i} \bigg) \bigg(\sum_{j=0}^{\infty}\phi_{1}^{j}W_{t+h-j} \bigg) \bigg]\\
-    &= E[\sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i}^{2} \phi_{1}^{h+i}W_{t-i}] \quad \text{put $t-i = t+h-j$}\\
+    &= E[\sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i} \phi_{1}^{h+i}W_{t-i}] \quad \text{put $t-i = t+h-j$}\\
     &= \sigma_{w}^{2} \sum_{i=0}^{\infty}\phi_{1}^{2i+h}\\
     &= \frac{\sigma_{w}^{2} \phi_{1}^{h}}{1-\phi_{1}^{2}} \quad h \geq 0
 \end{align*}

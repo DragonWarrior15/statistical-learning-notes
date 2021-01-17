@@ -1,4 +1,4 @@
-\documentclass[../statistical_learning_notes.tex]{subfiles}
+\documentclass[../../statistical_learning_notes.tex]{subfiles}
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bias Variance Tradeoff}
@@ -6,7 +6,7 @@ In statistical learning, we learn the mapping from $X$ to $Y$, where $X$ is a ma
 \begin{align*}
     Y = f(X) + \epsilon
 \end{align*}
-which is immeasureable, independent of $X$ and each other, and has $0$ mean, $E[\epsilon] = 0$. We obtain a best guess $\hat{f}$ and make predictions as
+which is immeasureable, independent of $X$ and other noise values, and has $0$ mean, $E[\epsilon] = 0$. We obtain a best guess $\hat{f}$ and make predictions as
 \begin{align*}
     \hat{Y} = \hat{f}(X)
 \end{align*}
@@ -20,10 +20,11 @@ $Var(\epsilon)$ is the irreducible error since it will always be present. A good
 
 Let $x_{0}$ denote a $d$ dimensional data point. The bias variance tradeoff is derived by taking expectation across $D$ datasets
 \begin{align*}
-    E_{D}[(y_{0} - \hat{y}_{0})^{2}] &= E_{D}[(f(x_{0}) + \epsilon - \hat{f}(x_{0}))^{2}] &= E_{D}[(f(x_{0}) + \epsilon - \hat{f}(x_{0}) + E_{D}[\hat{f}(x_{0})] - E_{D}[\hat{f}(x_{0})])^{2}]\\
+    E_{D}[(y_{0} - \hat{y}_{0})^{2}] &= E_{D}[(f(x_{0}) + \epsilon - \hat{f}(x_{0}))^{2}]\\
+     &= E_{D}[(f(x_{0}) + \epsilon - \hat{f}(x_{0}) + E_{D}[\hat{f}(x_{0})] - E_{D}[\hat{f}(x_{0})])^{2}]\\
     &= E_{D}[(\epsilon + (f(x_{0}) - E_{D}[\hat{f}(x_{0})]) + (\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})]))^{2}]\\
-    &= E_{D}[\epsilon^{2}] + E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})])^{2}] + E_{D}[(\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])] + 2E_{D}[\epsilon(f(x_{0}) - E_{D}[\hat{f}(x_{0})])] + 2E_{D}[\epsilon (\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])] + 2E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})]) + (\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])]\\
-    &= Var(\epsilon) + (f(x_{0}) - E_{D}[\hat{f}(x_{0})])^{2} + Var(\hat{f}(x_{0})) + 0 + 0 - 2E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})](E_{D}[\hat{f}(x_{0}] - E_{D}[\hat{f}(x_{0})])\\
+    &= E_{D}[\epsilon^{2}] + E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})])^{2}] + E_{D}[(\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])]\\ &+ 2E_{D}[\epsilon(f(x_{0}) - E_{D}[\hat{f}(x_{0})])] + 2E_{D}[\epsilon (\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])] \\ &+ 2E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})]) + (\hat{f}(x_{0}) - E_{D}[\hat{f}(x_{0})])]\\
+    &= Var(\epsilon) + (f(x_{0}) - E_{D}[\hat{f}(x_{0})])^{2} + Var(\hat{f}(x_{0})) + 0 + 0\\ &- 2E_{D}[(f(x_{0}) - E_{D}[\hat{f}(x_{0})](E_{D}[\hat{f}(x_{0}] - E_{D}[\hat{f}(x_{0})])\\
     \Aboxed{E_{D}[(y_{0} - \hat{y}_{0})^{2}] &= Var(\epsilon) + Bias(\hat{f}(x_{0}))^{2} + Var(\hat{f}(x_{0}))}
 \end{align*}
 where we have used the following facts
@@ -36,9 +37,9 @@ where we have used the following facts
 The last equation consists of all positive terms and is called the bias variance tradeoff. $Var(\epsilon)$ is the irreducible error. Variance of $\hat{f}$ is calculated across all the datasets. The bias term represents how off our estimate is from the true value. As model flexibility increases, we get a reduction in the bias, but the variance increases, and vice versa.
 
 \begin{figure}[h]
-    \includegraphics[scale=0.5]{bias_variance}
+    \includegraphics[scale=0.5]{../images/bias_variance}
     \centering
-    \caption {Comparison of Classifiers}
+    \caption {Bias-variance tradeoff}
     \label{fig:bias_variance} %\ref{fig:bias_variance}
 \end{figure}
 \end{document}

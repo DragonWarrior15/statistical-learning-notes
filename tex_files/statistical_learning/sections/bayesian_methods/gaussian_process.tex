@@ -4,8 +4,8 @@
 \section{Gaussian Process}
 Suppose we have a set $X = (x_{1}, \ldots, x_{N}), x_{i} \in \mathbb{R}^{d}$. Then a random process $f(x)$ is a gaussian process if for any $n \leq N$, the joint distribution of any subset of size $n$ is a multivariate gaussian.
 \begin{align*}
-    \begin{bmatrix} f(x_{1})\\ f(x_{2})\\ \vdots\\ f(x_{n}) \end{bmatrix} \sim \mathcal{N} \bigg( \begin{bmatrix} m(x_{1})\\ m(x_{2})\\ \vdots\\ m(x_{n}) \end{bmatrix}, \begin{bmatrix} K(x_{1}, x_{1}) &\cdots &K(x_{1}, x_{n})\\ K(x_{2}, x_{1}) &\cdots &K(x_{2}, x_{n})\\ \vdots &\vdots &\vdots\\ K(x_{n}, x_{1}) &K(x_{n}, x_{2}) &\cdots &K(x_{n}, x_{n}) \end{bmatrix}  \bigg)\\
-    K(x_{i}, x_{j}) = \hat{K}(x_{i} - x_{j}) \quad m(x) = constant \quad \text{for stationarity}
+    \begin{bmatrix} f(x_{1})\\ f(x_{2})\\ \vdots\\ f(x_{n}) \end{bmatrix} \sim \mathcal{N} \bigg( \begin{bmatrix} m(x_{1})\\ m(x_{2})\\ \vdots\\ m(x_{n}) \end{bmatrix}, \begin{bmatrix} K(x_{1}, x_{1}) &\cdots &K(x_{1}, x_{n})\\ K(x_{2}, x_{1}) &\cdots &K(x_{2}, x_{n})\\ \vdots &\vdots &\vdots\\ K(x_{n}, x_{1}) &\cdots &K(x_{n}, x_{n}) \end{bmatrix}  \bigg)\\
+    K(x_{i}, x_{j}) = \hat{K}(x_{i} - x_{j}), \quad m(x) = constant \quad \text{for stationarity}
 \end{align*}
 
 where $m$ denotes the mean, and the matrix of kernels $K$ is a covariance matrix. Stationarity for a random process requires that the expected value be constant throughout and the variance between two points only be a function of their relative distance and not the position. Thus, a natural choice is to have the kernel as a function of the difference of $x_{i}$s. Several types of kernels satisfy this property

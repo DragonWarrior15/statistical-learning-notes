@@ -91,10 +91,10 @@
         E[\mathbf{X}] &= \begin{bmatrix}
         &E[X_{1}]\\
         &E[X_{2}]\\
-        \vdots\\
+        &\vdots\\
         &E[X_{n}]
-        \end{bmatrix}
-        E[\mathbf{X_{1}} + \mathbf{X_{2}} + cdots + \mathbf{X_{n}}] = E[\mathbf{X_{1}}] + E[\mathbf{X_{2}}] + \cdots + E[\mathbf{X_{n}}]\
+        \end{bmatrix}\\
+        E[\mathbf{X_{1}} + \mathbf{X_{2}} + cdots + \mathbf{X_{n}}] &= E[\mathbf{X_{1}}] + E[\mathbf{X_{2}}] + \cdots + E[\mathbf{X_{n}}]\\
         E[\mathbf{A}\mathbf{X}+\mathbf{b}] &= E[\mathbf{A}\mathbf{X}] + E[\mathbf{b}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b}\\
     \end{align*}
 
@@ -103,7 +103,7 @@
     Let $A_{1}, A_{2}, \ldots, A_{n}$ be n disjoint events that completely cover the event space, and X be random variable, then
     \begin{align*}
         E[X] &= E[X|A_{1}]P(A_{1}) + E[X|A_{2}]P(A_{2}) + \cdots + E[X|A_{n}]P(A_{n})\\
-        \text{or, } E[X)] &= \sum_{i=1}^{n} E[X|A_{i}]P(A_{i})
+        \text{or, } E[X] &= \sum_{i=1}^{n} E[X|A_{i}]P(A_{i})
     \end{align*}
 
     \section{Variance}
@@ -165,12 +165,13 @@
     Using the above definitions, we have the following formulae for variance of transformed random vectors
     \begin{align*}
         \mathbf{Y} &= \mathbf{A}\mathbf{X}+\mathbf{b}\\
-        E[\mathbf{Y}] &= \mathbf{A}E[\mathbf{X}]+\mathbf{b}
+        E[\mathbf{Y}] &= \mathbf{A}E[\mathbf{X}]+\mathbf{b}\\
         Var(\mathbf{Y}) &= E[(\mathbf{Y}-E[\mathbf{Y}])(\mathbf{Y}-E[\mathbf{Y}])^{T}] = E[\mathbf{Y}\mathbf{Y}^{T}] - E[\mathbf{Y}]E[\mathbf{Y}]^{T}\\
         &= E[(\mathbf{A}\mathbf{X}+\mathbf{b})(\mathbf{A}\mathbf{X}+\mathbf{b})^T] - (\mathbf{A}E[\mathbf{X}]+\mathbf{b})(\mathbf{A}E[\mathbf{X}]+\mathbf{b})^{T}\\
-        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{A}\mathbf{X}\mathbf{b})^T + \mathbf{b}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T] - (\mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{A}E[\mathbf{X}]\mathbf{b})^{T} + \mathbf{b}E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T)\\
-        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T}] - \mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T} = \mathbf{A} (\mathbf{X}\mathbf{X}^{T} - E[\mathbf{X}]E[\mathbf{X}]^{T}) \mathbf{A}^{T}\\
+        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{A}\mathbf{X}\mathbf{b})^T + \mathbf{b}\mathbf{X}^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T]\\ &- (\mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{A}E[\mathbf{X}]\mathbf{b})^{T} + \mathbf{b}E[\mathbf{X}]^{T}\mathbf{A}^{T} + \mathbf{b}\mathbf{b})^T)\\
+        &= E[\mathbf{A}\mathbf{X}\mathbf{X}^{T}\mathbf{A}^{T}] - \mathbf{A}E[\mathbf{X}]E[\mathbf{X}]^{T}\mathbf{A}^{T}\\ &= \mathbf{A} (\mathbf{X}\mathbf{X}^{T} - E[\mathbf{X}]E[\mathbf{X}]^{T}) \mathbf{A}^{T}\\
         Var(\mathbf{A}\mathbf{X}+\mathbf{b}) &= \mathbf{A} Var(\mathbf{X}) \mathbf{A}^{T}\\
         Var(\mathbf{X} + \mathbf{Y}) &= Var(\mathbf{X}) + Cov(\mathbf{X}, \mathbf{Y}) + Cov(\mathbf{Y}, \mathbf{X}) + Var(\mathbf{Y})\\
+        &= Var(\mathbf{X}) + 2Cov(\mathbf{X}, \mathbf{Y}) + Var(\mathbf{Y})
     \end{align*}
 \end{document}

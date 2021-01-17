@@ -21,7 +21,7 @@ The stagewise additive model then becomes
 
 If the regions are already known, the above equation simplifies to
 \begin{align*}
-    \gamma_{m,j} = \argmin_{\gamma_{m,j}} \sum_{x_{i} \in R_{j}} L(x_{i}, f_{m-1}(x_{i}) + \gamma_{m,j}) \numberthiseqn\label{eq:gbm_eq_2}
+    \gamma_{m,j} = \argmin_{\gamma_{m,j}} \sum_{x_{i} \in R_{j}} L(y_{i}, f_{m-1}(x_{i}) + \gamma_{m,j}) \numberthiseqn\label{eq:gbm_eq_2}
 \end{align*}
 
 For regression problems, equation \eqref{eq:gbm_eq_1} is easily solvable since the minimzer of a given region is simply the average of $y$ in that region. Hence, we can scan over the variables to find the optimum split that minimizes this loss. For absolute loss, the minimizer is the median.\newline
@@ -79,7 +79,7 @@ which has fast algorithms using regression trees. Note that the tree is built us
         to get the terminal regions/nodes of the tree $R_{j}, j=1,2,\ldots,J$
         \item Calculate the $\gamma$ on the above regions
         \begin{align*}
-            \gamma_{m,j} = \argmin_{\gamma_{m,j}} \sum_{x_{i} \in R_{m,j}} L(x_{i}, f_{m-1}(x_{i}) + \gamma_{m,j})
+            \gamma_{m,j} = \argmin_{\gamma_{m,j}} \sum_{x_{i} \in R_{m,j}} L(y_{i}, f_{m-1}(x_{i}) + \gamma_{m,j})
         \end{align*}
         \item Update $f(x)$
         \begin{align*}
