@@ -35,16 +35,4 @@ Often, we will encounter a different mathematical notation for RNN that uses a s
     y &= f_{y}(W_{yh}h_{T} + b_{y})
 \end{align*}
 where everything else except the hidden state calculations remains the same. The notation $[h_{t-1}, x_{t}]$ denotes horizontal stacking of these two vectors (note that the horizontal axis is the variables dimension). Similarly, the new weights matrix $W_{h}$ is the vertical concatenation of the previous $W_{hh}$ and $W_{xh}$. This allows for faster implementation since we will not two separate matrix multiplications to calculate the hidden state.
-
-\subsection{Exploding and Vanishing Gradient}
-Some ways to mitigate the problem are
-\begin{itemize}
-    \item Use identity matrix for initialization of weights and ReLU activation. This allows the gradient to not deviate too much from $1$, and ReLU will not let the gradient decay too fast.
-    \item To deal with exploding gradients, clip the gradient value to a pre-determined value. This will stabilize the learning by denying exponentially growing gradient in the network.
-    \item Using skip connections to allow for gradient flow. Mathematically
-    \begin{align*}
-        y &= F(x) + x
-    \end{align*}
-    Since we are adding the input to the output as it is, the gradient will have the constant component of $1$, allowing gradient to not become very small.
-\end{itemize}
 \end{document}
