@@ -57,3 +57,8 @@ In summary, the solution is
 \end{align*}
 
 and in the beginning, we already know that $O(k,0) = 0)$ for all $k=1,\ldots,K$. For efficiency, we will solving this in a bottom up manner (starting with a single item) and keep storing the intermediate solution in a matrix for quick lookups.
+
+## Constraint Programming
+The central idea of contraint programming is to utilize the constraints to reduce the search space so that it's easier to make a choice on what values a variable can take. When no further deductions are possible in a given configuration, we will make a choice (say assign value to a particular variable).
+
+Here the focus is on feasibility, i.e., reduce the search space by eliminating values that cannot belong to any solution.

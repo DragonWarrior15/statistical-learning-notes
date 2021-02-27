@@ -7,4 +7,4 @@ $(do).pdf: $(do).md
 	-o $(do).pdf $(do).md
 
 clean: 
-	rm -rf $(dso).pdf
+	rm -rf $(do).pdf
