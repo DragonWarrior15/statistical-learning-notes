@@ -1,26 +1,36 @@
 \documentclass[../../probability-notes.tex]{subfiles}
 \begin{document}
-    \section{Binomial Random Variable}
+    \section{Bernoulli and Binomial Random Variable}
     \emph{Binomial Random Variable} $X$ is defined as the number of successes in an experiment with $n$ independent trials, where each trial can only have two outcomes, \emph{success} or \emph{failure}.\\
+    Each trial is also known as a Bernoulli random variable or a Bernoulli trial.\\
     Let $X_{i}$ denote the Random Variable corresponding to the individual trials, with probability of success $p$. Then we have the following
 
     \begin{alignat*}{2}
-        X_{i} &= \begin{cases} 1 &\mbox{if success in trial i}\\ 
+        X_{i} &= \begin{cases} 1 &\mbox{if success in trial i}\\
                                 0 &\mbox{otherwise} \end{cases} \tag*{indicator variable} \\
         X &= X_{1} + X_{2} + \cdots + X_{n} = \sum_{i=1}^{n} X_{i} \\
         P(X=k) &= \sum_{k=0}^{n} \binom{n}{k} p^{k} (1 - p)^{n-k}
     \end{alignat*}
 
+    where $X$ denotes the Binomial random variable.
+
     \subsection{Mean and Variance}
-    First let's calculate the mean and variance for a single trial $X_{i}$
+    First let's calculate the mean and variance for a Bernoulli trial $X_{i}$
     \begin{alignat*}{2}
         E[X_{i}] &= 1 * p + 0 * (1 - p) &&= p\\
         Var(X_{i}) &= (1 - p)^{2}p + (0-p)^{2}(1-p) &&= p(1-p)
     \end{alignat*}
-    
+
     We know that all $X_{i}'s$ are independent. Hence, the mean and variance for X become
     \begin{alignat*}{3}
         E[X] &= E[\sum_{i=1}^{n} X_{i}] &&= \sum_{i=1}^{n}E[X_{i}] &&= np \\
         Var(X) &= Var(\sum_{i=1}^{n} X_{i}) &&= \sum_{i=1}^{n} Var(X_{i}) &&= np(1-p)
     \end{alignat*}
+
+    \section{Sum of Binomial Random Variables}
+    Suppose two random variables $X_{1} \sim binmomial(n_{1},p)$ and $X_{2} \sim binomial(n_{2},p)$, then
+    \begin{align*}
+        X_{1} + X_{2} \sim binomial(n_{1} + n_{2}, p)
+    \end{align*}
+    which follows from the fact that the sum of the two random variables represents an experiment with $n_{1} + n_{2}$ trials where the probability of success of any trial still remains the same at $p$.
 \end{document}
