@@ -13,7 +13,7 @@
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_geomeet}{\textbf{Geometry of Meeting}}\newline
     R and J have to meet at a given place and each will arrive at the given place independent of each other with a delay of 0 to 1hr uniformly distributed. The pairs of delays are all equally likely. The first to arrive waits for 15 minutes and leaves. What is the probability of meeting ? \hyperlink{a_geomeet}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_expfn}{\textbf{Expectation of Function}}\newline
     Let $X$ and $Y$ be random variables with $Y = g(X)$. Show $E[Y] = \sum_{x}g(x)p_{X}(x)$. \hyperlink{a_expfn}{Solution}
@@ -27,19 +27,19 @@
                                  0 &\mbox{otherwise} \end{cases}
     \end{align*}
     Find the Cumulative Distribution of X. \hyperlink{a_cumuldistfn}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_tossh}{\textbf{Number of tosses till first head}}\newline
     When tossing a fair coin, what is the $E[$\# tosses till the first H$]$. \hyperlink{a_tossh}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_itrexpproof}{\textbf{Iterated Expectation Proof}}\newline
     For discrete variables, show $E[X] = E[E[X|Y]]$. \hyperlink{a_itrexpproof}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_itrexpthree}{\textbf{Iterated Expectation for three variables}}\newline
     For three random variables $X$, $Y$ and $Z$, show $E[Z|X] = E[E[Z|X,Y]|X]$. \hyperlink{a_itrexpthree}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_itrexppractice}{\textbf{Iterated Expectation practice}}\newline
     A class has two sections denoted by the random variable $Y$. Let $X$ denote the quiz score of a student. Given that section 1 has 10 students, section 2 has 20 students, $E[X|Y=1] = 90, E[X|Y=2] = 60, Var(X|Y=1) = 10, Var(X|Y=2) = 20$, find $E[X]$ and $Var(X)$. \hyperlink{a_itrexppractice}{Solution}
@@ -47,12 +47,12 @@
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_hatproblem}{\textbf{Hat Problem}}\newline
     $n$ people throw their hats in a box and then pick a hat at random. What is the expected number of people who pick their own hat ? \hyperlink{a_hatproblem}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_breakstick}{\textbf{Breaking a stick}}\newline
     A stick of length $l$ is broken first at $X$ uniformly chosen between $[0,l]$, and then at $Y$, uniformly chosen between $[0,X]$. Find the expected length of the shorter part. \hyperlink{a_breakstick}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_convexp}{\textbf{Convolution of Exponentials}}\newline
     Suppose $X \sim exp(\lambda)$ and $Y \sim exp(\mu)$, find the probability distribution $p_{X+Y}(x)$.
@@ -70,7 +70,7 @@
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_waittaxi}{\textbf{Waiting for Taxi}}\newline
     A taxi stand and bus stop near Al's home are at the same location. Al goes there and if a taxi is waiting $P=\frac{2}{3}$, he boards it. Otherwise, he waits for a taxi or bus to come, whichever is first. Taxi takes anywhere between $0$ to $10$ mins (uniform) while a bus arrives in exactly 5 mins. He boards whichever is first. Find CDF and $E$[wait time]. \hyperlink{a_waittaxi}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_bayes}{\textbf{Bayes Theorem}}\newline
     Let $Q$ be a continuous random variable with PDF
@@ -79,10 +79,10 @@
                                  0 &\mbox{ otherwise} \end{cases}
     \end{align*}
     where $Q$ represents $P(success)$ for a Bernoulli $X$, i.e., $P(X=1|Q=q) = q$. Find $f_{Q|X}(q|x) \forall x \in [0,1] and q$. \hyperlink{a_bayes}{Solution}
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_normaltr}{\textbf{A Normal Transformation}}\newline
-    Let $X \sim \mathcal{N}(0,1)$ and $Y = g(X)$. Find $p_{Y}(y)$. 
+    Let $X \sim \mathcal{N}(0,1)$ and $Y = g(X)$. Find $p_{Y}(y)$.
     \begin{align*}
         g(t) = \begin{cases} -t &\mbox{$t \leq 0$}\\
                             \sqrt{t} &\mbox{$t > 0$} \end{cases}
@@ -123,13 +123,13 @@
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_linexp}{\textbf{Linear Expectations}}\newline
     Bob conducts trials in a similar manner to Problem \ref{itm:threecoins}, but with four coins. He repeatedly removes a coin at success until just a single coin remains. Calculate the Expected number of tosses till the finish of experiment. \hyperlink{a_linexp}{Solution}
-    
+
 
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_papers}{\textbf{Papers Drawn with Replacement}}\newline
     Suppose there are $n$ papers in a drawer. We take one paper, sign it, and then put it back into the drawer. We take one more paper out and if it is not signed, we sign it and put it back in the drawer. If the paper is already signed, we simply put it back in the drawer. We repeat this process until all the papers are signed. Find the $E[$papers drawn till all papers are signed$]$. What is the value of this quantity as $n \to large$. \hyperlink{a_papers}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_threevar}{\textbf{A Three Variable Inequality}} \newline
     Let $X$, $Y$, $Z$ be three exponentially distributed random variables with parameters $\lambda, \mu,$ and $\nu$ respectively. Find $P(X < Y < Z)$. \hyperlink{a_threevar}{Solution}
@@ -231,7 +231,7 @@
             %4
             (4) edge[loop above] node {$1$} (4);
     \end{tikzpicture}
-    \end{center}    
+    \end{center}
     Calculate the absorption probabilites for state $4$ and expected time to absortion from all states. (for absorption time, assume $p_{35} = 0$ and $p_{32} = 0.5$) \hyperlink{a_absorbmarkov}{Solution}
 
     %%%%%%%%%%%%%%%%%%%%
@@ -279,7 +279,7 @@
         \item Suppose we don't want to take course 15. Accordingly, when in 6-1, we stay there with probability $1/2$ while other three options have equal probabilities. If we are in 6-2, probability of going to 6-1 and 6-3 are in the same ratio as before. Calculate the $E[$number of days until we enter course 9$]$.
         \item Assuming $P(X_{n+1}=15|X_{n}=9) = P(X_{n+1}=9|X_{n}=15) = P(X_{n+1}=15|X_{n}=15) = P(X_{n+1}=9|X_{n}=9) = 1/2$, what is $P(X_{n}=15)$ and $P(X_{n}=9)$ far into the future.
         \item Suppose $P(X_{n+1}=6-1|X_{n}=9) = 1/8, P(X_{n+1}=9|X_{n}=9) = P(X_{n+1}=15|X_{n}=15) = 7/8$. What is the $E[$number of days till return to 6-1$]$.
-    \end{enumerate}  
+    \end{enumerate}
 
     \hyperlink{a_markovcourse}{Solution}
 
@@ -288,7 +288,7 @@
     \item \hypertarget{q_binclt}{\textbf{Estimating Binomial with CLT, 1/2 correction}}\newline
     Given a Bernoulli Process with $n = 36$ and $p = 0.5$, find $P(S_{n} \leq 21)$. \hyperlink{a_binclt}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_samplevar}{\textbf{Sample Variance for Normal Distribution}}\newline
     The time it takes a central processing unit to process a certain type of job is normally distributed with mean 20 seconds and standard deviation 3 seconds. If a sample of 15 such jobs is observed, what is the probability that the sample variance will exceed 12 ? \hyperlink{a_samplevar}{Solution}
@@ -298,7 +298,7 @@
     \item \hypertarget{q_mleestimate}{\textbf{MLE Estimate}}\newline
     Suppose we observe $n$ independent and identically distributed samples $x_{1}, x_{2}, \ldots, x_{n}$ from an exponential distribution. Estimate the parameter of the exponential. \hyperlink{a_mleestimate}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_bayesnormal}{\textbf{Bayes Estimator for Normal Distribution}}\newline
     Suppose $X_{1}, X_{2}, \ldots, X_{n}$ are from a normal distribution with unknown mean $\theta$ and known variance $\sigma_{0}^{2}$, and suppose the mean has a prior normal ditribution with mean $\mu$ and variance $\sigma^{2}$. Calculate the Bayes estimator for the mean $\theta$.
@@ -308,7 +308,7 @@
     \item \hypertarget{q_lmsestimate}{\textbf{LMS Estimate}}\newline
     Given the prior $f_{\Theta|(\theta)}$, uniform in $[4,10]$, and $f_{X|\Theta}(x|\theta)$ is uniform in $[\theta-1, \theta+1]$, estimate the posterior of $\theta$. \hyperlink{a_lmsestimate}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_convergence}{\textbf{Probability Convergence}}\newline
     Let $X$ be uniformly distributed between $[-1,1]$. Let $X_{1}, X_{2},\ldots,X_{n}$ be independently and identically distributed with the same distribution as $X$. Find whether the following sequences are convergent in probability and also find the limit.
@@ -319,11 +319,19 @@
     \end{enumerate}
     \hyperlink{a_convergence}{Solution}
 
-    
+
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_lifesmoker}{\textbf{Age of Smokers vs Non Smokers}}\newline
     One often hears that the death rate of a person who smokes is, at each age, twice that of a nonsmoker. What does this mean? Does it mean that a nonsmoker has twice the probability of surviving a given number of years as does a smoker of the same age? \hyperlink{a_lifesmoker}{Solution}
-    
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_hypothesis_test}{\textbf{Simple Hypothesis Test}}\newline
+    Let $X_{1}, \ldots, X_{10}$ be a random sample of heights from a $\mathcal{N}(\mu, 20^{2})$ distribution where we want to test the hypothesis $H_{0}: \mu = 30$ vs $H_{a}: \mu \neq 30$. For a significance level of $0.05$ and mean of the $10$ samples as $27$, determine if $H_{0}$ is accepted or not. \hyperlink{a_hypothesis_test}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_most_powerful_test}{\textbf{Most Powerful Test for Variance}}\newline
+    Let $X_{1}, \ldots, X_{5}$ be a random sample from a $\mathcal{N}(2, \sigma^{2})$ distribution where $\sigma^{2}$ is unknown. Derive the most powerful test  of size $\alpha = 0.05$ for testing $H_{0}: \sigma^{2} = 4$ against $H_{1}: \sigma^{2} = 1$. \hyperlink{a_most_powerful_test}{Solution}
+
     %%%%%%%%%%%%%%%%%%%%
     \end{enumerate}
 \end{document}

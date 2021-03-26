@@ -12,6 +12,8 @@
         Var(X) &= \sigma^{2}
     \end{align*}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Standard Normal Distribution}
     A \emph{Standard Normal} is defined as a normal distribution with $\mu = 0$ and $\sigma^{2} = 1$\\
     Any normal distribution can be converted to a standard normal as $X = \frac{X - \mu}{\sigma}$\\
     If $Y = aX + b$, then $Y \sim \mathcal{N}(a \mu + b, a^{2}\sigma^{2})$.\newline
@@ -20,6 +22,18 @@
     \begin{align*}
         P(Z \leq z) = \Phi(z) \quad P(Z = z) = \phi(z) = \mathcal{N}(0,1)
     \end{align*}
+
+    Further, for a given $\alpha \in (0,1)$, define $z_{\alpha}$ by
+    \begin{align*}
+        P(Z > z_{\alpha}) = \alpha = 1-\Phi(z_{\alpha})s
+    \end{align*}
+    Some standard values of $\alpha$ can be useful
+    \begin{itemize}
+        \item $z_{0.01} = 1.2816$
+        \item $z_{0.05} = 1.645$
+        \item $z_{0.025} = 1.96$
+        \item $z_{0.01} = 2.33$
+    \end{itemize}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Moment Generating Function}

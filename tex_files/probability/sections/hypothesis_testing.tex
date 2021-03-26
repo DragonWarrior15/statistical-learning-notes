@@ -8,7 +8,7 @@
 
     Suppose we have a population that is characterized by the distribution $F_{\theta}$ and we are interested in making statistical comments about the value of the parameters $\theta$. \textbf{The hypothesis that specifies the statement that we are going to test about the parameter is called the null hypothesis} and is denoted by $H_{0}$. Note that the statement of the null hypothesis can either comment on the exact value of the parameter, or comment on an inequality satisfied by the parameter. When the hypothesis completely specifies the distribution, it is called a \emph{simple hypothesis} and in the other case, it is called \emph{composite hypothesis}.\newline
 
-    To test the hypothesis, suppose we have available with us $n$ independent samples from the population. Based on these samples, we must define a $n$ dimensional region $C$ such that if the sample falls in this region, we reject the null hypothesis and vice versa. This region $C$ is called the critical region.
+    To test the hypothesis, suppose we have available with us $n$ independent samples from the population. Based on these samples, we must define a $n$ dimensional region $C$ such that if the sample falls in this region, we reject the null hypothesis and vice versa. This region $C$ is called the critical region (or the rejection region).
     \begin{align*}
         \text{Reject\:} H_{0} \text{\:if\:} (X_{1}, X_{2}, \ldots, X_{n}) \in C\\
         \text{Acecpt\:} H_{0} \text{\:if\:} (X_{1}, X_{2}, \ldots, X_{n}) \notin C
@@ -26,7 +26,15 @@
 
     A classical approach while testing the parameters of a population will be to first determine a point estimator of the parameter and then determine the distribution of the said estimator. Hypothesis test will usually involve checking whether the estimator lies in a selcted region, for which we can determine the relevant confidence intervals through the distribution of the estimator.\newline
 
-    
+    The maximum probability of type $I$ error is also called the \textbf{size of the test}.
+    \begin{align*}
+        \alpha &= P(\text{Reject}\; H_{0}\; \text{when it is correct})\\
+        &= P((X_{1}, X_{2}, \ldots, X_{n}) \in C \vert H_{0}\; \text{is true})\\
+        &= \text{size of the test}
+    \end{align*}
+
+    Finally, the power of a test and any related measure will be defined based on the set of observables $(X_{1}, X_{2}, \ldots, X_{n})$ since the hypothesis tests depend on determining the critical region $C$ for these set of observables.
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Test around Mean of Normal Population}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,7 +53,7 @@
     \begin{align*}
         P_{\mu_{0}}(|\overline{X} - \mu_{0}| > c) = \alpha
     \end{align*}
-    where the subscript denotes the fact that the probability is being calculated under the assumption of $\mu = \mu_{0}$. Under this assumption, $\overline{X}$ is normally distributed with mean $mu_{0}$.
+    where the subscript denotes the fact that the probability is being calculated under the assumption of $\mu = \mu_{0}$. Under this assumption, $\overline{X}$ is normally distributed with mean $\mu_{0}$.
     \begin{align*}
         P_{\mu_{0}}(|\frac{\overline{X} - \mu_{0}}{\sigma/\sqrt{n}}| > \frac{c\sqrt{n}}{\sigma}) &= \alpha\\
         2P_{\mu_{0}}(\frac{\overline{X} - \mu_{0}}{\sigma/\sqrt{n}} > \frac{c\sqrt{n}}{\sigma}) &= \alpha
@@ -72,12 +80,13 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{p-value}\label{p_value}
-    We can also determine an inequality on the significance leve, meaning that $\alpha$ above a certain threshold, we will always reject the null hypothesis and vice versa.\newline
-    This threshold is calculated via the probability that the estimator distribution is as large as the test statistic
+    \emph{p-value} denotes the probability of observing a test-statistic at least as large as the observed test-statistic under the assumption that the null hypothesis is true. Mathemtically,
     \begin{align*}
-        P(|Z| > \frac{\sqrt{n}}{\sigma}(\overline{X} - \mu_{0})) = \text{\emph{p-value}}
+        P(Z > \frac{\sqrt{n}}{\sigma}(\overline{X} - \mu_{0})) = \text{\emph{p-value}}
     \end{align*}
-    This \emph{p-value} is interpreted as the threshold for the significance level, i.e., at any significance level less than this value we will accept the null hypothesis and vice versa. This is because the closer the statistic is to zero, the higher the chance that the mean is actually equal to $\mu_{0}$. Thus, a very small \emph{p-value} implies that the statistic is far away from the mean and we can reject $H_{0}$.\newline
+    where $Z$ is the random variable denoting the test-statistic while right-hand side of the inequality is the observed test-statistic. For the above formula, we have assumed the test statistic to be derived from a normal distribution. However, the definition is applicable to any distribution.\newline
+
+    A very small \emph{p-value} means that either the null hypothesis is incorrect, or the observed test statistic must be very unlikely. We can use \emph{p-value} to compare against already defined significance levels to accept or reject the null hypothesis.
 
     \begin{figure}[h]
     \includegraphics[scale=0.4]{pvalue_1}
@@ -86,18 +95,25 @@
     \label{fig:pvalue_1} %\ref{fig:pvalue_1}
     \end{figure}
 
-    \textbf{Note that \emph{p-value} is not particular to the normal distribution}. We can define it in the context of a t-distribution as well. \emph{p-value} represents the probability value associated with the test statistic under the distribution the test statistic follows.\newline  
-    
-    Furthermore, if we have a predefined value of the significance level, any \emph{p-value} lower than this level implies it is very likely for the mean to be different, calling for rejecting $H_{0}$. This is visually represented in figure \ref{fig:pvalue_1}.\newline
+    Furthermore, if we have a predefined value of the significance level, any \emph{p-value} lower than this level implies it is very likely for the mean to be different, calling for rejecting $H_{0}$. This is visually represented in figure \ref{fig:pvalue_1} (note that the figure compares different significance levels for a fixed value of \emph{p-value}).\newline
 
-    We have not yet commented on the \emph{type II error}. Consider $\beta(\mu)$ as probability of accepting $H_{0}$ when the mean is $\mu$
+    Thus, a small \emph{p-value} denotes strong evidence in favor of observing an effect. For an analogy, consider the hypothesis test concerning the weights of a linear regression model. The usual $H_{0}$ refers to the coefficient being $0$. Thus, a small \emph{p-value} strongly rejects the null hypothesis, meaning that the corresponding regressor has non-zero impact on the target variable.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Power of a test and Type II error}\label{power_of_test}
+    We have not yet invoked the \emph{type II error}. Consider $\beta(\mu)$ as probability of accepting $H_{0}$ when the mean is $\mu$
     \begin{align*}
         \beta(\mu) &= P_{\mu}(\text{accepting $H_{0}$ when the mean is $\mu$})\\
         &= P(\text{statistic is \:} \leq z_{\alpha/2})\\
         &= P(|\frac{\sqrt{n}}{\sigma}(\overline{X} - \mu_{0})| \leq z_{\alpha/2})\\
         &= P(-z_{\alpha/2} \leq \frac{\sqrt{n}}{\sigma}(\overline{X} - \mu_{0}) \leq z_{\alpha/2})
     \end{align*}
-    But, under the premise that $\mu$ is the correct mean,
+    We also define \textbf{effect size} here. It is defined as
+    \begin{align*}
+        \text{effect size} &= \text{True value} - \text{Hypothesize value}\\
+        &= \mu - \mu_{0}
+    \end{align*}
+    But, under the premise that $\mu$ is the correct mean (and $H_{0}$ is false),
     \begin{align*}
         \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)
     \end{align*}
@@ -118,13 +134,29 @@
     \label{fig:hypo_2} %\ref{fig:hypo_2}
     \end{figure}
 
-    The function $1 - \beta(\mu)$ is called the \emph{power function} and is the probability of rejection of $H_{0}$ when the true mean is $\mu$. This function is useful in calculating the value of the sample size so that the probability of accepting $H_{0}: \mu = \mu_{0}$ when the true mean is $\mu_{1}$ is $\beta$. We solve the equation $\beta(\mu_{1}) = \beta$ and try to guess the value of $n$ because analytical solution is not possible.
+    The function $1 - \beta(\mu)$ is called the \textbf{power function} and is the probability of rejection of $H_{0}$ when it is false. This function is useful in calculating the value of the sample size so that the probability of accepting $H_{0}: \mu = \mu_{0}$ when the true mean is $\mu_{1}$ is $\beta$. We solve the equation $\beta(\mu_{1}) = \beta$ and try to guess the value of $n$ because analytical solution is not possible.
 
     \begin{align*}
          n \approx \frac{(z_{\alpha/2} + z_{\beta})^{2} \sigma^{2}}{(\mu_{1} - \mu_{0})^{2}}
     \end{align*}
-    is the approximate solution assuming $\alpha$ is negligible.
+    is the approximate solution assuming $\alpha$ is negligible.\newline
 
+    The power of a test is dependent on
+    \begin{enumerate}
+        \item Sample size $n$: Other things being constant, the power of a test is higher the larger the sample size.
+        \item Significance level $\alpha$: The smaller the value of $\alpha$, the larger is the acceptance region making it more likely to accept $H_{0} (\mu = \mu_{0})$ when the true mean is different.
+        \item Effect size: The greater the effect size (difference between the hypothesized value and the true value), the higher the power of the test.
+    \end{enumerate}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Neyman-Pearson Lemma}\label{neyman-pearson}
+    Consider a test with two competing hypothesis $H_{0} = \theta_{0}$ and $H_{1} = \theta_{1}$ where the probability density (or mass) function is given by $f(\mathbf{x} | \theta_{i})$ for $i \in \{0, 1\}$. Denoting the critical region (rejection region) by $C$, the Neyman-Pearson Lemma states that the \textbf{Most Powerful (MP) test} statisfies the below for some $\eta \geq 0$
+    \begin{itemize}
+        \item $\mathbf{x} \in C \; \text{if} \; f(\mathbf{x}|\theta_{1}) > \eta f(\mathbf{x}|\theta_{0})$
+        \item $\mathbf{x} \in C^{c} \; \text{if} \; f(\mathbf{x}|\theta_{1}) < \eta f(\mathbf{x}|\theta_{0})$
+        \item $P_{\theta_{0}}(\mathbf{X} \in C) = \alpha$ for some prefixed significance level $\alpha$
+    \end{itemize}
+    In practice, the likelihood ratio is often used to construct the tests and determine the relation between the effect size and the likelihood ratio.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{One Sided Test}
@@ -160,7 +192,7 @@
     \end{align*}
     where $Z$ is the standard normal.\newline
 
-    \paragraph{Special Note} The tests discussed above have been derived under the assumption that the sample mean has a normal distribution. But, by central limit theorem, the sample mean of any large population will tend towards a normal distribution. Hence, the hypothesis tests will remain valid provided the population has known variance $\sigma$.
+    \paragraph{Special Note} The tests discussed above have been derived under the assumption that the sample mean has a normal distribution. But, by central limit theorem, the sample mean of any large population will tend towards a normal distribution. Hence, the hypothesis tests will remain valid provided the population has known variance $\sigma^{2}$.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Unknown Variance}\label{mean_normal_unknown_variance}
@@ -194,7 +226,7 @@
     \end{alignat*}
     and we can calculate the \emph{p-value} as well in the above cases using the test statistic.\newline
 
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Testing Equality of Means of Two Normal Populations}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -241,7 +273,7 @@
 
     For the other side of the test, we use the same criteria as above, but switching the sets $X$ and $Y$.
 
-    
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Unknown but Equal Variances}
     We consider the same two populations of $Xs$ and $Ys$, but this time the variances are unknown. for simplicity of analysis, we assume that the unknown variances are same
@@ -274,7 +306,7 @@
     \begin{alignat*}{4}
         \text{Reject\quad} &H_{0} \text{\quad if \quad} &T &> &t_{\alpha, n+m-2}\\
         \text{Accept\quad} &H_{0} \text{\quad if\quad} &T &\leq &z_{\alpha, n+m-2}
-    \end{alignat*}    
+    \end{alignat*}
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
