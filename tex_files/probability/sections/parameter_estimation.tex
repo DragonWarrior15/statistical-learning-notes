@@ -91,6 +91,14 @@
         \Aboxed{\hat{\theta} = max(x_{1}, x_{2}, \ldots, x_{n})}
     \end{align*}
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Method of Moments Estimate}
+    For this method, we calculate expected value of powers of the random variable to get $d$ equations for estimating $d$ parameters (if the solutions exist). For instance, consider $f_{X}(x) = f(x \lvert \theta, \sigma)$. We can estimate the values of the parameters by solving the two equations
+    \begin{align*}
+        E[X] &= \frac{\sum_{i=1}^{n} X_{i}}{n} = \int xf(x \lvert \theta, \sigma) dx\\
+        E[X^{2}] &= \frac{\sum_{i=1}^{n} X_{i}^{2}}{n} = \int x^{2}f(x \lvert \theta, \sigma) dx
+    \end{align*}
+    with the solutions to these equations denoted as $\theta_{MME}$ and $\sigma_{MME}$. Depending on the distribution, calculation of expected values can be done using moment generating functions. The above estimation is valid when we have a large number of samples, since by the law of large numbers, the sample mean will converge to the true mean.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Interval Estimates}
@@ -330,6 +338,44 @@
     \end{align*}
     where we have noted that $E[d - E[d]] = E[d] - E[d] = 0$ and $E[d] - \theta$ is a constant since $E[d]$ itself is a constant.
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Minimum Variance Unbiased Estimator (MVUE)}
+    For an unbiased estimator, the MSE derived above is only dependent on the variance of the estimator. Hence, the MVUE is the one for which the variance is the minimum.
+
+    \subsubsection{Cramer Rao Lower Bound (CRLB)}
+    The CRLB sets a lower bound on the variance of any unbiased estimator. If this lower bound is known,
+    \begin{itemize}
+        \item If the variance of an unbiased estimator equals this lower bound, we know that we have found the MVUE
+        \item The lower bound provides a benchmark against which to compare different estimators
+        \item The bound can be used to rule out impossible estimators
+    \end{itemize}
+
+    \paragraph{Fisher Information} To calculate the CRLB, we first define Fisher Information (FI). For any distribution with the density function $f_{X}(x \vert \theta)$ and a random variable $X$, the FI measures a kind of variance of $X$ with respect to $\theta$. If the density function has peaks, knowing $X$ can provide a lot of information about $\theta$. On the other hand, a flat distribution will require many samples of $X$ to find out a good estimate of $\theta$. Mathemtically, for a single random variable $X$, FI is defined as
+    \begin{align*}
+        \mathcal{I}(\theta) = E \bigg[ \bigg(\frac{\partial}{\partial \theta} \ln f_{X}(X; \theta)\bigg)^{2} \bigg \vert \theta \bigg]
+    \end{align*}
+    and if the density is twice differentiable,
+    \begin{align*}
+        \mathcal{I}(\theta) = -E \bigg[ \frac{\partial^{2}}{\partial \theta^{2}} \ln f_{X}(X; \theta) \bigg \vert \theta \bigg]
+    \end{align*}
+
+    Fisher information is additive. The total Fisher information for a set of $n$ independent random variables from the same distribution will simply be $n\mathcal{I}(\theta)$ where $\mathcal{I}(\theta)$ has been derived above.
+
+    \paragraph{Sufficient Statistic} Another important definition is a sufficient statistic. Any statistic of the population $t = T(X)$ (for instance, sample mean is a population statistic, and so is sample variance) is called a sufficient statistic for the parameter $\theta$ if the conditional probability distribution of the data (or sample) $X$ given $t$ does not depend on parameter $\theta$. That is, once $t$ is known, the data will provide no additional information about $\theta$.
+    \begin{align*}
+        t = T(X) \; \text{is sufficient statistic if} \; P(X \vert t) \perp \theta
+    \end{align*}
+
+    \paragraph{Fisher Neyman Factorization Theorem} The theorem states that a given statistic $T(X)$ is sufficient if and only if
+    \begin{align*}
+        f_{X}(x;\theta) = h(X)g(T(X), \theta)
+    \end{align*}
+    where $h$ depends on the data while $g$ depends on $\theta$ and on the data $X$ only through $T(X)$.
+
+    Then, for an unbiased estimator $\hat{\theta}$ and Fisher information $\mathcal{I}(\theta)$ for a single observation, the CRLB is
+    \begin{align*}
+        Var(\hat{\theta}) \geq \frac{1}{n\mathcal{I}(\theta)}
+    \end{align*}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Bayes Estimator}

@@ -43,9 +43,9 @@
     We will rearrange the terms to form a perfect square in the exponent part with a changed mean.
     \begin{align*}
         E[e^{tX}] &= \int_{-\infty}^{\infty} e^{tx} \frac{1}{\sqrt{2\pi \sigma^{2}}} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}\\
-        &= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi \sigma^{2}}}e^{-\frac{(x-(\mu+\sigma^{2}t))^{2} - (\mu+\sigma^{2}t)^{2} + \mu^{2}}{2 \sigma^{2}}}\\
-        &= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi \sigma^{2}}} \exp(-\frac{(x-(\mu+\sigma^{2}t)^{2}}{2 \sigma^{2}}) exp(\mu t + \frac{\sigma^{2} t^{2}}{2})\\
-        E[e^{tX}] &= \exp(\mu t + \frac{\sigma^{2} t^{2}}{2})
+        &= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi \sigma^{2}}}\exp \bigg( -\frac{(x-(\mu+\sigma^{2}t))^{2} - (\mu+\sigma^{2}t)^{2} + \mu^{2}}{2 \sigma^{2}} \bigg)\\
+        &= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi \sigma^{2}}} \exp \bigg(-\frac{(x-(\mu+\sigma^{2}t)^{2}}{2 \sigma^{2}} \bigg) \exp \bigg(\mu t + \frac{\sigma^{2} t^{2}}{2} \bigg)\\
+        E[e^{tX}] &= \exp \bigg(\mu t + \frac{\sigma^{2} t^{2}}{2}\bigg)
     \end{align*}
     Since the total integral of a normal distribution is 1 (the total probability).
 

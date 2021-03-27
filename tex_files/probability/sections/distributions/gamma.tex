@@ -10,19 +10,13 @@
         \end{cases}
     \end{align*}
     The denominator in the above fomula acts as nothing but a normalization constant and is defined as
-    \begin{alignat*}{2}
-        \Gamma (\alpha) &= \int_{0}^{\infty} \lambda e^{-\lambda x} (\lambda x)^{\alpha - 1}\\
-        &= \int_{0}^{\infty} e^{-y} y^{\alpha - 1} dy &&\text{\;by letting $\lambda x = y$}\\
-        &= (\alpha - 1) \int_{0}^{\infty} e^{-y} y^{\alpha - 2} dy &&\text{\;using integration by parts}\\
-        &= (\alpha - 1) \Gamma (\alpha - 1)
-    \end{alignat*}
-
-    In general,
     \begin{align*}
-        \Gamma(\alpha) = \int_{0}^{\infty} x^{\alpha - 1}e^{-x}dx
+        \Gamma (\alpha) &= \int_{0}^{\infty} e^{-x} x^{\alpha - 1}\\
+        &= (\alpha - 1) \int_{0}^{\infty} e^{-x} x^{\alpha - 2} dy \:\text{using integration by parts}\\
+        &= (\alpha - 1) \Gamma (\alpha - 1)
     \end{align*}
 
-    Note that at $\alpha = 1$, $\Gamma (1) = \int_{0}^{\infty} \lambda e^{-\lambda x} = 1$. Hence, if $\alpha$ is an integer, $\Gamma(\alpha) = \alpha !$ using the recursion relation derived above.\newline
+    Note that at $\alpha = 1$, $\Gamma (1) = \int_{0}^{\infty} e^{-x} = 1$. Hence, if $\alpha$ is an integer, $\Gamma(\alpha) = (\alpha-1) !$ using the recursion relation derived above.\newline
 
     For a fixed $\lambda$, as the value of $\alpha$ becomes large, the distribution takes the form of a normal distribution.
 
@@ -35,7 +29,7 @@
     \end{figure}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \subsection{Mean and Variance}
+    \subsection{Mean, Variance and Moment Generating Function}
     Mean and variance are easily obtainable for this using the moment generating function. Recall
     \begin{align*}
         \phi(t) &= E[e^{tX}]\\
@@ -45,9 +39,9 @@
     For the current distribution,
     \begin{align*}
         \phi(t) &= \frac{\lambda^{\alpha}}{\Gamma(\alpha)} \int_{0}^{\infty} e^{tx} e^{-\lambda x} x^{\alpha - 1} dx\\
-        &= (\frac{\lambda}{\lambda - t})^{\alpha} \; \text{by rearranging the terms to complete an integral of a Gamma distribution with parameters $(\alpha, \lambda - t)$}
+        &= \bigg(\frac{\lambda}{\lambda - t}\bigg)^{\alpha}
     \end{align*}
-    Differentiating,
+    by rearranging the terms to complete an integral of a Gamma distribution with parameters $(\alpha, \lambda - t)$. Differentiating,
     \begin{align*}
         \phi^{\prime}(t) &= \frac{\alpha \lambda^{\alpha}}{(\lambda - t)^{\alpha + 1}}\\
         \phi^{\prime \prime}(t) &= \frac{\alpha(\alpha + 1)\lambda^{\alpha}}{(\lambda - t)^{\alpha + 2}}\\
@@ -62,7 +56,7 @@
     This follows from the moment generating function of the sum of variables
     \begin{align*}
         E[e^{t(X_{1} + \cdots + X_{n})}] &= \prod_{i=1}^{n} E[e^{tX_{i}}] \; \text{by independence}\\
-        &= \prod_{i=1}^{n} (\frac{\lambda}{\lambda - t})^{\alpha} = (\frac{\lambda}{\lambda - t})^{\sum_{i=1}^{n} \alpha_{i}}
+        &= \prod_{i=1}^{n} \bigg(\frac{\lambda}{\lambda - t}\bigg)^{\alpha} = \bigg(\frac{\lambda}{\lambda - t}\bigg)^{\sum_{i=1}^{n} \alpha_{i}}
     \end{align*}
     which is the moment generating function of $Gamma(\sum_{i=1}^{n} \alpha_{i}, \lambda)$.
 

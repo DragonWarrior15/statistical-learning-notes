@@ -180,6 +180,13 @@
     Given $n$ independent exponential random variables with different parameters, find the distribution for their minimum. \hyperlink{a_minexp}{Solution}
 
     %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_gamma_chi}{\textbf{A Similar Trick}}\newline
+    Calculate
+    \begin{align*}
+         \lim_{n \to \infty} \bigg[ \frac{1}{2^{n/2}\Gamma(n/2)} \int_{n + \sqrt{2n}}^{\infty} \exp \bigg( -\frac{t}{2} \bigg) t^{n/2 - 1} dt \bigg]
+    \end{align*} \hyperlink{a_gamma_chi}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_steadymarkov}{\textbf{Steady State Markov Process}}\newline
     Find the steady state probabilites of the following Markov Process\newline
     \begin{center}
@@ -298,6 +305,22 @@
     \item \hypertarget{q_mleestimate}{\textbf{MLE Estimate}}\newline
     Suppose we observe $n$ independent and identically distributed samples $x_{1}, x_{2}, \ldots, x_{n}$ from an exponential distribution. Estimate the parameter of the exponential. \hyperlink{a_mleestimate}{Solution}
 
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_crlb_exp}{\textbf{CRLB for an exponential}}\newline
+    Let $X_{1}, \ldots, X_{n}$ be a random sample from an eponential distribution with the probability density
+    \begin{align*}
+        f_{X}(x;\theta) = \begin{cases} \frac{1}{\theta} \exp \big(-\frac{x}{\theta} \big) &\mbox{$x > 0$}\\ 0 &\mbox{otherwise} \end{cases}
+    \end{align*}
+    where $\theta > 0$. Derive the Cramer-Rao lower bound for the variance of any unbiased estimator of $\theta$. Also prove that $T = \frac{1}{n} \sum_{i=1}^{n} X_{i}$ is the minimum variance unbiased estimator of $\theta$. \hyperlink{a_crlb_exp}{Solution}
+
+    %%%%%%%%%%%%%%%%%%%%
+    \item \hypertarget{q_mle_sufficient_statistic}{\textbf{MLE and Proving Sufficient Statistic}}\newline
+    Suppose $X_{1}, X_{2}, \ldots, X_{n}$ are from a distribution with the following distribution
+    \begin{align*}
+        f_{X}(x) = \begin{cases} \frac{2x}{\lambda} \exp \big(-\frac{x^{2}}{\lambda} \big) &\mbox{if $x > 0$}\\ 0 &\mbox{otherwise} \end{cases}
+    \end{align*}
+    Find the MLE estimate of $\lambda$ and show that it is unbiased and a sufficient statistic of $\lambda$.
+    \hyperlink{a_mle_sufficient_statistic}{Solution}
 
     %%%%%%%%%%%%%%%%%%%%
     \item \hypertarget{q_bayesnormal}{\textbf{Bayes Estimator for Normal Distribution}}\newline
