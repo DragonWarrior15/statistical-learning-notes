@@ -1,0 +1,70 @@
+\documentclass[../../linear_algebra.tex]{subfiles}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Product and Quotient of Vector Spaces}
+All the vector spaces considered for a product or quotient must be over the same type of $\field$ ($\real$ or $\comp$).\newline
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Product of Vector Spaces}
+Suppose we have $m$ vector spaces $V_{1}, V_{2}, \ldots, V_{m} \in \field$, then their vector product
+\begin{align*}
+    V_{1}\times \cdots \times V_{m} = \{ (v_{1}, \ldots, v_{m}) \: v_{1}\in V_{1}, \ldots v_{m} \in V_{m} \}
+\end{align*}
+Addition and scalarm multiplication are also defined on such products
+\begin{align*}
+    (u_{1}, \ldots, u_{m}) + (v_{1}, \ldots, v_{m}) &= (u_{1} + v_{1}, \ldots, u_{m} + v_{m})\\
+    \lambda (v_{1}, \ldots, v_{m}) &= (\lambda v_{1}, \ldots, \lambda v_{m})
+\end{align*}
+where $\lambda \in \field$. With the above definitions of addition and scalar multiplication, the product of vector spaces is itself a vector space.\newline
+
+$\real^{2} \times \real^{3}$ is an example of a product of vector spaces. Elements of such a product are lists of the form $((x_{1}, x_{2}), (x_{3}, x_{4}, x_{5}))$ where all 5 elements belong in $\real$. Note that this product is technically different from $\real^{5}$, but is a simple relabelling of $\real^{5}$.\newline
+
+Dimension of a product of finite dimensional vector spaces is simply the sum of dimensions of the individual vector spaces
+\begin{align*}
+    \text{dim}(V_{1} \times \cdots \times V_{m}) = \text{dim }V_{1} + \cdots + \text{ dim }V_{m}
+\end{align*}
+and can be shown by considering the bases vectors on either side.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quotient of Vector Spaces}
+We first define the meaning of adding a vector and a subspace. Suppose $v \in \setv$ and $U$ is a subspace of $\setv$. Then
+\begin{align*}
+    v + U = \{ v + u \: u \in U \}
+\end{align*}
+For instance, consider $U = \{(x, 3x) \in \real^{2} \: x \in \real \}$ and $v = (2,3)$. Then $v + U$ is the line with slope $3$ containing the point $(2,3)$.\newline
+
+\textbf{Affine Subset and Parallel}\newline
+An affine subset of $\setv$ is a subspace of $\setv$ of the form $v + U$ where $v \in \setv$ and $U$ is a subspace of $\setv$. Such a subset is said to be parallel to $U$.\newline
+
+Clearly, in the previous example, the subset $\{(x + 2, 3x + 3) \: x \in \field \}$ is parallel to $\{(x, 3x) \: x \in \field \}$ both by definition and physically (they are parallel lines).\newline
+
+\textbf{Quotient Space $\bm{\setv/U}$}\newline
+For any subspace $U$ of $\setv$, the quotient space $\bm{\setv/U}$ is the set of all affine subsets of $\setv$ parallel to $U$.
+\begin{align*}
+    \setv/U &= \{ v + U \: v \in \setv \}
+    \text{dim } \setv/U &= \text{ dim } \setv - \text{ dim } U
+\end{align*}
+
+Two affine subsets parrallel to $U$ are equal or disjoint. Suppose $v, w \in \setv$ and $U$ is a subspace of $\setv$, then the following three statements will be equivalent
+\begin{itemize}
+    \item $v - w \in U$
+    \item $v + U = w + U$
+    \item $(v + U) \cap (w + U) \neq \phi$
+\end{itemize}
+
+\textbf{Addition and Scalar Multiplication}\newline
+Addition and scalar multiplication on $\setv/U$ are defined as follows
+\begin{align*}
+    (v + U) + (w + U) &= (v + w) + U\\
+    \lambda(v + U) &= (\lambda v) + U
+\end{align*}
+With these definitions, $\setv/U$ is also a vector space.\newline
+
+\textbf{Quotient Map $\bm{\pi}$}
+Suppose $U$ is a subspace of $\setv$, then the quotient map is a linear map from $\setv$ to $\setv/U$ defined as
+\begin{align*}
+    \pi = \{ v + U \: v \in \setv \}
+\end{align*}
+\end{document}
