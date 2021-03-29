@@ -12,5 +12,5 @@ $(linalg_dir)$(linalg).pdf: $(linalg_dir)$(linalg).tex
 	cd $(linalg_dir); pdflatex $(linalg).tex; cd ../../
 
 clean:
- 	rm -rf $(prob_dir)$(prob).pdf
+	rm -rf $(prob_dir)$(prob).pdf
 	rm -rf $(linalg_dir)$(linalg).pdf
