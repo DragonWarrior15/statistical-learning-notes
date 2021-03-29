@@ -2,56 +2,97 @@
 \begin{document}
     \section{Poisson Process}
     \subsection{Poisson Random Variable}
-    A random variable $X$ is said to be $Poisson(\mu)$ if it has the following probability distribution
+    A random variable $X$ is said to be $Poisson(\lambda)$ if it has the following probability distribution
     \begin{align*}
-        p_{X}(x = k) = \begin{cases} e^{-\mu} \frac{\mu^{k}}{k!} &\text{ for all } x = \{ 0,\;1,\;2, \cdots \}\\
+        p_{X}(x = k) = \begin{cases} e^{-\lambda} \frac{\lambda^{k}}{k!} &\text{ for all } x = \{ 0,\;1,\;2, \cdots \}\\
                                     0 &\text{ otherwise} \end{cases}
     \end{align*}
 
     The sum of $n$ independent Poisson variables is also Poisson
     \begin{align*}
-        X_{1} + X_{2} + \cdots + X_{n} \sim Poisson(\mu_{1} + \mu_{2} + \cdots + \mu_{n})
+        X_{1} + X_{2} + \cdots + X_{n} \sim Poisson(\lambda_{1} + \lambda_{2} + \cdots + \lambda_{n})
     \end{align*}
 
     \subsection{Mean and Variance}
     Expected value is calculated as follows
     \begin{align*}
-        E[X] &= \sum_{k=0}^{\inf} ke^{-\mu} \frac{\mu^{k}}{k!} = \mu e^{-\mu} \sum_{k=1}^{\inf} \frac{\mu^{k-1}}{(k-1)!}\\
-        &= \mu e^{-\mu} \sum_{k=0}^{\inf} \frac{\mu^{k}}{k!}\\
-        \Aboxed{E[X] &= \mu}
+        E[X] &= \sum_{k=0}^{\inf} ke^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\inf} \frac{\lambda^{k-1}}{(k-1)!}\\
+        &= \lambda e^{-\lambda} \sum_{k=0}^{\inf} \frac{\lambda^{k}}{k!}\\
+        \Aboxed{E[X] &= \lambda}
     \end{align*}
 
     Variance can be calculated using $Var(X) = E[X^{2}] - E[X]^{2}$
     \begin{align*}
-        E[X^{2}] &= \sum_{k=0}^{\inf} k^{2} e^{-\mu} \frac{\mu^{k}}{k!} = \mu e^{-\mu} \sum_{k=1}^{\inf} k\frac{\mu^{k-1}}{(k-1)!}\\
-        &= \mu e^{-\mu} \sum_{k=0}^{\inf} (k+1) \frac{\mu^{k}}{k!}\\
-        &= \mu e^{-\mu} \big( \mu \sum_{k=1}^{\inf} \frac{\mu^{k-1}}{(k-1)!} + \sum_{k=0}^{\inf} \frac{\mu^{k}}{k!} \big)\\
-        &= \mu e^{-\mu} (\mu e^{\mu} + e^{\mu})\\
+        E[X^{2}] &= \sum_{k=0}^{\inf} k^{2} e^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\inf} k\frac{\lambda^{k-1}}{(k-1)!}\\
+        &= \lambda e^{-\lambda} \sum_{k=0}^{\inf} (k+1) \frac{\lambda^{k}}{k!}\\
+        &= \lambda e^{-\lambda} \big( \lambda \sum_{k=1}^{\inf} \frac{\lambda^{k-1}}{(k-1)!} + \sum_{k=0}^{\inf} \frac{\lambda^{k}}{k!} \big)\\
+        &= \lambda e^{-\lambda} (\lambda e^{\lambda} + e^{\lambda})\\
         Var(X) &= E[X^{2}] - E[X]^{2}\\
-        \Aboxed{Var(X) &= \mu}
+        \Aboxed{Var(X) &= \lambda}
     \end{align*}
 
     Thus, mean and variance is the same for a Poisson variable.
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Moment Generating Function}
+    The mean and variance are easy to derive with the moment generating function of the Poisson distribution
+    \begin{align*}
+        E[e^{tX}] &= \sum_{k=0}^{\inf} e^{tk} e^{-\lambda} \frac{\lambda^{k}}{k!} = e^{-\lambda} \sum_{k=0}^{\inf} \frac{(\lambda e^{t})^{k}}{k!}\\
+        \phi(t) &= e^{-\lambda} e^{\lambda e^{t}} = e^{-\lambda(1-e^{t})}
+    \end{align*}
+
+    Now, we can use the derivates of this function to derive the expectations
+    \begin{alignat*}{3}
+        E[X] &= \phi^{'}(0) &&= e^{-\lambda(1-e^{t})} \lambda e^{t} &&= \lambda\\
+        E[X^{2}] &= \phi^{''}(0) &&= \lambda e^{-\lambda(1-e^{t}) + t} (1+\lambda e^{t}) &&= \lambda^{2} + \lambda
+    \end{alignat*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Sum of Poisson Variables}
+    The sum of two independent random variables $X_{1} \sim Poisson(\lambda_{1})$ and $X_{2} \sim Poisson(\lambda_{2})$ is also Poisson. This can be derived with their moment generating functions
+    \begin{align*}
+        E[e^{t(X_{1} + X_{2})}] &= E[e^{tX_{1}} e^{tX_{2}}] = E[e^{tX_{1}}]E[e^{tX_{2}}] \;\text{by independence}\\
+        &= e^{-\lambda_{1}(1-e^{t})} e^{-\lambda_{2}(1-e^{t})} = e^{-(\lambda_{1} + \lambda_{2})(1-e^{t})}\\
+        \implies X_{1} + X_{2} &\sim Poisson(\lambda_{1} + \lambda_{2})
+    \end{align*}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Approximation of a Binomial Random Variable}
+    Recall the probability distribution for a binomial random variable with parameters $n$ and $p$
+    \begin{align*}
+        P(X = i) = \binom{n}{i} p^{i} (1-p)^{n-i}
+    \end{align*}
+
+    Let $\lambda = np$ and $n$ be large while $p$ is very small (i.e., the probability of occurrence of the event is small with a large number of trials)
+    \begin{align*}
+        P(X = i) &= \frac{n!}{(n-i)!i!} (\frac{\lambda}{n})^{i} (1-\frac{\lambda}{n})^{n-i}\\
+        &= \frac{n(n-1) \ldots (n-i + 1)}{n^{i}} \frac{\lambda^{i}}{i!} \frac{(1-\lambda / n)^{n}}{(1 - \lambda / n)^{i}}\\
+        &\approx 1 \frac{\lambda^{i}}{i!} \frac{e^{-\lambda}}{1}\\
+        P(X = i) &\approx e^{-\lambda}\frac{\lambda^{i}}{i!}
+    \end{align*}
+
+    where have used the limit definition of $e$, $\lim_{n \to \infty}(1 + x/n)^{n} = e$. Examples where this approximation is valid include number of misprints on a page (the probability of a word being misprinted is small, and there are a large number of words on a page), number of transistors failing on first day of use (probability of failure is small, with extremely large number of transistors being used on any day). All these examples can be assumed to follow the Poisson distribution with mean $\lambda = np$.
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Poisson Process}
     Poisson process also falls in the realm of random processes but is different from Bernoulli process as it is a continuous time process. This process is very commonly used to model arrival times and number of arrivals in a given time interval.
     \begin{align*}
         P(k, \tau) &= \text{Probability of $k$ arrivals in interval of duration $\tau$}\\
-        \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
+        \sum_{k} P(k, \tau) &= 1 \; \text{for a given $\tau$}
     \end{align*}
     Assumptions
     \begin{itemize}
-        \item The Probability is dependent only on $\tau$ and not the \emph{location} of the interval
+        \item The Probability is dependent only on the length of the interval $\tau$ and not the \emph{location} of the interval
         \item Number of arrivals in disjoint time intervals are \emph{independent}
     \end{itemize}
-    
+
     \subsection{A Special Counting Process}
     A counting process $N_{t}:t \in [0,\inf)$ is a Poisson process with rate $\lambda$ if
     \begin{enumerate}
         \item $N_{0} = 0$
         \item $N_{t}$ is composed of independent and stationary increments
-        \item The number of arrivals in any time interval $\tau > 0$ has $Possion(\lambda \tau)$ distribution 
+        \item The number of arrivals in any time interval $\tau > 0$ has $Possion(\lambda \tau)$ distribution
     \end{enumerate}
     Hence, for a Poisson process, the number of arrivals in any interval is dependent only on the length of that interval and not the location. Further, the number of arrivals in the interval will follow a Poisson distribution.
 
@@ -66,13 +107,13 @@
             &= \lambda \delta \\
         \tau &= n \delta
     \end{alignat*}
-    
+
     The last equation clearly implies that we can approximate the whole process as a bernoulli process where we have $n$ miniscule time intervals with at most one arrival per interval.
     \begin{align*}
-        P(k\; arrivals) &= \binom{n}{k} p^{k} (1-p)^{n-k} \\
+        P(k\; \text{arrivals}) &= \binom{n}{k} p^{k} (1-p)^{n-k} \\
             &= \binom{n}{k} (\frac{\lambda \delta}{n})^{k} (1 - \frac{\lambda \delta}{n})^{n-k}\\
         \lambda \tau &= np \tag*{or, arrival rate * time = E[arrivals]}\\
-        Poisson &= \lim_{\delta \to 0, n \to \inf} Bernoulli\\
+        Poisson &= \lim_{\delta \to 0, n \to \infty} Bernoulli\\
         or,\; P(k, \tau) &= \frac{(\lambda \tau)^{k} e^{-\lambda \tau}}{k!} \tag*{$k = 0,1, \cdots$, for a given $\tau$}\\
         where,\; \sum_{k} P(k, \tau) &= 1 \tag*{for a given $\tau$}
     \end{align*}
@@ -80,7 +121,8 @@
     Let $N_{t}$ denote the no of arrivals till time t, then
     \begin{align*}
         E[N_{t}] &= \lambda t\\
-        Var(N_{t}) &= \lambda t
+        Var(N_{t}) &= \lambda t\\
+        P(N(t) = k) &= e^{-\lambda t} \frac{(\lambda t)^{k}}{k!}, \; \text{for $k=0,1,2,\ldots$}
     \end{align*}
 
     \subsection{Time till kth arrival}
@@ -132,7 +174,7 @@
     \caption{Probabilities after ignoring $\delta^{2}$ terms}
     \end{table}
 
-    Thus, the combined process is Poisson with parameter $\lambda_{1} + \lambda_{2}$ \newline
+    The combined process (of at least one bulb flashing) $\sim Poisson(\lambda_{1} + \lambda_{2})$ \newline
     \begin{align*}
     P(\text{arrival happened from first process}) = \frac{\lambda_{1} \delta}{\lambda_{1} \delta + \lambda_2 \delta} = \frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
     \end{align*}

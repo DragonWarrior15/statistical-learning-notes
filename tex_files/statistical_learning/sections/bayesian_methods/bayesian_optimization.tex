@@ -13,8 +13,8 @@ Acquisition function will have a tradeoff between exploitation (search in areas 
     \item Maximum probability of improvement (MPI)\\
     Suppose we have the maximum $f^{*}$ among the current observed points. Let $\epsilon$ be an improvement parameter
     \begin{alignat*}{2}
-        \mu(x) &= P(\hat{f}(x) \geq f^{*} + \epsilon) &&= P(\frac{\hat{f}(x) - E[\hat{f}(x)]}{Var(\hat{f}(x))} \geq \frac{(f^{*} + \epsilon) - E[\hat{f}(x)]}{Var(\hat{f}(x))})\\
-        &= P(Z < \frac{E[\hat{f}(x)] - (f^{*} + \epsilon)}{Var(\hat{f}(x))}) &&= \Phi\bigg(\frac{E[\hat{f}(x)] - (f^{*} + \epsilon)}{Var(\hat{f}(x))} \bigg)
+        \mu(x) &= P(\hat{f}(x) \geq f^{*} + \epsilon) &&= P \bigg(\frac{\hat{f}(x) - E[\hat{f}(x)]}{Var(\hat{f}(x))} \geq \frac{(f^{*} + \epsilon) - E[\hat{f}(x)]}{Var(\hat{f}(x))} \bigg)\\
+        &= P \bigg(Z < \frac{E[\hat{f}(x)] - (f^{*} + \epsilon)}{Var(\hat{f}(x))} \bigg) &&= \Phi\bigg(\frac{E[\hat{f}(x)] - (f^{*} + \epsilon)}{Var(\hat{f}(x))} \bigg)
     \end{alignat*}
     where $Z$ is the standard normal and $\Phi$ is the cumulative probability distribution for $Z$. This works well if the maximum is known. $\epsilon$ controls the exploration with higher values favoring the same.
     \item Upper Confidence Bound (UCB)
@@ -26,9 +26,9 @@ Acquisition function will have a tradeoff between exploitation (search in areas 
     \begin{align*}
         EI &= E[max(\hat{f}(x) - f^{*}, 0)]\\
         \mu(x) &= \begin{cases}
-            ()\Phi(Z) + Var(\hat{f}(x)) \phi(Z) &\mbox{if $Var(\hat{f}(x)) > 0$}\\
+            (E[\hat{f}(x)] - (f^{*} + \epsilon))\Phi(Z) + Var(\hat{f}(x)) \phi(Z) &\mbox{if $Var(\hat{f}(x)) > 0$}\\
             0 &\mbox{otherwise}
-        \end{cases}
+        \end{cases}\\
         Z &= \begin{cases} \frac{E[\hat{f}(x)] - (f^{*} + \epsilon)}{Var(\hat{f}(x))} &\mbox{if $Var(\hat{f}(x)) > 0$}\\ 0 &\mbox{otherwise} \end{cases}
     \end{align*}
     This is the most commonly used acquisition function. The next point is chosen based on the maxima of this function (can be found using gradient ascent). The parameter $\epsilon$ controls how much exploration we want to perform (higher values favor exploration).

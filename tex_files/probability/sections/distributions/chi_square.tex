@@ -5,7 +5,7 @@
     If $Z_{1}, Z_{2}, \ldots, Z_{n}$ are $n$ independent standard normal variables, then the random variable $X$
     \begin{align*}
         X &= Z_{1}^{2} + Z_{2}^{2} + \cdots + Z_{n}^{2}\\
-        \text{then, \;} X &\sim \chi_{n}^{2} 
+        \text{then, \;} X &\sim \chi_{n}^{2}
     \end{align*}
     i.e., $X$ follows the chi-square distribution with $n$ degrees of freedom.\newline
 
@@ -22,10 +22,10 @@
     Consider the moment generating function for a chi-square random variable with $n=1$ degrees of freedom
     \begin{align*}
         E[e^{tX}] &= E[e^{tZ^{2}}] \text{\; $Z \sim \mathcal{N}(0, 1)$}\\
-        &= \int_{-\inf}^{\inf} e^{tx^{2}} f_{Z}(x) dx \text{\; since $E[g(x)] = \sum_{x} g(x)p(x)$}\\
-        &= \frac{1}{\sqrt{2\pi}} \sum_{-\inf}^{\inf} e^{tx^{2}} e^{-x^{2}/2}\\
-        &= \frac{1}{\sqrt{2\pi}} \sum_{-\inf}^{\inf} e^{-x^{2}(1/2 - t)}\\
-        \text{Using \;} \int_{-\inf}^{\inf} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\\
+        &= \int_{-\infty}^{\infty} e^{tx^{2}} f_{Z}(x) dx \text{\; since $E[g(x)] = \int_{x} g(x)p(x)$}\\
+        &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{tx^{2}} e^{-x^{2}/2}\\
+        &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-x^{2}(1/2 - t)}\\
+        \text{Using \;} \int_{-\infty}^{\infty} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\\
         E[e^{tX}] &= \frac{1}{\sqrt{2\pi}} \sqrt{\frac{\pi}{1/2 - t}}\\
         &= \frac{1}{\sqrt{1 - 2t}}
     \end{align*}
@@ -45,7 +45,7 @@
     \end{align*}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Mean and Variance}
-    Since the distribution of a chi-square variable is identical to a Gamma distribution,
+    Since the distribution of a chi-square variable is identical to a $Gamma(n/2, 1/2)$ distribution,
     \begin{align*}
         \Aboxed{E[X] &= n}\\
         \Aboxed{Var(x) &= 2n}
