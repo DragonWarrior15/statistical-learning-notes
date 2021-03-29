@@ -24,7 +24,7 @@ Thus, the matrix of sum of linear maps is the sum of matrices of those linear ma
 
 The scalar multiplication with $\lambda \in \field$ is same as multiplying each element of the original matrix with $\lambda$
 \begin{align*}
-    (\lambda A)_{i,j} = \lambda (A_{i,j})     
+    (\lambda A)_{i,j} = \lambda (A_{i,j})
 \end{align*}
 
 Thus, the matrix of a scalar times a linear map is same as the scalar times the matrix of the linear map
@@ -66,4 +66,44 @@ Two vector spaces are isomorphic if there is an isomorphism (an invertible linea
 A linear map from a vector space onto itself is called an operator. $\setlm(\setv)$ denotes the set of all operators from $\setv$ onto itself. It is the same notation as $\setlm(\setv) = \setlm(\setv, \setv)$.\newline
 
 On a finite dimensional vector space $\setv$, any linear map $T \in \setlm(\setv)$ is \textbf{invertible}, \textbf{injective} and \textbf{surjective}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Rank of a Matrix}
+Suppose $A \in \field^{m, n}$. Row and column ranks are two non negative integers defined as
+\begin{itemize}
+    \item Row Rank: Dimension of the span of the rows of $A$ in $\field^{1, n}$
+    \item Column Rank: Dimension of the spaan of the columns of $A$ in $\field^{m, 1}$
+\end{itemize}
+But for any $A \in \field^{m, n}$, row rank $=$ column rank (can be proved using duality). Hence, we simply use the word rank to denote the column rank of a matrix.\newline
+
+Rank is defined for a matrix, whereas dimension is defined for a vector space. This is the important distinction between the two.
+
+\subsubsection{Rank-Nullity Theorem}\label{rank_nullity_theorem}
+We restate the theorem from section \ref{fundamental_theorem_linear_maps} using the concepts of dimension and ranks. For any vector spaces $V$ and $W$, and linear map $T \in \setlm(\setv, \setw)$
+\begin{align*}
+    \text{rank}(T) + \text{Nullity}(T) = \text{dim}(V)
+\end{align*}
+where dim$(V)$ is the number of basis vectors of the vector space $V$. Usually, the dim$(V)$ is the number of columns in the matrix $T$.
+
+\subsection{Block Matrix}
+Sometimes, block matrices can help simplify cumbersome operations. For the purpose of demonstration, consider a matrix $A$ of dimensions $n \times n$, which we break into four blocks: $B$ of size $m \times m$, $C$ of size $m \times n-m$, $D$ of size $n-m \times m$, and $E$ of size $n-m \times n-m$. Then,
+\begin{align*}
+    A = \begin{bmatrix}
+        B &C\\ D &E
+    \end{bmatrix}
+\end{align*}
+Then, the calculation of $A^{2}$ is
+\begin{align*}
+    A^{2} &= \begin{bmatrix}
+        B &C\\ D &E
+    \end{bmatrix}
+    \begin{bmatrix}
+        B &C\\ D &E
+    \end{bmatrix} =
+    \begin{bmatrix}
+        B^{2} + CD &BC + CE\\ DB + ED &DC + E^{2}
+    \end{bmatrix}
+\end{align*}
+
+We obtained $B^{2}$ using $2 \times 2$ multiplication on the four elements of the block matrix. All the multiplications agree in terms of the dimensions. This technique is especially useful when the matrix can be broken in such a way that individual matrix are identity matrix, diagonal matrix etc.
 \end{document}
