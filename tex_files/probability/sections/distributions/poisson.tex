@@ -16,16 +16,16 @@
     \subsection{Mean and Variance}
     Expected value is calculated as follows
     \begin{align*}
-        E[X] &= \sum_{k=0}^{\inf} ke^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\inf} \frac{\lambda^{k-1}}{(k-1)!}\\
-        &= \lambda e^{-\lambda} \sum_{k=0}^{\inf} \frac{\lambda^{k}}{k!}\\
+        E[X] &= \sum_{k=0}^{\infty} ke^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}\\
+        &= \lambda e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^{k}}{k!}\\
         \Aboxed{E[X] &= \lambda}
     \end{align*}
 
     Variance can be calculated using $Var(X) = E[X^{2}] - E[X]^{2}$
     \begin{align*}
-        E[X^{2}] &= \sum_{k=0}^{\inf} k^{2} e^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\inf} k\frac{\lambda^{k-1}}{(k-1)!}\\
-        &= \lambda e^{-\lambda} \sum_{k=0}^{\inf} (k+1) \frac{\lambda^{k}}{k!}\\
-        &= \lambda e^{-\lambda} \big( \lambda \sum_{k=1}^{\inf} \frac{\lambda^{k-1}}{(k-1)!} + \sum_{k=0}^{\inf} \frac{\lambda^{k}}{k!} \big)\\
+        E[X^{2}] &= \sum_{k=0}^{\infty} k^{2} e^{-\lambda} \frac{\lambda^{k}}{k!} = \lambda e^{-\lambda} \sum_{k=1}^{\infty} k\frac{\lambda^{k-1}}{(k-1)!}\\
+        &= \lambda e^{-\lambda} \sum_{k=0}^{\infty} (k+1) \frac{\lambda^{k}}{k!}\\
+        &= \lambda e^{-\lambda} \big( \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!} + \sum_{k=0}^{\infty} \frac{\lambda^{k}}{k!} \big)\\
         &= \lambda e^{-\lambda} (\lambda e^{\lambda} + e^{\lambda})\\
         Var(X) &= E[X^{2}] - E[X]^{2}\\
         \Aboxed{Var(X) &= \lambda}
@@ -37,7 +37,7 @@
     \subsection{Moment Generating Function}
     The mean and variance are easy to derive with the moment generating function of the Poisson distribution
     \begin{align*}
-        E[e^{tX}] &= \sum_{k=0}^{\inf} e^{tk} e^{-\lambda} \frac{\lambda^{k}}{k!} = e^{-\lambda} \sum_{k=0}^{\inf} \frac{(\lambda e^{t})^{k}}{k!}\\
+        E[e^{tX}] &= \sum_{k=0}^{\infty} e^{tk} e^{-\lambda} \frac{\lambda^{k}}{k!} = e^{-\lambda} \sum_{k=0}^{\infty} \frac{(\lambda e^{t})^{k}}{k!}\\
         \phi(t) &= e^{-\lambda} e^{\lambda e^{t}} = e^{-\lambda(1-e^{t})}
     \end{align*}
 
@@ -88,7 +88,7 @@
     \end{itemize}
 
     \subsection{A Special Counting Process}
-    A counting process $N_{t}:t \in [0,\inf)$ is a Poisson process with rate $\lambda$ if
+    A counting process $N_{t}:t \in [0,\infty)$ is a Poisson process with rate $\lambda$ if
     \begin{enumerate}
         \item $N_{0} = 0$
         \item $N_{t}$ is composed of independent and stationary increments
@@ -206,7 +206,7 @@
     \subsection{Non Homogenous Poisson Process}
     Sometimes, it may not be accurate to use a simple Poisson process to model arrival. For example, a restaurant will not have the same rate of influx throughout the day. This rate itself is a function of time. In such cases, we model the arrivals as Non Homogenous Poisson Process.\newline
 
-    For such a process, we have $\lambda(t): [0,\inf) \to [0, \inf)$ and the counting process $N_{t}$ is non homogenous if the following hold
+    For such a process, we have $\lambda(t): [0,\infty) \to [0, \infty)$ and the counting process $N_{t}$ is non homogenous if the following hold
     \begin{enumerate}
         \item $N_{0} = 0$
         \item The increments to $N_{t}$ are \textbf{independent but not stationary}

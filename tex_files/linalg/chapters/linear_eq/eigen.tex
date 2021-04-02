@@ -129,4 +129,43 @@ Computation of the natural powers of a matrix that is diagonalizable is straight
 \end{align*}
 
 The entries of $\Lambda^{n}$ are same as the entries of $\Lambda$ raised to the $n^{th}$ power. Thus, once the matrix $S$ and $\Lambda$ are known, calculation of higher powers is quick.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Cayley-Hamilton Theorem}
+Cayley-Hamilton theorem states that the charecteristic equation of a given matrix is satisfied by the matrix itself. Using this equation, it is easy to calculate certain powers of the matrix and its inverse. Consider the following matrix
+\begin{align*}
+    A = \begin{bmatrix}
+        1 &2\\ 3 & 4
+    \end{bmatrix}
+\end{align*}
+
+The characteristic equation is
+\begin{align*}
+    det(A - \lambda I) &= 0\\
+    (1-\lambda)(4-\lambda) - 2 \times 3 &= 0\\
+    \lambda^{2} - 5\lambda - 2 &= 0
+\end{align*}
+
+Then, the matrix itself will satisfy this equation, i.e.,
+\begin{align*}
+    A^{2} - 5A - 2I_{2} = 0_{2}
+\end{align*}
+
+where the right hand side is the $2 \times 2$ matrix with all zeros. One can verify that the equation indeed holds true by substituiting the values of $A$ and $A^{2}$.\newline
+
+With this equation, we can calculate the different powers as follows
+\begin{align*}
+    A^{2} &= 5A + 2I_{2}\\
+    A^{3} &= A^{2}A = 5A^{2} + 2A = 5(5A + 2I_{2}) + 2A = 27A + 10I_{2}\\
+    A^{4} &= A^{3}A = 27A^{2} + 10A = 145A + 54I_{2}\\
+\end{align*}
+
+Inverse can also be expressed in terms of $A$
+\begin{align*}
+    A^{2} - 5A - 2I_{2} &= 0_{2}\\
+    A^{-1}A^{2} - 5A^{-1}A - 2A^{-1}I_{2} &= A^{-1}0_{2}\\
+    A - 5I_{2} - 2A^{-1} &= 0_{2}\\
+    A^{-1} &= \frac{1}{2} \bigg( A - 5I_{2} \bigg)
+\end{align*}
+
 \end{document}

@@ -23,7 +23,7 @@
         P(B) &= P(B|A_{1})P(A_{1}) + P(B|A_{2})P(A_{2}) + \cdots + P(B|A_{n})P(A_{n})\\
         \text{or, } P(B) &= \sum_{i=1}^{n} P(B|A_{i})P(A_{i})
     \end{align*}
-    
+
     \section{Independence}
     Two events A and B are independent iff
     \begin{align*}
@@ -41,7 +41,7 @@
     \begin{align*}
         P(A_{i} \cap A_{j} \cap \ldots \cap A_{k} | C) = P(A_{i}|C) P(A_{j}|C) \;..\; P(A_{k}|C) \;\;\forall\;i,j,\ldots,k \;|\; i,j,\ldots,k \in {1,2,\ldots,n}
     \end{align*}
-    
+
     \section{Joint Probability Distributions}
     \emph{Joint Probability Distributions} are defined for two or more than two variables. In this section, we only consider two variables. The formal definition is
 
@@ -64,7 +64,7 @@
     \begin{align*}
         \text{Random Variable } X \text{ is a linear map : } \mathbb{R} \to \mathbb{R} \text{. The value taken by the variable is denoted by } x
     \end{align*}
-    
+
     $X$ will have an associated probability distribution, i.e., $P_{X}(X = x)$ . Using these quantities, we have
     \begin{align*}
         E[X] = \sum_x xP_{X}(X = x) \tag*{Expected Value}
@@ -122,7 +122,7 @@
     \section{Cumulative Probability Distribution}
     Cumulative probability distribution is defined for both discrete and continuous variables
     \begin{align*}
-        F_{x}(X) = P(X \leq x) = \begin{cases} \int_{-\inf}^{x} p_{X}(t) dt &\mbox{$X$ is a discrete random variable}\\
+        F_{x}(X) = P(X \leq x) = \begin{cases} \int_{-\infty}^{x} p_{X}(t) dt &\mbox{$X$ is a discrete random variable}\\
         \sum_{k <= x} P_{X}(k) &\mbox{$X$ is a continuous random variable} \end{cases}
     \end{align*}
 
@@ -133,7 +133,7 @@
     \begin{align*}
         Cov(X,Y) &= E[(X - \overline{X})(Y - \overline{Y})] = E[XY] - E[X]E[Y]\\
         Cov(X,X) &= Var(X)\\
-        Corr(X,Y) &= E[(\frac{X - \overline{X}}{\sigma_{X}}) (\frac{Y - \overline{Y}}{\sigma_{Y}})]\\
+        Corr(X,Y) &= E[\bigg(\frac{X - \overline{X}}{\sigma_{X}}\bigg) \bigg(\frac{Y - \overline{Y}}{\sigma_{Y}}\bigg)]\\
         &= \frac{Cov(X,Y)}{\sigma_{X} \sigma_{Y}}
     \end{align*}
     where the correlation is also known as Pearson Correlation. Key points to note

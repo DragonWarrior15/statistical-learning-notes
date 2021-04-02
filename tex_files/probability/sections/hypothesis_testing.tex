@@ -26,12 +26,17 @@
 
     A classical approach while testing the parameters of a population will be to first determine a point estimator of the parameter and then determine the distribution of the said estimator. Hypothesis test will usually involve checking whether the estimator lies in a selcted region, for which we can determine the relevant confidence intervals through the distribution of the estimator.\newline
 
-    The maximum probability of type $I$ error is also called the \textbf{size of the test}.
+    The maximum probability of type $I$ error is also called the \textbf{size of the test}. For a simple hypothesis test
     \begin{align*}
         \alpha &= P(\text{Reject}\; H_{0}\; \text{when it is correct})\\
-        &= P((X_{1}, X_{2}, \ldots, X_{n}) \in C \vert H_{0}\; \text{is true})\\
+        &= P((X_{1}, X_{2}, \ldots, X_{n}) \in C \vert H_{0})\\
         &= \text{size of the test}
     \end{align*}
+    For a composite hypothesis test
+    \begin{align*}
+        \alpha = sup_{h \in H_{0}} P(\text{Reject}\; H_{0} \vert h)
+    \end{align*}
+    or, the size of the test is the worst case scenario probability of a type $I$ error (we intend to minimize the type $I$ error).
 
     Finally, the power of a test and any related measure will be defined based on the set of observables $(X_{1}, X_{2}, \ldots, X_{n})$ since the hypothesis tests depend on determining the critical region $C$ for these set of observables.
 

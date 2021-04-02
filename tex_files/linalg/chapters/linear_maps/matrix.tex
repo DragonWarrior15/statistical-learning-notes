@@ -106,4 +106,19 @@ Then, the calculation of $A^{2}$ is
 \end{align*}
 
 We obtained $B^{2}$ using $2 \times 2$ multiplication on the four elements of the block matrix. All the multiplications agree in terms of the dimensions. This technique is especially useful when the matrix can be broken in such a way that individual matrix are identity matrix, diagonal matrix etc.
+
+\subsection{Orthogonal Matrix}
+Orthogonal or \textbf{orthonormal} matrix is a matrix whose rows and columns are orthonormal vectors. An orthogonal matrix $Q$ will satisfy
+\begin{align*}
+    QQ^{T} &= Q^{T}Q = I\\
+    Q^{-1} &= Q^{T}\\
+    det(Q) &= \pm 1
+\end{align*}
+
+The last one follows from the fact that
+\begin{align*}
+    1 = det(I) = det(QQ^{T}) = det(Q)^{2}
+\end{align*}
+
+Orthogonal matrix play an important role in QR decomposition and SVD.
 \end{document}

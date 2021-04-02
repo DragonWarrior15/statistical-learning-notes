@@ -18,14 +18,14 @@
     Define the following quantity
     \begin{align*}
         F^{n*} &= F_{\xi} * \ldots * F_{\xi} \text{ $n$ times}\\
-        u(t) &= \sum_{i=1}^{\inf} F^{n*}(t)
+        u(t) &= \sum_{i=1}^{\infty} F^{n*}(t)
     \end{align*}
     It can be shown that the function $u(t)$ converges. The expectation of $N_{t}$ then becomes
     \begin{alignat*}{2}
         E[N_{t}] &= E[\text{number of $n$ such that $S_{n} \leq t$}]\\
-        &= E[\sum_{n=1}^{\inf} I(S_{n} \leq t)] &\text{ sum of Indicators will equal $n$}\\
-        &= \sum_{n=1}^{\inf} P(S_{n} \leq t) &\text{ since $E[$Indicator$]$ is just the function inside indicator}\\
-        &= \sum_{n=1}^{\inf} F^{n*}(t) &\text{ by defining cumulative as sum of $\xi$s}\\
+        &= E[\sum_{n=1}^{\infty} I(S_{n} \leq t)] &\text{ sum of Indicators will equal $n$}\\
+        &= \sum_{n=1}^{\infty} P(S_{n} \leq t) &\text{ since $E[$Indicator$]$ is just the function inside indicator}\\
+        &= \sum_{n=1}^{\infty} F^{n*}(t) &\text{ by defining cumulative as sum of $\xi$s}\\
         &= u(t)
     \end{alignat*}
 
@@ -40,12 +40,12 @@
         \begin{align*}
             E[e^{-sx}] = L_{f}(s)
         \end{align*}
-        
+
         \item if $f_{1}$ and $f_{2}$ are two probability density functions, then
         \begin{align*}
             L_{f_{1}*f_{2}}(s) = L_{f_{1}}(s) L_{f_{2}}(s)
         \end{align*}
-        
+
         \item \label{itm:laplace3} If $F$ is the cumulative probability distribution for $X$ and $p$ is the probability density function, then
         \begin{align*}
             L_{F_{X}}(s) = \frac{L_{p_{X}}(s)}{s}
@@ -59,8 +59,8 @@
     \subsection{Calculating the Expectation}
     Armed with the concept of a Laplace transform, we make the following observation first
     \begin{align*}
-        u(t) &= \sum_{i=1}^{\inf} F^{n*}(t) = F(t) + \sum_{i=2}^{\inf} F^{n*}(t)\\
-        &= F(t) + \big( \sum_{i=1}^{\inf} F^{n*}(t) \big) * F(t)\\
+        u(t) &= \sum_{i=1}^{\infty} F^{n*}(t) = F(t) + \sum_{i=2}^{\infty} F^{n*}(t)\\
+        &= F(t) + \big( \sum_{i=1}^{\infty} F^{n*}(t) \big) * F(t)\\
         &= F(t) + u(t) * F(t)\\
        u(t) &= F(t) + u(t) * p(t)
     \end{align*}
@@ -77,9 +77,9 @@
     \subsection{Limit Theorems for Renewal Processes}
     The following two theorems hold true for Renewal processes
     \begin{enumerate}
-        \item If $E[\xi] = \mu < \inf$, then
+        \item If $E[\xi] = \mu < \infty$, then
         \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{t} = \frac{1}{\mu}            
+            \lim_{t \to \infty} \frac{N_{t}}{t} = \frac{1}{\mu}
         \end{align*}
         which is analogous to the strong law of large numbers. This can be proven as follows
         \begin{align*}
@@ -88,27 +88,27 @@
         \end{align*}
         we can calculate the limits on the two bounds as
         \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{S_{N_{t}}} = \lim_{n \to \inf} \frac{n}{S_{n}} = \frac{1}{\mu}
+            \lim_{t \to \infty} \frac{N_{t}}{S_{N_{t}}} = \lim_{n \to \infty} \frac{n}{S_{n}} = \frac{1}{\mu}
         \end{align*}
-        from the strong law of large numbers applied to $\lim_{n \to \inf} \frac{S_{n}}{n}$. Similarly, one can show
+        from the strong law of large numbers applied to $\lim_{n \to \infty} \frac{S_{n}}{n}$. Similarly, one can show
         \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t}}{S_{N_{t} + 1}} = \lim_{t \to \inf} \frac{N_{t}}{N_{t} + 1} \lim_{t \to \inf} \frac{N_{t} + 1}{S_{N_{t} + 1}} = 1 * \frac{1}{\mu}
+            \lim_{t \to \infty} \frac{N_{t}}{S_{N_{t} + 1}} = \lim_{t \to \infty} \frac{N_{t}}{N_{t} + 1} \lim_{t \to \infty} \frac{N_{t} + 1}{S_{N_{t} + 1}} = 1 * \frac{1}{\mu}
         \end{align*}
 
-        \item If $Var(\xi) = \sigma^{2} < \inf$, then
+        \item If $Var(\xi) = \sigma^{2} < \infty$, then
         \begin{align*}
-            \lim_{t \to \inf} \frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} = \mathcal{N}(0,1)
+            \lim_{t \to \infty} \frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} = \mathcal{N}(0,1)
         \end{align*}
         which is analogous to the central limit theorem. It can be proven by considering the CLT on $\xi$s
         \begin{align*}
-            \lim_{n \to \inf} P(\frac{S_{n} - n\mu}{\sigma \sqrt{n}} \leq x) &= \text{CDF of }\mathcal{N}(0,1)\\
-            \text{or, } \lim_{n \to \inf} P(S_{n} \leq n\mu + \sigma \sqrt{n} x) &= \text{CDF of }\mathcal{N}(0,1)\\
-            \text{or, } \lim_{n \to \inf} P(N_{t} \geq n) &= \text{CDF of }\mathcal{N}(0,1) \text{ from definition of $N_{t}$, where $t = n\mu + \sigma \sqrt{n} x$}\\
+            \lim_{n \to \infty} P(\frac{S_{n} - n\mu}{\sigma \sqrt{n}} \leq x) &= \text{CDF of }\mathcal{N}(0,1)\\
+            \text{or, } \lim_{n \to \infty} P(S_{n} \leq n\mu + \sigma \sqrt{n} x) &= \text{CDF of }\mathcal{N}(0,1)\\
+            \text{or, } \lim_{n \to \infty} P(N_{t} \geq n) &= \text{CDF of }\mathcal{N}(0,1) \text{ from definition of $N_{t}$, where $t = n\mu + \sigma \sqrt{n} x$}\\
         \end{align*}
         We substitute $n\mu = t$ for very large value of $n$, since the total time will become total variables into the expected time for one $\xi$ when $n$ is large. Hence,
         \begin{gather*}
             n = \frac{t}{\mu} - \frac{\sigma \sqrt{t}}{\mu^{3/2}}x\\
-            \lim_{n \to \inf} P(N_{t} \geq n) = \lim_{n \to \inf} P(\frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} \leq x) = \text{CDF of }\mathcal{N}(0,1)
+            \lim_{n \to \infty} P(N_{t} \geq n) = \lim_{n \to \infty} P(\frac{N_{t} - t/\mu}{\sigma \sqrt{t}/\mu^{3/2}} \leq x) = \text{CDF of }\mathcal{N}(0,1)
         \end{gather*}
     \end{enumerate}
 \end{document}

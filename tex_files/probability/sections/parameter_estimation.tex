@@ -140,17 +140,17 @@
     \label{fig:conf_1} %\ref{fig:conf_1}
     \end{figure}
 
-    In a very similar manner, we can calculate the one sided confidence interval. Here, we are only interested in the lower or upper bound of the said interval. The other side is $\inf$ or $-\inf$.
+    In a very similar manner, we can calculate the one sided confidence interval. Here, we are only interested in the lower or upper bound of the said interval. The other side is $\infty$ or $-\infty$.
     \begin{align*}
         P(Z > z_{\alpha}) &= \alpha\\
         P(\sqrt{n}\frac{\overline{X} - \mu}{\sigma} > z_{\alpha}) &= \alpha\\
         P(\mu < \overline{x} + z_{\alpha}\frac{\sigma}{\sqrt{n}}) &= \alpha\\
-        \Aboxed{\text{Lower $1-\alpha$ confidence interval} &= (-\inf, \overline{x} + z_{\alpha}\frac{\sigma}{\sqrt{n}})}\\
+        \Aboxed{\text{Lower $1-\alpha$ confidence interval} &= (-\infty, \overline{x} + z_{\alpha}\frac{\sigma}{\sqrt{n}})}\\
         \\
         P(Z < -z_{\alpha}) &= \alpha\\
         P(\sqrt{n}\frac{\overline{X} - \mu}{\sigma} < -z_{\alpha}) &= \alpha\\
         P(\overline{x} - z_{\alpha}\frac{\sigma}{\sqrt{n}} < \mu) &= \alpha\\
-        \Aboxed{\text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - z_{\alpha}\frac{\sigma}{\sqrt{n}}, \inf)}
+        \Aboxed{\text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - z_{\alpha}\frac{\sigma}{\sqrt{n}}, \infty)}
     \end{align*}
 
     The interpretation of the right sided confidence interval is that we are $1-\alpha$ confident that the value of the mean is more than the lower end of the interval. In a similar way, the left side interval gives the upper bound on the value of mean with the desired confidence.
@@ -165,8 +165,8 @@
     where $S$ is the sample variance. Following similar derivation to the known variance case,
     \begin{align*}
         \text{two sided $1 - \alpha$ confidence interval} &= (\overline{x}-t_{\alpha /2, n-1}\frac{s}{\sqrt{n}}, \overline{x}+t_{\alpha /2, n-1}\frac{s}{\sqrt{n}})\\
-        \text{Lower $1-\alpha$ confidence interval} &= (-\inf, \overline{x} + t_{\alpha, n-1}\frac{s}{\sqrt{n}})\\
-        \text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - t_{\alpha, n-1}\frac{s}{\sqrt{n}}, \inf)
+        \text{Lower $1-\alpha$ confidence interval} &= (-\infty, \overline{x} + t_{\alpha, n-1}\frac{s}{\sqrt{n}})\\
+        \text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - t_{\alpha, n-1}\frac{s}{\sqrt{n}}, \infty)
     \end{align*}
     where $s$ is the observed value of the sample variance $S$. However, notice that the intervals calculated will usually be larger than those when the variance is known because t-distribution is heavier tailed than a standard normal and thus has higher variance.
 
@@ -188,7 +188,7 @@
     \begin{align*}
         \text{two sided $1 - \alpha$ confidence interval} &= (\frac{(n-1)s^{2}}{\chi_{\alpha/2, n-1}^{2}}, \frac{(n-1)s^{2}}{\chi_{1 - \alpha/2, n-1}^{2}})\\
         \text{Lower $1-\alpha$ confidence interval} &= (0, \frac{(n-1)s^{2}}{\chi_{1 - \alpha, n-1}^{2}})\\
-        \text{Upper $1-\alpha$ confidence interval} &= (\frac{(n-1)s^{2}}{\chi_{\alpha, n-1}^{2}}, \inf)
+        \text{Upper $1-\alpha$ confidence interval} &= (\frac{(n-1)s^{2}}{\chi_{\alpha, n-1}^{2}}, \infty)
     \end{align*}
 
 
@@ -208,8 +208,8 @@
     Consequently, using the confidence intervals derived for the case of a mean of a single normal distribution, we have the following intervals when the standard deviations are known
     \begin{align*}
         \text{two sided $1 - \alpha$ confidence interval} &= (\overline{x} - \overline{y}-z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}}, \overline{x} - \overline{y}+z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}})\\
-        \text{Lower $1-\alpha$ confidence interval} &= (-\inf, \overline{x} - \overline{y}+z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}})\\
-        \text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - \overline{y}-z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}}, \inf)
+        \text{Lower $1-\alpha$ confidence interval} &= (-\infty, \overline{x} - \overline{y}+z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}})\\
+        \text{Upper $1-\alpha$ confidence interval} &= (\overline{x} - \overline{y}-z_{\alpha /2}\sqrt{\frac{\sigma_{1}^{2}}{n} + \frac{\sigma_{2}^{2}}{m}}, \infty)
     \end{align*}
     where $\overline{x}$ and $\overline{y}$ are estimates of $\overline{X}$ and $\overline{Y}$ respectively.
 
@@ -342,7 +342,7 @@
     \subsection{Minimum Variance Unbiased Estimator (MVUE)}
     For an unbiased estimator, the MSE derived above is only dependent on the variance of the estimator. Hence, the MVUE is the one for which the variance is the minimum.
 
-    \subsubsection{Cramer Rao Lower Bound (CRLB)}
+    \subsubsection{Cramer Rao Lower Bound (CRLB) \& Related Theorems}
     The CRLB sets a lower bound on the variance of any unbiased estimator. If this lower bound is known,
     \begin{itemize}
         \item If the variance of an unbiased estimator equals this lower bound, we know that we have found the MVUE
@@ -376,6 +376,17 @@
     \begin{align*}
         Var(\hat{\theta}) \geq \frac{1}{n\mathcal{I}(\theta)}
     \end{align*}
+
+    The above is a universal bound for unbiased estimators. The lower bound is slightly differently for biased estimators. Let $b(\theta)$ denote the bias for estimator $T(X)$, then
+    \begin{align*}
+        Var(T(X)) \geq \frac{(1 + b'(\theta))^{2}}{n\mathcal{I}(\theta)}
+    \end{align*}
+
+    \paragraph{Complete Statistic} A statistic $T$ is called complete if $E_{\theta}[g(T)] = 0$ for all $\theta$ and some function $g$ implies that $P(g(T) = 0) = 1$ for all $\theta$.
+
+    \paragraph{Lehmann–Scheffe Theorem} The theorem states that any unbiased estimator of an unknown quantity that depends on the data only through a complete sufficient statistic is the unique best unbiased estimator of that quantity.
+
+    \paragraph{Rao-Blackwell Theorem} If $g(X)$ is any kind of estimator of an unknown $\theta$, the the conditional expectation of $g(X)$ given $T(X)$ (a sufficient statistic) is typically a better estimate of $\theta$ and never worse. Often, one can start off with a crude estimator $g(X)$ and compute the expected value to get an estimator that is optimal in various senses.
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section{Bayes Estimator}

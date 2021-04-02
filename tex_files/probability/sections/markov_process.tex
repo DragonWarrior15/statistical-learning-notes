@@ -26,7 +26,7 @@
     Assuming yes,
     \begin{align*}
         r_{ij}(n) &= \sum_{k} r_{ik}(n-1)p_{kj}\\
-        \lim_{n \to \inf} r_{ij}(n) &= \sum_{k} r_{ik}(n-1)p_{kj}\\
+        \lim_{n \to \infty} r_{ij}(n) &= \sum_{k} r_{ik}(n-1)p_{kj}\\
         \pi_{ij} &= \sum_{k} \pi_{ik} p_{kj} \tag*{balance equations} \\
         \sum_{i} \pi_{i} &= 1 \\
         \text{frequency of transitions $k \rightarrow j$} &= \pi_{k} p_{kj} \tag*{in one step}\\
@@ -95,7 +95,7 @@
         \pi_{i} &= \pi_{0} \rho^{i} \tag*{$i = 0,\ldots,m$} \\
         \text{Using } \sum_{i=0}^{m} \pi_{0}\rho^{i} &= 1,\\
         \pi_{0} &= \frac{1}{\sum_{i=0}^{m} \rho^{i}}\\
-        \text{if $p < q$ and $m \rightarrow \inf,$}\\
+        \text{if $p < q$ and $m \rightarrow \infty,$}\\
         \pi_{0} &= 1 - \rho \\
         \pi_{i} &= (1-\rho)\rho^{i}\\
         E[X_{n}] &= \frac{\rho}{1-\rho} \tag*{Exponential Distribution}
