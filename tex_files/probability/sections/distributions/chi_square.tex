@@ -43,6 +43,26 @@
     \begin{align*}
         f_{X}(x) = \frac{\frac{1}{2} e^{-x/2} (\frac{x}{2})^{(n/2) - 1}}{\Gamma(\frac{n}{2})} \text{\; $x > 0$}
     \end{align*}
+
+    \subsubsection{Sum of Exponentially Distributed Random Variables to Chi-Square Distribution}
+    We say that a Gamma distributed random variable with $\lambda = 1/2$ and $\alpha$ can be considered equivalent to a $\chi^{2}_{2\alpha}$ variable. Here, $\lambda$ is contrained to be $1/2$. By transforming the variables appropriately, we can extend the idea to a sum of exponentially distributed random variables.\newline
+
+    Consider $n$ independent and identically exponentially distributed random variables $X_{i}$ with parameter $\lambda$. Consider for any of those random variables $X_{i}$,
+    \begin{align*}
+        Y &= 2\lambda X\\
+        F_{Y}(y) &= P(Y \leq y) = P(X <\leq \frac{y}{2\lambda})\\
+        &= F_{X}(\frac{y}{2\lambda}) = 1 - \exp \bigg( \frac{y}{2} \bigg)\\
+        f_{Y}(y) &= \frac{d}{dy} 1 - \exp \bigg( -\frac{y}{2} \bigg)\\
+        &= \frac{1}{2}\exp \bigg( \frac{y}{2} \bigg)\\
+        &= Exp(\frac{1}{2})
+    \end{align*}
+    i.e., $\frac{2}{\lambda}Exp(\lambda) \sim Exp(\frac{1}{2})$. Now, consider the sum of these transformed random variables
+    \begin{align*}
+        \frac{2}{\lambda}\bigg( X_{1} + \cdots X_{n} \bigg) &\sim Gamma(n, 1/2) \sim \chi_{2n}^{2}
+    \end{align*}
+
+    Hence, we can convert the sum of $n$ exponentially distributed random variables with parameter $\lambda$, to a $\chi^{2}_{n}$ variable by multiplying the individual variables by $2/\lambda$.
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Mean and Variance}
     Since the distribution of a chi-square variable is identical to a $Gamma(n/2, 1/2)$ distribution,

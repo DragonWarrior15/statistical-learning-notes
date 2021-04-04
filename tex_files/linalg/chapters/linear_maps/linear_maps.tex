@@ -62,7 +62,7 @@ Null space is the subset that get mapped to 0. Mathematically
 
 We can easily verify that Null space is a subspace of $\setv$ since it contains the additive identity ($T0 = 0$), is closed under addition ($T(u + v) = Tu + Tv = 0$), and closed under scalar multiplication ($T(\lambda v) = \lambda(Tv) = 0$).\newline
 
-The dimension of the null space (number of basis vectors in the null space) is also denoted by Nullity.
+The dimension of the null space (number of basis vectors in the null space) is also denoted by Nullity. Some author may refer to the null space as the \textbf{Kernel} of the linear map.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Injective or one-to-one}
@@ -99,15 +99,18 @@ Suppose $\setv$ and $\setw$ are finite dimensional vector spaces with dim $\setv
 Further, if dim $\setv < $ dim $\setw$, then any linear map from $\setv$ to $\setw$ is not surjective. This can be shown by proving that range $T <$ dim $\setw$ using fundamental theorem of linear maps.
 
 \subsection{Change of Bases}
-The following is the fundamental theorem for change of bases. For two sets of bases $v_{1}$ and $v_{2}$, the matrix $S_{1 \to 2}$ defining the transformation from $v_{1}$ to $v_{2}$ satisfies
+The following is the fundamental theorem for change of bases. For two sets of bases $u$ and $v$ of dimensions $n$ and $m$ respectively, the matrix $S_{u \to v}$ defining the transformation from $u$ to $v$ satisfies
 \begin{align*}
-    S_{1 \to 2} [w]_{1} = [w]_{2}
+    S_{u \to v} [w]_{u} &= [w]_{v}\\
+    S_{u \to v} u_{j} &= s_{1j}v_{1} + s_{2j}v_{2} + \cdots + s_{mj}v_{m}
 \end{align*}
-where $[w]_{1}$ and $[w]_{2}$ denote the representation of the same vector $w$ in the two bases. Then, the columns of $S_{1 \to 2}$ are the bases vectors $[v_{1}]_{2}$, i.e., the elements of basis $1$ expressed in terms of $2$.\newline
+where $[w]_{u}$ and $[w]_{v}$ denote the representation of the same vector $w$ in the two bases, $u_{j}$ is the $j^{th}$ vector of the basis, $v_{2}$ is the second vector of the basis, $s_{ij}$ is the element in the $i^{th}$ row and $j^{th}$ column of the $m \times n$ matrix $S_{u \to v}$.\newline
 
-In particular, suppose we want to change from any basis to the standard basis, then $2$ represents the standard basis in the above notation. In this case, $S_{1 \to 2}$ is the representation of the original basis in terms of the standard basis, which implies that the columns of $S_{1 \to 2}$ are the original basis vectors themselves.\newline
+Then, the columns of $S_{u \to v}$ are the bases vectors $[u]_{v}$, i.e., the elements of basis $u$ expressed in terms of $v$.\newline
 
-The inverse of $S_{1 \to 2}$ will be $S_{2 \to 1}$, i.e., the matrix for basis change from $2$ to $1$.\newline
+In particular, suppose we want to change from any basis to the standard basis, then $v$ represents the standard basis in the above notation. In this case, $S_{u \to v}$ is the representation of the original basis in terms of the standard basis, which implies that the columns of $S_{u \to v}$ are the original basis vectors themselves.\newline
+
+The inverse of $S_{u \to v}$ will be $S_{v \to u}$, i.e., the matrix for basis change from $v$ to $u$.\newline
 
 Consider the change of basis from $(1,1), (-1,0)$ to $(1,0), (0,1)$. The transformation matrix will be
 \begin{align*}
