@@ -1,0 +1,97 @@
+\documentclass[11pt, a4paper, notitlepage]{report}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+% for writing indented code
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=5cm,compat=1.9}
+
+% remove paragraph indent
+\setlength{\parindent}{0em}
+
+% hyperlinks for the table of contents
+% \usepackage{color}
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+\hypersetup{
+    colorlinks=true, % make the links colored
+    linkcolor=blue, % color TOC links in blue
+    urlcolor=red, % color URLs in red
+    linktoc=all, % 'all' will create links for everything in the TOC
+    bookmarksnumbered=true
+}
+
+% \setcounter{tocdepth}{4}
+\usepackage[level=subsection]{bookmark}
+
+% to insert images
+\usepackage{graphicx}
+\graphicspath{ {./images/} {../images/} {../../images/}}
+
+\usepackage{subfiles}
+
+% make the toc start on the same page as title
+\makeatletter
+\newcommand*{\tocontents}{\@starttoc{toc}}
+\makeatother
+
+\DeclareMathOperator*{\minimize}{minimize}
+\DeclareMathOperator*{\maximize}{maximize}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+% \newcommand{\summation}[3]{\sum_{#1 = #2}^{#3}}
+% \renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\numberthiseqn}{\addtocounter{equation}{1}\tag{\theequation}}
+
+% for adjusting line spacing in matrices
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\begin{document}
+    \pagenumbering{arabic}
+    \title{Deep Learning Notes}
+    \date{}
+    \author{}
+    \maketitle
+    \pdfbookmark{\contentsname}{toc}
+    \tocontents
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subfile{chapters/gradient_descent/gradient_descent}
+    \subfile{chapters/gradient_descent/matrix_calculus}
+    \subfile{chapters/gradient_descent/backprop}
+    \subfile{chapters/gradient_descent/gradient_activation}
+    \subfile{chapters/gradient_descent/gradient_loss}
+    \subfile{chapters/gradient_descent/gradient_layers}
+    \subfile{chapters/gradient_descent/backprop_example_1}
+    \subfile{chapters/gradient_descent/optimizers}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Weights Initialization}
+    \subfile{chapters/weight_initialization/gradient_explosion}
+    \subfile{chapters/weight_initialization/correct_init}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Recurrent Layers}
+    \subfile{chapters/recurrent_layers/rnn}
+    \subfile{chapters/recurrent_layers/bptt}
+    \subfile{chapters/recurrent_layers/rnn_grad_problems}
+    \subfile{chapters/recurrent_layers/gru}
+    \subfile{chapters/recurrent_layers/lstm}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
