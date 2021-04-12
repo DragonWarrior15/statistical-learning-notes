@@ -1,8 +1,4 @@
 nav:
-  # - name: Home
-    # link: /
-  # - name: Dummy
-    # link: /notes/dummy.html
   - name: Complex Field
     link: /notes/linalg/vector_spaces/complex.html
     subnav:
