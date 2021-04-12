@@ -77,11 +77,11 @@ Suppose $A \in \field^{m, n}$. Row and column ranks are two non negative integer
 
 But for any $A \in \field^{m, n}$, row rank $=$ column rank (can be proved using duality). Hence, we simply use the word rank to denote the column rank of a matrix.
 
-Rank is defined for a matrix, whereas dimension is defined for a vector space. This is the important distinction between the two. The rank can be found by counting the number of non-zero rows in the row echelon form of a matrix ([see here]({% link _notes/linalg/linear_eq/elimination.md %})).
+Rank is defined for a matrix, whereas dimension is defined for a vector space. This is the important distinction between the two. The rank can be found by counting the number of non-zero rows in the row echelon form of a matrix ([see here]({{ site.baseurl }}/notes/linalg/linear_eq/elimination.html)).
 
 <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 #### Rank-Nullity Theorem
-We restate the theorem from [fundamental theorem of linear maps]({% link _notes/linalg/linear_maps/linear_maps.md %}) using the concepts of dimension and ranks. For any vector spaces $V$ and $W$, and linear map $T \in \setlm(\setv, \setw)$
+We restate the theorem from [fundamental theorem of linear maps]({{ site.baseurl }}/notes/linalg/linear_maps/linear_maps.html#fundamental-theorem-of-linear-maps) using the concepts of dimension and ranks. For any vector spaces $V$ and $W$, and linear map $T \in \setlm(\setv, \setw)$
 \begin{align}
     \text{rank}(T) + \text{Nullity}(T) = \text{dim}(V)
 \end{align}

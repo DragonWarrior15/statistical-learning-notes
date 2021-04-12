@@ -73,7 +73,7 @@ Eigenvalues have special properties listed below
     This can be verified by considering the polynomial expansion of det$(A - \lambda I) = 0$. The sum of roots of this polynomial (which is the sum of eigenvalues) is the coefficient of $(-\lambda)^{n-1}$ (from Vieta's formulas) which comes out to be the sum of diagonal elements.
 * The product of eigenvalus is the determinant of the matrix.
 * If any eigenvalue is $0$, the matrix is singular (not invertible). This follows from above.
-* If all eigenvalues are non-zero, the dimension of the null space is $0$ (because the only solution to $Ax = 0 = 0x$ is the trivial solution, all zeros). By the [rank nullity theorem]({% link _notes/linalg/linear_maps/matrix.md %}), rank$(A) = n$.
+* If all eigenvalues are non-zero, the dimension of the null space is $0$ (because the only solution to $Ax = 0 = 0x$ is the trivial solution, all zeros). By the [rank nullity theorem]({{ site.baseurl }}/notes/linalg/linear_maps/matrix.html#rank-nullity-theorem), rank$(A) = n$.
 * Eigenvalues of the $A^{-1}$ are the reciprocals of the eigenvalues of $A$ for the corresponding eigenvector. Consider an eigenvalue $\lambda$ and the corresponding eigenvector $x$
     \begin{align}
          Ax &= \lambda x \implies A^{-1}Ax = \lambda A^{-1}x\newline
