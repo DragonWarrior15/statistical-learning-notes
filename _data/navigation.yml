@@ -1,0 +1,34 @@
+nav:
+  # - name: Home
+    # link: /
+  # - name: Dummy
+    # link: /notes/dummy.html
+  - name: Complex Field
+    link: /notes/linalg/vector_spaces/complex.html
+    subnav:
+      - name: Lists
+        link: /notes/linalg/vector_spaces/vs_list.html
+      - name: Fields
+        link: /notes/linalg/vector_spaces/fields.html
+      - name: Vector Spaces
+        link: /notes/linalg/vector_spaces/vector_space.html
+      - name: Product and Quotient of Vector Spaces
+        link: /notes/linalg/vector_spaces/prod_quo.html
+      - name: Subspace
+        link: /notes/linalg/vector_spaces/subspace.html
+      - name: Finite Dimensional Vector Spaces
+        link: /notes/linalg/vector_spaces/finite_dim.html
+      - name: Orthogonal and Orthonormal Vectors
+        link: /notes/linalg/vector_spaces/finite_dim.html
+  - name: Linear Maps
+    link: /notes/linalg/linear_maps/linear_maps.html
+    subnav:
+    - name: Matrix
+      link: /notes/linalg/linear_maps/matrix.html
+  - name: Linear Equations
+    link: /notes/linalg/linear_eq/elimination.html
+    subnav:
+    - name: Eigenvectors and Eigenvalues
+      link: /notes/linalg/linear_eq/eigen.html
+  - name: Exercises
+    link: /notes/linalg/exercises/problems.html

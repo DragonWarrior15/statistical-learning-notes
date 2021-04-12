@@ -1,0 +1,11 @@
+<ol class="nav-item">
+    {% for item in include.nav %}
+        <li {% if item.link == page.url %} class="nav-item active"
+            {% else %} class="nav-item" {% endif %}>
+            <a href={{ item.link }} class="">{{ item.name }}</a>
+        </li>
+        {% if item.subnav %}
+            {% include nav.html nav=item.subnav %}
+        {% endif %}
+    {% endfor %}
+</ol>

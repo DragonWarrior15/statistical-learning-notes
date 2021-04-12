@@ -1,0 +1,27 @@
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+title: "Statistical Learning Notes" # the name of your site, e.g. ACME Corp.
+
+# ignore some folders
+exclude: ['md_files', 'tex_files']
+
+# collection
+collections:
+  notes:
+    output: true
+
+# Build settings
+markdown: kramdown
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+      usemathjax: true
+  -
+    scope:
+      path: "_notes/linalg"
+    values:
+      topic: "Linear Algebra"
