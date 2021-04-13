@@ -14,14 +14,29 @@
 <body>
     <div class="container-fluid">
         <div class="jumbotron text-center bg-dark text-white">
-            <h1>Welcome to Statistical Learning Notes</h1>
+            <h1>Welcome to Statistical Learning Notes !</h1>
             <p>Select one of the cards below to get started!</p>
         </div>
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ 'notes/linalg/vector_spaces/complex.html' | relative_url }}">Linear Algebra</a>
-            </li>
-        </ul>
+        <div class="card-deck">
+        <div class="card text-white bg-primary" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Linear Algebra</h5>
+            <p class="card-text">Vector Spaces, Linear Maps and Matrices.</p>
+            <a href="{{ 'notes/linalg/vector_spaces/complex.html' | relative_url }}" class="card-link">Begin</a>
+          </div>
+        </div>
+        <div class="card text-white bg-success" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Time Series</h5>
+            <p class="card-text">Time Series Equations, ARIMA and SES.</p>
+            <a href="{{ 'notes/time_series/chapters/characteristics/characteristics.html' | relative_url }}" class="card-link">Begin</a>
+          </div>
+        </div>
+        </div>
+        <div class="list-group">
+          <a href="{{ 'notes/linalg/vector_spaces/complex.html' | relative_url }}" class="list-group-item list-group-item-primary">Linear Algebra</a>
+          <a href="{{ 'notes/time_series/chapters/characteristics/characteristics.html' | relative_url }}" class="list-group-item list-group-item-success">Time Series</a>
+        </div>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

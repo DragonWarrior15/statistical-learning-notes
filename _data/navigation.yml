@@ -1,4 +1,4 @@
-nav:
+linalg:
   - name: Complex Field
     link: /notes/linalg/vector_spaces/complex.html
     subnav:
@@ -28,3 +28,38 @@ nav:
       link: /notes/linalg/linear_eq/eigen.html
   - name: Exercises
     link: /notes/linalg/exercises/problems.html
+
+time_series:
+  - name: Characteristics of Time Series
+    link: /notes/time_series/chapters/characteristics/characteristics.html
+    subnav:
+    - name: Time Series Formulations
+      link: /notes/time_series/chapters/characteristics/formulations.html
+    - name: Measures of Dependence
+      link: /notes/time_series/chapters/characteristics/measures.html
+    - name: Exercises
+      link: /notes/time_series/chapters/characteristics/exercises.html
+  - name: ARIMA
+    link: /notes/time_series/chapters/arima/backward_shift.html
+    subnav:
+    - name: Smoothing in Time Series
+      link: /notes/time_series/chapters/arima/smoothing.html
+    - name: Autoregressive Models (AR)
+      link: /notes/time_series/chapters/arima/ar.html
+    - name: Moving Average Models (MA)
+      link: /notes/time_series/chapters/arima/ma.html
+    - name: ARMA(p,q) Process
+      link: /notes/time_series/chapters/arima/arma.html
+    - name: ARIMA(p,d,q) Process Process
+      link: /notes/time_series/chapters/arima/arima.html
+    - name: Walkthrough Example
+      link: /notes/time_series/chapters/arima/example.html
+  - name: Simple Exponential Smoothing - Introduction
+    link: /notes/time_series/chapters/ses/ses.html
+    subnav:
+    - name: Simple Exponential Smoothing
+      link: /notes/time_series/chapters/ses/simple_exp_smoothing.html
+    - name: Exponential Smoothing with Trend
+      link: /notes/time_series/chapters/ses/exp_smoothing_trend.html
+    - name: Exponential Smoothing with Trend and Seasonality
+      link: /notes/time_series/chapters/ses/exp_smoothing_season.html

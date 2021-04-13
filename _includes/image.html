@@ -1,0 +1,15 @@
+{% comment %}
+<!-- idea from https://stackoverflow.com/a/19360305 -->
+{% endcomment %}
+<figure class="figure">
+  <img src="{{ include.url | relative_url }}" alt="{{ include.description }}" class="{{ include.img_classes }}">
+  <figcaption class="notes-figcaption">{{ include.description }}</figcaption>
+</figure>
+
+{% comment %}
+<!-- usage will be as follows
+{% capture img_url %}{{ "notes/time_series/codes/pacf_simulation.py" | relative_url }} {% endcapture %}
+{% capture img_desc %}{{ "Top figure shows a time series, with the sample ACF and sample PACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using <a href='" | append: img_url | append: "'>pacf_simulation.py</a>"}}{% endcapture %}
+{% include image.html url="notes/time_series/images/pacf_1.png" description=img_desc img_classes="notes-img" %}
+ -->
+{% endcomment %}

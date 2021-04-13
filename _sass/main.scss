@@ -14,3 +14,16 @@ body {
     overflow-x:auto;
     overflow-y: hidden;
 }
+
+// reduce the width of any images in the notes
+.notes-img {
+  width: 90%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.notes-figcaption {
+    text-align: center;
+}

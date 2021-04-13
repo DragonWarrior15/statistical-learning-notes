@@ -28,11 +28,16 @@ install:
 	sudo apt-get install texlive-latex-recommended
 	sudo apt-get install texlive-latex-extra
 
-# sed 's/\\newline/\\newline INSERTLINE/g' _notes/linalg/vector_spaces/orthogonal.tex | \
+# sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
 # sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
 # sed 's/$$\\begin{aligned}/\\begin{align}/g' | \
-# sed 's/\\end{aligned}\$\$/\\end{align}/g' | sed 's/INSERTLINE/\n/g' |\
+# sed 's/\\end{aligned}\$\$/\\end{align}/g' |\
+# sed 's/$$\\begin{gathered}/\\begin{align}/g' | \
+# sed 's/\\end{gathered}\$\$/\\end{align}/g' |\
+# sed 's/INSERTLINE/\n/g' |\
 # sed 's/}_/}\\_/g' | sed 's/]_/]\\_/g' | sed 's/)_/)\\_/g' |\
-# sed '1 i\---\ntitle: "Orthogonal and Orthonormal Vectors"\n---\n' \
-# > _notes/linalg/vector_spaces/orthogonal.md
+# sed 's/\\bm{/\\boldsymbol{/g' |\
+# sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
+# > _notes/time_series/chapters/arima/arma.md
+
 

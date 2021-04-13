@@ -1,0 +1,5 @@
+---
+title: "Backward Shift Operators"
+---
+
+

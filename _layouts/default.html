@@ -9,21 +9,26 @@
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" crossorigin="anonymous"> -->
     <!-- Custom style sheet -->
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
     <nav class="navbar navbar-dark bg-primary">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-      <h4 class='center text-white'>{{ page.topic }}</h4>
-        <a class="nav-link text-white" href={% link index.md %}><h4>Home</h4></a>
+      <h5 class='center text-white'>{{ page.topic }}</h5>
+        <a class="nav-link text-white" href="{{ 'index.html' | relative_url }}"><h5>Home</h5></a>
     </nav>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 px-1 bg-light border-right collapse" id="sidebar">
             <nav class="nav flex-column vh-100">
-                {% include nav.html nav=site.data.navigation.nav %}
+                <!-- need to define the nav variable outside as usage
+                    of square brackets inside the % include does not work -->
+                <!-- if using a single nav, just use
+                    nav=site.data.navigation.linalg for example -->
+                {% assign curr_nav = site.data.navigation[page.page_nav] %}
+                {% include nav.html nav=curr_nav %}
             </nav>
             </div>
             <div class="col-md-9">{{ content }}</div>

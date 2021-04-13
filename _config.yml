@@ -3,7 +3,7 @@ baseurl: "/statistical-learning-notes" # the subpath of your site, e.g. /blog
 title: "Statistical Learning Notes" # the name of your site, e.g. ACME Corp.
 
 # ignore some folders
-exclude: ['md_files', 'tex_files']
+exclude: ['md_files', 'tex_files', 'Makefile', 'README.md']
 
 # collection
 collections:
@@ -25,3 +25,10 @@ defaults:
       path: "_notes/linalg"
     values:
       topic: "Linear Algebra"
+      page_nav: "linalg" # quotes are needed for correct parsing
+  -
+    scope:
+      path: "_notes/time_series"
+    values:
+      topic: "Time Series"
+      page_nav: "time_series"
