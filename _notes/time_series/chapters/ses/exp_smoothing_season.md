@@ -23,7 +23,7 @@ where the level smoothing equation adjusts $x_{t-1}$ to remove the seasonal comp
 
 Figure shows how the level, trend and seasonality separate for a set of parameters. These are not the optimal values but chosen for illustration. Notice how the trend gives an average view of the series, similar to a moving average filter. Trend and seasonality added on top of level will give the original series.
 
-{% capture img_url %}{{ "notes/time_series/codes/ses_season.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/ses_season.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "First figure shows the original and forecasted series for $\alpha=0.1, \beta=0.8$ and $\gamma=0.6$. The forecast for future data is downwards linear due to the local trend there. Second, third and fourth figures show the level, trend and seasonal component. The noise in inital part is due to the naive initialization. Figures plot using <a href='" | append: img_url | append: "'>ses_season.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/ses_season_1.png" description=img_desc img_classes="notes-img" %}
 

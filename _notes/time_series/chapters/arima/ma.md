@@ -44,9 +44,9 @@ By symmetry, $\gamma(h) = \gamma(-h)$ and $\rho(h) = \rho(-h)$. By limit theorem
 
 For the same variance of noise, the MA(1) process with $\beta_{1}$ and $1/\beta_{1}$ coefficients have the same value of $\rho$. Making the value of $\gamma$ same requires manipulating the noise as well. The following two processes have the same $\gamma$ as well
 \begin{align}
-{2}
     X_{t} &= W_{t} + \beta_{1}W_{t-1} \quad &W \sim \mathcal{N}(0,\sigma_{w}^{2})\newline
-    X_{t} &= W_{t} + \frac{1}{\beta_{1}}W_{t-1} \quad &W \sim \mathcal{N}(0,\beta_{1}^{2}\sigma_{w}^{2}) \numberthiseqn\label{eq:ma_1}\newline\end{align}
+    X_{t} &= W_{t} + \frac{1}{\beta_{1}}W_{t-1} \quad &W \sim \mathcal{N}(0,\beta_{1}^{2}\sigma_{w}^{2})\newline
+\end{align}
 
 Since we only observe $X_{t}$, both of the above representations are valid solutions in determining the equation of the process. To make the equation unique, we need to consider infinite sums similar to what was done in the AR process.
 
@@ -57,7 +57,7 @@ Consider expressing $W_{t}$ in terms of $X_{t}$ and other terms
     W_{t} &= (1 + \beta_{1}B)^{-1}X_{t}\newline
     &= (1 - \beta_{1}B + \beta_{1}^{2}B^{2} - \cdots)X_{t}\newline
     &= X_{t} - \beta_{1}X_{t-1} + \beta_{1}^{2}X_{t-2} - \cdots\end{align}
-which is an AR($\infty$) process. Clearly, the model is stable/convergent only when $\lvert \beta_{1} \rvert < 1$. In this case, we will choose the second representation of $X_{t}$ as $X_{t} &= W_{t} + \frac{1}{\beta_{1}}W_{t-1} \quad &W \sim \mathcal{N}(0,\beta_{1}^{2}\sigma_{w}^{2})$, as it is **invertible** (we can invert from one representation to another).
+which is an AR($\infty$) process. Clearly, the model is stable/convergent only when $\lvert \beta_{1} \rvert < 1$. In this case, we will choose the second representation of $X_{t}$ as $X_{t} = W_{t} + \frac{1}{\beta_{1}}W_{t-1}$, as it is **invertible** (we can invert from one representation to another).
 
 \begin{align}
     X_{t} &= \beta(B)W_{t}\newline

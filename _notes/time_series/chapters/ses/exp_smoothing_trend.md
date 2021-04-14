@@ -18,7 +18,7 @@ where $l$ is the level and $b$ is the trend. The level equation is same as simpl
 
 Both $\alpha, \beta \in [0,1]$. With the introduction of trend in the model, the forecast is no longer flat but linear in $h$. Figure below shows an example of how the levels and trends look for this method. The level is simliar to the series but the trend shows how much the values change at each time step.
 
-{% capture img_url %}{{ "notes/time_series/codes/ses_trend.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/ses_trend.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows the original and forecasted series for $alpha=0.9$ and $\beta=0.9$. The forecast for future data is downwards linear due to the local trend there. Middle and bottom figures show the level and trend series that were calculated while running the algorithm. Figures plot using <a href='" | append: img_url | append: "'>ses_trend.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/ses_trend_1.png" description=img_desc img_classes="notes-img" %}
 

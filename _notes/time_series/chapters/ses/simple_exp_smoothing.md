@@ -38,6 +38,6 @@ $\alpha$ close to 1 will give higher weight to nearer observations and vice vers
 
 Figure below shows an example of how different $\alpha$ affect the forecasted time series, and the changes in SSE with $\alpha$.
 
-{% capture img_url %}{{ "notes/time_series/codes/ses.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/ses.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Forecasted series as function of $\alpha$ on left, and SSE as a function of $\alpha$ on right for Simple Exponential Smoothing. Figures plot using <a href='" | append: img_url | append: "'>ses.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/ses_1.png" description=img_desc img_classes="notes-img" %}

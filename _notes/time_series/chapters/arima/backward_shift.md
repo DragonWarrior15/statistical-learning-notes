@@ -32,7 +32,8 @@ To make time series analysis easier, it is often the case that we will take diff
     \nabla^{2}X_{t} &= (1-B)^{2}X_{t} = (1 - 2B + B^{2})X_{t}\newline
     \nabla^{2}X_{t} &= \nabla(\nabla X_{t}) = \nabla(X_{t} - X_{t-1})\newline
     &= (X_{t} - X_{t-1}) - (X_{t-1} - X_{t-2}) = X_{t} - 2BX_{t} + B^{2}X_{t}\newline
-    \nabla^{d}X_{t} &= (1-B)^{d}X_{t} \numberthiseqn\label{eq:eq_arima_1}\end{align}
+    \nabla^{d}X_{t} &= (1-B)^{d}X_{t}
+\end{align}
 which illustrates how we can use the differencing operator to obtain successive differences. Higher powers of this operator can be expanded algebraically using the last equation.
 
 

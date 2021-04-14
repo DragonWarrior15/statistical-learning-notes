@@ -44,7 +44,7 @@ title: "Exercises"
                     E[x_{t}^{2}] &= E[(\delta t + \sum_{k=1}^{t}w_{k})^{2}]\newline
                     &= \delta^{2}t^{2} + t\sigma_{w}^{2}\newline
                     E[x_{t+h}x_{t}] &= E[(\delta (t+h) + \sum_{k=1}^{t+h}w_{k})(\delta t+ \sum_{k=1}^{t+h}w_{k})]\newline
-                    &= \delta^{2}t(t+h) + \min(t,t+h)\sigma_{w}^{2} \numberthiseqn\label{eq:characteristics_ex_1}\newline
+                    &= \delta^{2}t(t+h) + \min(t,t+h)\sigma_{w}^{2}\newline
                     \gamma(t+h,t) &= E[x_{t+h}x_{t}] - \mu_{t+h}\mu_{t}\newline
                     &= \min(t,t+h)\sigma_{w}^{2} = \sigma_{w}^{2}(t + \min(0,h))\newline
                     \gamma(t,t) &= t\sigma_{w}^{2}
@@ -63,7 +63,7 @@ title: "Exercises"
                     \gamma(t+h,t) &= E[y_{t+h}y_{t}] - E[y_{t+h}]E[y_{t}]\newline
                     &= E[(x_{t+h} - x_{t+h-1})(x_{t} - x_{t-1})] - \delta^{2}\newline
                     &= E[x_{t+h}x_{t} - x_{t+h}x_{t-1} - x_{t+h-1}x_{t} + x_{t+h-1}x_{t-1}] - \delta^{2}\newline
-                    &= \delta^{2} \bigg [ t(t+h) - (t+h)(t-1) - (t+h-1)t \newline&+ (t+h-1)(t-1) - 1 \bigg] + \sigma_{w}^{2} \bigg[\min(t,t+h) - \min(t+h,t-1) \newline&- \min(t+h-1,t) + \min(t+h-1,t-1) \bigg] \;(\text{from}\; \eqref{eq:characteristics_ex_1}) \newline
+                    &= \delta^{2} \bigg [ t(t+h) - (t+h)(t-1) - (t+h-1)t \newline&+ (t+h-1)(t-1) - 1 \bigg] + \sigma_{w}^{2} \bigg[\min(t,t+h) - \min(t+h,t-1) \newline&- \min(t+h-1,t) + \min(t+h-1,t-1) \bigg] \;(\text{from sub-answer 2}) \newline
                     &= \sigma_{w}^{2} \bigg[2\min(0,h) - \min(h+1,0) - \min(h-1,0) \bigg]\newline
                     \gamma(t+h,t) &= \begin{cases} \sigma_{w}^{2} &\mbox{$h = 0$}\newline
                     0 &\mbox{otherwise} \end{cases}

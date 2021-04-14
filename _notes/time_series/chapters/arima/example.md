@@ -4,7 +4,7 @@ title: "Walkthrough Example"
 
 # Walkthrough Example
 
-In this section, we look at fitting a SARIMA model on the USAccDeaths data set which contains the number of total accidental deaths in USA at a monthly levels. The data set has two columns, the year-month column and the deaths total. Complete code is avaialable in file time_series_python.py
+In this section, we look at fitting a SARIMA model on the USAccDeaths data set which contains the number of total accidental deaths in USA at a monthly levels. The data set has two columns, the year-month column and the deaths total. Complete code is avaialable in file [time_series_python.py]({{ "notes/time_series/codes/time_series_python.html" | relative_url }})
 
 -   We begin by plotting the data.
     {% include image.html url="notes/time_series/images/arima_ex_1.png" description="Original time series." img_classes="notes-img" %}

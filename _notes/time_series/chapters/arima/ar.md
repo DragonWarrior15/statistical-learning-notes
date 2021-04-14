@@ -36,7 +36,7 @@ The AR(1) process can be rewritten as an infinite sum
     X_{t} &= \phi_{1}X_{t-1} + W_{t}\newline
     &= \phi_{1}(\phi_{1}X_{t-2} + W_{t-1}) + W_{t}\newline
     &= \phi_{1}^{k}X_{t-k} + \sum_{i=0}^{k-1}\phi^{k}W_{t-i}\newline
-    &= \sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i} \numberthiseqn\label{eq:ar_1}\end{align}
+    &= \sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i}\end{align}
 If $\lvert \phi_{1} \rvert < 1$, the right hand side series will converge in the mean square sence and vice versa.
 
 ### Convergence in Mean Square Sense
@@ -45,7 +45,7 @@ A random process $X_{n}$ is said to converge to random variable $X$ in the mean 
 \begin{align}
     \lim_{n \to \infty} E[(X_{n} - X)^{2}] = 0\end{align}
 
-In the context of AR(1), this definition is needed since the expectation of both sides of equation [\[eq:ar_1\]](#eq:ar_1){reference-type="eqref" reference="eq:ar_1"} is already the same value of 0.
+In the context of AR(1), this definition is needed since the expectation of both sides of $X_{t}=\sum_{i=0}^{\infty}\phi_{1}^{i}W_{t-i}$ is already the same value of 0.
 \begin{align}
     \lim_{k \to \infty} E[(X_{t} - \sum_{j=0}^{k-1}\phi_{1}^{i}W_{t-i})^{2}] = \lim_{k \to \infty} E[(\phi^{k} X_{t-k})^{2}] = 0\end{align}
 if $\lvert \phi_{1} \rvert < 1$. This convergence also makes the equaton **causal**, since the value at any time step is only dependent on the value at previous time steps.

@@ -12,7 +12,7 @@ Thus, Autoregressive Integrated Moving Average process is an extension of ARMA t
     \phi(B)X_{t} &= \beta(B)W_{t} \quad &\mbox{ARMA(p,q)}\newline
     \phi(B)\nabla^{d}X_{t} &= \beta(B)W_{t} \quad &\mbox{ARIMA(p,d,q)}\newline\end{align}
 
-{% capture img_url %}{{ "notes/time_series/codes/arima_simulation.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/arima_simulation.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows an ARIMA(2,1,2) time series, which is clearly non stationary as the covariance varies wildly. Bottom plot shows the differenced series which is stationary. Figures plot using <a href='" | append: img_url | append: "'>arima_simulation.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/arima_1.png" description=img_desc img_classes="notes-img" %}
 
@@ -83,7 +83,7 @@ So a series with an annual period might become
 
 The conditions for stationarity and invertibility still remain the same, but instead of polynomials of $z$, we now have polynomials of $z^{s}$.
 
-{% capture img_url %}{{ "notes/time_series/codes/sarma_simulation.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/sarma_simulation.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows a time series, with the sample ACF and sample PACFs shown by middle and bottom figures respectively. We can always ignore the peak at lag 0. Both ACF and PACF have peaks at lags 12, 24. This almost goes hand in hand with the SARMA(2,1)12 time series, the ACF peak at 24 suggests a second order MA term as well. The dotted lines are noise lines and in practice, we ignore any peak below these. Figures plot using <a href='" | append: img_url | append: "'>sarma_simulation.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/sarma_1.png" description=img_desc img_classes="notes-img" %}
 
@@ -94,7 +94,7 @@ We can even have both seasonal and non seasonal components together
 For such a series, we expect to not only see seasonal peaks in the ACF and PACF plots, but also peaks near these seasonal peaks.
 
 
-{% capture img_url %}{{ "notes/time_series/codes/sarma_simulation_1.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/sarma_simulation_1.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows a time series, with the sample ACF and sample PACFs shown by middle and bottom figures respectively. We can always ignore the peak at lag 0. The dotted lines are noise lines and in practice, we ignore any peak below these. Figures plot using <a href='" | append: img_url | append: "'>sarma_simulation_1.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/sarma_2.png" description=img_desc img_classes="notes-img" %}
 

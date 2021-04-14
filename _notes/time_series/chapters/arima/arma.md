@@ -33,9 +33,10 @@ The first problem is solved by imposing the constraint that **MA and AR polynomi
 
 
 For the second point, we define $X_{t}$ to be **causal** if $X_{t}$ can be rewritten as
-$$\begin{gathered}
+\begin{align}
     X_{t} = \sum_{i=0}^{\infty} \psi_{i} W_{t-i}\newline
-    \psi_{0} = 1 \quad \sum_{i=0}^{\infty} \lvert \psi_{i} \rvert < \infty \quad \psi(B) = \sum_{i=0}^{\infty} \psi_{i}B^{i}\end{gathered}$$
+    \psi_{0} = 1 \quad \sum_{i=0}^{\infty} \lvert \psi_{i} \rvert < \infty \quad \psi(B) = \sum_{i=0}^{\infty} \psi_{i}B^{i}
+f\end{align}
 Here $X_{t}$ is only dependent on the past terms and not the future ones. Comparing with $\phi(B)X_{t} = \beta(B)W_{t}$ and using complex number $z$ instead of $B$
 \begin{align}
     \psi(z) = \frac{\beta(z)}{\phi(z)} \quad \lvert z \rvert \leq 1\end{align}
@@ -54,9 +55,9 @@ To address the third problem of uniqueness of ARMA, we introduce the notion of i
     \pi_{0} = 1 \quad \sum_{i=0}^{\infty} \lvert \pi_{i} \rvert &< \infty \quad \pi(B) = \sum_{i=0}^{\infty} \pi_{i}B^{i}\end{align}
 where we can find the coefficients of $\pi(B)$ by comparing both the sides. For convergence, the conditions are similar as the causality conditions
 \begin{align}
-    \pi(z) = \frac{\phi(z)}{\beta(z)}\newline
-    \implies \lvert z \rvert \leq 1\newline
-    \implies \text{roots of $\beta(z)$ lie outside the unit circle}\end{align}
+    \pi(z) &= \frac{\phi(z)}{\beta(z)}\newline
+    \implies \lvert z \rvert &\leq 1\newline
+    \implies &\text{roots of $\beta(z)$ lie outside the unit circle}\end{align}
 Hence, **for invertibility, the roots of polynomial** $\boldsymbol{\beta(z)}$**lie outside the unit circle**.
 
 
@@ -81,4 +82,4 @@ In summary,
 | Plot | **AR(p)** | **MA(q)** | **ARMA(p,q)** |
 | ==== | ========= | ========= | ============= |
 | **ACF** | Tails off | Cuts off after lag $q$ | Tails off |
-**PACF** | Cuts off after lag $p$ | Tails off | Tails off |
+| **PACF** | Cuts off after lag $p$ | Tails off | Tails off |

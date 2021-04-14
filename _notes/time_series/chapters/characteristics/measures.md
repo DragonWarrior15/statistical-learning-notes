@@ -71,7 +71,7 @@ If we continue the calculation, we will observe that the covariance diminishes o
     \gamma(s,t) = \begin{cases} \frac{3}{9}\sigma_{w}^{2} &\mbox{$s = t$},\newline
                                 \frac{2}{9}\sigma_{w}^{2} &\mbox{$\lvert s - t \rvert = 1$}\newline
                                 \frac{1}{9}\sigma_{w}^{2} &\mbox{$\lvert s - t \rvert = 2$}\newline
-                                0 &\mbox{otherwise} \end{cases} \numberthiseqn\label{eq:gamma_ma}\end{align}
+                                0 &\mbox{otherwise} \end{cases}\end{align}
 
 ## Autocorrelation Function (ACF)
 
@@ -205,10 +205,10 @@ will use the above estimates of sample covariance
 \begin{align}
     \hat{\rho}(h) = \frac{\hat{\gamma}\_{x}(h)}{\hat{\gamma}\_{x}(0)}\end{align}
 
-{% capture img_url %}{{ "notes/time_series/codes/acf_simulation.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/acf_simulation.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows a time series, with the theoretical and estimated ACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using <a href='" | append: img_url | append: "'>acf_simulation.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/acf_1.png" description=img_desc img_classes="notes-img" %}
 
-{% capture img_url %}{{ "notes/time_series/codes/pacf_simulation.py" | relative_url }} {% endcapture %}
+{% capture img_url %}{{ "notes/time_series/codes/pacf_simulation.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Top figure shows a time series, with the sample ACF and sample PACFs shown by middle and bottom figures respectively. Due to the symmetric nature, most packages only plot ACF for positive lags. Figures plot using <a href='" | append: img_url | append: "'>pacf_simulation.py</a>"}}{% endcapture %}
 {% include image.html url="notes/time_series/images/pacf_1.png" description=img_desc img_classes="notes-img" %}
