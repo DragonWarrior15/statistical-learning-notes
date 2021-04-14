@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="{{ 'navbar navbar-dark sticky-top ' | append: page.bgcolor}} ">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-      <h5 class='center text-white'>{{ page.topic }}</h5>
+      <h5 class='center text-white'>{{ page.topic }} - {{ page.title }}</h5>
         <a class="nav-link text-white" href="{{ 'index.html' | relative_url }}"><h5>Home</h5></a>
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 px-1 bg-light border-right collapse" id="sidebar">
-            <nav class="nav flex-column vh-100">
+            <div class="col-md-3 px-1 collapse show bg-light" id="sidebar">
+            <nav class="nav flex-column">
                 <!-- need to define the nav variable outside as usage
                     of square brackets inside the % include does not work -->
                 <!-- if using a single nav, just use
@@ -31,7 +31,7 @@
                 {% include nav.html nav=curr_nav %}
             </nav>
             </div>
-            <div class="col-md-9">{{ content }}</div>
+            <div class="col">{{ content }}</div>
         </div>
     </div>
     <!-- Bootstrap core JavaScript

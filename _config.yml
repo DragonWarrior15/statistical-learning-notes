@@ -12,6 +12,7 @@ collections:
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 
 defaults:
   -
@@ -26,9 +27,11 @@ defaults:
     values:
       topic: "Linear Algebra"
       page_nav: "linalg" # quotes are needed for correct parsing
+      bgcolor: bg-primary
   -
     scope:
       path: "_notes/time_series"
     values:
       topic: "Time Series"
       page_nav: "time_series"
+      bgcolor: bg-success

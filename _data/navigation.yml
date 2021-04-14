@@ -63,3 +63,24 @@ time_series:
       link: /notes/time_series/chapters/ses/exp_smoothing_trend.html
     - name: Exponential Smoothing with Trend and Seasonality
       link: /notes/time_series/chapters/ses/exp_smoothing_season.html
+  - name: Codes
+    link:
+    subnav:
+    - name: PACF Simulation
+      link: /notes/time_series/codes/pacf_simulation.html
+    - name: ACF Simulation
+      link: /notes/time_series/codes/acf_simulation.html
+    - name: ARIMA Simulation
+      link: /notes/time_series/codes/arima_simulation.html
+    - name: SARMA Simulation
+      link: /notes/time_series/codes/sarma_simulation.html
+    - name: SARMA Simulation - 1
+      link: /notes/time_series/codes/sarma_simulation_1.html
+    - name: Time Series Walkthrough Code
+      link: /notes/time_series/codes/time_series_python.html
+    - name: SES Example
+      link: /notes/time_series/codes/ses.html
+    - name: SES Trend
+      link: /notes/time_series/codes/ses_trend.html
+    - name: SES Seasonal
+      link: /notes/time_series/codes/ses_season.html
