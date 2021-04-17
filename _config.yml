@@ -35,3 +35,10 @@ defaults:
       topic: "Time Series"
       page_nav: "time_series"
       bgcolor: bg-success
+  -
+    scope:
+      path: "_notes/deep_learning"
+    values:
+      topic: "Deep Learning"
+      page_nav: "deep_learning"
+      bgcolor: bg-danger

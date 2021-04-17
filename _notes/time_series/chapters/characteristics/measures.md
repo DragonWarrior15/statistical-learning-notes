@@ -107,7 +107,7 @@ For $k=2$, the equation implies
 and by differentiating this, we will get the joint density of $x_{t}, x_{s}$ which is same even after shifting both the quantities by $h$. Note that the autcovariance $\gamma_{st} = E[x_{t} x_{s}] - \mu_{t} \mu_{s}$. From $k=1$, we have established that the mean remains constant throughout. Further, we just showed that the joint density is identical, meaning the expected value will also be identical. Hence, **for strictly stationary time series, the autocovariance is dependent only on the difference between the two time steps and not the location**.
 
 
-#### Wealy Stationary Time Series
+#### Weakly Stationary Time Series
 
 satisfies the following properties
 

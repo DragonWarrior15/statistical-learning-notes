@@ -15,7 +15,7 @@ linalg:
       - name: Finite Dimensional Vector Spaces
         link: /notes/linalg/vector_spaces/finite_dim.html
       - name: Orthogonal and Orthonormal Vectors
-        link: /notes/linalg/vector_spaces/finite_dim.html
+        link: /notes/linalg/vector_spaces/orthogonal.html
   - name: Linear Maps
     link: /notes/linalg/linear_maps/linear_maps.html
     subnav:
@@ -84,3 +84,47 @@ time_series:
       link: /notes/time_series/codes/ses_trend.html
     - name: SES Seasonal
       link: /notes/time_series/codes/ses_season.html
+
+deep_learning:
+  - name: Gradient Descent
+    link: /notes/deep_learning/chapters/gradient_descent/gradient_descent.html
+    subnav:
+      - name: Matrix Calculus
+        link: /notes/deep_learning/chapters/gradient_descent/matrix_calculus.html
+      - name: Backpropagation
+        link: /notes/deep_learning/chapters/gradient_descent/backprop.html
+      - name: Gradients for Common Activation Functions
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_activation.html
+      - name: Gradients for Common Loss Functions
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_loss.html
+      - name: Gradients for Common Layers
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_layers.html
+      - name: Backpropagation Example
+        link: /notes/deep_learning/chapters/gradient_descent/backprop_example_1.html
+      - name: Optimizers
+        link: /notes/deep_learning/chapters/gradient_descent/optimizers.html
+  - name: Weights Initialization
+    link: /notes/deep_learning/chapters/weight_initialization/gradient_explosion.html
+    subnav:
+      - name: Correct Initialization
+        link: /notes/deep_learning/chapters/weight_initialization/correct_init.html
+  - name: Recurrent Layers
+    link: /notes/deep_learning/chapters/recurrent_layers/rnn.html
+    subnav:
+      - name: Backpropagation Through Time (BPTT)
+        link: /notes/deep_learning/chapters/recurrent_layers/bptt.html
+      - name: Exploding and Vanishing Gradient
+        link: /notes/deep_learning/chapters/recurrent_layers/rnn_grad_problems.html
+      - name: Gated Recurrent Unit (GRU)
+        link: /notes/deep_learning/chapters/recurrent_layers/gru.html
+      - name: Long Short Term Memory (LSTM)
+        link: /notes/deep_learning/chapters/recurrent_layers/lstm.html
+  - name: Codes
+    link:
+    subnav:
+    - name: Backprop Example
+      link: /notes/deep_learning/codes/backprop_example_1.html
+    - name: Exponentially MA Example
+      link: /notes/deep_learning/codes/exp_ma.html
+    - name: BPTT Example
+      link: /notes/deep_learning/codes/bptt_example_1.html
