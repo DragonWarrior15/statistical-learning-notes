@@ -1,0 +1,37 @@
+<footer class="{{ 'navbar flex-column flex-sm-row center fixed-bottom ' | append: page.bgcolor}} " style="padding-bottom: 0.15em; padding-top: 0.15em">
+    {% comment %}
+    <!-- TARS! variables can cross the dimensions of pages !
+        curr_nav is defined in default.html -->
+    {% endcomment %}
+    {% capture footer_array %}
+    {% include get_footer_array.html get_footer_array=curr_nav %}
+    {% endcapture %}
+    {% comment %}
+    <!-- split filter will split a string to an array of substrings -->
+    {% endcomment %}
+    {% assign footer_array = footer_array | split: " " %}
+    {% assign loop_upper_limit = footer_array.size | minus: 1 %}
+    {% for i in (0..loop_upper_limit) %}
+        {% if footer_array[i] == page.url %}
+            {% assign i_prev = i | minus: 1 %}
+            {% assign i_next = i | plus: 1 %}
+            {% if i_prev >= 0 %}
+                {% assign prev = footer_array[i_prev] %}
+            {% endif %}
+            {% if i_next <= loop_upper_limit %}
+                {% assign next = footer_array[i_next] %}
+            {% endif %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+    {% if prev %}
+        <a class="text-white" href="{{ prev | relative_url }}"><h5>Previous</h5></a>
+    {% else %}
+        <a class="text-white" href=""><h5></h5></a>
+    {% endif %}
+    {% if next %}
+        <a class="text-white" href="{{ next | relative_url }}"><h5>Next</h5></a>
+    {% else %}
+        <a class="text-white" href=""><h5></h5></a>
+    {% endif %}
+</footer>

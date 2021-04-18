@@ -1,0 +1,8 @@
+{% for item in include.get_footer_array %}
+    {% if item.link %}
+        {{ item.link }}
+    {% endif %}
+    {% if item.subnav %}
+        {% include get_footer_array.html get_footer_array=item.subnav %}
+    {% endif %}
+{% endfor %}

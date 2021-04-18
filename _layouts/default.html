@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
-    <nav class="{{ 'navbar navbar-dark sticky-top flex-column flex-md-row ' | append: page.bgcolor}} " style="padding-bottom: 0.15em; padding-top: 0.15em">
+    <nav class="{{ 'navbar navbar-dark sticky-top flex-column flex-sm-row ' | append: page.bgcolor}} " style="padding-bottom: 0.15em; padding-top: 0.15em">
       <span class="navbar-toggler-icon" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation"></span>
       <h5 class='center text-white'>{{ page.topic }} - {{ page.title }}</h5>
         <a class="text-white" href="{{ 'index.html' | relative_url }}"><h5>Home</h5></a>
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 px-1 collapse show bg-light" id="sidebar">
+            <div class="col-sm-3 px-1 collapse show bg-light" id="sidebar">
             <nav class="nav flex-column">
                 <!-- need to define the nav variable outside as usage
                     of square brackets inside the % include does not work -->
@@ -32,6 +32,7 @@
             <div class="col">{{ content }}</div>
         </div>
     </div>
+    {% include default_footer.html %}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
