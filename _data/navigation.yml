@@ -128,3 +128,79 @@ deep_learning:
       link: /notes/deep_learning/codes/exp_ma.html
     - name: BPTT Example
       link: /notes/deep_learning/codes/bptt_example_1.html
+
+machine_learning:
+  - name: Linear Regression
+    link: /notes/machine_learning/chapters/regression.html
+  - name: Classification
+    link: /notes/machine_learning/chapters/classification.html
+  - name: Linear Model Selection and Regularization
+    link: /notes/machine_learning/chapters/linear_model_selection_regularization/intro.html
+    subnav:
+      - name: Subset Selection
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/subset.html
+      - name: Evaluation Metrics
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/evaluation.html
+      - name: Shrinkage Methods and Regularization
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/shrinkage.html
+      - name: Dimension Reduction Methods
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/dimension.html
+      - name: Curse of Dimensionality
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/curse.html
+      - name: Exercises
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/exercises.html
+  - name: Resampling Methods
+    link: /notes/machine_learning/chapters/resampling_methods/resampling_methods.html
+    subnav:
+      - name: Cross Validation
+        link: /notes/machine_learning/chapters/resampling_methods/cv.html
+      - name: Bootstrap
+        link: /notes/machine_learning/chapters/resampling_methods/bootstrap.html
+  - name: Support Vector Machines (SVM)
+    link: /notes/machine_learning/chapters/svm/svm_intro.html
+    subnav:
+      - name: Maximum Margin Classifier
+        link: /notes/machine_learning/chapters/svm/mmc.html
+      - name: Support Vector Classifier
+        link: /notes/machine_learning/chapters/svm/svc.html
+      - name: Support Vector Machine
+        link: /notes/machine_learning/chapters/svm/svm.html
+  - name: Bayesian Methods
+    link: /notes/machine_learning/chapters/bayesian_methods/bayesian_methods.html
+    subnav:
+      - name: Maximum Likelihood Estimator (MLE)
+        link: /notes/machine_learning/chapters/bayesian_methods/mle.html
+      - name: Maximum A Priori (MAP)
+        link: /notes/machine_learning/chapters/bayesian_methods/map.html
+      - name: Expectation Maximization
+        link: /notes/machine_learning/chapters/bayesian_methods/em.html
+      - name: Variational Inference
+        link: /notes/machine_learning/chapters/bayesian_methods/variational_inference.html
+      - name: Comparison of Different Inference Methods
+        link: /notes/machine_learning/chapters/bayesian_methods/comparison.html
+      - name: Latent Dirichlet Allocation (LDA)
+        link: /notes/machine_learning/chapters/bayesian_methods/lda.html
+      - name: Sampling from Distributions
+        link: /notes/machine_learning/chapters/bayesian_methods/probabilistic_sampling.html
+      - name: Gaussian Process (GP)
+        link: /notes/machine_learning/chapters/bayesian_methods/gaussian_process.html
+      - name: Bayesian Optimization
+        link: /notes/machine_learning/chapters/bayesian_methods/bayesian_optimization.html
+  - name: Appendix
+    link:
+    subnav:
+      - name: Bias-Variance Tradeoff
+        link: /notes/machine_learning/chapters/appendix/bias_variance.html
+      - name: Matrix Calculus in Logistic Regression
+        link: /notes/machine_learning/chapters/appendix/matrix_logistic_reg.html
+      - name: Comparison of Classifiers
+        link: /notes/machine_learning/chapters/appendix/comparison_classifiers.html
+      - name: Perpendicular distance in Maximum Margin Classifier
+        link: /notes/machine_learning/chapters/appendix/perp_mmc.html
+      - name: Lagrange Multiplier, Primal and Dual
+        link: /notes/machine_learning/chapters/appendix/lagrangian.html
+  - name: Codes
+    link:
+    subnav:
+    - name: Predictions using Gaussian Process
+      link: /notes/machine_learning/codes/gaussian_process_prediction.html

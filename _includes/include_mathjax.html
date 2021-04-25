@@ -18,10 +18,11 @@
                 setw: "{W}",
                 setlm: "{\\mathcal L}",
                 matm: "{\\mathcal M}",
-                minimize: "{\\DeclareMathOperator*{\\minimize}}",
-                maximize:"{\\DeclareMathOperator*{\\maximize}}",
-                argmin:"{\\DeclareMathOperator*{\\argmin}}",
-                argmax:"{\\DeclareMathOperator*{\\argmax}}"
+                minimize: "{\\operatorname*\{minimize\}}",
+                maximize:"{\\operatorname*\{maximize\}}",
+                argmin:"{\\operatorname*\{argmin\}}",
+                argmax:"{\\operatorname*\{argmax\}}",
+                KL: ["{\\newcommand*{\\KL}{KL(#1 \\parallel #2)}}", 2] //https://docs.mathjax.org/en/latest/input/tex/macros.html
                 // bold: ["{\\bf #1}", 1]
             }
         }, // v3 onwards tex2jax is not needed

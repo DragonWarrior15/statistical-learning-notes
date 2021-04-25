@@ -36,6 +36,7 @@ install:
 # sed 's/\\end{gathered}\$\$/\\end{align}/g' |\
 # sed 's/INSERTLINE/\n/g' |\
 # sed 's/}_/}\\_/g' | sed 's/]_/]\\_/g' | sed 's/)_/)\\_/g' |\
+# sed 's/{\*/{\\\*/g' |\
 # sed 's/\\bm{/\\boldsymbol{/g' |\
 # sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
 # > _notes/time_series/chapters/arima/arma.md

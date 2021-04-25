@@ -42,3 +42,11 @@ defaults:
       topic: "Deep Learning"
       page_nav: "deep_learning"
       bgcolor: bg-danger
+
+  -
+    scope:
+      path: "_notes/machine_learning"
+    values:
+      topic: "Machine Learning"
+      page_nav: "machine_learning"
+      bgcolor: bg-info

@@ -1,13 +1,8 @@
 # statistical-learning-notes
-Notes for Statistical Learning and related topics
+Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](https://DragonWarrior15.github.io/statistical-learning-notes/)
 
-* [Probability](https://github.com/DragonWarrior15/statistical-learning-notes/releases/download/1/probability-notes.pdf)
-* [Linear Algebra](https://github.com/DragonWarrior15/statistical-learning-notes/releases/download/1/linear_algebra.pdf)
-* [Statistical Learning](https://github.com/DragonWarrior15/statistical-learning-notes/releases/download/1/statistical_learning_notes.pdf)
-* Time Series Analysis
-    - [PDF](https://github.com/DragonWarrior15/statistical-learning-notes/releases/download/1/time_series_notes.pdf), [Codes](/tex_files/time_series/codes)
-* [C](md_files/c/C.md)
-* C++
-    - [Notes](md_files/cpp/cpp.md), [Exercises](md_files/cpp/cpp_exercises.md)
-    - Note: some questions in exercises will be related to data structures
-* [Data Structures](md_files/dsa/ds.md)
+## MathJax Usage
+* MathJax overview: See [1](https://memory.psych.mun.ca/tech/js/mathjax.shtml) and [2](https://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm).
+* To espace the curly braces inside math mode, use a double back slash like ```\\```. This is because of two levels of processing by Jekyll and MathJax ([see here](https://stackoverflow.com/questions/41312777/mathjax-curly-brackets-dont-show-up-using-jekyll)).
+* Any hanging pair of square brackets `[ ]` in math mode should be escaped using `\[ \]` so that markdown does not process them as hyperlinks.
+* Refer to [include_mathjax.html](/_includes/include_mathjax.html) for examples on defining new macros and including extensions. This files also defines the complete configuration to import MathJax to a jekyll project.

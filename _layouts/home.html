@@ -19,7 +19,8 @@
         </div>
         <div class="card-deck">
         <div class="card text-white bg-primary">
-        <a href="{{ 'notes/linalg/vector_spaces/complex.html' | relative_url }}" class="text-white">
+        {% assign link = site.data.navigation["linalg"][0].link %}
+        <a href="{{ link | relative_url }}" class="text-white">
           <div class="card-body">
             <h5 class="card-title">Linear Algebra</h5>
             <p class="card-text">Vector Spaces, Linear Maps and Matrices.</p>
@@ -27,7 +28,8 @@
           </a>
         </div>
         <div class="card text-white bg-success">
-        <a href="{{ 'notes/time_series/chapters/characteristics/characteristics.html' | relative_url }}" class="text-white">
+        {% assign link = site.data.navigation["time_series"][0].link %}
+        <a href="{{ link | relative_url }}" class="text-white">
           <div class="card-body">
             <h5 class="card-title">Time Series</h5>
             <p class="card-text">Time Series Equations, ARIMA and SES.</p>
@@ -35,10 +37,20 @@
         </a>
         </div>
         <div class="card text-white bg-danger">
-        <a href="{{ 'notes/deep_learning/chapters/gradient_descent/gradient_descent.html' | relative_url }}" class="text-white">
+        {% assign link = site.data.navigation["deep_learning"][0].link %}
+        <a href="{{ link | relative_url }}" class="text-white">
           <div class="card-body">
             <h5 class="card-title">Introduction to Deep Learning</h5>
             <p class="card-text">Gradient Descent, Derivatives and Numpy Implementations.</p>
+          </div>
+        </a>
+        </div>
+        <div class="card text-white bg-info">
+        {% assign link = site.data.navigation["machine_learning"][0].link %}
+        <a href="{{ link | relative_url }}" class="text-white">
+          <div class="card-body">
+            <h5 class="card-title">Machine Learning</h5>
+            <p class="card-text">Classical Models, Bayesian Methods.</p>
           </div>
         </a>
         </div>
