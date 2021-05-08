@@ -2,7 +2,7 @@
 title: "Naive Bayes Classifier"
 ---
 
-# Naive Bayes Classifier
+## Naive Bayes Classifier
 
 This is one of the simplest classifier that implements the Bayes Rule at it's core
 \begin{align}
@@ -26,7 +26,7 @@ The equation to estimating $P(X_{i} = x_{i} \vert Y=y)$ works well in the case o
      P(X_{i} = x_{i}  \vert  Y=y) = \frac{1}{\sqrt{2\pi \sigma_{y}^{2}}}exp(-\frac{(x_{i} - \mu_{y})^{2}}{2\sigma_{y}^{2}})\end{align}
 and similarly, we can calculate the probabilities in other distributions like exponential etc.
 
-## Text Document Classification
+### Text Document Classification
 
 Naive Bayes is a common baseline for many textclassification tasks. Suppose we have $d$ documents, each containing a sequence of $N$ words $w_{i}$s and our aim is to classify into suppose positive ($Y=1$) and negative ($Y=0$) sentiments. We assume that each word in the document is independent, and the joint distribution is simply the product of all the individual words. The naive Bayes Model is
 \begin{align}
@@ -37,14 +37,14 @@ $P(Y)$ as seen above is simply the proportion of documents with given sentiment 
     P(w_{i} \vert Y=y) = \frac{\text{count of appearances of word $w_{i}$ in documents with sentiment $y$}}{\text{Total words in the documents with sentiment $y$}}\end{align}
 and counting is done with repetitions
 
-### Laplacian Smoothing
+#### Laplacian Smoothing
 
 But in some corner cases, we might have the word only present in a single class, or the word is not present in the training data, but the testing data. In such a case, **Laplacian Smoothing** is used
 \begin{align}
     P(w_{i} \vert Y=y) = \frac{\text{count of appearances of word $w_{i}$ in documents with sentiment $y$} + 1}{\text{Total words in the documents with sentiment $y$}+V}\end{align}
 where we add the $1$ in the numerator to make all probabilities non zero, and add $V$, the vocabulary size (number of distinct words in the entire corpus across all clasess) to the denominator so that the probabilities sum upto $1$ (the total number of terms of the form $P(w_{i} \vert Y)$ are equal to the vocabulary size $V$; adding $1$ to the numerator everywhere forces us to add $V$ in the denominator to get a valid probability distribution).
 
-### Log of Odds
+#### Log of Odds
 
 Since we are calculating the odds to finally get to the probabiltiy value, we can sometime work more conviniently with the $log$ values to avoid working with small probability values
 \begin{align}
@@ -54,7 +54,7 @@ Since we are calculating the odds to finally get to the probabiltiy value, we ca
 where the ratio $P(Y=1)/P(Y=0)$ is also called prior. The left hand side equals $0$ when the classes have equal probabilities. When this term is positive, we assign $y_{i}=1$ and vice versa. The further away this term from $0$, the more confident we are. We can even adjust the threshold to control sensitivity, accuracy etc.
 
 
-### Key Considerations
+#### Key Considerations
 
 -   correlated features can lead to incorrect predictors as they can lead to inflated importance values.
 

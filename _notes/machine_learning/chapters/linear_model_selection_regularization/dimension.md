@@ -33,7 +33,7 @@ This constraint of finding components with zero correlation essentially means th
 
 ##### Derivation of PCA
 
-It is a good idea to **standardize/scale the variables before running PCA**. Not only is it easier to derive the components, but they are also unaffected by the scale of the individual variables (since we know that scaling a variable multiplies the variance by square of the scaler and PCA is all about finding maximum variances !). If the variables represent same/similar quantities with similar scales, scaling is not mandadtory. However, we usually have data consisting of several quantities measured on different scales and thus scaling comes in handy. Scaling can be done to get the data in $[0,1]$ or by divinding by $\sigma$ to get similar scale.
+It is a good idea to **standardize/scale the variables before running PCA**. Not only is it easier to derive the components, but they are also unaffected by the scale of the individual variables (since we know that scaling a variable multiplies the variance by square of the scaler and PCA is all about finding maximum variances !). If the variables represent same/similar quantities with similar scales, scaling is not mandatory. However, we usually have data consisting of several quantities measured on different scales and thus scaling comes in handy. Scaling can be done to get the data in $[0,1]$ or by dividing by $\sigma$ to get similar scale.
 
 
 After setting the the mean of all predictors to zero and standard deviation to one, the components can be derived by considering the following optimization problem

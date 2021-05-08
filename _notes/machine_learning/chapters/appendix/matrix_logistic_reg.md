@@ -4,7 +4,7 @@ title: Matrix Calculus in Logistic Regression
 
 ## Matrix Calculus used in Logistic Regression Derivation
 
-The equations below present the extended version of the matrix calculus in [Logistic Regression]({{ "/notes/machine_learning/chapters/classification.html#loss-function" | relative_url }})
+The equations below present the extended version of the matrix calculus in [Logistic Regression]({{ "/notes/machine_learning/chapters/classification/logistic.html#loss-function" | relative_url }})
 
 Note the derivate of $\beta^{T}x$ which is a scalar. $\beta$ and $x$ are $p+1 \times 1$ vectors
 \begin{align}

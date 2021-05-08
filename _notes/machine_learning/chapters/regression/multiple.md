@@ -1,42 +1,6 @@
 ---
-title: "Linear Regression"
+title: "Multiple Linear Regression"
 ---
-
-# Linear Regression
-
-Linear Regression is a parametric model where we assume a linear relationship between the dependent and independent variables.
-\begin{align}
-    X &= (X_{1}, X_{2}, \ldots, X_{p})\newline
-    Y &= \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \cdots + \beta_{p}X_{p} + \epsilon\end{align}
-Where $X$ represents a p dimensional input and $\beta$ are the coefficients, and $\epsilon$ is the error which is assumed to have $\mathcal{N}(0, \sigma^{2})$ distribution. Errors are assumed to be independent. We will usually not know the error or it's variance, and hence our estimate is denoted by $\hat{Y}$. Further, the estimted coefficients will also be denoted with a hat since we can never know the true model, but only get estimates of these parameters
-\begin{align}
-    \hat{Y} &= \hat{\beta}\_{0} + \hat{\beta}\_{1}X_{1} + \hat{\beta}\_{2}X_{2} + \cdots + \hat{\beta}\_{p}X_{p} + \epsilon\end{align}
-
-## Simple Linear Regression
-
-Here, the independent variable is assumed to have a single dimension, and thus we are only looking towards estimating two coefficients. Let $x_{i}$ be the $i^{th}$ observation and $Y_{i}$ be the associated response, then
-\begin{gather}
-    \hat{Y}\_{i} = \hat{\beta}\_{0} + \hat{\beta}\_{1}x_{i}\newline
-    \text{Minimize error to estimate coefficients} \quad \minimize_{\beta_{0}, \beta_{1}} \sum_{i=1}^{n} (y_{i} - \beta_{0} - \beta_{1}x_{i})^{2}\newline
-    \hat{\beta}\_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \bar{x})(Y_{i} - \overline{Y})}{\sum_{i=1}^{n} (x_{i} - \bar{x})^{2}}, \quad \hat{\beta}\_{0} = \overline{Y} - \hat{\beta}\_{1}\bar{x}\newline
-    \hat{\theta}\_{1} \sim \mathcal{N}\bigg(\theta_{1}, \frac{\sigma^{2}}{\sum_{i=1}^{n}(x_{i} - \overline{x})^{2}} \bigg)\newline
-    \hat{\theta}\_{0} \sim \mathcal{N}\bigg(\theta_{1}, \sigma^{2} \frac{\sum_{i=1}^{n} x_{i}^{2}}{n\big((\sum_{i=1}^{n} x_{i}^{2}) - n\bar{x}^{2} \big)} \bigg)
-\end{gather}
-
-The mean squared error is used here as it is the natural error function that emerges when we try to obtain MLE estimates of the coefficients. As is visible from the fomulae for point estimates of coefficients, they are linear combinations of normal variables ($Y$) and thus are normally distributed.
-
-Simple linear regression is discussed in detail in the [probability notes](https://github.com/DragonWarrior15/statistical-learning-notes/blob/master/tex_files/probability/probability-notes.pdf). It also discusses confidence intervals for the coefficients, the prediction intervals for the response and hypothesis testing for relation between input and response.
-
-
-### Coefficient of Determination
-
-$R^{2}$ is often used as a metric for checking how good the regression model is. It's definition is invariant to the number of independent variables
-\begin{gather}
-    R^{2} = \frac{S_{YY} - RSS}{S_{YY}} = 1 - \frac{RSS}{S_{YY}}\newline
-    S_{YY} = \text{total variance in Y, }\quad RSS = \text{sum of squares of residuals}\newline
-    S_{YY} - RSS = \text{total variance explained by inputs}
-\end{gather}
-A good model will explain most of the variance in $Y$ usig the input variables. Hence, $R^{2}$ close to $1$ is a good model and vice versa. **$R^{2}$ usually increases as more and more variables are added to the model**.
 
 ## Multiple Linear Regression
 
@@ -178,28 +142,3 @@ The problem with this model is that for both student and non student, the effect
 \begin{align}
     y = \beta_{income}+x_{income} + \beta_{student}x_{student} + \beta_{income \times student}x_{income}x_{student} + \epsilon\end{align}
 which gives different dependence on income (slope) for student ($\beta_{income} + \beta_{income \times student}$) and non student $(\beta_{income})$.
-
-## Problems when using Linear Regression
-
-##### Non linearity of data
-
-will make linear regression perform poorly as the basic assumption is that the data has linear relation with response. In case the data is non-linear, we expect to see distinct patterns in the residual vs variable plots. To induce linearity, transformations like $\log$, $exp$, $sqrt$ etc. can be checked.
-
-##### Correlation of errors
-
-We do not expect $\epsilon_{i}$ to give any information regarding $\epsilon_{i+1}$ as that will cause the standard errors to be underestimated giving wider confidence intervals. This can be checked by plotting the residuals vs a shifted version, which should not give any discernable patterns.
-
-##### Heteroscedasticity
-
-or non-constant variance in residuals also violates the assumption that the response/errors have constant variance. This can be checked by plotting the residuals vs a variable. In case the variance is not constant, we expect to see the residuals to get further away from each other as we progress along the variable x.
-
-##### Outliers
-
-can cause trouble with the model as mean square error will give more weightage to larger errors. This can be checked for by plotting either the histogram of the variable to ensure thin tails, or by plotting the residual/standard error estimate, which should have no discernable pattern.
-
-##### Multicollinearity
-
-occurs when one of the variable is expressible as a linear combination of a set of the remaining variables. This can cause large variance in the estimation of the coefficients. It can be checked for using *Variance Inflation Factor*
-\begin{align}
-    VIF &= \frac{1}{1 - R_{X_{j}|X_{-j}}^{2}}\end{align}
-where $R_{X_{j}|X_{-j}}^{2}$ is the $R^{2}$ score obtained by regressing the $j^{th}$ variable on all the remaining variables. Typically, VIF should be $\leq 3$-$5$. Higher values indicate significant correlation of this variable with the others.

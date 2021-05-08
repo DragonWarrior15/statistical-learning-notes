@@ -131,9 +131,27 @@ deep_learning:
 
 machine_learning:
   - name: Linear Regression
-    link: /notes/machine_learning/chapters/regression.html
+    link: /notes/machine_learning/chapters/regression/intro.html
+    subnav:
+      - name: Simple Linear Regression
+        link: /notes/machine_learning/chapters/regression/simple.html
+      - name: Multiple Linear Regression
+        link: /notes/machine_learning/chapters/regression/multiple.html
+      - name: Problems when using Linear Regression
+        link: /notes/machine_learning/chapters/regression/problems.html
   - name: Classification
-    link: /notes/machine_learning/chapters/classification.html
+    link: /notes/machine_learning/chapters/classification/intro.html
+    subnav:
+      - name: Logistic Regression
+        link: /notes/machine_learning/chapters/classification/logistic.html
+      - name: Linear Discriminant Analysis (LDA)
+        link: /notes/machine_learning/chapters/classification/lda.html
+      - name: Naive Bayes Classifier
+        link: /notes/machine_learning/chapters/classification/naive_bayes.html
+      - name: Comparison of Classifiers
+        link: /notes/machine_learning/chapters/classification/comparison.html
+      - name: Classfication Metrics
+        link: /notes/machine_learning/chapters/classification/metrics.html
   - name: Linear Model Selection and Regularization
     link: /notes/machine_learning/chapters/linear_model_selection_regularization/intro.html
     subnav:
@@ -149,6 +167,25 @@ machine_learning:
         link: /notes/machine_learning/chapters/linear_model_selection_regularization/curse.html
       - name: Exercises
         link: /notes/machine_learning/chapters/linear_model_selection_regularization/exercises.html
+  - name: Moving Beyond Linearity
+    link: /notes/machine_learning/chapters/moving_beyond_linearity/intro.html
+    subnav:
+      - name: Polynomial Regression
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/polynomial_regression.html
+      - name: Step Function
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/step_function.html
+      - name: Basis Function
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/basis_function.html
+      - name: Regression Splines (Polynomials)
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/regression_splines.html
+      - name: Smoothing Splines
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/smoothing_splines.html
+      - name: Local Regression
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/local_regression.html
+      - name: Generalized Additive Models
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/gam.html
+      - name: Exercises
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/exercises.html
   - name: Resampling Methods
     link: /notes/machine_learning/chapters/resampling_methods/resampling_methods.html
     subnav:
@@ -156,6 +193,27 @@ machine_learning:
         link: /notes/machine_learning/chapters/resampling_methods/cv.html
       - name: Bootstrap
         link: /notes/machine_learning/chapters/resampling_methods/bootstrap.html
+  - name: Tree Based Models
+    link: /notes/machine_learning/chapters/tree_models/intro.html
+    subnav:
+      - name: Regression Trees
+        link: /notes/machine_learning/chapters/tree_models/regression.html
+      - name: Classification Trees
+        link: /notes/machine_learning/chapters/tree_models/classification.html
+      - name: Patient Rule Induction Method (PRIM)
+        link: /notes/machine_learning/chapters/tree_models/prim.html
+      - name: Bagging
+        link: /notes/machine_learning/chapters/tree_models/bagging.html
+      - name: Random Forest
+        link: /notes/machine_learning/chapters/tree_models/random_forest.html
+      - name: Boosting
+        link: /notes/machine_learning/chapters/tree_models/boosting.html
+      - name: Adaboost.M1
+        link: /notes/machine_learning/chapters/tree_models/adaboost.html
+      - name: Boosting Trees
+        link: /notes/machine_learning/chapters/tree_models/boosting_trees.html
+      - name: XGBoost
+        link: /notes/machine_learning/chapters/tree_models/xgboost.html
   - name: Support Vector Machines (SVM)
     link: /notes/machine_learning/chapters/svm/svm_intro.html
     subnav:
@@ -186,6 +244,21 @@ machine_learning:
         link: /notes/machine_learning/chapters/bayesian_methods/gaussian_process.html
       - name: Bayesian Optimization
         link: /notes/machine_learning/chapters/bayesian_methods/bayesian_optimization.html
+  - name: Clustering
+    link: /notes/machine_learning/chapters/clustering/intro.html
+    subnav:
+      - name: Distances and Dissimilarity Measures
+        link: /notes/machine_learning/chapters/clustering/measures.html
+      - name: K-Means Clustering
+        link: /notes/machine_learning/chapters/clustering/kmeans.html
+      - name: K-Mediods Clustering
+        link: /notes/machine_learning/chapters/clustering/kmedioids.html
+      - name: Hierarchical Clustering
+        link: /notes/machine_learning/chapters/clustering/hierarchical.html
+      - name: Gaussian Mixture Models (GMM)
+        link: /notes/machine_learning/chapters/clustering/gmm.html
+      - name: Key Considerations while Clustering
+        link: /notes/machine_learning/chapters/clustering/considerations.html
   - name: Appendix
     link:
     subnav:
