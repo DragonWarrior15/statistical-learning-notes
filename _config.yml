@@ -50,3 +50,11 @@ defaults:
       topic: "Machine Learning"
       page_nav: "machine_learning"
       bgcolor: bg-info
+
+  -
+    scope:
+      path: "_notes/probability"
+    values:
+      topic: "Probability"
+      page_nav: "probability"
+      bgcolor: bg-probability

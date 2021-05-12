@@ -1,3 +1,53 @@
+probability:
+  - name: Probability Theorems
+    link: /notes/probability/chapters/theorems/probability_theorems.html
+    subnav:
+      - name: Iterated Expectation and Variance
+        link: /notes/probability/chapters/theorems/iterated_exp.html
+      - name: Random number of Random Variables
+        link: /notes/probability/chapters/theorems/random_no.html
+      - name: Moment Generating Function
+        link: /notes/probability/chapters/theorems/moment_gen.html
+      - name: Convolutions
+        link: /notes/probability/chapters/theorems/convolution.html
+  - name: Probability Distributions
+    link:
+    subnav:
+      - name: Continuous Uniform Random Variable
+        link: /notes/probability/chapters/distributions/uniform_distribution.html
+      - name: Bernoulli and Binomial Random Variable
+        link: /notes/probability/chapters/distributions/binomial.html
+      - name: Geometric Distribution
+        link: /notes/probability/chapters/distributions/geometric.html
+      - name: Negative Binomial Distribution
+        link: /notes/probability/chapters/distributions/negative_binomial.html
+      - name: Bernoulli Process
+        link: /notes/probability/chapters/distributions/bernoulli_process.html
+      - name: Exponential Distribution
+        link: /notes/probability/chapters/distributions/exponential_distribution.html
+      - name: Poisson
+        link: /notes/probability/chapters/distributions/poisson.html
+      - name: Gamma Distribution
+        link: /notes/probability/chapters/distributions/gamma.html
+      - name: Beta Distribution
+        link: /notes/probability/chapters/distributions/beta_distribution.html
+      - name: Dirichlet Distribution
+        link: /notes/probability/chapters/distributions/dirichlet_distribution.html
+      - name: Normal Distribution
+        link: /notes/probability/chapters/distributions/normal_distribution.html
+      - name: Chi-Square Distribution
+        link: /notes/probability/chapters/distributions/chi_square.html
+      - name: t-Distribution
+        link: /notes/probability/chapters/distributions/t_dist.html
+      - name: F-Distribution
+        link: /notes/probability/chapters/distributions/f_dist.html
+      - name: Logistics Distribution
+        link: /notes/probability/chapters/distributions/logistic_dist.html
+      - name: Renewal Process
+        link: /notes/probability/chapters/distributions/renewal_process.html
+      - name: Counting Process
+        link: /notes/probability/chapters/distributions/counting_process.html
+
 linalg:
   - name: Complex Field
     link: /notes/linalg/vector_spaces/complex.html

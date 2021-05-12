@@ -18,6 +18,15 @@
             <p>Select one of the cards below to get started!</p>
         </div>
         <div class="card-deck">
+        <div class="card text-white bg-dark">
+        {% assign link = site.data.navigation["probability"][0].link %}
+        <a href="{{ link | relative_url }}" class="text-white">
+          <div class="card-body">
+            <h5 class="card-title">Probability</h5>
+            <p class="card-text">Probability Theorems, Distributions and Markov Chains.</p>
+          </div>
+          </a>
+        </div>
         <div class="card text-white bg-primary">
         {% assign link = site.data.navigation["linalg"][0].link %}
         <a href="{{ link | relative_url }}" class="text-white">
