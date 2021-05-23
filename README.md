@@ -7,3 +7,18 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
 * Any hanging pair of square brackets `[ ]` in math mode should be escaped using `\[ \]` so that markdown does not process them as hyperlinks.
 * Refer to [include_mathjax.html](/_includes/include_mathjax.html) for examples on defining new macros and including extensions. This files also defines the complete configuration to import MathJax to a jekyll project.
 * Instead of `\bigg` use `\left` and `\right` for automatically sizing brackets.
+* The following will work
+    ```tex
+    \begin{alignat}{2}
+        \text{Accept} \quad &H_{0} \quad &&\text{if} \quad \chi_{1-\alpha/2, n-1}^{2} \leq TS \leq \chi_{\alpha/2, n-1}^{2}\newline
+        \text{Reject} \quad &H_{0} \quad &&\text{otherwise}
+    \end{alignat}
+    ```
+    while this will not show proper alignment
+    ```tex
+    \begin{alignat}{2}
+        \text{Accept} \quad &H_{0} \quad &\text{if} \quad \chi_{1-\alpha/2, n-1}^{2} \leq TS \leq \chi_{\alpha/2, n-1}^{2}\newline
+        \text{Reject} \quad &H_{0} \quad &\text{otherwise}
+    \end{alignat}
+    ```
+    This is probably because of how alignment is handled for the text command in math mode.
