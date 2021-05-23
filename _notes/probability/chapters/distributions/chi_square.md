@@ -26,11 +26,11 @@ This quantity is usually listed in mathematical tables since they are heavily us
 
 Consider the moment generating function for a chi-square random variable with $n=1$ degrees of freedom
 \begin{align}
-        E[e^{tX}] &= E[e^{tZ^{2}}] \text{\; $Z \sim \mathcal{N}(0, 1)$}\newline
-        &= \int_{-\infty}^{\infty} e^{tx^{2}} f_{Z}(x) dx \text{\; since $E[g(x)] = \int_{x} g(x)p(x)$}\newline
+        E[e^{tX}] &= E[e^{tZ^{2}}] \quad\text{$Z \sim \mathcal{N}(0, 1)$}\newline
+        &= \int_{-\infty}^{\infty} e^{tx^{2}} f_{Z}(x) dx \quad\text{since $E[g(x)] = \int_{x} g(x)p(x)$}\newline
         &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{tx^{2}} e^{-x^{2}/2}\newline
         &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-x^{2}(1/2 - t)}\newline
-        \text{Using \;} \int_{-\infty}^{\infty} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\newline
+        \text{Using}\quad \int_{-\infty}^{\infty} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\newline
         E[e^{tX}] &= \frac{1}{\sqrt{2\pi}} \sqrt{\frac{\pi}{1/2 - t}}\newline
         &= \frac{1}{\sqrt{1 - 2t}}
     \end{align}
@@ -39,15 +39,15 @@ Extending this idea to the case of $n$ degrees of freedom,
 \begin{align}
         E[e^{tX}] &= E[e^{t(Z_{1}^{2} + Z_{2}^{2} + \cdots + Z_{n}^{2})}]\newline
         &= E[\prod_{i=1}^{n} e^{t Z_{i}^{2}}]\newline
-        &= \prod_{i=1}^{n} E[e^{t Z_{i}^{2}}] \text{\; since $Z_{i}$ are independent}\newline
-        &= (1 - 2t)^{-n/2} \text{\; from the derivation above}
+        &= \prod_{i=1}^{n} E[e^{t Z_{i}^{2}}] \quad\text{since $Z_{i}$ are independent}\newline
+        &= (1 - 2t)^{-n/2} \quad\text{from the derivation above}
     \end{align}
 
 But, the quantity just derived is nothing but the moment generating function of the Gamma distribution with parameters $(n/2, 1/2)$. Hence, by the uniqueness of the moment generating function, we are forced to conclude that the **probability density function of a chi-square variable with n degrees is same as that of a Gamma distribution with parameters (n/2, 1/2)**.
 
 Thus,
 \begin{align}
-        f_{X}(x) = \frac{\frac{1}{2} e^{-x/2} (\frac{x}{2})^{(n/2) - 1}}{\Gamma(\frac{n}{2})} \text{\; $x > 0$}
+        f_{X}(x) = \frac{\frac{1}{2} e^{-x/2} (\frac{x}{2})^{(n/2) - 1}}{\Gamma(\frac{n}{2})} \quad\text{$x > 0$}
     \end{align}
 
 #### Sum of Exponentially Distributed Random Variables to Chi-Square Distribution

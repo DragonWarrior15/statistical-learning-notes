@@ -1,3 +1,7 @@
+---
+title: "Life Testing"
+---
+
 # Life Testing
 
 This section develops statistical methods around estimtating distribution of variables indicating the lifetime of a particular object. For instance, if the lifetime has an exponential distribution, we utilise the sample to obtain the parameters of the exponential distribution.
@@ -5,8 +9,9 @@ This section develops statistical methods around estimtating distribution of var
 
 Let $X$ be a continuous random variable denoting lifetime of an item, having cumulative distribution $F$ and density function $f$, then
 \begin{align}
-        \text{hazard function or failure rate,} \quad \lambda(t) = \frac{f(t)}{1 - F(t)}\newline
-        P(X \in (t, t+dt)|X > t) = \frac{P(X \in (t, t+dt), X > t)}{P(X > t)} = \frac{P(X \in (t, t+dt))}{P(X > t)} \approx \frac{f(t)}{1 - F(t)} dt
+        \text{hazard function or failure rate,} \quad \lambda(t) &= \frac{f(t)}{1 - F(t)}\newline
+        P(X \in (t, t+dt)|X > t) &= \frac{P(X \in (t, t+dt), X > t)}{P(X > t)} = \frac{P(X \in (t, t+dt))}{P(X > t)}\newline
+        &\approx \frac{f(t)}{1 - F(t)} dt
     \end{align}
 
 **$\lambda(t)$ denotes the conditional probability that an item of age t will fail in the next moment.**
@@ -17,8 +22,8 @@ For exponential distribution, $\lambda(t) = (\lambda e^{-\lambda x})/e^{-\lambda
 
 Hazard function uniquely determines the cumulative distribution $F$
 \begin{align}
-        \lambda(s) = \frac{\frac{d}{ds} F(s)}{1 - F(s)} = \frac{d}{ds} (-log(1 - F(s)))\newline
-        F(t) = 1 - exp\big(-\int_{0}^{s} \lambda(s) ds \big)
+        \lambda(s) &= \frac{\frac{d}{ds} F(s)}{1 - F(s)} = \frac{d}{ds} (-log(1 - F(s)))\newline
+        F(t) &= 1 - exp\left(-\int_{0}^{s} \lambda(s) ds \right)
     \end{align}
 
 ## Exponential Distribution: Stopping at rth failure
@@ -29,8 +34,8 @@ Suppose we have $n$ items with exponentially distributed lifetime with unknown p
     \end{align}
 i.e., $X_{i_{j}} = x_{j}$. Then the joint likelihood becomes
 \begin{align}
-        L &= \big(\prod_{i=1}^{r} \frac{1}{\theta}e^{-x_{i}/\theta}\big) \big(\prod_{j=r+1}^{n} e^{-x_{r}/\theta}\big)\newline
-        &= \frac{1}{\theta^{r}}exp \big\{-\frac{1}{\theta} \big(\sum_{i=1}^{r} x_{i} + (n-r)x_{r} \big) \big\}\newline
+        L &= \left(\prod_{i=1}^{r} \frac{1}{\theta}e^{-x_{i}/\theta}\right) \left(\prod_{j=r+1}^{n} e^{-x_{r}/\theta}\right)\newline
+        &= \frac{1}{\theta^{r}}exp \left\\{-\frac{1}{\theta} \left(\sum_{i=1}^{r} x_{i} + (n-r)x_{r} \right) \right\\}\newline
         \log(L) &= -r\log(\theta) - \frac{\sum_{i=1}^{r} x_{i}}{\theta} - \frac{(n-r)x_{r}}{\theta}\newline
         \frac{d}{d\theta}\log(L) &= -\frac{r}{\theta} + \frac{\sum_{i=1}^{r} x_{i}}{\theta^{2}} + \frac{(n-r)x_{r}}{\theta^{2}}\newline
         \hat{\theta} &= \frac{\sum_{i=1}^{r} x_{i} + (n-r)x_{r}}{r} = \frac{\tau}{r}
@@ -42,9 +47,9 @@ $\tau$ is the total time on test, i.e. the total time of survival of each item f
 \begin{align}
         \tau = nX_{1} + (n-1)(X_{2} - X_{1}) + \cdots + (n-r+1)(X_{r} - X_{r-1})
     \end{align}
-and from [answer](#q_minexp), we know that $X_{1}$ is exponential with mean $\theta/n$ and thus, $nX_{1}$ has mean $\theta$. By memoryless property, $X_{2} - X_{1}$ is also exponential with mean $\theta/(n-1)$ and so $(n-1)(X_{2} - X_{1})$ has mean $\theta$. Thus, $\tau$ is the sum of independent exponential variables and is a Gamma distribution with parameters $(r, 1/\theta)$. Since Gamma distribution is related to a $\chi^{2}$ distribution (see [here]({{ "/notes/machine_learning/probability/chapters/distributions/chi_square.html#relation-between-chi-square-and-gamma-distribution" | relative_url }}))
+and from [answer]({{ "/notes/probability/chapters/exercises/a_minexp.html" | relative_url }}), we know that $X_{1}$ is exponential with mean $\theta/n$ and thus, $nX_{1}$ has mean $\theta$. By memoryless property, $X_{2} - X_{1}$ is also exponential with mean $\theta/(n-1)$ and so $(n-1)(X_{2} - X_{1})$ has mean $\theta$. Thus, $\tau$ is the sum of independent exponential variables and is a Gamma distribution with parameters $(r, 1/\theta)$. Since Gamma distribution is related to a $\chi^{2}$ distribution (see [here]({{ "/notes/probability/chapters/distributions/chi_square.html#relation-between-chi-square-and-gamma-distribution" | relative_url }}))
 \begin{align}
-        \frac{2\tau}{\theta} \sim \chi_{2r}^{2}\newline
-        P(\chi_{1-\alpha/2, 2r}^{2} < \frac{2\tau}{\theta} < \chi_{\alpha/2, 2r}^{2}) = 1-\alpha\newline
-        \theta \in \bigg(\frac{2\tau}{\chi_{\alpha/2, 2r}^{2}}, \frac{2\tau}{\chi_{1-\alpha/2, 2r}^{2}} \bigg) \quad \text{with confidence $1-\alpha$}
+        \frac{2\tau}{\theta} &\sim \chi_{2r}^{2}\newline
+        P(\chi_{1-\alpha/2, 2r}^{2} &< \frac{2\tau}{\theta} < \chi_{\alpha/2, 2r}^{2}) = 1-\alpha\newline
+        \theta &\in \left(\frac{2\tau}{\chi_{\alpha/2, 2r}^{2}}, \frac{2\tau}{\chi_{1-\alpha/2, 2r}^{2}} \right) \quad \text{with confidence $1-\alpha$}
     \end{align}

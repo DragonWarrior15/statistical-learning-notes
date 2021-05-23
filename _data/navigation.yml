@@ -136,6 +136,8 @@ probability:
         link: /notes/probability/chapters/simulation/discrete_random_nos.html
       - name: Generating Continuous Random Variables
         link: /notes/probability/chapters/simulation/continuous_random_nos.html
+  - name: Exercises
+    link: /notes/probability/chapters/exercises/problems.html
 
 linalg:
   - name: Complex Field

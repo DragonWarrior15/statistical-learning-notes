@@ -1,10 +1,10 @@
 {% comment %}
 <!-- idea from https://stackoverflow.com/a/19360305 -->
 {% endcomment %}
-<figure class="figure">
-  <img src="{{ include.url | relative_url }}" alt="{{ include.description }}" class="{{ include.img_classes }}">
-  <figcaption class="notes-figcaption">{{ include.description }}</figcaption>
-</figure>
+    <figure class="figure">
+      <img src="{{ include.url | relative_url }}" alt="{{ include.description }}" class="{{ include.img_classes }}">
+      <figcaption class="notes-figcaption">{{ include.description }}</figcaption>
+    </figure>
 
 {% comment %}
 <!-- usage will be as follows
