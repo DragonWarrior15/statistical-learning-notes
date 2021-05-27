@@ -1,10 +1,17 @@
 {% comment %}
 <!-- idea from https://stackoverflow.com/a/19360305 -->
 {% endcomment %}
+{% if include.indent %}
     <figure class="figure">
       <img src="{{ include.url | relative_url }}" alt="{{ include.description }}" class="{{ include.img_classes }}">
       <figcaption class="notes-figcaption">{{ include.description }}</figcaption>
     </figure>
+{% else %}
+<figure class="figure">
+  <img src="{{ include.url | relative_url }}" alt="{{ include.description }}" class="{{ include.img_classes }}">
+  <figcaption class="notes-figcaption">{{ include.description }}</figcaption>
+</figure>
+{% endif %}
 
 {% comment %}
 <!-- usage will be as follows

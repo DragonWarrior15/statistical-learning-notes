@@ -202,17 +202,17 @@ title: "Exercises"
 
 1.  **Steady State Markov Process**
 
-    Find the steady state probabilites of the following Markov Process [Solution]({{ "/notes/probability/chapters/exercises/a_steadymarkov.html" | relative_url }}){% include image.html url="notes/probability/images/exercises_1.png" img_classes="notes-img exercises_1" %}
+    Find the steady state probabilites of the following Markov Process [Solution]({{ "/notes/probability/chapters/exercises/a_steadymarkov.html" | relative_url }}){% include image.html url="notes/probability/images/exercises_1.png" img_classes="notes-img exercises_1" indent=true %}
 
 
 1.  **Absorption Probabilities**
 
     Calculate the absorption probabilites for state $4$ and expected time to absortion from all states. (for absorption time, assume $p_{35} = 0$ and $p_{32} = 0.5$) [Solution]({{ "/notes/probability/chapters/exercises/a_absorbmarkov.html" | relative_url }})
-    {% include image.html url="notes/probability/images/exercises_2.png" description="" img_classes="notes-img exercises_2" %}
+    {% include image.html url="notes/probability/images/exercises_2.png" description="" img_classes="notes-img exercises_2" indent=true %}
 
 
 1.  **Selecting Courses with Markov Process**
-    {% include image.html url="notes/probability/images/exercises_3.png" description="" img_classes="notes-img exercises_3" %}
+    {% include image.html url="notes/probability/images/exercises_3.png" description="" img_classes="notes-img exercises_3" indent=true %}
 
     Consider the above markov process for changing courses. The probability being in some course tomorrow given a course today is mentioned along the edges. Suppose we start with course 6-1 (Note that course 6 is the combination of courses 6-1, 6-2 and 6-3). Calculate the following
 

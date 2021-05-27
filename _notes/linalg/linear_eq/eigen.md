@@ -103,7 +103,7 @@ Eigenvalues have special properties listed below
 Let $A$ have $n$ independent eigenvectors, and let $S$ denote the matrix whose columns are the $n$ independent eigenvectors. Also, let $\Lambda$ denote the matrix with all entries zeros, except the diagonal whose $n$ values are the corresponding $n$ eigenvalues of $A$. Then,
 \begin{align}
     AS &= S\Lambda \implies S^{-1}AS = S^{-1}S\Lambda = \Lambda\newline
-    \text{or,} \: A &= S \Lambda S^{-1}
+    \text{or,} \quad A &= S \Lambda S^{-1}
 \end{align}
 
 Not all matrices are diagonalizble this way. An important requirement is the presence of $n$ independent eigenvectors. A matrix with shortage of eigenvectors (for instance, one with repeated eigenvalues) may not be diagonalizable (may not be since identity matrix has a single eigenvalue, but is diagonalizable).

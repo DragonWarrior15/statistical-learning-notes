@@ -285,7 +285,7 @@ When implementing this layer, we will remember the index of the input where the 
     X &= \begin{bmatrix} 1 &0 &1\newline 2 &0 &1\newline 0 &1 &0\end{bmatrix}\newline
     Y &= MaxPool2D(X) = \begin{bmatrix} 2 &1\newline 2 &1\end{bmatrix}, \; Y_{max} = \begin{bmatrix} 2,1 &1,3\newline 2,1 &2,3\end{bmatrix}\newline
     \frac{dL}{dX} &= \frac{dL}{dY}\frac{dY}{dX}
-    = \begin{bmatrix}[1.5] 0 &0 &\frac{dL}{dY_{12}}\newline \frac{dL}{dY_{11}} + \frac{dL}{dY_{21}} &0 &\frac{dL}{dY_{22}}\newline 0 &0 &0\end{bmatrix}\end{align}
+    = \begin{bmatrix} 0 &0 &\frac{dL}{dY_{12}}\newline \frac{dL}{dY_{11}} + \frac{dL}{dY_{21}} &0 &\frac{dL}{dY_{22}}\newline 0 &0 &0\end{bmatrix}\end{align}
 
 ## Flatten Layer
 

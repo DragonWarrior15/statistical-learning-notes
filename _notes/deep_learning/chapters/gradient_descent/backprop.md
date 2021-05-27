@@ -31,9 +31,9 @@ i.e., the total gradient will flow through all the common connections. Another e
 Generalizing for vector $x = (x_{1}, x_{2})$, we can write this using the jacobian matrix
 \begin{align}
     \frac{\partial L}{\partial x} &= \frac{\partial L}{\partial y} \frac{\partial y}{\partial x}\newline
-    \frac{\partial L}{\partial x} &= \begin{bmatrix}[1.5]
-        \frac{\partial y_{1}}{\partial x_{1}} &\frac{\partial y_{2}}{\partial x_{1}} &\frac{\partial y_{3}}{\partial x_{1}}\newline
-        \frac{\partial y_{1}}{\partial x_{2}} &\frac{\partial y_{2}}{\partial x_{2}} &\frac{\partial y_{3}}{\partial x_{2}}\newline
+    \frac{\partial L}{\partial x} &= \begin{bmatrix}
+        \partial y_{1}/\partial x_{1} &\partial y_{2}/\partial x_{1} &\partial y_{3}/\partial x_{1}\newline
+        \partial y_{1}/\partial x_{2} &\partial y_{2}/\partial x_{2} &\partial y_{3}/\partial x_{2}\newline
     \end{bmatrix} \bigg(\frac{\partial L}{\partial y_{1}}, \frac{\partial L}{\partial y_{2}}, \frac{\partial L}{\partial y_{3}} \bigg)^{T}\newline
     \text{error at } x &= J^{T} \times \text{error at } y
     \end{align}
