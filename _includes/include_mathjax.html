@@ -1,0 +1,40 @@
+<!-- for mathjax support -->
+{% if page.usemathjax %}
+<script type="text/javascript">
+    MathJax = {
+        loader: {
+            load: ['[tex]/boldsymbol']
+        },
+        tex: {
+            packages: {'[+]': ['base', 'ams', 'configmacros', 'boldsymbol']},
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true,
+            processEnvironments: true,
+            macros: {
+                real: "{\\mathbb R}",
+                comp: "{\\mathbb C}",
+                field: "{\\boldsymbol F}",
+                setv: "{V}",
+                setw: "{W}",
+                setlm: "{\\mathcal L}",
+                matm: "{\\mathcal M}",
+                minimize: "{\\operatorname*\{minimize\}}",
+                maximize:"{\\operatorname*\{maximize\}}",
+                argmin:"{\\operatorname*\{argmin\}}",
+                argmax:"{\\operatorname*\{argmax\}}",
+                KL: ["{\\newcommand*{\\KL}{KL(#1 \\parallel #2)}}", 2] //https://docs.mathjax.org/en/latest/input/tex/macros.html
+                // bold: ["{\\bf #1}", 1]
+            }
+        }, // v3 onwards tex2jax is not needed
+        svg: {
+            fontCache: 'global'
+        }
+    };
+    // window.MathJax = {
+      // loader: {load: ['[tex]/boldsymbol']},
+      // tex: {packages: {'[+]': ['boldsymbol']}}
+    // };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endif %}

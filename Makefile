@@ -27,3 +27,21 @@ install:
 	sudo apt-get install pandoc
 	sudo apt-get install texlive-latex-recommended
 	sudo apt-get install texlive-latex-extra
+
+jekyll_serve:
+	jekyll serve --force-polling --livereload
+
+# sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
+# sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
+# sed 's/$$\\begin{aligned}/\\begin{align}/g' | \
+# sed 's/\\end{aligned}\$\$/\\end{align}/g' |\
+# sed 's/$$\\begin{gathered}/\\begin{align}/g' | \
+# sed 's/\\end{gathered}\$\$/\\end{align}/g' |\
+# sed 's/INSERTLINE/\n/g' |\
+# sed 's/}_/}\\_/g' | sed 's/]_/]\\_/g' | sed 's/)_/)\\_/g' |\
+# sed 's/{\*/{\\\*/g' |\
+# sed 's/\\bm{/\\boldsymbol{/g' |\
+# sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
+# > _notes/time_series/chapters/arima/arma.md
+
+

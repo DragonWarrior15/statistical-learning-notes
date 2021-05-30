@@ -1,0 +1,451 @@
+probability:
+  - name: Probability Theorems
+    link: /notes/probability/chapters/theorems/probability_theorems.html
+    subnav:
+      - name: Iterated Expectation and Variance
+        link: /notes/probability/chapters/theorems/iterated_exp.html
+      - name: Random number of Random Variables
+        link: /notes/probability/chapters/theorems/random_no.html
+      - name: Moment Generating Function
+        link: /notes/probability/chapters/theorems/moment_gen.html
+      - name: Convolutions
+        link: /notes/probability/chapters/theorems/convolution.html
+  - name: Probability Distributions
+    link:
+    subnav:
+      - name: Continuous Uniform Random Variable
+        link: /notes/probability/chapters/distributions/uniform_distribution.html
+      - name: Bernoulli and Binomial Random Variable
+        link: /notes/probability/chapters/distributions/binomial.html
+      - name: Geometric Distribution
+        link: /notes/probability/chapters/distributions/geometric.html
+      - name: Negative Binomial Distribution
+        link: /notes/probability/chapters/distributions/negative_binomial.html
+      - name: Bernoulli Process
+        link: /notes/probability/chapters/distributions/bernoulli_process.html
+      - name: Exponential Distribution
+        link: /notes/probability/chapters/distributions/exponential_distribution.html
+      - name: Poisson
+        link: /notes/probability/chapters/distributions/poisson.html
+      - name: Gamma Distribution
+        link: /notes/probability/chapters/distributions/gamma.html
+      - name: Beta Distribution
+        link: /notes/probability/chapters/distributions/beta_distribution.html
+      - name: Dirichlet Distribution
+        link: /notes/probability/chapters/distributions/dirichlet_distribution.html
+      - name: Normal Distribution
+        link: /notes/probability/chapters/distributions/normal_distribution.html
+      - name: Chi-Square Distribution
+        link: /notes/probability/chapters/distributions/chi_square.html
+      - name: t-Distribution
+        link: /notes/probability/chapters/distributions/t_dist.html
+      - name: F-Distribution
+        link: /notes/probability/chapters/distributions/f_dist.html
+      - name: Logistics Distribution
+        link: /notes/probability/chapters/distributions/logistic_dist.html
+      - name: Renewal Process
+        link: /notes/probability/chapters/distributions/renewal_process.html
+      - name: Counting Process
+        link: /notes/probability/chapters/distributions/counting_process.html
+  - name: Markov Process
+    link: /notes/probability/chapters/markov_process/intro.html
+    subnav:
+      - name: Recurring and Transient States
+        link: /notes/probability/chapters/markov_process/states.html
+      - name: Steady State Probabilities
+        link: /notes/probability/chapters/markov_process/steady_state.html
+      - name: Birth Death Process
+        link: /notes/probability/chapters/markov_process/birth_death.html
+      - name: Absorption Probabilities
+        link: /notes/probability/chapters/markov_process/absorption.html
+  - name: Limit Theorems
+    link: /notes/probability/chapters/limit_theorems/intro.html
+    subnav:
+      - name: Markov Inequality
+        link: /notes/probability/chapters/limit_theorems/markov_inequality.html
+      - name: Chebychev Inequality
+        link: /notes/probability/chapters/limit_theorems/chebychev_inequality.html
+      - name: Weak Law of Large Numbers
+        link: /notes/probability/chapters/limit_theorems/wlln.html
+      - name: Convergence in Probability
+        link: /notes/probability/chapters/limit_theorems/convergence.html
+      - name: Central Limit Theorem
+        link: /notes/probability/chapters/limit_theorems/clt.html
+      - name: Strong Law of Large Numbers
+        link: /notes/probability/chapters/limit_theorems/slln.html
+  - name: Distribution of Sample Mean and Variance
+    link: /notes/probability/chapters/sample_mean_var/intro.html
+    subnav:
+      - name: Sample Mean
+        link: /notes/probability/chapters/sample_mean_var/sample_mean.html
+      - name: Sample Variance
+        link: /notes/probability/chapters/sample_mean_var/sample_var.html
+      - name: Distributions for a Normal Population
+        link: /notes/probability/chapters/sample_mean_var/normal.html
+  - name: Parameter Estimation
+    link: /notes/probability/chapters/parameter_estimation/intro.html
+    subnav:
+      - name: Maximum Likelihood Estimator
+        link: /notes/probability/chapters/parameter_estimation/mle.html
+      - name: Method of Moments Estimate
+        link: /notes/probability/chapters/parameter_estimation/mme.html
+      - name: Interval Estimates
+        link: /notes/probability/chapters/parameter_estimation/interval_estimates.html
+      - name: Evaluating an Estimator
+        link: /notes/probability/chapters/parameter_estimation/evaluation.html
+      - name: Bayes Estimator
+        link: /notes/probability/chapters/parameter_estimation/bayes.html
+  - name: Bayesian Inference
+    link: /notes/probability/chapters/bayesian_inference/intro.html
+  - name: Hypothesis Testing
+    link: /notes/probability/chapters/hypothesis_testing/intro.html
+    subnav:
+      - name: Test around Mean of Normal Population
+        link: /notes/probability/chapters/hypothesis_testing/mean_normal.html
+      - name: Testing Equality of Means of Two Normal Populations
+        link: /notes/probability/chapters/hypothesis_testing/equality_means_normals.html
+      - name: Tests around Variance of Normal Population
+        link: /notes/probability/chapters/hypothesis_testing/variance_normal.html
+      - name: Tests around Bernoulli Population
+        link: /notes/probability/chapters/hypothesis_testing/bernoulli.html
+  - name: Linear Regression
+    link: /notes/probability/chapters/linear_regression/intro.html
+    subnav:
+      - name: Mean and Variance of Coefficients
+        link: /notes/probability/chapters/linear_regression/mean_var_coeffs.html
+      - name: Distribution of Residual
+        link: /notes/probability/chapters/linear_regression/distribution_residuals.html
+      - name: Inferences Concerning Coefficients
+        link: /notes/probability/chapters/linear_regression/inference_coeffs.html
+      - name: Inferences Concerning Mean Response
+        link: /notes/probability/chapters/linear_regression/inference_mean_response.html
+      - name: Inferences Concerning Future Response
+        link: /notes/probability/chapters/linear_regression/inference_future_response.html
+      - name: Coefficient of Determination
+        link: /notes/probability/chapters/linear_regression/r2.html
+      - name: Weighted Least Squares
+        link: /notes/probability/chapters/linear_regression/wls.html
+  - name: Life Testing
+    link: /notes/probability/chapters/life_testing/intro.html
+  - name: Generating Random Numbers
+    link:
+    subnav:
+      - name: Random Numbers
+        link: /notes/probability/chapters/simulation/random_nos.html
+      - name: Generating Discrete Random Variables
+        link: /notes/probability/chapters/simulation/discrete_random_nos.html
+      - name: Generating Continuous Random Variables
+        link: /notes/probability/chapters/simulation/continuous_random_nos.html
+  - name: Exercises
+    link: /notes/probability/chapters/exercises/problems.html
+
+linalg:
+  - name: Complex Field
+    link: /notes/linalg/vector_spaces/complex.html
+    subnav:
+      - name: Lists
+        link: /notes/linalg/vector_spaces/vs_list.html
+      - name: Fields
+        link: /notes/linalg/vector_spaces/fields.html
+      - name: Vector Spaces
+        link: /notes/linalg/vector_spaces/vector_space.html
+      - name: Product and Quotient of Vector Spaces
+        link: /notes/linalg/vector_spaces/prod_quo.html
+      - name: Subspace
+        link: /notes/linalg/vector_spaces/subspace.html
+      - name: Finite Dimensional Vector Spaces
+        link: /notes/linalg/vector_spaces/finite_dim.html
+      - name: Orthogonal and Orthonormal Vectors
+        link: /notes/linalg/vector_spaces/orthogonal.html
+  - name: Linear Maps
+    link: /notes/linalg/linear_maps/linear_maps.html
+    subnav:
+    - name: Matrix
+      link: /notes/linalg/linear_maps/matrix.html
+  - name: Linear Equations
+    link: /notes/linalg/linear_eq/elimination.html
+    subnav:
+    - name: Eigenvectors and Eigenvalues
+      link: /notes/linalg/linear_eq/eigen.html
+  - name: Exercises
+    link: /notes/linalg/exercises/problems.html
+
+time_series:
+  - name: Characteristics of Time Series
+    link: /notes/time_series/chapters/characteristics/characteristics.html
+    subnav:
+    - name: Time Series Formulations
+      link: /notes/time_series/chapters/characteristics/formulations.html
+    - name: Measures of Dependence
+      link: /notes/time_series/chapters/characteristics/measures.html
+    - name: Exercises
+      link: /notes/time_series/chapters/characteristics/exercises.html
+  - name: ARIMA
+    link: /notes/time_series/chapters/arima/backward_shift.html
+    subnav:
+    - name: Smoothing in Time Series
+      link: /notes/time_series/chapters/arima/smoothing.html
+    - name: Autoregressive Models (AR)
+      link: /notes/time_series/chapters/arima/ar.html
+    - name: Moving Average Models (MA)
+      link: /notes/time_series/chapters/arima/ma.html
+    - name: ARMA(p,q) Process
+      link: /notes/time_series/chapters/arima/arma.html
+    - name: ARIMA(p,d,q) Process Process
+      link: /notes/time_series/chapters/arima/arima.html
+    - name: Walkthrough Example
+      link: /notes/time_series/chapters/arima/example.html
+  - name: Simple Exponential Smoothing - Introduction
+    link: /notes/time_series/chapters/ses/ses.html
+    subnav:
+    - name: Simple Exponential Smoothing
+      link: /notes/time_series/chapters/ses/simple_exp_smoothing.html
+    - name: Exponential Smoothing with Trend
+      link: /notes/time_series/chapters/ses/exp_smoothing_trend.html
+    - name: Exponential Smoothing with Trend and Seasonality
+      link: /notes/time_series/chapters/ses/exp_smoothing_season.html
+  - name: Codes
+    link:
+    subnav:
+    - name: PACF Simulation
+      link: /notes/time_series/codes/pacf_simulation.html
+    - name: ACF Simulation
+      link: /notes/time_series/codes/acf_simulation.html
+    - name: ARIMA Simulation
+      link: /notes/time_series/codes/arima_simulation.html
+    - name: SARMA Simulation
+      link: /notes/time_series/codes/sarma_simulation.html
+    - name: SARMA Simulation - 1
+      link: /notes/time_series/codes/sarma_simulation_1.html
+    - name: Time Series Walkthrough Code
+      link: /notes/time_series/codes/time_series_python.html
+    - name: SES Example
+      link: /notes/time_series/codes/ses.html
+    - name: SES Trend
+      link: /notes/time_series/codes/ses_trend.html
+    - name: SES Seasonal
+      link: /notes/time_series/codes/ses_season.html
+
+deep_learning:
+  - name: Gradient Descent
+    link: /notes/deep_learning/chapters/gradient_descent/gradient_descent.html
+    subnav:
+      - name: Matrix Calculus
+        link: /notes/deep_learning/chapters/gradient_descent/matrix_calculus.html
+      - name: Backpropagation
+        link: /notes/deep_learning/chapters/gradient_descent/backprop.html
+      - name: Gradients for Common Activation Functions
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_activation.html
+      - name: Gradients for Common Loss Functions
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_loss.html
+      - name: Gradients for Common Layers
+        link: /notes/deep_learning/chapters/gradient_descent/gradient_layers.html
+      - name: Backpropagation Example
+        link: /notes/deep_learning/chapters/gradient_descent/backprop_example_1.html
+      - name: Optimizers
+        link: /notes/deep_learning/chapters/gradient_descent/optimizers.html
+  - name: Weights Initialization
+    link: /notes/deep_learning/chapters/weight_initialization/gradient_explosion.html
+    subnav:
+      - name: Correct Initialization
+        link: /notes/deep_learning/chapters/weight_initialization/correct_init.html
+  - name: Recurrent Layers
+    link: /notes/deep_learning/chapters/recurrent_layers/rnn.html
+    subnav:
+      - name: Backpropagation Through Time (BPTT)
+        link: /notes/deep_learning/chapters/recurrent_layers/bptt.html
+      - name: Exploding and Vanishing Gradient
+        link: /notes/deep_learning/chapters/recurrent_layers/rnn_grad_problems.html
+      - name: Gated Recurrent Unit (GRU)
+        link: /notes/deep_learning/chapters/recurrent_layers/gru.html
+      - name: Long Short Term Memory (LSTM)
+        link: /notes/deep_learning/chapters/recurrent_layers/lstm.html
+  - name: Codes
+    link:
+    subnav:
+    - name: Backprop Example
+      link: /notes/deep_learning/codes/backprop_example_1.html
+    - name: Exponentially MA Example
+      link: /notes/deep_learning/codes/exp_ma.html
+    - name: BPTT Example
+      link: /notes/deep_learning/codes/bptt_example_1.html
+
+machine_learning:
+  - name: Linear Regression
+    link: /notes/machine_learning/chapters/regression/intro.html
+    subnav:
+      - name: Simple Linear Regression
+        link: /notes/machine_learning/chapters/regression/simple.html
+      - name: Multiple Linear Regression
+        link: /notes/machine_learning/chapters/regression/multiple.html
+      - name: Problems when using Linear Regression
+        link: /notes/machine_learning/chapters/regression/problems.html
+  - name: Classification
+    link: /notes/machine_learning/chapters/classification/intro.html
+    subnav:
+      - name: Logistic Regression
+        link: /notes/machine_learning/chapters/classification/logistic.html
+      - name: Linear Discriminant Analysis (LDA)
+        link: /notes/machine_learning/chapters/classification/lda.html
+      - name: Naive Bayes Classifier
+        link: /notes/machine_learning/chapters/classification/naive_bayes.html
+      - name: Comparison of Classifiers
+        link: /notes/machine_learning/chapters/classification/comparison.html
+      - name: Classfication Metrics
+        link: /notes/machine_learning/chapters/classification/metrics.html
+  - name: Linear Model Selection and Regularization
+    link: /notes/machine_learning/chapters/linear_model_selection_regularization/intro.html
+    subnav:
+      - name: Subset Selection
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/subset.html
+      - name: Evaluation Metrics
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/evaluation.html
+      - name: Shrinkage Methods and Regularization
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/shrinkage.html
+      - name: Dimension Reduction Methods
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/dimension.html
+      - name: Curse of Dimensionality
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/curse.html
+      - name: Exercises
+        link: /notes/machine_learning/chapters/linear_model_selection_regularization/exercises.html
+  - name: Moving Beyond Linearity
+    link: /notes/machine_learning/chapters/moving_beyond_linearity/intro.html
+    subnav:
+      - name: Polynomial Regression
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/polynomial_regression.html
+      - name: Step Function
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/step_function.html
+      - name: Basis Function
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/basis_function.html
+      - name: Regression Splines (Polynomials)
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/regression_splines.html
+      - name: Smoothing Splines
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/smoothing_splines.html
+      - name: Local Regression
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/local_regression.html
+      - name: Generalized Additive Models
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/gam.html
+      - name: Exercises
+        link: /notes/machine_learning/chapters/moving_beyond_linearity/exercises.html
+  - name: Resampling Methods
+    link: /notes/machine_learning/chapters/resampling_methods/resampling_methods.html
+    subnav:
+      - name: Cross Validation
+        link: /notes/machine_learning/chapters/resampling_methods/cv.html
+      - name: Bootstrap
+        link: /notes/machine_learning/chapters/resampling_methods/bootstrap.html
+  - name: Tree Based Models
+    link: /notes/machine_learning/chapters/tree_models/intro.html
+    subnav:
+      - name: Regression Trees
+        link: /notes/machine_learning/chapters/tree_models/regression.html
+      - name: Classification Trees
+        link: /notes/machine_learning/chapters/tree_models/classification.html
+      - name: Patient Rule Induction Method (PRIM)
+        link: /notes/machine_learning/chapters/tree_models/prim.html
+      - name: Bagging
+        link: /notes/machine_learning/chapters/tree_models/bagging.html
+      - name: Random Forest
+        link: /notes/machine_learning/chapters/tree_models/random_forest.html
+      - name: Boosting
+        link: /notes/machine_learning/chapters/tree_models/boosting.html
+      - name: Adaboost.M1
+        link: /notes/machine_learning/chapters/tree_models/adaboost.html
+      - name: Boosting Trees
+        link: /notes/machine_learning/chapters/tree_models/boosting_trees.html
+      - name: XGBoost
+        link: /notes/machine_learning/chapters/tree_models/xgboost.html
+  - name: Support Vector Machines (SVM)
+    link: /notes/machine_learning/chapters/svm/svm_intro.html
+    subnav:
+      - name: Maximum Margin Classifier
+        link: /notes/machine_learning/chapters/svm/mmc.html
+      - name: Support Vector Classifier
+        link: /notes/machine_learning/chapters/svm/svc.html
+      - name: Support Vector Machine
+        link: /notes/machine_learning/chapters/svm/svm.html
+  - name: Bayesian Methods
+    link: /notes/machine_learning/chapters/bayesian_methods/bayesian_methods.html
+    subnav:
+      - name: Maximum Likelihood Estimator (MLE)
+        link: /notes/machine_learning/chapters/bayesian_methods/mle.html
+      - name: Maximum A Priori (MAP)
+        link: /notes/machine_learning/chapters/bayesian_methods/map.html
+      - name: Expectation Maximization
+        link: /notes/machine_learning/chapters/bayesian_methods/em.html
+      - name: Variational Inference
+        link: /notes/machine_learning/chapters/bayesian_methods/variational_inference.html
+      - name: Comparison of Different Inference Methods
+        link: /notes/machine_learning/chapters/bayesian_methods/comparison.html
+      - name: Latent Dirichlet Allocation (LDA)
+        link: /notes/machine_learning/chapters/bayesian_methods/lda.html
+      - name: Sampling from Distributions
+        link: /notes/machine_learning/chapters/bayesian_methods/probabilistic_sampling.html
+      - name: Gaussian Process (GP)
+        link: /notes/machine_learning/chapters/bayesian_methods/gaussian_process.html
+      - name: Bayesian Optimization
+        link: /notes/machine_learning/chapters/bayesian_methods/bayesian_optimization.html
+  - name: Clustering
+    link: /notes/machine_learning/chapters/clustering/intro.html
+    subnav:
+      - name: Distances and Dissimilarity Measures
+        link: /notes/machine_learning/chapters/clustering/measures.html
+      - name: K-Means Clustering
+        link: /notes/machine_learning/chapters/clustering/kmeans.html
+      - name: K-Mediods Clustering
+        link: /notes/machine_learning/chapters/clustering/kmedioids.html
+      - name: Hierarchical Clustering
+        link: /notes/machine_learning/chapters/clustering/hierarchical.html
+      - name: Gaussian Mixture Models (GMM)
+        link: /notes/machine_learning/chapters/clustering/gmm.html
+      - name: Key Considerations while Clustering
+        link: /notes/machine_learning/chapters/clustering/considerations.html
+  - name: Appendix
+    link:
+    subnav:
+      - name: Bias-Variance Tradeoff
+        link: /notes/machine_learning/chapters/appendix/bias_variance.html
+      - name: Matrix Calculus in Logistic Regression
+        link: /notes/machine_learning/chapters/appendix/matrix_logistic_reg.html
+      - name: Comparison of Classifiers
+        link: /notes/machine_learning/chapters/appendix/comparison_classifiers.html
+      - name: Perpendicular distance in Maximum Margin Classifier
+        link: /notes/machine_learning/chapters/appendix/perp_mmc.html
+      - name: Lagrange Multiplier, Primal and Dual
+        link: /notes/machine_learning/chapters/appendix/lagrangian.html
+  - name: Codes
+    link:
+    subnav:
+    - name: Predictions using Gaussian Process
+      link: /notes/machine_learning/codes/gaussian_process_prediction.html
+
+prog_lang:
+  - name: SQL
+    link: /notes/programming_languages/sql/sql.html
+    subnav:
+      - name: Exercises Part 1
+        link: /notes/programming_languages/sql/exercises_01.html
+      - name: Exercises Part 2
+        link: /notes/programming_languages/sql/exercises_02.html
+      - name: Exercises Part 3
+        link: /notes/programming_languages/sql/exercises_03.html
+  - name: C
+    link: /notes/programming_languages/c/c.html
+  - name: C++
+    link: /notes/programming_languages/cpp/cpp.html
+    subnav:
+      - name: Exercises 01
+        link: /notes/programming_languages/cpp/cpp_exercises_01.html
+      - name: Exercises 02
+        link: /notes/programming_languages/cpp/cpp_exercises_02.html
+      - name: Exercises 03
+        link: /notes/programming_languages/cpp/cpp_exercises_03.html
+  - name: Data Structures and Algorithms
+    link: /notes/programming_languages/dsa/ds.html
+
+differential_equations:
+  - name: Differential Equations
+    link: /notes/differential_equations/intro.html
+    subnav:
+      - name: Special Solutions
+        link: /notes/differential_equations/special_solutions.html

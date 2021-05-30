@@ -1,0 +1,77 @@
+url: "https://dragonwarrior15.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/statistical-learning-notes" # the subpath of your site, e.g. /blog
+title: "Statistical Learning Notes" # the name of your site, e.g. ACME Corp.
+
+# ignore some folders
+exclude: ['md_files', 'tex_files', 'Makefile', 'README.md']
+
+# collection
+collections:
+  notes:
+    output: true
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+      usemathjax: true
+  -
+    scope:
+      path: "_notes/linalg"
+    values:
+      topic: "Linear Algebra"
+      page_nav: "linalg" # quotes are needed for correct parsing
+      bgcolor: bg-primary
+  -
+    scope:
+      path: "_notes/time_series"
+    values:
+      topic: "Time Series"
+      page_nav: "time_series"
+      bgcolor: bg-success
+  -
+    scope:
+      path: "_notes/deep_learning"
+    values:
+      topic: "Deep Learning"
+      page_nav: "deep_learning"
+      bgcolor: bg-danger
+
+  -
+    scope:
+      path: "_notes/machine_learning"
+    values:
+      topic: "Machine Learning"
+      page_nav: "machine_learning"
+      bgcolor: bg-info
+
+  -
+    scope:
+      path: "_notes/probability"
+    values:
+      topic: "Probability"
+      page_nav: "probability"
+      bgcolor: bg-probability
+
+  -
+    scope:
+      path: "_notes/programming_languages"
+    values:
+      topic: "Programming Languages"
+      page_nav: "prog_lang"
+      bgcolor: bg-prog-lang
+      usemathjax: false
+
+  -
+    scope:
+      path: "_notes/differential_equations"
+    values:
+      topic: "Differential Equations"
+      page_nav: "differential_equations"
+      bgcolor: bg-differential-equations

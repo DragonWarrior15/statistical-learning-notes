@@ -1,0 +1,88 @@
+$backgroundColor: #ffffff;
+$bodyColor: #000000;
+$bodyFont: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+body {
+  background: $backgroundColor;
+  color: $bodyColor;
+  font-family: $bodyFont;
+}
+
+// this must be added for automatic scroll bar in mobile
+.MathJax {
+    padding:0.25em;
+    overflow-x:auto;
+    overflow-y: hidden;
+}
+
+// reduce the width of any images in the notes
+.notes-img {
+  width: 70%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exercises_1 {
+  width: 20%
+}
+
+.exercises_2 {
+  width: 30%
+}
+
+.exercises_3 {
+  width: 40%
+}
+
+.backprop_1 {
+  width: 30%;
+}
+
+.t_1, .gamma_1 {
+  width: 40%;
+}
+
+.markov_1 {
+  width: 20%;
+}
+
+.notes-figcaption {
+    text-align: center;
+}
+
+.bg-probability {
+    background-color: #437ee6;
+}
+
+.bg-prog-lang {
+    background-color: #50c878;
+}
+
+.bg-differential-equations {
+    background-color: #c850a0;
+}
+
+// for styling tables
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
