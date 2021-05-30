@@ -418,3 +418,27 @@ machine_learning:
     subnav:
     - name: Predictions using Gaussian Process
       link: /notes/machine_learning/codes/gaussian_process_prediction.html
+
+prog_lang:
+  - name: SQL
+    link: /notes/programming_languages/sql/sql.html
+    subnav:
+      - name: Exercises Part 1
+        link: /notes/programming_languages/sql/exercises_01.html
+      - name: Exercises Part 2
+        link: /notes/programming_languages/sql/exercises_02.html
+      - name: Exercises Part 3
+        link: /notes/programming_languages/sql/exercises_03.html
+  - name: C
+    link: /notes/programming_languages/c/c.html
+  - name: C++
+    link: /notes/programming_languages/cpp/cpp.html
+    subnav:
+      - name: Exercises 01
+        link: /notes/programming_languages/cpp/cpp_exercises_01.html
+      - name: Exercises 02
+        link: /notes/programming_languages/cpp/cpp_exercises_02.html
+      - name: Exercises 03
+        link: /notes/programming_languages/cpp/cpp_exercises_03.html
+  - name: Data Structures and Algorithms
+    link: /notes/programming_languages/dsa/ds.html

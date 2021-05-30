@@ -30,3 +30,11 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
             E = mc^{2}
         \end{align}
     ```
+
+## Codes in markdown+jekyll
+* To use double curly braces inside a code block, enclose it inside the raw tag
+    ```html
+    {% raw %}
+    This is a code with double curly braces {{ user.name | uppercase }}
+    {% endraw %}
+    ```

@@ -58,3 +58,12 @@ defaults:
       topic: "Probability"
       page_nav: "probability"
       bgcolor: bg-probability
+
+  -
+    scope:
+      path: "_notes/programming_languages"
+    values:
+      topic: "Programming Languages"
+      page_nav: "prog_lang"
+      bgcolor: bg-prog-lang
+      usemathjax: false
