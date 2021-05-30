@@ -442,3 +442,10 @@ prog_lang:
         link: /notes/programming_languages/cpp/cpp_exercises_03.html
   - name: Data Structures and Algorithms
     link: /notes/programming_languages/dsa/ds.html
+
+differential_equations:
+  - name: Differential Equations
+    link: /notes/differential_equations/intro.html
+    subnav:
+      - name: Special Solutions
+        link: /notes/differential_equations/special_solutions.html

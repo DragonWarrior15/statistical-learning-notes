@@ -67,3 +67,11 @@ defaults:
       page_nav: "prog_lang"
       bgcolor: bg-prog-lang
       usemathjax: false
+
+  -
+    scope:
+      path: "_notes/differential_equations"
+    values:
+      topic: "Differential Equations"
+      page_nav: "differential_equations"
+      bgcolor: bg-differential-equations
