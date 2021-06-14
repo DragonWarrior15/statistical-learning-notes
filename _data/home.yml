@@ -1,0 +1,28 @@
+- navigation_header: probability
+  bg_color: bg-probability
+  card_title: Probability
+  card_text: Probability Theorems, Distributions and Markov Chains.
+- navigation_header: linalg
+  bg_color: bg-primary
+  card_title: Linear Algebra
+  card_text: Vector Spaces, Linear Maps and Matrices.
+- navigation_header: time_series
+  bg_color: bg-success
+  card_title: Time Series
+  card_text: Time Series Equations, ARIMA and SES.
+- navigation_header: deep_learning
+  bg_color: bg-danger
+  card_title: Introduction to Deep Learning
+  card_text: Gradient Descent, Derivatives and Numpy Implementations.
+- navigation_header: machine_learning
+  bg_color: bg-info
+  card_title: Machine Learning
+  card_text: Classical Models, Bayesian Methods.
+- navigation_header: prog_lang
+  bg_color: bg-prog-lang
+  card_title: Programming Languages
+  card_text: C, C++, SQL.
+- navigation_header: differential_equations
+  bg_color: bg-differential-equations
+  card_title: Differential Equations
+  card_text: Special Solutions. (Incomplete)
