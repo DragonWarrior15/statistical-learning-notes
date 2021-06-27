@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="shortcut icon" type="image/jpg" href="{{ '/assets/images/favicon.png' | relative_url }}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -12,14 +13,14 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
-    <nav class="{{ 'navbar navbar-dark flex-column flex-sm-row ' | append: page.bgcolor}} " style="padding-bottom: 0.15em; padding-top: 0.15em">
+    <nav class="{{ 'navbar navbar-dark flex-column flex-sm-row ' | append: page.bgcolor}} " style="padding-bottom: 0.15em; padding-top: 0.15em;" id="default_header">
       <span class="navbar-toggler-icon" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation"></span>
       <h5 class='center text-white'>{{ page.topic }} - {{ page.title }}</h5>
         <a class="text-white" href="{{ 'index.html' | relative_url }}"><h5>Home</h5></a>
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 px-1 collapse show bg-light" id="sidebar">
+            <div class="col-3 px-1 show bg-light" id="sidebar">
             <nav class="nav flex-column">
                 <!-- need to define the nav variable outside as usage
                     of square brackets inside the % include does not work -->
@@ -29,10 +30,12 @@
                 {% include nav.html nav=curr_nav %}
             </nav>
             </div>
-            <div class="col">{{ content }}</div>
+            <div class="col" id="default_content">{{ content }}</div>
         </div>
     </div>
+    <div id="default_footer">
     {% include default_footer.html %}
+    </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -42,5 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <!-- Math Jax scripts -->
     {% include include_mathjax.html %}
+    <!-- js for adjusting height of visible space -->
+    <script type="text/javascript" src="{{ '/assets/js/default_layout.js' | relative_url }}"></script>
 </body>
 </html>

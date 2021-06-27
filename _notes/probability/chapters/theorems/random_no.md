@@ -15,5 +15,3 @@ Let $X_{i}$ be independent identically distributed Random Variables and let $Y =
             &= E[NVar(X)] + Var(NE[X])\newline
             &= E[N]Var(X) + E[X]^{2}Var(N)
     \end{align}
-
-# Exercises
