@@ -449,3 +449,10 @@ differential_equations:
     subnav:
       - name: Special Solutions
         link: /notes/differential_equations/special_solutions.html
+
+linux:
+  - name: Linux
+    link: /notes/linux/intro.html
+    subnav:
+      - name: find
+        link: /notes/linux/find.html

@@ -70,6 +70,15 @@ defaults:
 
   -
     scope:
+      path: "_notes/linux"
+    values:
+      topic: "Linux"
+      page_nav: "linux"
+      bgcolor: bg-linux
+      usemathjax: false
+
+  -
+    scope:
       path: "_notes/differential_equations"
     values:
       topic: "Differential Equations"
