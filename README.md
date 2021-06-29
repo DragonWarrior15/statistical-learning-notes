@@ -1,4 +1,4 @@
-# statistical-learning-notes
+# Notes
 Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](https://DragonWarrior15.github.io/statistical-learning-notes/)
 
 ## Building Locally
