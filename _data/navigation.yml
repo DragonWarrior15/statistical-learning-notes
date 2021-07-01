@@ -456,3 +456,7 @@ linux:
     subnav:
       - name: find
         link: /notes/linux/find.html
+      - name: grep
+        link: /notes/linux/grep.html
+      - name: curl
+        link: /notes/linux/curl.html
