@@ -454,6 +454,8 @@ linux:
   - name: Linux
     link: /notes/linux/intro.html
     subnav:
+      - name: regex
+        link: /notes/linux/regex.html
       - name: find
         link: /notes/linux/find.html
       - name: grep
