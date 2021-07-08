@@ -462,3 +462,5 @@ linux:
         link: /notes/linux/grep.html
       - name: curl
         link: /notes/linux/curl.html
+      - name: sed
+        link: /notes/linux/sed.html
