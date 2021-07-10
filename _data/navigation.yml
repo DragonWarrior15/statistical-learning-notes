@@ -451,16 +451,13 @@ differential_equations:
         link: /notes/differential_equations/special_solutions.html
 
 linux:
-  - name: Linux
-    link: /notes/linux/intro.html
-    subnav:
-      - name: regex
-        link: /notes/linux/regex.html
-      - name: find
-        link: /notes/linux/find.html
-      - name: grep
-        link: /notes/linux/grep.html
-      - name: curl
-        link: /notes/linux/curl.html
-      - name: sed
-        link: /notes/linux/sed.html
+    - name: regex
+      link: /notes/linux/regex.html
+    - name: find
+      link: /notes/linux/find.html
+    - name: grep
+      link: /notes/linux/grep.html
+    - name: curl
+      link: /notes/linux/curl.html
+    - name: sed
+      link: /notes/linux/sed.html
