@@ -26,3 +26,7 @@
   bg_color: bg-differential-equations
   card_title: Differential Equations
   card_text: Special Solutions. (Incomplete)
+- navigation_header: maths_misc
+  bg_color: bg-maths-misc
+  card_title: Maths Miscellaneous
+  card_text: Miscellaneous Maths Questions and Puzzles.

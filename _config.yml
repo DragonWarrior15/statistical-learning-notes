@@ -75,3 +75,11 @@ defaults:
       topic: "Differential Equations"
       page_nav: "differential_equations"
       bgcolor: bg-differential-equations
+
+  -
+    scope:
+      path: "_notes/maths_misc"
+    values:
+      topic: "Maths Miscellaneous"
+      page_nav: "maths_misc"
+      bgcolor: bg-maths-misc

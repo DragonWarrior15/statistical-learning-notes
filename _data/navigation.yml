@@ -449,3 +449,7 @@ differential_equations:
     subnav:
       - name: Special Solutions
         link: /notes/differential_equations/special_solutions.html
+
+maths_misc:
+  - name: Exponent and Base Reversed
+    link: /notes/maths_misc/exp_base_reversed.html
