@@ -22,8 +22,9 @@
                 maximize:"{\\operatorname*\{maximize\}}",
                 argmin:"{\\operatorname*\{argmin\}}",
                 argmax:"{\\operatorname*\{argmax\}}",
-                KL: ["{\\newcommand*{\\KL}{KL(#1 \\parallel #2)}}", 2] //https://docs.mathjax.org/en/latest/input/tex/macros.html
+                KL: ["{\\newcommand*{\\KL}{KL(#1 \\parallel #2)}}", 2], //https://docs.mathjax.org/en/latest/input/tex/macros.html
                 // bold: ["{\\bf #1}", 1]
+                detm: ["{\\newcommand*{\\detm}{\\lvert #1 \\rvert}}", 1] //usage: \detm{arg}
             }
         }, // v3 onwards tex2jax is not needed
         svg: {

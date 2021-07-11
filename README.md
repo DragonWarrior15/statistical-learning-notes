@@ -41,3 +41,9 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     This is a code with double curly braces {{ user.name | uppercase }}
     {% endraw %}
     ```
+### Common problem in WSL
+**In case you are running WSL and unable to connect to the server**
+* Close the ubuntu window
+* Open cmd and type `wsl --shutdown`
+* Restart cmd and type `wsl`
+* Now try running the commands

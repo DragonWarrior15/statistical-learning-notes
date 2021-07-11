@@ -162,6 +162,12 @@ linalg:
     subnav:
     - name: Matrix
       link: /notes/linalg/linear_maps/matrix.html
+    - name: Determinant
+      link: /notes/linalg/linear_maps/det.html
+    - name: Special Matrices
+      link: /notes/linalg/linear_maps/special_matrices.html
+    - name: Algebraic Properties of Matrices
+      link: /notes/linalg/linear_maps/algebraic_properties.html
   - name: Linear Equations
     link: /notes/linalg/linear_eq/elimination.html
     subnav:

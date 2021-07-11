@@ -110,7 +110,7 @@ Not all matrices are diagonalizble this way. An important requirement is the pre
 
 The matrix of eigenvectors $S$ need not be unique. Any scalar multiple of an eigenvector is also an eigenvector. Only the matrix containing the eigenvectors can produce the diagonal matrix $\Lambda$.
 
-\textbf{Eigenvectors from distinct eigenvalues are automatically independent}. Consider any two distinct eigenvalues $\lambda_{1}$, $\lambda_{2}$ and the corresponding eigenvectors $x_{1}$, $x_{2}$. To show independence, consider the solution to
+**Eigenvectors from distinct eigenvalues are automatically independent**. Consider any two distinct eigenvalues $\lambda_{1}$, $\lambda_{2}$ and the corresponding eigenvectors $x_{1}$, $x_{2}$. To show independence, consider the solution to
 \begin{align}
     c_{1}x_{1} + c_{2}x_{2} &= 0\newline
     \implies Ac_{1}x_{1} + Ac_{2}x_{2} &= 0\newline
