@@ -459,3 +459,5 @@ differential_equations:
 maths_misc:
   - name: Exponent and Base Reversed
     link: /notes/maths_misc/exp_base_reversed.html
+  - name: Definite Integral
+    link: /notes/maths_misc/definite_integral.html
