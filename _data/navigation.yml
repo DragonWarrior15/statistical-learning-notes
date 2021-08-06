@@ -452,9 +452,8 @@ prog_lang:
 differential_equations:
   - name: Differential Equations
     link: /notes/differential_equations/intro.html
-    subnav:
-      - name: Special Solutions
-        link: /notes/differential_equations/special_solutions.html
+  - name: Special Solutions to First Order ODE
+    link: /notes/differential_equations/special_solutions.html
 
 maths_misc:
   - name: Exponent and Base Reversed
