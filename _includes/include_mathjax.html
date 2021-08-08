@@ -24,7 +24,10 @@
                 argmax:"{\\operatorname*\{argmax\}}",
                 KL: ["{\\newcommand*{\\KL}{KL(#1 \\parallel #2)}}", 2], //https://docs.mathjax.org/en/latest/input/tex/macros.html
                 // bold: ["{\\bf #1}", 1]
-                detm: ["{\\newcommand*{\\detm}{\\lvert #1 \\rvert}}", 1] //usage: \detm{arg}
+                detm: ["{\\newcommand*{\\detm}{\\left\\lvert #1 \\right\\rvert}}", 1], //usage: \detm{arg}
+                roundbr: ["{\\newcommand*{\\roundbr}{\\left( #1 \\right)}}", 1], //usage: \roundbr{arg}, puts round brackets
+                diffone: ["{\\newcommand*{\\diffone}{#1^{\\prime}}}", 1], //usage: \diffone{arg}, use for first derivative
+                difftwo: ["{\\newcommand*{\\difftwo}{#1^{\\prime\\prime}}}", 1] //usage: \difftwo{arg}, use for double derivative
             }
         }, // v3 onwards tex2jax is not needed
         svg: {

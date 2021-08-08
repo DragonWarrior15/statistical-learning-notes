@@ -454,6 +454,10 @@ differential_equations:
     link: /notes/differential_equations/intro.html
   - name: Special Solutions to First Order ODE
     link: /notes/differential_equations/special_solutions.html
+  - name: Second Order Linear ODE
+    link: /notes/differential_equations/order_two_linear.html
+  - name: Exercises
+    link: /notes/differential_equations/exercises.html
 
 maths_misc:
   - name: Exponent and Base Reversed

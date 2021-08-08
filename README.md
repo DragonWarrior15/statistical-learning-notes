@@ -34,6 +34,24 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
         \end{align}
     ```
 
+### Custom mathjax shorthands
+* Set notations
+    * `\real` to denote the set of real numbers
+    * `\comp` to denote the set of complex numbers
+    * `\field` to denote a field
+    * `\setv` to denote the set V
+    * `\setw` to denote the set W
+    * `\setlm` to denote the matrix L
+    * `\matm` to denote the matrix M
+* Operators
+    * `\minimize`, `\maximize`, `\argmin` and `\argmax` are defined to denote the minimization, maximization, minimum value index, and maximum value index positions respectively.
+* Operators with arguments
+    * `\KL{arg 1, arg2}` to denote the KL divergence between functions `arg1` and `arg2`
+    * `\detm{arg}` to denote the determinant of the matrix `arg`
+    * `\roundbr{arg}` to create round brackets around `arg` with the appropriate sizing
+    * `\diffone{arg}` to denote the first derivative of `arg` using a single prime character in power
+    * `\difftwo{arg}` to denote the second derivative of `arg` in the double prime notation
+
 ## Codes in markdown+jekyll
 * To use double curly braces inside a code block, enclose it inside the raw tag
     ```html

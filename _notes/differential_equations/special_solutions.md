@@ -6,15 +6,17 @@ title: "Special Solutions to First Order ODE"
 ### Separable ODE
 An ODE of the form
 \begin{align}
-    M(x) + N(y)y^{\prime} = 0
+    M(x) + N(y)\diffone{y} = 0
 \end{align}
 
-is called a **separable** ODE since the functions of $x$ and $y$ are separated here. Integrating by multiplying with $dx$ and using the knowledge $dy = y^{\prime}dx$
+is called a **separable** ODE since the functions of $x$ and $y$ are separated here. Integrating by multiplying with $dx$ and using the knowledge $dy = \diffone{y}dx$
 
 \begin{align}
-    \int M(x)dx + \int N(y)y^{\prime}dx &= c\newline
+    \int M(x)dx + \int N(y)\diffone{y}dx &= c\newline
     \int M(x)dx + \int N(y)dy &= c
 \end{align}
+
+The constant $c$ can be determined using an initial condition (and will decide the direction of $y$).
 
 #### Homogenous ODE
 (These equations are reducible to a separable form)
@@ -41,7 +43,7 @@ which is a **separable** equation.
 
 As a common case, consider the following equation and the substituition $y=xv$
 \begin{align}
-    y^{\prime} &= f(\frac{y}{x})\newline
+    \diffone{y} &= f(\frac{y}{x})\newline
     y &= xv \implies \frac{dy}{dx} = v + x\frac{dv}{dx}\newline
     v + x\frac{dv}{dx} &= f(v)\newline
     \implies \frac{dv}{f(v) - v} &= \frac{dx}{x}
@@ -86,7 +88,7 @@ But, instead of guessing $u(x,y)$, we can use the following steps
     where $k(y)$ is the constant of integration.
 2. Differentiate with respect to $y$
     \begin{align}
-        \frac{\partial u}{\partial y} &= \frac{\partial}{\partial y} \int M(x,y) dx + k^{\prime}(y) = N(x,y)
+        \frac{\partial u}{\partial y} &= \frac{\partial}{\partial y} \int M(x,y) dx + \diffone{k}(y) = N(x,y)
     \end{align}
     since the ODE is exact.
 3.  Determine $k(y)$ from this equation to subsequently find $u(x,y)$ completely.
@@ -113,17 +115,75 @@ In practice this can be difficult to solve directly. We can start by making a si
     \mu M_{y} &= \mu N_{x} + \mu_{x} N\newline
     \frac{\mu_{x}}{\mu} &= \frac{M_{y} - N_{x}}{N}\newline
     \ln (\mu) &= \int \frac{M_{y} - N_{x}}{N} dx\newline
-    \mu &= \exp \left( \int \frac{M_{y} - N_{x}}{N} dx \right)\newline
+    \mu &= \exp \roundbr{\int \frac{M_{y} - N_{x}}{N} dx}\newline
     \implies \frac{M_{y} - N_{x}}{N} &= \text{function of $x$ only}
 \end{align}
 
 Similarly, if $\mu$ is a function of $y$ only,
 \begin{align}
     \mu_{y} &= \frac{d\mu}{dy}\newline
-    \mu &= \exp \left( \int \frac{N_{x} - M_{y}}{M} dy \right)\newline
+    \mu &= \exp \roundbr{\int \frac{N_{x} - M_{y}}{M} dy}\newline
     \implies \frac{N_{x} - M_{y}}{M} &= \text{function of $y$ only}
 \end{align}
 
 In both the formulae, we take the difference of the terms $M_{y}$ and $N_{x}$. If the two terms are equal, we have an exact ODE, and the IF will be 1. The denominator in the formula for IF is $N$ if IF is a function of $x$ ($N_{x}$ is used in the check) and $M$ if IF is a function of $y$ ($M_{y}$ is used in the check).
 
 Further, the IF should be a function of only a single variable, and so should be the terms derived above for the formulat of IF. If that does not hold, our assumption is wrong. We need to do the check for both the assumptions that $\mu$ is a function of $x$ or $y$.
+
+### Linear ODE
+Any ODE that is expresible in the form
+\begin{align}
+    \diffone{y} + p(x)y = r(x)
+\end{align}
+is called a **linear ODE**. Both $p(x)$ and $r(x)$ are functions of $x$. Such equations are common in engineering, where $r(x)$ is often called the _input_ and $y$ the _output_.
+
+If $\diffone{y}$ has a coefficient $f(x)$, it can be converted to the standard form by dividing throughout by $f(x)$.
+
+if $r(x) = 0$, then the equation is termed as a **linear homogenous** equation. Otherwise its called linear non-homogenous equation.
+
+If the input or $r(x)$ is zero everywhere, the equation is simple to solve due to a separable form.
+\begin{align}
+    \diffone{y} + p(x)y &= 0\newline
+    \frac{\diffone{y}}{y} &= -p(x)\newline
+    y &= c \exp \roundbr{-\int p(x) dx}
+\end{align}
+
+If the input or $r(x)$ is not zero everywhere, we can use an integrating factor $\exp \roundbr{\int p(x) dx}$
+\begin{align}
+    \diffone{y}e^{\int p(x) dx} + p(x)e^{\int p(x) dx} y &= r(x)e^{\int p(x) dx}\newline
+    d \roundbr{y e^{\int p(x) dx}} &= r(x)e^{\int p(x) dx}\newline
+    y &= e^{-\int p(x) dx} \roundbr{\int r(x)e^{\int p(x) dx} dx + c}
+\end{align}
+
+#### Bernoulli Equation
+A differential equation of the form
+\begin{align}
+    \diffone{y} + p(x)y = g(x) y^{a}
+\end{align}
+where $a$ is any real number is called **Bernoulli Equation**. This is a non linear equation seen frequently in various applications, and can be reduced to a linear form by making the substituition $y^{1-a} = v$
+
+\begin{align}
+    (1-a)y^{-a}\diffone{y} &= \diffone{v}\newline
+    \diffone{y} &= \frac{1}{1-a}y^{a}\diffone{v}\newline
+    \implies \frac{1}{1-a}y^{a}\diffone{v} + p(x)y &= g(x) y^{a}\newline
+    \frac{1}{1-a}\diffone{v} + p(x)y^{1-a} &= g(x)\newline
+    \implies \diffone{v} + (1-a)p(x)v &= (1-a)g(x)\newline
+\end{align}
+
+which is a linear ODE and can be solved by introducing the integrating factor $\exp \roundbr{\int (1-a)p(x) dx}$.
+
+### Existence of solution in IVP
+A given IVP can have no solution, exactly one solution or more than one solutions.
+* $\detm{\diffone{y}} + \detm{y} = 0$, $y(0) = 1$ has no solution since the only solution to ODE is $y = 0$.
+* $\diffone{y} = 2x$, $y(0) = 1$ has a single unique solution $y = x^{2} + 1$.
+* $x\diffone{y} = y - 1$, $y(0) = 1$ has infinite solutions $y = 1 + cx$.
+
+**Uniqueness Theorem** and **Existence Theorem** help check whether a given IVP has a solution at all, or if it has exactly one solution.
+
+**Existence Theorem**
+Consider the IVP $y = f(x,y)$ and $y(x_{0}) = y_{0}$. Suppose that $f(x,y)$ is continuous in the rectangular region $R$ given by $\vert x - x_{0} \vert < a$ and $\vert y - y_{0} \vert < b$ and is bounded in $R$ by a constant $K$ ($f(x,y) \leq K$ for $x,y \in R$).
+
+The IVP will have at least one solution in the rectangular region $R$. The solution exists for at least all $x$ in the subinterval $\vert x - x_{0} \vert < \alpha$ where $\alpha$ is the minimum of $a, b/K$.
+
+**Uniqueness Theorem**
+If we add one more condition to the above IVP that the partial derivative with respect to y $f_{y}(x,y)$ is also bounded in the region by $M$, i.e., $f_{y}(x,y) \leq M$ for $x,y \in R$. Then, the IVP has at most one solution. By the existence theorem, the IVP will have exactly one solution in the subinterval $\vert x - x_{0} \vert < \alpha$
