@@ -33,6 +33,11 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
             E = mc^{2}
         \end{align}
     ```
+* Linking to another page of the project can be done by following the template
+    ```md
+    {{ "/notes/full_path_to_file/file.html/#a-heading-name" | relative_url }}
+    ```
+    For a heading in the same file, a simple `#a-heading-name` will suffice
 
 ### Custom mathjax shorthands
 * Set notations

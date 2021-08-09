@@ -83,7 +83,7 @@ has the following three possibilities for the roots:
         y = c_{1}e^{\lambda_{1} x} + c_{2}e^{\lambda_{2} x}
     \end{align}
 * **The two roots are real and equal**
-    which happens when $b^{2} - 4a = 0$. Let the root be $\lambda$. We also know that $\lambda = -a/2$. The first solution is $y_{1} = e^{\lambda x}$. The second solution cannot be the same since the ratio of the two solutions must be a function of $x$. Assuming $y_{2} = u(x)y_{1}$ and using reduction of order method,
+    which happens when $b^{2} - 4a = 0$. Let the root be $\lambda$. We also know that $\lambda = -a/2$. The first solution is $y_{1} = e^{\lambda x}$. The second solution cannot be the same since the ratio of the two solutions must be a function of $x$. Assuming $y_{2} = u(x)y_{1}$ and using [reduction of order](#reduction-of-order) method,
     \begin{align}
         u &= \int \frac{e^{-\int p(x) dx}}{y_{1}^{2}} dx = \int \frac{e^{-\int a dx}}{\roundbr{e^{\lambda x}}}^{2} dx\newline
         &= \int \frac{e^{-ax}}{e^{2\lambda x}} dx = \int \frac{e^{-ax}}{e^{-ax}} dx\newline
@@ -121,3 +121,63 @@ has the following three possibilities for the roots:
         \omega &= \frac{\sqrt{4b - a^{2}}}{2}\newline
         y &= e^{-ax/2}\roundbr{c_{1}\cos \omega x + c_{2}\sin \omega x}
     \end{align}
+
+## Differential Operators
+Instead of using $dy/dx$, we can also write this as $Dy$ where $D$ is the differential operator. Higher order derivatives like $d^{2}y/dx^{2}$ then become $D^{2}y$ and so on.
+
+This operator can be treated like any other algebraic operator. Let $I$ denote the identity operator such that $Iy = y$. Also, let $L$ denote our linear differential equation. $L$ has the property
+* $L(cy) = cL(y)$ where $c$ is a scalar constant.
+* $L(c_{1}y_{1} + c_{2}y_{2}) = c_{1}L(y_{1}) + c_{2}L(y_{2})$
+Then, the equation becomes
+\begin{align}
+    L(y) = \difftwo{y} + a\diffone{y} + by = D^{2}y + aDy + by = (D^{2} + aD + bI)y = P(D)(y)
+\end{align}
+
+$P(D)$ denotes our operator for this equation, and can be treated like a _operator polynomial_. This way, the operators can be treated like any other polynomial similar to algebra.
+
+We can factorize this polynimal to find two distinct roots, exactly like solving the distinct roots case. This approach of working is more common in engineering settings.
+
+## Euler-Cauchy Equations
+Consider Linear ODEs of the form
+\begin{align}
+    x^{2}\difftwo{y} + ax\diffone{y} + by = 0
+\end{align}
+where $a$ and $b$ are constants. Assuming $y = x^{m}$ as the solution,
+
+\begin{align}
+    x^{2}m(m-1)x^{m-2} + axmx^{m-1} + bx^{m} &= 0\newline
+    \implies m(m-1) + am + b &= 0\newline
+    m^{2} + (a - 1)m + b &= 0
+\end{align}
+
+Therefore, $m$ must be a root of the above quadratic equation. There are three possible cases
+* **Real and distinct roots**
+    Let the roots be $m_{1}$ and $m_{2}$. Clearly, $y_{1} = x^{m_{1}}$ and $y_{2} = x^{m_{2}}$ are two linearly independent solutions (since $m_{1} \neq m_{2}$). the general solutions becomes
+    \begin{align}
+        y = c_{1}x^{m_{1}} + c_{2}x^{m_{2}}
+    \end{align}
+* **Real but equal roots**
+    In this case, the root is $m = (1-a)/2$ with $(a - 1)^{2} = 4b$. One solution is clearly $y_{1} = x^{(1-a)/2}$. The other solution can be obtained using [reduction of order](#reduction-of-order) as $y_{2} = uy_{1}$.
+    \begin{align}
+        u &= \int \frac{e^{-\int p(x) dx}}{y_{1}^{2}} dx
+    \end{align}
+    where $p(x) = a/x$ for our case (note that the coefficient of $\difftwo{y}$ must be 1 to apply this formula). Solving, we get $u = \ln x$ and $y_{2} = x^{(1-a)/2}\ln x$. Thus, the general solution is
+    \begin{align}
+        y = (c_{1} + c_{2}\ln x)x^{(1-a)/2}
+    \end{align}
+* **Complex Roots**
+    The roots can be denoted by $(1-a)/2 + i\omega$ where $\omega = (4b - (a-1)^{2})/2$. Taking cue from the real distinct roots scenario, the solutions will be
+    \begin{align}
+        y_{1} &= x^{(1-a)/2 + i\omega} = x^{(1-a)/2} (e^{\ln x})^{i\omega} = x^{(1-a)/2} e^{i\omega \ln x}\newline
+        &= x^{(1-a)/2}\roundbr{\cos \roundbr{\omega\ln x} + i\sin\roundbr{\omega\ln x}}\newline
+        y_{2} &= x^{(1-a)/2}\roundbr{\cos \roundbr{\omega\ln x} - i\sin\roundbr{\omega\ln x}}\newline
+    \end{align}
+
+    Similar to how a real basis was derived for [Second Order Linear ODE with Constant Coefficients](#second-order-linear-ode-with-constant-coefficients) in the complex roots of characeristic equation case, the two solutions will be
+    \begin{align}
+        y_{1} &= x^{(1-a)/2}\cos \roundbr{\omega\ln x}\newline
+        y_{2} &= x^{(1-a)/2}\sin \roundbr{\omega\ln x}\newline
+        y &= x^{(1-a)/2}\roundbr{c_{1}\cos \roundbr{\omega\ln x} + c_{2}\sin\roundbr{\omega\ln x}}
+    \end{align}
+
+    Typically, the complex roots case if of no real practical value.

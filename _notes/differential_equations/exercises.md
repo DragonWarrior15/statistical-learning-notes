@@ -58,3 +58,18 @@ title: Exercises
     \end{align}
 
     where the last equation is obtained after using integration by parts.
+
+1. Solve
+    \begin{align}
+        x^{2}\difftwo{y} -3x\diffone{y} + 4y = 0
+    \end{align}
+    Using [Euler-Cauchy equation]({{ "/notes/differential_equations/order_two_linear.html/#euler-cauchy-equations" | relative_url }}), we know that $x^{m}$ is a solution. Substituiting and taking out the common factor $x^{m}$,
+    \begin{align}
+        m^{2} - 4m + 4 &= 0\newline
+        \implies m &= 2
+    \end{align}
+
+    Since this is the case of double root, the general solution is
+    \begin{align}
+        y = \roundbr{c_{1} + c_{2}\ln x}x^{2}
+    \end{align}
