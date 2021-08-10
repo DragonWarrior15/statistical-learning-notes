@@ -180,4 +180,54 @@ Therefore, $m$ must be a root of the above quadratic equation. There are three p
         y &= x^{(1-a)/2}\roundbr{c_{1}\cos \roundbr{\omega\ln x} + c_{2}\sin\roundbr{\omega\ln x}}
     \end{align}
 
-    Typically, the complex roots case if of no real practical value.
+    Typically, the complex roots case is of no real practical value.
+
+## Nonhomogenous ODEs
+We consider equations of the form
+\begin{align}
+    \difftwo{y} + p(x)\diffone{y} + q(x)y = r(x)
+\end{align}
+
+where $r(x) \neq 0$. The general solution to this ODE is defined as a combination of the solution to the corresponding homogenous solution ($y_{h}), and a solution to the complete nonhomogenous equation ($y_{p}$, containing no arbitrary constants).
+\begin{align}
+    y_{h} &= c_{1}y_{1} + c_{2}y_{2}\newline
+    y &= y_{h} + y_{p}
+\end{align}
+
+A _particular solution_ is obtained by evaluating the constants $c_{1}$ and $c_{2}$ based on the initial conditions.
+
+#### Method of Undetermined Coefficients
+This method applies to nonhomogenous linear ODEs with constant coefficients
+\begin{align}
+    \difftwo{y} + a\diffone{y} + by = r(x)
+\end{align}
+
+When $r(x)$ is a common function like sinusoidal, exponential, polynomial (these all are functions whose derivatives are of similar form to the function itself), or a combinatation of these, the derivatives will also be of similar form. Hence, we can choose the solution to be a combination of such functions with _undetermined coefficients_ and put the solution in the equation to determine those coefficients.
+
+We can follow the following rules to determine the solution
+1. **Basic Rule**: If $r(x)$ is in the left column of the following table, a suitable $y_{p}(x)$ can be picked from the right column.
+    | $r(x)$ | $y_{p}(x)$ |
+    | ------ | ---------- |
+    | $ke^{\gamma x}$ | $Ce^{\gamma x}$ |
+    | $kx^{n}$ $n=0,1,\ldots$ | $K_{n}x^{n} + K_{n-1}x^{n-1} + \cdots + K_{1}x + K_{0}$ |
+    | $k\sin \omega x$ or $k\cos \omega x$ | $K\sin \omega x + M\cos \omega x$ |
+    | $ke^{alpha x}\sin \omega x$ or $ke^{alpha x}\cos \omega x$ | $e^{\alpha x}\roundbr{K\sin \omega x + M\cos \omega x}$ |
+1. **Modification Rule**: If the term of choice in $y_{p}$ happens to be a solution for $y_{h}$, multiply this term by $x$ (or $x^{2}$ in case the homogenous equation has repeating roots).
+1. **Sum Rule**: If $r(x)$ is a linear combination of the terms in the left part of the above table, the terms in $y_{p}$ can also be chosen as a sum combination of other corresponding entries from the right side of the table.
+
+In the above procedure, we will first look for solution to the homogenous equation. Furthermore, an incorrect choice for the coefficients will lead to a contradiction. The constants assumed in $y_{p}$ can be found by comparing the left and right side of the ODE term by term after substituiting the solution (for instance, the coefficient of $x^{2}$ should be the same on both the sides).
+
+#### Stability
+An important points from an engineering perspective needs to be considered here. If the roots of the homogneous equation are negative, or have negative real parts, only then will the nonhomogenous equation will have a stable solution. This implies $y_{h} \to 0$ as $x \to \inf$. In this case the general solution will approach a transient state and the steady state value of $y_{p}(x)$.
+
+#### Variation of Parameters
+This method is credited to Lagrange and applies to any function as coefficients that is continuous. Assuming $y_{1}$ and $y_{2}$ are the solutions to the homogenous equation, $y_{p}$ is given by
+\begin{align}
+    \difftwo{y} + p(x)\diffone{y} + q(x)y &= r(x)\newline
+    y_{p} &= -y_{1}\int\frac{y_{2}r}{W}dx + y_{2}\int\frac{y_{1}r}{W}dx\newline
+    W &= y_{1}\diffone{y_{2}} - y_{2}\diffone{y_{1}}
+\end{align}
+
+where $W$ is called the Wronskian. Remember that this formulation is valid for the ODE in its standard form where the coefficient of $\difftwo{y}$ is 1. If that is not the case, we can divide the equation throughout by the coefficient to make it unity.
+
+This method can be derived by assuming $y_{p}$ to be a combination of the solutions of the homogenous equation, but using functions of $x$ instead of constants. Then, after substituiting the solution in the ODE, we try to derive the values of these functions (coefficients).
