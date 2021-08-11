@@ -182,6 +182,17 @@ Therefore, $m$ must be a root of the above quadratic equation. There are three p
 
     Typically, the complex roots case is of no real practical value.
 
+## Independence of Solutions
+The Wronskian of the solutions is defined as
+\begin{align}
+    W = y_{1}\diffone{y_{2}} - y_{2}\diffone{y_{1}} = \detm{\begin{matrix}y_{1} &y_{2}\newline \diffone{y_{1}} &\diffone{y_{2}} \end{matrix}}
+\end{align}
+
+The Wronskian plays an important role in determining the independence of solutions for a _homogenous second order linear differential equation_. For the open interval $I$ under consideration, the solutions are linearly dependent if there exists $x_{0} \in I$ such that $W(x_{0}) = 0$. Further, if the Wronskian is 0 for an $x_{0} \in I$, then it is zero throughout. Thus, $W(x) \neq 0$ for any $x_{1} \in I$, then the solutions are linearly independent and form a basis on $I$.
+
+### Existence of solutions
+A _second order linear homogenous ODE_ has no singular solutions. That is, all solutions can be obtained from the general solution.
+
 ## Nonhomogenous ODEs
 We consider equations of the form
 \begin{align}
@@ -206,6 +217,7 @@ When $r(x)$ is a common function like sinusoidal, exponential, polynomial (these
 
 We can follow the following rules to determine the solution
 1. **Basic Rule**: If $r(x)$ is in the left column of the following table, a suitable $y_{p}(x)$ can be picked from the right column.
+
     | $r(x)$ | $y_{p}(x)$ |
     | ------ | ---------- |
     | $ke^{\gamma x}$ | $Ce^{\gamma x}$ |

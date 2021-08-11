@@ -456,6 +456,8 @@ differential_equations:
     link: /notes/differential_equations/special_solutions.html
   - name: Second Order Linear ODE
     link: /notes/differential_equations/order_two_linear.html
+  - name: Higher Order Linear ODE
+    link: /notes/differential_equations/higher_order_linear.html
   - name: Exercises
     link: /notes/differential_equations/exercises.html
 

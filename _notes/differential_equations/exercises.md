@@ -2,6 +2,19 @@
 title: Exercises
 ---
 
+1. The following ODE is of what type ?
+    \begin{align}
+        \difftwo{u} - 2x^{2}u + \sin x = 0
+    \end{align}
+
+    **Solution**
+
+    We can rewrite the equation in the usual format as
+    \begin{align}
+        \difftwo{u} + \roundbr{-2x^{2}}u = -\sin x
+    \end{align}
+    Hence, the equation is Linear, of order 2, degree 1, and nonhomogenous (because $r(x) = \sin x$).
+
 1. Solve the following differential equation
     \begin{align}
         \diffone{y} &= \frac{1}{6e^{y} - 2x}
@@ -109,3 +122,159 @@ title: Exercises
         \begin{align}
             \roundbr{1 + 1.5x}e^{-1.5x} - 5x^{2}e^{-1.5x} = \roundbr{1 + 1.5x - 5x^{2}}e^{-1.5x}
         \end{align}
+
+1. Solve the following equation
+    \begin{align}
+        x^{2}\difftwo{y} - x\diffone{y} + y = \ln x
+    \end{align}
+
+    **Solution**
+
+    * The general solution is $y_{h} + y_{p}$. Lets find $y_{h}$ first.
+    * This is a Cauchy-Euler equation whose solution can be assumed $x^{m}$. Substituiting
+        \begin{align}
+            x^{2}\roundbr{m(m-1)x^{m-2}} - x\roundbr{mx^{m-1}} + x^{m} &= 0\newline
+            x^{m}\roundbr{m^{2} - m - m + 1} &= 0\newline
+            \implies m &= 1
+        \end{align}
+        The solution is of the form
+        \begin{align}
+            y_{1} &= x\newline
+            y_{2} &= x\ln x\newline
+            y_{h} &= c_{1}x + c_{2}x\ln x
+        \end{align}
+    * Let's try to find $y_{p}$ using variation of parameters. First we convert the cocefficient of $\difftwo{y}$ to 1
+        \begin{align}
+            \difftwo{y} - \frac{1}{x}\diffone{x} + \frac{1}{x^{2}}y &= \frac{\ln x}{x^{2}}\newline
+            W &= y_{1}\diffone{y_{2}} - y_{2}\diffone{y_{1}}\newline
+            &= x(\ln x + 1) - x\ln x(1) = x\newline
+            y_{p} &= -y_{1}\int\frac{y_{2}r}{W}dx + y_{2}\int\frac{y_{1}r}{W}dx\newline
+            &= -x\int\frac{\roundbr{\ln x}^{2}}{x^{2}}dx + x\ln x\int\frac{\ln x}{x^{2}} dx\newline
+        \end{align}
+        Lets solve the two integrals one by one
+        \begin{align}
+            \ln x &= t \implies dx = xdt = e^{t}dt\newline
+            \int\frac{\ln x}{x^{2}} dx &= \int te^{-t}dt\newline
+            &= -te^{-t} + \int e^{-t}dt = -te^{-t} - e^{-t}\newline
+            &= -\frac{\ln x + 1}{x}
+        \end{align}
+        using integration by parts. Similarly,
+        \begin{align}
+            \int\frac{\roundbr{\ln x}^{2}}{x^{2}}dx &= \int t^{2}e^{-t}dt\newline
+            &= -t^{2}e^{-t} + \int 2te^{-t}dt\newline
+            &= -t^{2}e^{-t} - 2te^{-t} + \int 2e^{-t}dt\newline
+            &= -t^{2}e^{-t} - 2te^{-t} - 2e^{-t}\newline
+            &= -\frac{\roundbr{\ln x}^{2} + 2\ln x + 2}{x}
+        \end{align}
+
+        Hence,
+        \begin{align}
+            y_{p} &= -x\roundbr{-\frac{\roundbr{\ln x}^{2} + 2\ln x + 2}{x}} + x\ln x\roundbr{-\frac{\ln x + 1}{x}}\newline
+            &= \roundbr{\ln x}^{2} + 2\ln x + 2 - \roundbr{\ln x}^{2} - \ln x\newline
+            &= \ln x + 2
+        \end{align}
+
+        The general solution becomes
+        \begin{align}
+            y = \roundbr{c_{1}x + c_{2}x}\ln x + \ln x + 2
+        \end{align}
+
+1. Solve the differential equation
+    \begin{align}
+        \roundbr{1 + y^{2}}dx = \roundbr{\tan^{-1} y - x}dy
+    \end{align}
+
+    **Solution**
+
+    Rearranging the equation, we have
+    \begin{align}
+        \frac{dy}{dx} &= \frac{1 + y^{2}}{\tan^{-1} y - x}
+    \end{align}
+
+    This equation is not readily solvable. However, we can instead try to get $x$ a function of $y$ by inverting the above equation
+    \begin{align}
+        \frac{dx}{dy} &= \frac{\tan^{-1} y - x}{1 + y^{2}}\newline
+        &= \frac{\tan^{-1} y}{1 + y^{2}} - \frac{1}{1 + y^{2}}x\newline
+        \implies \frac{dx}{dy} + \frac{1}{1 + y^{2}}x &= \frac{\tan^{-1} y}{1 + y^{2}}
+    \end{align}
+
+    Which is a linear equation. The integrating factor is
+    \begin{align}
+        IF &= e^{\int \frac{1}{1 + y^{2}}dy} = e^{\tan^{-1} y}\newline
+        \implies e^{\tan^{-1} y}\frac{dx}{dy} + \frac{e^{\tan^{-1} y}}{1 + y^{2}}x &= \frac{e^{\tan^{-1} y}\tan^{-1} y}{1 + y^{2}}\newline
+        xe^{\tan^{-1} y} &= \int \frac{e^{\tan^{-1} y}\tan^{-1} y}{1 + y^{2}} dy\newline
+    \end{align}
+
+    Substituiting $\tan^{-1} y = v$
+    \begin{align}
+        \frac{1}{1 + y^{2}}dy &= dv\newline
+        \implies \int \frac{e^{\tan^{-1} y}\tan^{-1} y}{1 + y^{2}} &= \int te^{t}dt\newline
+        &= te^{t} - e^{t} + c\newline
+        &= e^{\tan^{-1} y}\tan^{-1} y - e^{\tan^{-1} y} + c
+    \end{align}
+
+    Thus,
+    \begin{align}
+        xe^{\tan^{-1} y} &= e^{\tan^{-1} y}\tan^{-1} y - e^{\tan^{-1} y} + c\newline
+        \implies x &= \tan^{-1} y - 1 + ce^{-\tan^{-1} y}
+    \end{align}
+
+1. Solve the equation
+    \begin{align}
+        x^{3}\diffthree{y} - 3x^{2}\difftwo{y} + 6x\diffone{y} - 6y = x^{4}\ln x
+    \end{align}
+
+    **Solution**
+
+    We first solve the homogenous equation by substituiting $x^{m}$ as the solution (this is an Euler-Cauchy equation)
+    \begin{align}
+        x^{3}\diffthree{y} - 3x^{2}\difftwo{y} + 6x\diffone{y} - 6y &= 0\newline
+        x^{3}m(m-1)(m-2)x^{m-3} - 3x^{2}m(m-1)x^{m-2} + 6xmx^{m-1} - 6x^{m} &= 0\newline
+        \implies m(m-1)(m-2) -3m(m-1) + 6m - 6 &= 0\newline
+        m^{3} - 6m^{2} + 11m - 6 &= 0\newline
+        m &= 1, 2, 3
+    \end{align}
+    Root 1 is easily identifiable by inspection. Remaining roots can be obtained by factorization. Hence, $y_{h}$ is
+    \begin{align}
+        y_{h} &= c_{1}x + c_{2}x^{2} + c_{3}x^{3}
+    \end{align}
+    with $x$, $x^{2}$ and $x^{3}$ as the bases. Since $r(x)$ is not a standard function (for method of undetermined coefficients), we will try to use variation of parameters to solve for $y_{p}$
+    \begin{align}
+        W &= \detm{\begin{matrix}
+            x &x^{2} &x^{3}\newline
+            1 &2x &3x^{2}\newline
+            0 &2 &6x
+        \end{matrix}} = 2x^{3}
+    \end{align}
+    Hence, all $W_{i}$ are
+    \begin{align}
+        W_{1} &= \detm{\begin{matrix}
+            0 &x^{2} &x^{3}\newline
+            0 &2x &3x^{2}\newline
+            1 &2 &6x
+        \end{matrix}} = x^{4}\newline
+        W_{2} &= \detm{\begin{matrix}
+            x &0 &x^{3}\newline
+            1 &0 &3x^{2}\newline
+            0 &1 &6x
+        \end{matrix}} = -2x^{3}\newline
+        W_{3} &= \detm{\begin{matrix}
+            x &x^{2} &0\newline
+            1 &2x &0\newline
+            0 &2 &1
+        \end{matrix}} = x^{2}
+    \end{align}
+    Now, to apply the method of undetermined, we also convert our equation to the standard form
+    \begin{align}
+        \diffthree{y} - \frac{3}{x}\difftwo{y} + \frac{6}{x^{2}}\diffone{y} - \frac{6}{x^{3}}y = x\ln x
+    \end{align}
+    \begin{align}
+        y_{p}(x) &= \sum_{k=1}^{n}y_{k}(x)\int \frac{W_{k}(x)}{W(x)}r(x)dx\newline
+        &= x\int\frac{x^{4}}{2x^{3}}x\ln x dx + x^{2}\int\frac{-2x^{3}}{2x^{3}}x\ln x dx + x^{3}\int\frac{x^{2}}{2x^{3}}x\ln x dx\newline
+        &= \frac{x}{2}\roundbr{\frac{x^{3}}{3}\ln x - \frac{x^{3}}{9}} - x^{2}\roundbr{\frac{x^{2}}{2}\ln x - \frac{x^{2}}{4}} + \frac{x^{3}}{2}\roundbr{x\ln x - x}\newline
+        &= \frac{x^{4}}{6}\ln x - \frac{11}{36}x^{4}
+    \end{align}
+    Thus, the general solution is
+    \begin{align}
+        y = c_{1}x + c_{2}x^{2} + c_{3}x^{3} + \frac{x^{4}}{6}\roundbr{\ln x - \frac{11}{6}}
+    \end{align}

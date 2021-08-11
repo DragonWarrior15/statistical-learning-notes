@@ -53,7 +53,7 @@ Thus, the determinant can be obtained by expansion along any row or column. In c
 * If any two rows or columns of the matrix are identical, then $\detm{A} = 0$ as well
     * follows from the last point
 * If all the elements of one row (or column) are multiplied by the same number k, the determinant is also multiplied by k
-* If $A$ is $n \times n$, then $\detm_{kA} = k^{n}\detm_{A}$
+* If $A$ is $n \times n$, then $\detm{kA} = k^{n}\detm{A}$
 * The sum of the products of the elements of any row (or column) with the cofactors of some other row (or column) is 0
     * sum of products with cofactors of the same elements is the determinant
 * The value of determinant is unchanged by addition of a scalar multiple of a row (or column) to another row (or column)
