@@ -458,6 +458,10 @@ differential_equations:
     link: /notes/differential_equations/order_two_linear.html
   - name: Higher Order Linear ODE
     link: /notes/differential_equations/higher_order_linear.html
+  - name: System of ODEs
+    link: /notes/differential_equations/system_of_ode.html
+  - name: Series Solutions of ODEs
+    link: /notes/differential_equations/series_solutions.html
   - name: Exercises
     link: /notes/differential_equations/exercises.html
 
