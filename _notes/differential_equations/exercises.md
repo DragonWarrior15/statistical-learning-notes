@@ -278,3 +278,15 @@ title: Exercises
     \begin{align}
         y = c_{1}x + c_{2}x^{2} + c_{3}x^{3} + \frac{x^{4}}{6}\roundbr{\ln x - \frac{11}{6}}
     \end{align}
+
+1. Find the radius of convergence
+    \begin{align}
+        \sum_{m=0}^{\inf} \frac{x^{2m + 1}}{(2m + 1)!}
+    \end{align}
+
+    **Solution**
+    \begin{align}
+        R &= \frac{1}{\lim_{m \to \inf} \detm{\frac{1/(2(m+1)+1)!}{1/(2m+1)!}}}\newline
+        &= \frac{1}{\lim_{m \to \inf}\detm{\frac{1}{(2m+3)(2m+2)}}} = \inf
+    \end{align}
+    i.e., convergence happens always.

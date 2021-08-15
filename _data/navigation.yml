@@ -462,6 +462,8 @@ differential_equations:
     link: /notes/differential_equations/system_of_ode.html
   - name: Series Solutions of ODEs
     link: /notes/differential_equations/series_solutions.html
+  - name: Laplace Transforms
+    link: /notes/differential_equations/laplace_transforms.html
   - name: Exercises
     link: /notes/differential_equations/exercises.html
 

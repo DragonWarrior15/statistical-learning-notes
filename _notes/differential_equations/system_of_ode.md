@@ -42,5 +42,5 @@ Making the substituitions
 We can solve for this system by finding the eigenvalues of the matrix. The characteristic equation is
 \begin{align}
     (-\lambda)(-\frac{c}{m}-\lambda) + \frac{k}{m} &= 0\newline
-    \implies \lambda^{2} +frac{c}{m}\lambda + \frac{k}{m} &= 0
+    \implies \lambda^{2} +\frac{c}{m}\lambda + \frac{k}{m} &= 0
 \end{align}
