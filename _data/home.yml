@@ -25,7 +25,7 @@
 - navigation_header: differential_equations
   bg_color: bg-differential-equations
   card_title: Differential Equations
-  card_text: Special Solutions. (Incomplete)
+  card_text: Special Solutions, Second Order, Laplace Transforms.
 - navigation_header: maths_misc
   bg_color: bg-maths-misc
   card_title: Maths Miscellaneous

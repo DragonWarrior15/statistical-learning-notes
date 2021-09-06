@@ -173,7 +173,7 @@ The substituition $t \to t-a$ should be made on the _entire function_.
 ### Dirac Delta Theorem
 Given
 \begin{align}
-    f_{k}(t - a) = \begin{cases}\frac{1}{k} &\,box{$a \leq t \leq a + k$}\newline
+    f_{k}(t - a) = \begin{cases}\frac{1}{k} &\mbox{$a \leq t \leq a + k$}\newline
     0 &\mbox{otherwise}\end{cases}
 \end{align}
 where $t > 0$ since it denotes time. Impulse is defined as the integral of a force over a short period of time. Dirac Delta or unit impulse is
@@ -249,7 +249,7 @@ where we first used the Laplace transform of the convolution and then took the i
 
 Similarly, for integrals,
 \begin{align}
-    \L\roundbr{\frac{f(t)}{t}} &= \int_{s}^{\infty}F(\widetilde{s})d\widetilde{s}\newline\
+    L\roundbr{\frac{f(t)}{t}} &= \int_{s}^{\infty}F(\widetilde{s})d\widetilde{s}\newline\
     \implies L^{-1}\roundbr{\int_{s}^{\infty}F(\widetilde{s})d\widetilde{s}} = \frac{f(t)}{t}
 \end{align}
 
@@ -266,4 +266,40 @@ Taking Laplace Transform of each term,
     L\roundbr{(1 - t)\diffone{y}} &= L\roundbr{\diffone{y}} - L\roundbr{t\diffone{y}}\newline
     &= (sY(s) - f(0)) - \roundbr{-\frac{d}{ds}\roundbr{sY - f(0)}}\newline
     &= (sY(s) - f(0)) - \roundbr{Y + s\frac{dY}{ds}}
+\end{align}
+
+Putting back in the Laplace Transform of the original equation
+\begin{align}
+    -2sY - s^{2}\frac{dY}{ds} + f(0) + sY - f(0) + Y + s\frac{dY}{ds} + nY &= 0\newline
+    Y(1 + n - s) + s(1-s)\frac{dY}{ds} = 0\newline
+    \implies \frac{dY}{Y} &= -\frac{n + 1 - s}{s(1-s)}ds\newline
+    &= \roundbr{\frac{n}{s-1} - \frac{n+1}{s}}\newline
+    \implies \ln Y = n\ln \roundbr{s-1} - \roundbr{n+1}\ln s\newline
+    Y &= \frac{(s-1)^{n}}{s^{n+1}}
+\end{align}
+
+Now consider (from the first shift theorem)
+\begin{align}
+    L\roundbr{e^{-t}t^{n}} &= L\roundbr{t^{n}}(s + 1) = \frac{n!}{\roundbr{s+1}^{n+1}}\newline
+    L\roundbr{\frac{d^{n}}{dt^{n}} t^{n}e^{-t}} &= s^{n}L\roundbr{t^{n}e^{-t}} - s^{n-1}f(0) - s^{n-2}\diffone{f}(0) - \cdots - f^{(n-1)}(0)\newline
+    &= s^{n}\frac{n!}{\roundbr{s+1}^{n+1}}\newline
+    \frac{1}{n!}L\roundbr{e^{t}\frac{d^{n}}{dt^{n}}t^{n}e^{-t}} &= \frac{1}{n!}L\roundbr{d^{n}dt^{n}t^{n}e^{-t}}(s-1)\newline
+    &= \frac{1}{n!}\frac{\roundbr{s-1}^{n}n!}{s^{n+1}} = \frac{\roundbr{s-1}^{n}}{s^{n+1}}
+\end{align}
+
+Hence,
+\begin{align}
+    Y &= \frac{(s-1)^{n}}{s^{n+1}}\newline
+    \implies y &= L^{-1}\roundbr{\frac{(s-1)^{n}}{s^{n+1}}}\newline
+    &= \frac{e^{t}}{n!}\frac{d^{n}}{dt^{n}}\roundbr{t^{n}e^{-t}}
+\end{align}
+
+### Miscellaneous
+#### System of ODEs
+For a system of ODEs, we take the Laplace of all the equations, and then solve for the $Y$s algebraically. We leverage all the formulae for single ODE derived above.
+
+#### Periodic Functions
+Suppose $f$ is periodic with period $p$. Then,
+\begin{align}
+    L(f) = \frac{1}{1 - e^{-ps}}\int_{0}^{p}e^{-st}f(t)dt
 \end{align}

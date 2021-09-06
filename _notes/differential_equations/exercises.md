@@ -95,3 +95,24 @@ title: Exercises
     \end{align}
 
     [Solution]({{ "/notes/differential_equations/exercises/a_13.html" | relative_url }})
+
+1. Find
+    \begin{align}
+        L\roundbr{\frac{1}{2}te^{-3t}}
+    \end{align}
+
+    [Solution]({{ "/notes/differential_equations/exercises/a_14.html" | relative_url }})
+
+1. Find
+    \begin{align}
+        L^{-1}\roundbr{\frac{s}{\roundbr{s^{2} - 9}^{2}}}
+    \end{align}
+
+    [Solution]({{ "/notes/differential_equations/exercises/a_15.html" | relative_url }})
+
+1. Application of Laplace Transforms. Find
+    \begin{align}
+        \int_{0}^{\infty} \frac{\sin t}{t} dt
+    \end{align}
+
+    [Solution]({{ "/notes/differential_equations/exercises/a_16.html" | relative_url }})

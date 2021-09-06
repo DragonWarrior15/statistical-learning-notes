@@ -64,6 +64,21 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     This is a code with double curly braces {{ user.name | uppercase }}
     {% endraw %}
     ```
+
+### Using `find` and `grep`
+Suppose we rearrange the directory structure. Since the URLs are hardcoded when referring to a section somewhere else, we need to go through and replace all such links to point to the new path.
+
+Assuming we changed `/notes/differential_equations/laplace_transforms.md` to `/notes/differential_equations/laplace_transforms/intro.md`. The command to search through all the places where the change needs to be made
+
+```shell
+find . -type f -name "*.md" -or -name "*.yml" -exec grep "/notes/differential_equations/laplace_transforms.html" {} ';'
+```
+
+And to replace with the new path
+```shell
+find . -type f -name "*.md" -or -name "*.yml" -exec sed -s "|/notes/differential_equations/laplace_transforms.html|/notes/differential_equations/laplace_transforms/intro.md|" {} ';'
+```
+
 ### Common problem in WSL
 **In case you are running WSL and unable to connect to the server**
 * Close the ubuntu window
