@@ -162,6 +162,12 @@ linalg:
     subnav:
     - name: Matrix
       link: /notes/linalg/linear_maps/matrix.html
+    - name: Determinant
+      link: /notes/linalg/linear_maps/det.html
+    - name: Special Matrices
+      link: /notes/linalg/linear_maps/special_matrices.html
+    - name: Algebraic Properties of Matrices
+      link: /notes/linalg/linear_maps/algebraic_properties.html
   - name: Linear Equations
     link: /notes/linalg/linear_eq/elimination.html
     subnav:
@@ -446,18 +452,35 @@ prog_lang:
 differential_equations:
   - name: Differential Equations
     link: /notes/differential_equations/intro.html
-    subnav:
-      - name: Special Solutions
-        link: /notes/differential_equations/special_solutions.html
+  - name: Special Solutions to First Order ODE
+    link: /notes/differential_equations/special_solutions.html
+  - name: Second Order Linear ODE
+    link: /notes/differential_equations/order_two_linear.html
+  - name: Higher Order Linear ODE
+    link: /notes/differential_equations/higher_order_linear.html
+  - name: System of ODEs
+    link: /notes/differential_equations/system_of_ode.html
+  - name: Series Solutions of ODEs
+    link: /notes/differential_equations/series_solutions.html
+  - name: Laplace Transforms
+    link: /notes/differential_equations/laplace_transforms.html
+  - name: Exercises
+    link: /notes/differential_equations/exercises.html
 
 linux:
-    - name: regex
-      link: /notes/linux/regex.html
-    - name: find
-      link: /notes/linux/find.html
-    - name: grep
-      link: /notes/linux/grep.html
-    - name: curl
-      link: /notes/linux/curl.html
-    - name: sed
-      link: /notes/linux/sed.html
+  - name: regex
+    link: /notes/linux/regex.html
+  - name: find
+    link: /notes/linux/find.html
+  - name: grep
+    link: /notes/linux/grep.html
+  - name: curl
+    link: /notes/linux/curl.html
+  - name: sed
+    link: /notes/linux/sed.html
+
+maths_misc:
+  - name: Exponent and Base Reversed
+    link: /notes/maths_misc/exp_base_reversed.html
+  - name: Definite Integral
+    link: /notes/maths_misc/definite_integral.html

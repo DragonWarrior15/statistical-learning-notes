@@ -109,37 +109,3 @@ Then, the calculation of $A^{2}$ is
 \end{align}
 
 We obtained $B^{2}$ using $2 \times 2$ multiplication on the four elements of the block matrix. All the multiplications agree in terms of the dimensions. This technique is especially useful when the matrix can be broken in such a way that individual matrix are identity matrix, diagonal matrix etc.
-
-<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-### Orthogonal Matrix
-Orthogonal or \textbf{orthonormal} matrix is a matrix whose rows and columns are orthonormal vectors. An orthogonal matrix $Q$ will satisfy
-\begin{align}
-    QQ^{T} &= Q^{T}Q = I\newline
-    Q^{-1} &= Q^{T}\newline
-    det(Q) &= \pm 1
-\end{align}
-
-The last one follows from the fact that
-\begin{align}
-    1 = det(I) = det(QQ^{T}) = det(Q)^{2}
-\end{align}
-
-Orthogonal matrix play an important role in QR decomposition and SVD.
-
-<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-### Determinant
-Determinant is defined for square matrices and represents a transformation from $\real^{n \times n} \to \real$. Its defined as follows for $2 \times 2$ and $3 \times 3$ matrices
-\begin{align}
-    A &= \begin{bmatrix}
-        a &b\newline c &d
-    \end{bmatrix}\newline
-    det(A) &= ac - bd\newline
-    A &= \begin{bmatrix}
-        a &b &c\newline d &e &f\newline g &h &i
-    \end{bmatrix}\newline
-    det(A) &= a(ei-hf) - b(di - gf) + c(dh - ge)
-\end{align}
-
-The term outside the bracket is the entry from the first row, and the entry inside the brackets is the determinant of the $n-1 \times n-1$ matrix formed by not considering the first row and the column corresponding to the entry outside the bracket. We put alternating $+$ and $-$ signs before each term. This way the definition extends to any $n \times n$ matrix.
-
-If the determinant of a matrix is non zero, then the matrix has full rank, or all its rows and columns are linearly independent, and the matrix is invertible.
