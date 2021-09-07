@@ -1,4 +1,4 @@
-# statistical-learning-notes
+# Notes
 Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](https://DragonWarrior15.github.io/statistical-learning-notes/)
 
 ## Building Locally
@@ -58,12 +58,30 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     * `\diffone{arg}` to denote the first derivative of `arg` using a single prime character in power
     * `\difftwo{arg}` to denote the second derivative of `arg` in the double prime notation
 
-## Codes in markdown+jekyll
+### Codes in markdown+jekyll
 * To use double curly braces inside a code block, enclose it inside the raw tag
     ```html
     {% raw %}
     This is a code with double curly braces {{ user.name | uppercase }}
     {% endraw %}
+    ```
+
+### Defining Navigation
+* Refer to [navigation.yml](_data/navigation.yml) to see how the navigation is defined currently. It follows the below format
+    ```yaml
+    topic:
+      - name: Section/Chapter 1 Name
+        link: complete_path_to_the_file.html
+        subnav:
+          - name: Subsection 1.1
+            link: complete_path_to_the_file.html
+          - name: Subsection 1.2
+            link: complete_path_to_the_file.html
+      - name: Section/Chapter 2 Name
+        link: complete_path_to_the_file.html
+        subnav:
+          - name: Subsection 2.1
+            link: complete_path_to_the_file.html
     ```
 
 ### Using `find` and `grep`
@@ -86,3 +104,4 @@ find . -type f -name "*.md" -or -name "*.yml" -exec sed -s "|/notes/differential
 * Open cmd and type `wsl --shutdown`
 * Restart cmd and type `wsl`
 * Now try running the commands
+

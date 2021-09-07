@@ -1,6 +1,6 @@
 url: "https://dragonwarrior15.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/statistical-learning-notes" # the subpath of your site, e.g. /blog
-title: "Statistical Learning Notes" # the name of your site, e.g. ACME Corp.
+title: "Learning Notes" # the name of your site, e.g. ACME Corp.
 
 # ignore some folders
 exclude: ['md_files', 'tex_files', 'Makefile', 'README.md']
@@ -66,6 +66,15 @@ defaults:
       topic: "Programming Languages"
       page_nav: "prog_lang"
       bgcolor: bg-prog-lang
+      usemathjax: false
+
+  -
+    scope:
+      path: "_notes/linux"
+    values:
+      topic: "Linux"
+      page_nav: "linux"
+      bgcolor: bg-linux
       usemathjax: false
 
   -

@@ -22,6 +22,10 @@
   bg_color: bg-prog-lang
   card_title: Programming Languages
   card_text: C, C++, SQL.
+- navigation_header: linux
+  bg_color: bg-linux
+  card_title: Linux
+  card_text: Shell, grep, sed.
 - navigation_header: differential_equations
   bg_color: bg-differential-equations
   card_title: Differential Equations

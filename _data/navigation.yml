@@ -467,6 +467,18 @@ differential_equations:
   - name: Exercises
     link: /notes/differential_equations/exercises.html
 
+linux:
+  - name: regex
+    link: /notes/linux/regex.html
+  - name: find
+    link: /notes/linux/find.html
+  - name: grep
+    link: /notes/linux/grep.html
+  - name: curl
+    link: /notes/linux/curl.html
+  - name: sed
+    link: /notes/linux/sed.html
+
 maths_misc:
   - name: Exponent and Base Reversed
     link: /notes/maths_misc/exp_base_reversed.html
