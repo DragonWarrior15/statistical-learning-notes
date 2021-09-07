@@ -4,7 +4,7 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
 ## Building Locally
 * Run `make jekyll_serve` to serve using jekyll
 
-## MathJax Usage
+## Common Pitfalls
 * MathJax overview: See [1](https://memory.psych.mun.ca/tech/js/mathjax.shtml) and [2](https://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm).
 * To escape the curly braces inside math mode, use a double back slash like `\\{`. This is because of two levels of processing by Jekyll and MathJax ([see here](https://stackoverflow.com/questions/41312777/mathjax-curly-brackets-dont-show-up-using-jekyll)).
 * Any hanging pair of square brackets `[ ]` in math mode should be escaped using `\[ \]` so that markdown does not process them as hyperlinks.
@@ -38,8 +38,9 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     {{ "/notes/full_path_to_file/file.html/#a-heading-name" | relative_url }}
     ```
     For a heading in the same file, a simple `#a-heading-name` will suffice
+* Before starting any table, there should be a blank line before it, otherwise it is not parsed correctly. It is a good practice to keep a blank line after the table as well, but that may not work when table is inside lists.
 
-### Custom mathjax shorthands
+### Custom MathJax shorthands
 * Set notations
     * `\real` to denote the set of real numbers
     * `\comp` to denote the set of complex numbers

@@ -199,7 +199,7 @@ We consider equations of the form
     \difftwo{y} + p(x)\diffone{y} + q(x)y = r(x)
 \end{align}
 
-where $r(x) \neq 0$. The general solution to this ODE is defined as a combination of the solution to the corresponding homogenous solution ($y_{h}), and a solution to the complete nonhomogenous equation ($y_{p}$, containing no arbitrary constants).
+where $r(x) \neq 0$. The general solution to this ODE is defined as a combination of the solution to the corresponding homogenous solution ($y_{h}$), and a solution to the complete nonhomogenous equation ($y_{p}$, containing no arbitrary constants).
 \begin{align}
     y_{h} &= c_{1}y_{1} + c_{2}y_{2}\newline
     y &= y_{h} + y_{p}
@@ -223,14 +223,14 @@ We can follow the following rules to determine the solution
     | $ke^{\gamma x}$ | $Ce^{\gamma x}$ |
     | $kx^{n}$ $n=0,1,\ldots$ | $K_{n}x^{n} + K_{n-1}x^{n-1} + \cdots + K_{1}x + K_{0}$ |
     | $k\sin \omega x$ or $k\cos \omega x$ | $K\sin \omega x + M\cos \omega x$ |
-    | $ke^{alpha x}\sin \omega x$ or $ke^{alpha x}\cos \omega x$ | $e^{\alpha x}\roundbr{K\sin \omega x + M\cos \omega x}$ |
+    | $ke^{\alpha x}\sin \omega x$ or $ke^{\alpha x}\cos \omega x$ | $e^{\alpha x}\roundbr{K\sin \omega x + M\cos \omega x}$ |
 1. **Modification Rule**: If the term of choice in $y_{p}$ happens to be a solution for $y_{h}$, multiply this term by $x$ (or $x^{2}$ in case the homogenous equation has repeating roots).
 1. **Sum Rule**: If $r(x)$ is a linear combination of the terms in the left part of the above table, the terms in $y_{p}$ can also be chosen as a sum combination of other corresponding entries from the right side of the table.
 
 In the above procedure, we will first look for solution to the homogenous equation. Furthermore, an incorrect choice for the coefficients will lead to a contradiction. The constants assumed in $y_{p}$ can be found by comparing the left and right side of the ODE term by term after substituiting the solution (for instance, the coefficient of $x^{2}$ should be the same on both the sides).
 
 #### Stability
-An important points from an engineering perspective needs to be considered here. If the roots of the homogneous equation are negative, or have negative real parts, only then will the nonhomogenous equation will have a stable solution. This implies $y_{h} \to 0$ as $x \to \inf$. In this case the general solution will approach a transient state and the steady state value of $y_{p}(x)$.
+An important points from an engineering perspective needs to be considered here. If the roots of the homogneous equation are negative, or have negative real parts, only then will the nonhomogenous equation will have a stable solution. This implies $y_{h} \to 0$ as $x \to \infty$. In this case the general solution will approach a transient state and the steady state value of $y_{p}(x)$.
 
 #### Variation of Parameters
 This method is credited to Lagrange and applies to any function as coefficients that is continuous. Assuming $y_{1}$ and $y_{2}$ are the solutions to the homogenous equation, $y_{p}$ is given by

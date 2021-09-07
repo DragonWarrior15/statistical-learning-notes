@@ -130,6 +130,21 @@ In both the formulae, we take the difference of the terms $M_{y}$ and $N_{x}$. I
 
 Further, the IF should be a function of only a single variable, and so should be the terms derived above for the formulat of IF. If that does not hold, our assumption is wrong. We need to do the check for both the assumptions that $\mu$ is a function of $x$ or $y$.
 
+#### Another common version of IF
+For equation of the form
+\begin{align}
+    \frac{dy}{dx} + P(x)y = Q(x)
+\end{align}
+
+The intgrating factor is
+\begin{align}
+    IF &= \exp\roundbr{\int P(x)dx}\newline
+    \implies e^{\int P(x)dx}\frac{dy}{dx} + e^{\int P(x)dx}P(x)y &= e^{\int P(x)dx}Q(x)\newline
+    \frac{d}{dx}\roundbr{e^{\int P(x)dx}y} &= e^{\int P(x)dx}Q(x)
+\end{align}
+
+which is readily solvable if the right hand side integral can be evaluated without much trouble.
+
 ### Linear ODE
 Any ODE that is expresible in the form
 \begin{align}

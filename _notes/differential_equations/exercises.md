@@ -69,7 +69,7 @@ title: Exercises
 
 1. Find the radius of convergence
     \begin{align}
-        \sum_{m=0}^{\inf} \frac{x^{2m + 1}}{(2m + 1)!}
+        \sum_{m=0}^{\infty} \frac{x^{2m + 1}}{(2m + 1)!}
     \end{align}
 
     [Solution]({{ "/notes/differential_equations/exercises/a_10.html" | relative_url }})

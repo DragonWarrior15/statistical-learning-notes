@@ -138,7 +138,7 @@ This brings us to the second shifting theorem.
 ### Second Shift Theorem
 \begin{align}
     L\roundbr{f(t-a)u(t-a)} &= e^{-as}F(s)\newline
-    \implies f(t-a)u(t-a) &= L^{-1}\roundbr(e^{-as}F(s))
+    \implies f(t-a)u(t-a) &= L^{-1}\roundbr{e^{-as}F(s)}
 \end{align}
 
 For instance
@@ -203,7 +203,7 @@ Based on the previous sections and some of the exercises, we can see that the mo
 
 In general, if there is a single unrepeated factor of $s - a$, we can assume the partial fraction to be of the form $\frac{A}{s-a}$ where $A$ is a constant.
 
-If the factor occurs twice, the choice of partial fraction will be $\frac{A_{0}}{s-a} + \frac{A_{1}}{(s-a)^{2}} where $A_{0}$ and $A_{1}$ are constants. Depending on the number of repeatitions, we will keep increasing the terms that appear in the partial fractions.
+If the factor occurs twice, the choice of partial fraction will be $\frac{A_{0}}{s-a} + \frac{A_{1}}{(s-a)^{2}}$ where $A_{0}$ and $A_{1}$ are constants. Depending on the number of repeatitions, we will keep increasing the terms that appear in the partial fractions.
 
 In case of an unrepeated complex fraction $(s - a)(s - \bar{a})$ the partial fraction is assumed to be $\frac{As + B}{(s - \alpha)^{2} + \beta^{2}}$ where $a = \alpha + i\beta$.
 
