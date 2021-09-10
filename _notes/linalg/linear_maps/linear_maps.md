@@ -1,8 +1,7 @@
 ---
-title: "Complex Field"
+title: "Linear Maps"
 ---
 
-# Linear Maps
 ## Linear Maps
 Let $\setv$ and $\setw$ denote two vector spaces. Then, a linear map $T$ is a function from $\setv$ to $\setw$ that satisfies the following properties
 * **Additivity**
@@ -59,9 +58,9 @@ Null space is the subset that get mapped to 0. Mathematically
     \text{null }T = \{ v \in \setv \; \text{ such that } \; Tv = 0 \}, T \in \setlm(\setv, \setw)
 \end{gather}
 
-We can easily verify that Null space is a subspace of $\setv$ since it contains the additive identity ($T0 = 0$), is closed under addition ($T(u + v) = Tu + Tv = 0$), and closed under scalar multiplication ($T(\lambda v) = \lambda(Tv) = 0$).\newline
+We can easily verify that Null space is a subspace of $\setv$ since it contains the additive identity ($T0 = 0$), is closed under addition ($T(u + v) = Tu + Tv = 0$), and closed under scalar multiplication ($T(\lambda v) = \lambda(Tv) = 0$).
 
-The dimension of the null space (number of basis vectors in the null space) is also denoted by Nullity. Some author may refer to the null space as the \textbf{Kernel} of the linear map.
+The dimension of the null space (number of basis vectors in the null space) is also denoted by Nullity. Some author may refer to the null space as the **Kernel** of the linear map.
 
 <!--####################### -->
 ### Injective or one-to-one
@@ -69,7 +68,7 @@ A linear map is injective if it maps distinct elements of $\setv$ to distinct el
 \begin{align}
     T \in \setlm(\setv, \setw) \; \text{is injective if} \; Tv = Tw \Rightarrow v = w
 \end{align}
-for all $v \in \setv$ and $w \in \setw$.\newline
+for all $v \in \setv$ and $w \in \setw$.
 
 Injectivity is also equivalent to saying that the null space is a singleton set $\{0 \}$. To prove this, both $Tv = Tw \Rightarrow v = w$ and $v = w \Rightarrow Tv = Tw$ needs to be shown.
 

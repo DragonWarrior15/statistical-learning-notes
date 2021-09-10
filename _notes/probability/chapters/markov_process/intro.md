@@ -14,3 +14,5 @@ Let $X_{n}$ be the random variable denoting the state after n transitions and $X
         r_{ij}(n) &= P(X_{n}=j|X_{0}=i) \quad\text{or, in state $j$ after $n$ steps}\newline
         r_{ij}(n) &= \sum_{k=1}^{m} r_{ik}(n-1)p_{kj}
     \end{align}
+
+We can form a transition matrix M such that $M_{ij} = p_{ij}$. To get the probability of transition from state $i \to j$ after $n$ steps, we can refer to the $ij$ entry of the matrix $M^{n}$ (since this multiplication will take summation from all possible routes to reach $j$ from $i$).

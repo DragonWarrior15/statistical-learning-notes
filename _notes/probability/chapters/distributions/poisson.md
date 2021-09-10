@@ -107,7 +107,6 @@ Hence, for a Poisson process, the number of arrivals in any interval is dependen
 
 For a very small interval $\delta$,
 \begin{align}
-{2}
         P(k, \delta) &= \begin{cases} 1-\lambda \delta &\mbox{$k = 0$}\newline
                                      \lambda \delta &\mbox{$k = 1$}\newline
                                      0 &\mbox{$k > 2$} \end{cases} + O(\delta^{2})\newline

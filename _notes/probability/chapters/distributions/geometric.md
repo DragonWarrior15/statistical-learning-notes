@@ -18,9 +18,9 @@ To calculate mean and variance, we first calculate the moment generating functio
         E[e^{tX}] &= \sum_{k=1}^{\infty} (1-p)^{k-1}p e^{tk}\newline
         \phi(k) &= \frac{p}{1-p} \sum_{k=1}^{\infty} ((1-p)e^{t})^{k}\newline
         &= \frac{p}{1-p} \frac{(1-p)e^{t}}{1 - (1-p)e^{t}} = \frac{pe^{t}}{1 - (1-p)e^{t}}\newline
-        \phi\prime(t) &= \frac{(1 - (1-p)e^{t})pe^{t} + pe^{t}(1-p)e^{t}}{(1 - (1-p)e^{t})^{2}}\newline
+        \diffone{\phi}(t) &= \frac{(1 - (1-p)e^{t})pe^{t} + pe^{t}(1-p)e^{t}}{(1 - (1-p)e^{t})^{2}}\newline
         &= \frac{pe^{t}}{(1 - (1-p)e^{t})^{2}}\newline
-        \phi\prime\prime(t) &= \frac{(1 - (1-p)e^{t})^{2}pe^{t} + pe^{t}2(1 - (1-p)e^{t})(1-p)e^{t}}{(1 - (1-p)e^{t})^{4}}\newline
+        \difftwo{\phi}(t) &= \frac{(1 - (1-p)e^{t})^{2}pe^{t} + pe^{t}2(1 - (1-p)e^{t})(1-p)e^{t}}{(1 - (1-p)e^{t})^{4}}\newline
         &= \frac{pe^{t}(1 + (1-p)e^{t})}{(1 - (1-p)e^{t})^{3}}
     \end{align}
 
@@ -28,7 +28,7 @@ To calculate mean and variance, we first calculate the moment generating functio
 
 With the moment generating function, mean and variance are easy to calculate
 \begin{align}
-        E[X] &= \phi\prime(0) = \frac{1}{p}\newline
-        E[X^{2}] &= \phi\prime\prime(0) = \frac{2-p}{p^{2}}\newline
+        E[X] &= \diffone{\phi}(0) = \frac{1}{p}\newline
+        E[X^{2}] &= \difftwo{\phi}(0) = \frac{2-p}{p^{2}}\newline
         Var(X) &= \frac{2-p}{p^{2}} - \frac{1}{p^{2}} = \frac{1-p}{p^{2}}
     \end{align}

@@ -59,7 +59,7 @@ Thus, the determinant can be obtained by expansion along any row or column. In c
 * The value of determinant is unchanged by addition of a scalar multiple of a row (or column) to another row (or column)
 * $\detm{AB} = \detm{A} \detm{B}$
     * It follows that $\detm{A^{n}} = \detm{A}^{n}$
-    * $\det{A} \det{A^{-1}} = 1$
+    * $\detm{A} \detm{A^{-1}} = 1$
 * Determinant of an upper triangular or lower triangular or diagonal matrix is the multiplication of all the diagonal elements
 * Determinant of a skew-symmetric matrix of odd order is 0
 * $\detm{Adj(A)} = \detm{A}^{n-1}$

@@ -45,7 +45,7 @@ A matrix $A$ is said to be nilpotent of class $x$ if $x$ is the smallest index s
 ### Singular Matrix
 A square matrix is singular if its determinant is 0. Equivalently, a square matrix is non-singular if its determinant is non-zero. A singular matrix is not invertible.
 
-### Symmetrix MAtrix
+### Symmetrix Matrix
 A square matrix is symmetric if $a_{ij} = a_{ji} \: \forall i,j$. Or simply, if $A^{T} = A$.
 
 For any matrix A

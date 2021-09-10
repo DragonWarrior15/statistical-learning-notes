@@ -91,7 +91,7 @@ Based on this definition, the following theorems for expected value follow
         E[X + Y + Z] &= E[X] + E[Y] + E[Z] \quad \text{Linearity of Expectation}\newline
         E[XY] &= \sum_{X} \sum_{Y} xy P_{XY}(x,y) \newline
         E[g(X,Y)] &= \sum_{X} \sum_{Y} g(xy) P_{XY}(x,y) \newline
-        E[XY] &= E[X]E[Y] \quad \text{if X and Y are \emph{independent}}
+        E[XY] &= E[X]E[Y] \quad \text{if X and Y are $\emph{independent}$}
     \end{align}
 where $\alpha, \beta \in \mathbb{R}$, $g(X) : \mathbb{R} \rightarrow \mathbb{R}$, and $A$ is an event, $X, Y, Z$ are Random Variables.
 
@@ -104,7 +104,7 @@ The same formulas are valid in case of random vectors $\mathbf{X}$ and constants
         &\vdots\newline
         &E[X_{n}]
         \end{bmatrix}\newline
-        E[\mathbf{X_{1}} + \mathbf{X_{2}} + cdots + \mathbf{X_{n}}] &= E[\mathbf{X_{1}}] + E[\mathbf{X_{2}}] + \cdots + E[\mathbf{X_{n}}]\newline
+        E[\mathbf{X_{1}} + \mathbf{X_{2}} + \cdots + \mathbf{X_{n}}] &= E[\mathbf{X_{1}}] + E[\mathbf{X_{2}}] + \cdots + E[\mathbf{X_{n}}]\newline
         E[\mathbf{A}\mathbf{X}+\mathbf{b}] &= E[\mathbf{A}\mathbf{X}] + E[\mathbf{b}] = \mathbf{A}E[\mathbf{X}] + \mathbf{b}\newline
     \end{align}
 

@@ -12,7 +12,7 @@ Let $X_{i}$ denote the Random Variable corresponding to the individual trials, w
         X_{i} &= \begin{cases} 1 &\mbox{if success in trial i}\newline
                                 0 &\mbox{otherwise} \end{cases} \quad \text{indicator variable} \newline
         X &= X_{1} + X_{2} + \cdots + X_{n} = \sum_{i=1}^{n} X_{i} \newline
-        P(X=k) &= \sum_{k=0}^{n} \binom{n}{k} p^{k} (1 - p)^{n-k}
+        P(X=k) &= \binom{n}{k} p^{k} (1 - p)^{n-k}
     \end{alignat}
 
 where $X$ denotes the Binomial random variable.

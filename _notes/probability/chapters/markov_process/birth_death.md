@@ -12,7 +12,7 @@ Let's estimate the steady state probabilities. Consider the following diagram sp
 
 {% include image.html url="notes/probability/images/markov_2.png" description="" img_classes="notes-img markov_1" %}
 
-In this case, to maintain steady state, long term frequency of left-right transition should be same as right left transition, i.e., $\pi_{i}p_{i} = \pi_{i+1}q_{i}$
+In this case, to maintain steady state, long term frequency of left-right transition should be same as right left transition, i.e., $\pi_{i}p_{i} = \pi_{i+1}q_{i}$ because between any two transitions of type $i \to i + 1$, exactly one transition $i + 1 \to i$ must have occurred due to the structure of the chain.
 
 In the special case of $p_{i} = p$ and $q_{i} = q \;\forall\; i$,
 \begin{align}

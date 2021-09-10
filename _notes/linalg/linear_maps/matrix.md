@@ -67,7 +67,7 @@ Two vector spaces are isomorphic if there is an isomorphism (an invertible linea
 ### Operator
 A linear map from a vector space onto itself is called an operator. $\setlm(\setv)$ denotes the set of all operators from $\setv$ onto itself. It is the same notation as $\setlm(\setv) = \setlm(\setv, \setv)$.
 
-On a finite dimensional vector space $\setv$, any linear map $T \in \setlm(\setv)$ is \textbf{invertible}, \textbf{injective} and \textbf{surjective}.
+On a finite dimensional vector space $\setv$, any linear map $T \in \setlm(\setv)$ is $\textbf{invertible}, \textbf{injective} and \textbf{surjective}$.
 
 <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 ### Rank of a Matrix

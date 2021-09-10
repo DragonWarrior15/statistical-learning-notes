@@ -52,21 +52,21 @@ Thus,
 
 #### Sum of Exponentially Distributed Random Variables to Chi-Square Distribution
 
-We say that a Gamma distributed random variable with $\lambda = 1/2$ and $\alpha$ can be considered equivalent to a $\chi^{2}\_{2\alpha}$ variable. Here, $\lambda$ is contrained to be $1/2$. By transforming the variables appropriately, we can extend the idea to a sum of exponentially distributed random variables.
+We say that a Gamma distributed random variable with $\lambda = 1/2$ and $\alpha$ can be considered equivalent to a $\chi^{2}\_{2\alpha}$ variable. Here, $\lambda$ is constrained to be $1/2$. By transforming the variables appropriately, we can extend the idea to a sum of exponentially distributed random variables.
 
 
 Consider $n$ independent and identically exponentially distributed random variables $X_{i}$ with parameter $\lambda$. Consider for any of those random variables $X_{i}$,
 \begin{align}
         Y &= 2\lambda X\newline
-        F_{Y}(y) &= P(Y \leq y) = P(X <\leq \frac{y}{2\lambda})\newline
-        &= F_{X}(\frac{y}{2\lambda}) = 1 - \exp \bigg( \frac{y}{2} \bigg)\newline
+        F_{Y}(y) &= P(Y \leq y) = P(X \leq \frac{y}{2\lambda})\newline
+        &= F_{X}(\frac{y}{2\lambda}) = 1 - \exp \bigg( -\frac{y}{2} \bigg)\newline
         f_{Y}(y) &= \frac{d}{dy} 1 - \exp \bigg( -\frac{y}{2} \bigg)\newline
-        &= \frac{1}{2}\exp \bigg( \frac{y}{2} \bigg)\newline
+        &= \frac{1}{2}\exp \bigg( -\frac{y}{2} \bigg)\newline
         &= Exp(\frac{1}{2})
     \end{align}
-i.e., $\frac{2}{\lambda}Exp(\lambda) \sim Exp(\frac{1}{2})$. Now, consider the sum of these transformed random variables
+i.e., $2\lambda Exp(\lambda) \sim Exp(\frac{1}{2})$. Now, consider the sum of these transformed random variables
 \begin{align}
-        \frac{2}{\lambda}\bigg( X_{1} + \cdots X_{n} \bigg) &\sim Gamma(n, 1/2) \sim \chi_{2n}^{2}
+        2\lambda\bigg( X_{1} + \cdots X_{n} \bigg) &\sim Gamma(n, 1/2) \sim \chi_{2n}^{2}
     \end{align}
 
 Hence, we can convert the sum of $n$ exponentially distributed random variables with parameter $\lambda$, to a $\chi^{2}\_{n}$ variable by multiplying the individual variables by $2/\lambda$.
