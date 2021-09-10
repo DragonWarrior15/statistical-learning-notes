@@ -16,6 +16,8 @@ In the below figure, we see examples of different types of states.
 * 2 is transient since all other states are accessible from 2, but 2 is not accessible from either of those.
 * 3 and 4 are accessible only from each other and are thus recurrent.
 
+{% include image.html url="notes/probability/images/markov_3.png" description="Sample Markov chain with transient and recurrent states" img_classes="notes-img markov_3" %}
+
 Any set of states such that they are all accessible from each other form a _recurrent class_. In the figure above, states 3,4 from one recurrent class while state 1 is a recurrent class in itself.
 
 ### Markov Chain Decomposition
