@@ -85,13 +85,13 @@ Based on this definition, the following theorems for expected value follow
         E[\alpha X] &= \alpha E[X] \newline
         E[\alpha X + \beta] &= \alpha E[X] + \beta \newline
         E[g(X)] &= \sum_x g(x)P_{X}(X = x) \newline
-        E[X^{2}] &= \sum_x x^{2} P_{X}(X = x) \quad \text{Also called \emph{Second Moment}}\newline
+        E[X^{2}] &= \sum_x x^{2} P_{X}(X = x) \quad \text{Also called Second Moment}\newline
         E[X|A] &= \sum_{x} x P_{X|A}(X|A) = f(A)\;\text{and not X}\newline
         E[g(X)|A] &= \sum_{x} g(x) P_{X|A}(X|A) \newline
         E[X + Y + Z] &= E[X] + E[Y] + E[Z] \quad \text{Linearity of Expectation}\newline
         E[XY] &= \sum_{X} \sum_{Y} xy P_{XY}(x,y) \newline
         E[g(X,Y)] &= \sum_{X} \sum_{Y} g(xy) P_{XY}(x,y) \newline
-        E[XY] &= E[X]E[Y] \quad \text{if X and Y are $\emph{independent}$}
+        E[XY] &= E[X]E[Y] \quad \text{if X and Y are independent}
     \end{align}
 where $\alpha, \beta \in \mathbb{R}$, $g(X) : \mathbb{R} \rightarrow \mathbb{R}$, and $A$ is an event, $X, Y, Z$ are Random Variables.
 
