@@ -19,3 +19,5 @@ Thus, when two exponential processes are considered, probaility of arrival of 1s
             P(X < Y < Z) &= P(X < min(Y,Z)) P(Y < Z)\newline
                         &= \frac{\lambda \mu}{(\lambda + \mu + \nu)(\mu + \nu)}
         \end{align}
+
+where we have also used the property that minimum of exponentially distributed random variables is itself exponentially distributed.

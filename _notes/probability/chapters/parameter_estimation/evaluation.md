@@ -82,11 +82,9 @@ For an unbiased estimator, the MSE derived above is only dependent on the varian
 
 The CRLB sets a lower bound on the variance of any unbiased estimator. If this lower bound is known,
 
--   If the variance of an unbiased estimator equals this lower bound, we know that we have found the MVUE
-
--   The lower bound provides a benchmark against which to compare different estimators
-
--   The bound can be used to rule out impossible estimators
+* If the variance of an unbiased estimator equals this lower bound, we know that we have found the MVUE
+* The lower bound provides a benchmark against which to compare different estimators
+* The bound can be used to rule out impossible estimators
 
 ##### Fisher Information
 
@@ -121,7 +119,7 @@ Then, for an unbiased estimator $\hat{\theta}$ and Fisher information $\mathcal{
         Var(\hat{\theta}) \geq \frac{1}{n\mathcal{I}(\theta)}
     \end{align}
 
-The above is a universal bound for unbiased estimators. The lower bound is slightly differently for biased estimators. Let $b(\theta)$ denote the bias for estimator $T(X)$, then
+The above is a universal bound for unbiased estimators. The lower bound is slightly different for biased estimators. Let $b(\theta)$ denote the bias for estimator $T(X)$, then
 \begin{align}
         Var(T(X)) \geq \frac{(1 + b'(\theta))^{2}}{n\mathcal{I}(\theta)}
     \end{align}
@@ -136,4 +134,4 @@ The theorem states that any unbiased estimator of an unknown quantity that depen
 
 ##### Rao-Blackwell Theorem
 
-If $g(X)$ is any kind of estimator of an unknown $\theta$, the the conditional expectation of $g(X)$ given $T(X)$ (a sufficient statistic) is typically a better estimate of $\theta$ and never worse. Often, one can start off with a crude estimator $g(X)$ and compute the expected value to get an estimator that is optimal in various senses.
+If $g(X)$ is any kind of estimator of an unknown $\theta$, the conditional expectation of $g(X)$ given $T(X)$ (a sufficient statistic) is typically a better estimate of $\theta$ and never worse. Often, one can start off with a crude estimator $g(X)$ and compute the expected value to get an estimator that is optimal in various senses.

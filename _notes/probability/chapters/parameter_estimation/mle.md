@@ -23,12 +23,12 @@ Let $p$ denote the probability of success. Then,
 Since all the samples are independent, the joint probability or likelihood is simply the product of all the probabilities
 \begin{align}
         f(x_{1}, x_{2}, \ldots, x_{n}|p) &= p^{x_{1}}(1-p)^{1-x_{1}} \ldots p^{x_{n}}(1-p)^{1-x_{n}}\newline
-        &= p^{\sum_{i=1}^{x_{i}}} (1-p)^{n-\sum_{i=1}^{x_{i}}}\newline
-        log(f(x_{1}, x_{2}, \ldots, x_{n}|p)) &= {\sum_{i=1}^{x_{i}}}log(p) + (n-{\sum_{i=1}^{x_{i}}})log(1-p)
+        &= p^{\sum_{i=1}^{n}x_{i}} (1-p)^{n-\sum_{i=1}^{n}x_{i}}\newline
+        log(f(x_{1}, x_{2}, \ldots, x_{n}|p)) &= {\sum_{i=1}^{n}x_{i}}log(p) + (n-{\sum_{i=1}^{n}x_{i}})log(1-p)
     \end{align}
 Taking the derivative with respect to $p$ to maximize,
 \begin{align}
-        \frac{d}{dp}log(f(x_{1}, x_{2}, \ldots, x_{n}|p)) &= {\sum_{i=1}^{x_{i}}}\frac{1}{p} - (n-{\sum_{i=1}^{x_{i}}})\frac{1}{1-p} = 0\newline
+        \frac{d}{dp}log(f(x_{1}, x_{2}, \ldots, x_{n}|p)) &= {\sum_{i=1}^{n}x_{i}}\frac{1}{p} - (n-{\sum_{i=1}^{n}x_{i}})\frac{1}{1-p} = 0\newline
         \text{or,}\quad \hat{p} &= \frac{\sum_{i=1}^{n}x_{i}}{n}
     \end{align}
 which is the proportion of successful trials in the sample.

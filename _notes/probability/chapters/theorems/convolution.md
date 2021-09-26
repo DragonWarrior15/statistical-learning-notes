@@ -5,10 +5,10 @@ title: "Convolutions"
 ## Convolutions
 
 Convolution operations are defined for both CDF and PDF/PMFs. Let $X$ and $Y$ be random independent variables, then
-\begin{align}
-{2}
-    F_{X+Y}(x) &= F_{X} * F_{Y} &= \int_{\mathbb{R}} F_{X}(x-y) dF_{Y}(y)\newline
-    p_{X+Y}(x) &= p_{X} * p_{Y} &= \int_{\mathbb{R}} p_{X}(x-y) p_{Y}(y) dy\end{align}
+\begin{alignat}{2}
+    F_{X+Y}(x) &= F_{X} * F_{Y} &&= \int_{\mathbb{R}} F_{X}(x-y) dF_{Y}(y)\newline
+    p_{X+Y}(x) &= p_{X} * p_{Y} &&= \int_{\mathbb{R}} p_{X}(x-y) p_{Y}(y) dy
+\end{align}
 
 We can extend the idea to $n$ independent variables as
 \begin{align}

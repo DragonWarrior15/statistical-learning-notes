@@ -110,7 +110,7 @@ title: "Exercises"
 
     Every second, a mosquito lands with $P = 0.5$. Once it lands, it bites with $P=0.2$. Let $X$ be the time between successive mosquito bites. Find $E[X]$ and $Var(X)$.
 
-    Now suppose a tick comes into play independent of mosquito. It lands with $P=0.1$ and once landed, bites with $)=0.7$. Let $Y$ be the time between successive bug bites. Find $E[Y]$ and $Var(Y)$. [Solution]({{ "/notes/probability/chapters/exercises/a_mosquito.html" | relative_url }})
+    Now suppose a tick comes into play independent of mosquito. It lands with $P=0.1$ and once landed, bites with $P=0.7$. Let $Y$ be the time between successive bug bites. Find $E[Y]$ and $Var(Y)$. [Solution]({{ "/notes/probability/chapters/exercises/a_mosquito.html" | relative_url }})
 
 1.  **HH or TT**
 
@@ -149,7 +149,7 @@ title: "Exercises"
 
 1.  **Poisson Fishing**
 
-    We go fishing where we catch fishes at the rate of $0.6/hour$. We fish for two hours. If we do not catch a fish in the first two hours, we fist until the first catch. Find the following
+    We go fishing where we catch fishes at the rate of $0.6/hour$. We fish for two hours. If we do not catch a fish in the first two hours, we fish until the first catch. Find the following
 
     -   P(fish for $> 2$ hours)
 

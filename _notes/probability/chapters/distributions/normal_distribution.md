@@ -28,7 +28,7 @@ For a standard normal variable $Z$, it is standard to denote
 
 Further, for a given $\alpha \in (0,1)$, define $z_{\alpha}$ by
 \begin{align}
-        P(Z > z_{\alpha}) = \alpha = 1-\Phi(z_{\alpha})s
+        P(Z > z_{\alpha}) = \alpha = 1-\Phi(z_{\alpha})
     \end{align}
 Some standard values of $\alpha$ can be useful
 

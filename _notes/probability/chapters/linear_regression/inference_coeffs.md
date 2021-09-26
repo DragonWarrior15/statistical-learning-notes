@@ -19,11 +19,10 @@ and both the random variables are independent of each other. Hence their divisio
         \frac{\sqrt{S_{xx}}\hat{\theta}\_{1}/\sigma}{\sqrt{\frac{SS_{R}}{\sigma^{2} (n-2)}}} = \hat{\theta}\_{1}\sqrt{\frac{(n-2)S_{xx}}{SS_{R}}} = TS \sim t_{n-2}
     \end{align}
 We do this since we do not know the exact value of $\sigma^{2}$ and need to eliminate it with a sample derived version. The hypothesis test at significance level $\alpha$ simply becomes
-\begin{align}
-{4}
-        \text{Reject\quad} &H_{0} \text{\quad if \quad} &\lvert TS \rvert &> &t_{\alpha/2, n-2}\newline
-        \text{Accept\quad} &H_{0} \text{\quad if\quad} &\vert TS \rvert &\leq &t_{\alpha/2, n-2}
-    \end{align}
+\begin{alignat}{4}
+        \text{Reject}\quad &H_{0} \quad\text{if}\quad &\lvert TS \rvert &> &t_{\alpha/2, n-2}\newline
+        \text{Accept}\quad &H_{0} \quad\text{if}\quad &\vert TS \rvert &\leq &t_{\alpha/2, n-2}
+    \end{alignat}
 which can be converted to a *p-value* using the $TS$ and t-distribution. A small *p-value* will lead to rejection of $H_{0}$ meaning that the data provides evidence of a relationship between dependent and independent variables.
 
 

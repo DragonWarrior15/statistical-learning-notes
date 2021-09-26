@@ -22,7 +22,7 @@ Consider $X, Y \sim \mathcal{N}(0, 1)$. Then,
 \begin{align}
         f_{XY}(x,y) = \frac{1}{2\pi}exp(-\frac{x^{2}+y^{2}}{2})
     \end{align}
-is the joint distribution. $(X, Y)$ is a point on the cartesian plane and thus, will have an equivalent polar coordinate $(R, \Theta)$ implying $R^{2} = X^{2} + Y^{2}$ which is a $\chi_{2}^{2}$ variable. From section [\[sec:rel_gamma_chi\]](#sec:rel_gamma_chi){reference-type="ref" reference="sec:rel_gamma_chi"},
+is the joint distribution. $(X, Y)$ is a point on the cartesian plane and thus, will have an equivalent polar coordinate $(R, \Theta)$ implying $R^{2} = X^{2} + Y^{2}$ which is a $\chi_{2}^{2}$ variable. From relation between gamma and $\chi_{2}^{2}$ variable,
 \begin{align}
        f_{R^{2}}(r) &= \frac{1}{2}exp(-\frac{r}{2})\newline
        \text{and} \quad f_{XY}(x,y) &= \frac{1}{2\pi} exp(-\frac{r}{2}) \quad \text{when} \quad x^{2} + y^{2} = r

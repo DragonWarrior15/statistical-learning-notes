@@ -56,6 +56,7 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     * `\KL{arg 1, arg2}` to denote the KL divergence between functions `arg1` and `arg2`
     * `\detm{arg}` to denote the determinant of the matrix `arg`
     * `\roundbr{arg}` to create round brackets around `arg` with the appropriate sizing
+    * `\squarebr{arg}` to create sqyare brackets around `arg` with the appropriate sizing
     * `\diffone{arg}` to denote the first derivative of `arg` using a single prime character in power
     * `\difftwo{arg}` to denote the second derivative of `arg` in the double prime notation
 

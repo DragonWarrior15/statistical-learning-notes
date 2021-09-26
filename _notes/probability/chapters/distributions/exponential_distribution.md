@@ -4,7 +4,7 @@ title: "Exponential Distribution"
 
 ## Exponential Distribution
 
-Exponential distribution is characterized by the parameter $\lambda$ and has the following probability distribution
+Exponential distribution is characterized by the parameter $\lambda > 0$ and has the following probability distribution
 \begin{align}
         f_{X}(x) = \begin{cases} 0 &\mbox{if $x < 0$}\newline
                                 \lambda e^{-\lambda x} &\mbox{otherwise} \end{cases}
@@ -73,3 +73,5 @@ If $X_{1}, \ldots X_{n}$ are $n$ independent exponentially distributed random va
         &= \exp(-\sum_{i=1}^{n} \lambda_{i} x)\newline
         \implies min(X_{1}, \ldots, X_{n}) &\sim Exponential(\lambda_{1} + \cdots + \lambda_{n})
     \end{align}
+
+where we have leveraged the cumulative function for exponential distribution.

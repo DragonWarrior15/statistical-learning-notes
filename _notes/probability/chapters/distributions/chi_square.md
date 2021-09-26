@@ -69,7 +69,7 @@ i.e., $2\lambda Exp(\lambda) \sim Exp(\frac{1}{2})$. Now, consider the sum of th
         2\lambda\bigg( X_{1} + \cdots X_{n} \bigg) &\sim Gamma(n, 1/2) \sim \chi_{2n}^{2}
     \end{align}
 
-Hence, we can convert the sum of $n$ exponentially distributed random variables with parameter $\lambda$, to a $\chi^{2}\_{n}$ variable by multiplying the individual variables by $2/\lambda$.
+Hence, we can convert the sum of $n$ exponentially distributed random variables with parameter $\lambda$, to a $\chi^{2}\_{n}$ variable by multiplying the individual variables by $2\lambda$.
 
 ### Mean and Variance
 

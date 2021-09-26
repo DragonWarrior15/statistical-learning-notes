@@ -18,4 +18,4 @@ This can be proved as follows
         &\geq aP(X \geq a)
     \end{align}
 
-Based on experiments with simple distributions (like uniform distribution), it can be verified that the bounds provided this inequality can be quite loose.
+Based on experiments with simple distributions (like uniform distribution), it can be verified that the bounds provided by this inequality can be quite loose.

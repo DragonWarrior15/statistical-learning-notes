@@ -52,7 +52,7 @@ Mean convergence is stronger than convergence in probability, i.e., convergence 
 Consider a sequence of random variables $X_{1}, X_{2}, X_{3}, \ldots$ defined on a sample space $S$ (assume finite for the moment) $= \{s_{1}, s_{2}, \ldots s_{k}\}$. Since a random variable $X_{n}$ is a mapping from an outcome in sample space to the set of real numbers, $X_{n}(s_{i}) = x_{ni}$ for $i=1,2,\ldots,k$.
 
 
-After performing the random experiment, one of the $s_{i}$ś will be the outcome of the experiment and we will know the value for all the $X_{n}$ś. For $s_{j}$ as the outcome, we observe the sequence $x_{1j}, x_{2j}, \ldots$. Almost surely convergence is defined based on the convergence of this sequence of numbers.
+After performing the random experiment, one of the $s_{i}$'s will be the outcome of the experiment and we will know the value for all the $X_{n}$'s. For $s_{j}$ as the outcome, we observe the sequence $x_{1j}, x_{2j}, \ldots$. Almost surely convergence is defined based on the convergence of this sequence of numbers.
 
 
 A sequence of random variables $X_{1}, X_{2}, \ldots$ converges almost surely to a random variable $X$ if $P(\{s \in S:\lim_{n \to \infty} X_{n}(s) = X(s)\}) = 1$ and is denoted by $X_{n} \overset{a.s.}\rightarrow X$.

@@ -4,7 +4,7 @@ title: "Moment Generating Function"
 
 ## Moment Generating Function
 
-Moment generating function is defined as the following for all values of $t$
+Moment generating function (mgf) is defined as the following for all values of $t \in (-h, h)$ where $h > 0$ (important thing is that the function exists at $t = 0$)
 \begin{align}
         \phi (t) = E[e^{tX}] = \begin{cases} \sum_{x} e^{tx} p_{X}(x) &\mbox{for discrete case}\newline
         \int_{-\infty}^{\infty} e^{tx} f_{X}(x) &\mbox{for continuous case} \end{cases}

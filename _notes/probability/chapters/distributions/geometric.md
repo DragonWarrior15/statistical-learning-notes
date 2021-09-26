@@ -24,6 +24,8 @@ To calculate mean and variance, we first calculate the moment generating functio
         &= \frac{pe^{t}(1 + (1-p)e^{t})}{(1 - (1-p)e^{t})^{3}}
     \end{align}
 
+Expected number of failures will be $1/p - 1 = (1-p)/p$ (since $1/p$ is the total expected trials and we subtract the last trial which is a success).
+
 ### Mean and Variance
 
 With the moment generating function, mean and variance are easy to calculate

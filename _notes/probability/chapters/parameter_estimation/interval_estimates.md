@@ -15,7 +15,7 @@ Note that the below confidence intervals imply that $\alpha$ percent of times, t
 Consider the problem of estimation of the mean of a normal distribution with known variance $\sigma^{2}$. Since we know that the MLE for mean is just the sample mean, and the sample mean follows a normal distribution,
 \begin{align}
         P(-1.96 < \frac{\overline{X} - \mu}{\sigma / \sqrt{n}} < 1.96) &= 0.95 \quad\text{using standard normal tables}\newline
-        \text{or,}\quad P(overline{X} - 1.96\frac{\sigma}{\sqrt{n}}< \mu < \overline{X} + 1.96\frac{\sigma}{\sqrt{n}}) &= 0.95
+        \text{or,}\quad P(\overline{X} - 1.96\frac{\sigma}{\sqrt{n}}< \mu < \overline{X} + 1.96\frac{\sigma}{\sqrt{n}}) &= 0.95
     \end{align}
 Thus, we are 95% confident that the true value of the mean lies in the range
 \begin{align}
@@ -88,7 +88,7 @@ By noting that $\sigma^{2}$ is always positive, we have the following
 Suppose the following two independent sets of random variables
 \begin{align}
         X_{1}, X_{2}, \ldots, X_{n} &\sim \mathcal{N}(\mu_{1}, \sigma_{1}^{2})\newline
-        Y_{1}, Y_{2}, \ldots, Y_{m} &\sim \mathcal{N}(\mu_{1}, \sigma_{1}^{2})
+        Y_{1}, Y_{2}, \ldots, Y_{m} &\sim \mathcal{N}(\mu_{2}, \sigma_{2}^{2})
     \end{align}
 
 Then, we are interseted in the distribution of $\mu_{1} - \mu_{2}$. It is intuitive to see that the MLE estimator of this quantity is nothing but $\overline{X} - \overline{Y}$. Also, since $\overline{X}$ and $\overline{Y}$ are both normally distributed,

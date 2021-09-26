@@ -20,7 +20,7 @@ Assuming yes,
         \text{frequency of transitions into $j$} &= \sum_{k} \pi_{k} p_{kj} \quad\text{influx from all connected states}
     \end{align}
 
-The $pi_{j}$ sum up to 1 and form a probability distribution called the **stationary distribution** of the chain (because if the initial distribution $P(X_{0} = j) = \pi_{j}, the occupancy distribution of the states is constant for all steps and can be verified using total probability theorem on any of the nodes).
+The $pi_{j}$ sum up to 1 and form a probability distribution called the **stationary distribution** of the chain (because if the initial distribution $P(X_{0} = j) = \pi_{j}$, the occupancy distribution of the states is constant for all steps and can be verified using total probability theorem on any of the nodes).
 
 In the steady state,
 * $\pi_{j} = 0$ for transient states
