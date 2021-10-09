@@ -46,12 +46,19 @@ A matrix $A$ is said to be nilpotent of class $x$ if $x$ is the smallest index s
 A square matrix is singular if its determinant is 0. Equivalently, a square matrix is non-singular if its determinant is non-zero. A singular matrix is not invertible.
 
 ### Symmetrix Matrix
-A square matrix is symmetric if $a_{ij} = a_{ji} \: \forall i,j$. Or simply, if $A^{T} = A$.
+A square matrix is symmetric if $a_{ij} = a_{ji} \quad \forall i,j$. Or simply, if $A^{T} = A$.
 
 For any matrix A
 * $AA^{T}$ is always symmetric
 * $(A + A^{T})/2$ is always symmetric
 * If A and B are symmetric, A + B and A - B are also symmetric
+
+#### Positive Definite
+A symmetric matrix is positive definite ($A > 0$) if all its eigenvalues are positive. Further, for such a matrix $x^{T}Ax > 0$ for all vectors $x$.
+
+It is positive semi-definite ($A \geq 0$) if all its eigenvalues are non-negative. Further, for such a matrix $x^{T}Ax \geq 0$ for all vectors $x$.
+
+If A is positive definite (semi-definite), then there exists $A^{1/2}$ that is also positive definite (semi-definite) such that $A^{1/2} A^{1/2} = A$. This follows from the fact that the eigenvectors of the matrix $A$ are orthogonal.
 
 ### Skew Symmetric Matrix
 A square matrix is skew symmetric if $a_{ij} = a_{ji} \: \forall i,j$. This is equivalent to saying $A^{T} = -A$.

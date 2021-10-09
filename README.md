@@ -54,7 +54,7 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     * `\minimize`, `\maximize`, `\argmin` and `\argmax` are defined to denote the minimization, maximization, minimum value index, and maximum value index positions respectively.
 * Operators with arguments
     * `\KL{arg 1, arg2}` to denote the KL divergence between functions `arg1` and `arg2`
-    * `\detm{arg}` to denote the determinant of the matrix `arg`
+    * `\detm{arg}` to denote the determinant of the matrix `arg`, can also be used to generate left and right vertical bars the height of the expression
     * `\roundbr{arg}` to create round brackets around `arg` with the appropriate sizing
     * `\squarebr{arg}` to create sqyare brackets around `arg` with the appropriate sizing
     * `\diffone{arg}` to denote the first derivative of `arg` using a single prime character in power

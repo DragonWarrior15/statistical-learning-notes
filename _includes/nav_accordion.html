@@ -1,0 +1,40 @@
+{% if include.index %}
+<div id="{{ 'nav_content_' | append: include.index}}" class="accordion-collapse collapse" aria-labelledby="{{ 'nav_header_' | append: include.index}}" data-bs-parent="#sidebar">
+<div class="accordion-body">
+<ol>
+{% endif %}
+    {% assign nav_length = include.nav.size | minus: 1 %}
+    {% for i in (0..nav_length) %}
+        {% if include.index %}
+        <li class="nav-item">
+            <a {% if include.nav[i].link %} href={{ include.nav[i].link | relative_url }}{% endif %} >
+            {% if include.nav[i].link == page.url %}
+                <strong>{{ include.nav[i].name }}</strong>
+            {% else %}
+                {{ include.nav[i].name }}
+            {% endif %}
+            </a>
+        </li>
+        {% else %}
+        <div class="accordion-item">
+        <h4 class="accordion-header" id="{{ 'nav_header_' | append: i}}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#nav_content_' | append: i}}" aria-expanded="true" aria-controls="{{ 'nav_content_' | append: i}}">
+        <a {% if include.nav[i].link %} href={{ include.nav[i].link | relative_url }}{% endif %} >{{ include.nav[i].name }}</a>
+        </button>
+        </h4>
+        {% endif %}
+        {% if include.nav[i].subnav %}
+            {% assign subnav_link=include.nav[i].subnav %}
+            {% include nav.html nav=subnav_link index=i %}
+        {% endif %}
+        {% if include.index %}
+        {% continue %}
+        {% else %}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% if include.index %}
+</ol>
+</div>
+</div>
+{% endif %}

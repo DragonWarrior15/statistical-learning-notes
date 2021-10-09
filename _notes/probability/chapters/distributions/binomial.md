@@ -31,14 +31,6 @@ We know that all $X_{i}'s$ are independent. Hence, the mean and variance for X b
         Var(X) &= Var(\sum_{i=1}^{n} X_{i}) &&= \sum_{i=1}^{n} Var(X_{i}) &&= np(1-p)
     \end{alignat}
 
-### Sum of Binomial Random Variables
-
-Suppose two random variables $X_{1} \sim binmomial(n_{1},p)$ and $X_{2} \sim binomial(n_{2},p)$, then
-\begin{align}
-        X_{1} + X_{2} \sim binomial(n_{1} + n_{2}, p)
-    \end{align}
-which follows from the fact that the sum of the two random variables represents an experiment with $n_{1} + n_{2}$ trials where the probability of success of any trial still remains the same at $p$.
-
 ### Moment Generating Functions
 
 #### Bernoulli Trial
@@ -56,3 +48,11 @@ A binomial variable is a sum of $n$ Bernoulli trials
         &= E[e^{tX_{1}}] E[e^{tX_{2}}] \cdots E[e^{tX_{n}}] = \prod_{i=1}^{n} (pe^{t} + 1-p)\newline
         &= (pe^{t} + 1-p)^{n}
     \end{align}
+
+### Sum of Binomial Random Variables
+
+Suppose we have $k$ independent variables $X_{i} \sim binmomial(n_{i},p)$, then their sum also has a binomial distribution
+\begin{align}
+        X_{1} + \cdots + X_{k} \sim binomial(n_{1} + \cdots + n_{k}, p)
+    \end{align}
+which follows from the fact that the sum of the random variables represents an experiment with $n_{1} + \cdots + n_{k}$ trials where the probability of success of any trial still remains the same at $p$. The same can also be derived from the moment generating function.

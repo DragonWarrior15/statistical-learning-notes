@@ -4,17 +4,19 @@ title: "Gamma Distribution"
 
 ## Gamma Distribution
 
-A random variable is said to have a Gamma distribution if for parameters $(\alpha, \lambda)$ with $\lambda > 0, \alpha > 0$, it has the following probability distribution
+A random variable is said to have a Gamma distribution if for parameters $(\alpha, \lambda)$ with $\lambda > 0$ (called the rate) and $\alpha > 0$ (called the shape), it has the following probability distribution
 \begin{align}
         p_{X}(x) = \begin{cases}
             \frac{\lambda e^{-\lambda x} (\lambda x)^{\alpha - 1}}{\Gamma(\alpha)} &\mbox{if $x \geq 0$}\newline
             0 &\mbox{otherwise}
         \end{cases}
     \end{align}
-The denominator in the above fomula acts as nothing but a normalization constant and is defined as
+
+where the denominator is defined as
+
 \begin{align}
         \Gamma (\alpha) &= \int_{0}^{\infty} e^{-x} x^{\alpha - 1}\newline
-        &= (\alpha - 1) \int_{0}^{\infty} e^{-x} x^{\alpha - 2} dy \:\text{using integration by parts}\newline
+        &= (\alpha - 1) \int_{0}^{\infty} e^{-x} x^{\alpha - 2} dy \quad \text{using integration by parts}\newline
         &= (\alpha - 1) \Gamma (\alpha - 1)
     \end{align}
 
@@ -25,6 +27,8 @@ For a fixed $\lambda$, as the value of $\alpha$ becomes large, the distribution 
 
 {% include image.html url="notes/probability/images/gamma_1.png" description="Gamma distribution for $\lambda = 1$ and different values of $\alpha$" img_classes="notes-img gamma_1" %}
 {% include image.html url="notes/probability/images/gamma_2.png" description="distribution for $\alpha = 50$" img_classes="notes-img gamma_1" %}
+
+There is an alternate formulation of the Gamma distribution where $\beta$ is used instead of $\lambda$, with $beta = 1/\lambda$ and $\beta$ is called the scale parameter.
 
 ### Mean, Variance and Moment Generating Function
 

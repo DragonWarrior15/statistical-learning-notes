@@ -45,6 +45,8 @@ The 68–95–99.7 rule is also useful which states that
 * Probability of $X$ lying between 2 standard deviation on either side of mean is 95%
 * Probability of $X$ lying between 3 standard deviation on either side of mean is 99.7%
 
+It is often easier to derive all formulae here by first considering the standard normal and defining it completely. Then any normal distribution with mean $\mu$ and variance $\sigma^{2}$ can be obtained using the transformation $Y = \sigma Z + \mu$. All calculations for mean, variance and mgf readily follow.
+
 ### Moment Generating Function
 
 \begin{align}
@@ -72,6 +74,56 @@ With the help of moment generating functions, this calculation becomes easier. L
 
 Multivariate normal distribution is an extension of a normal distribution into multiple dimensions
 \begin{align}
-        f_{\mathbf{X}}(\boldsymbol{x}) = \frac{1}{\sqrt{(2\pi)^{d} \lvert \Sigma \rvert}} exp(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})\Sigma^{-1}(\mathbf{x} - \boldsymbol{\mu})^{T})
+        f_{\mathbf{X}}(\boldsymbol{x}) = \frac{1}{\sqrt{(2\pi)^{d} \detm{\Sigma}}} exp(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})\Sigma^{-1}(\mathbf{x} - \boldsymbol{\mu})^{T})
     \end{align}
 for $d$ dimensional vector $\mathbf{x}$ with mean vector $\boldsymbol{\mu}$ and covriance matrix $\Sigma$.
+
+This is easy to derive if we start from a standard normal first.
+
+Consider $n$ independent identically distributed standard normals $Z_{i} \sim N(0, 1)$. The joint distribution is
+\begin{align}
+    f_{\mathbf{Z}}(\mathbf{z}) &= \prod_{i=1}^{n}f_{Z_{i}}(z_{i}) = \roundbr{\frac{1}{\sqrt{2\pi}}}^{n}\exp\roundbr{-\frac{1}{2}\sum_{i=1}^{n}z_{i}^{2}}\newline
+    &= \roundbr{\frac{1}{2\pi}}^{\frac{n}{2}}\exp\roundbr{-\frac{1}{2}\mathbf{z}^{T}\mathbf{z}}
+\end{align}
+
+$E[\mathbf{Z}] = 0 = E[\mathbf{Z}]^{T} $ (element wise).
+\begin{align}
+    Cov(\mathbf{Z}, \mathbf{Z}) &= E[\mathbf{Z}\mathbf{Z}^{T}] - E[\mathbf{Z}]E[\mathbf{Z}]^{T}\newline
+    &= \mathbf{I}\_{n}\newline
+    \text{as} \quad E[\mathbf{Z}\mathbf{Z}^{T}]\_{ij} &= Cov(Z_{i}, Z_{j}) = 0 \quad \text{independence}\newline
+    E[\mathbf{Z}\mathbf{Z}^{T}]\_{ii} &= Cov(Z_{i}, Z_{i}) = Var(Z_{i}) = 1 \quad \text{independence}
+\end{align}
+
+The mgf
+\begin{align}
+    M(\mathbf{t}) &= E\squarebr{e^{\mathbf{t}^{T}\mathbf{Z}}} = \exp\roundbr{\frac{1}{2}\mathbf{t}^{T}\mathbf{t}}
+\end{align}
+by independence.
+
+Now, assume a real symmetric semippositive definite matrix $\Sigma$ that represents a variance-covariance matrix. From spectral decomposition, there exists $\Sigma^{1/2}$ such that $\Sigma^{1/2} \Sigma^{1/2} = \Sigma$ (from linear algebra). Also, this matrix is itself symmetric.
+
+Assume a constant vector $\mathbf{\mu}$. Then,
+\begin{align}
+    \mathbf{X} &= \Sigma^{1/2}\mathbf{Z} + \mathbf{\mu}\newline
+    \implies E[\mathbf{X}] &= \Sigma^{1/2}E[\mathbf{Z}] + \mathbf{\mu} = \mathbf{\mu}\newline
+    Cov(\mathbf{X}, \mathbf{X}) &= E[\mathbf{X}\mathbf{X}^{T}] - E[\mathbf{X}]E[\mathbf{X}]^{T}\newline
+    &= \Sigma^{1/2}Cov(\mathbf{Z})\roundbr{\Sigma^{1/2}}^{T} = \Sigma^{1/2}\mathbf{I}\_{n}\roundbr{\Sigma^{1/2}}^{T} = \Sigma\newline
+    M(\mathbf{t}) &= E\squarebr{\exp\roundbr{\mathbf{t}^{T}\roundbr{\Sigma^{T}\mathbf{Z} + \mathbf{\mu}}}}\newline
+    &= E\squarebr{\exp\roundbr{\mathbf{t}^{T}\Sigma^{1/2}\mathbf{Z}}}E\squarebr{\exp\roundbr{\mathbf{t}^{T}\mathbf{\mu}}} = E\squarebr{\exp\roundbr{\roundbr{\mathbf{t}^{T}\Sigma^{1/2}}\mathbf{Z}}}\exp\roundbr{\mathbf{t}^{T}\mathbf{\mu}}\newline
+    &= \exp\roundbr{\frac{1}{2}\mathbf{t}^{T}\mathbf{\Sigma}\mathbf{t}}\exp\roundbr{\mathbf{t}^{T}\mathbf{\mu}}\newline
+    &= \exp\roundbr{\mathbf{t}^{T}\mathbf{\mu} + \frac{1}{2}\mathbf{t}^{T}\Sigma\mathbf{t}}
+\end{align}
+
+which must be familiar from the univariate case where mgf is $\exp\roundbr{\mu t + 1/2 \sigma^{2}t^{2}}$.
+
+The distribution of $\mathbf{X}$ can be obtained using the Jacobian
+\begin{align}
+    \mathbf{J} &= \frac{d\mathbf{Z}}{d\mathbf{X}} = \detm{\Sigma^{-1/2}} \newline
+    \mathbf{Z} &= \Sigma^{-1/2}\roundbr{\mathbf{X} - \mathbf{\mu}}
+\end{align}
+where the negative sign denotes the inverse.
+
+\begin{align}
+    f_{\mathbf{X}}(\mathbf{x}) &= \roundbr{\frac{1}{2\pi}}^{\frac{n}{2}}\exp\roundbr{-\frac{1}{2}\roundbr(\mathbf{X} - \mathbf{\mu})^{T}\roundbr{\Sigma^{-1/2}}^{T}\Sigma^{1/2}\roundbr{\mathbf{X} - \mathbf{\mu}}} \detm{\Sigma^{-1/2}}\newline
+    &= \roundbr{\frac{1}{2\pi}}^{\frac{n}{2}}\frac{1}{\detm{\Sigma^{1/2}}}\exp\roundbr{-\frac{1}{2}\roundbr{\mathbf{X} - \mathbf{\mu}}^{T}\Sigma\roundbr{\mathbf{X} - \mathbf{\mu}}}
+\end{align}

@@ -30,7 +30,7 @@ Consider the moment generating function for a chi-square random variable with $n
         &= \int_{-\infty}^{\infty} e^{tx^{2}} f_{Z}(x) dx \quad\text{since $E[g(x)] = \int_{x} g(x)p(x)$}\newline
         &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{tx^{2}} e^{-x^{2}/2}\newline
         &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-x^{2}(1/2 - t)}\newline
-        \text{Using}\quad \int_{-\infty}^{\infty} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}}\newline
+        \text{Using}\quad \int_{-\infty}^{\infty} e^{-a(x+b)^{2}} &= \sqrt{\frac{\pi}{a}} \quad \text{by rearranging the integral to get a normal distribution expression}\newline
         E[e^{tX}] &= \frac{1}{\sqrt{2\pi}} \sqrt{\frac{\pi}{1/2 - t}}\newline
         &= \frac{1}{\sqrt{1 - 2t}}
     \end{align}
@@ -78,3 +78,12 @@ Since the distribution of a chi-square variable is identical to a $Gamma(n/2, 1/
         E[X] &= n\newline
         Var(x) &= 2n
     \end{align}
+
+### Sum of $\chi^{2}$ Variables
+Sum of $n$ independent $\chi^{2}$ variables where $X_{i} \sim \chi^{2}\_{r_{i}}$ has a $\chi^{2}$ distribution as well.
+\begin{align}
+        r &= \sum_{i=1}^{n} r_{i}\newline
+      \sum_{i=1}^{n}\chi^{2}\_{r_{i}} &= \chi^{2}\_{r}
+  \end{align}
+
+which follows from the fact that each $\chi^{2}$ variable is a sum of independent standard normals, and sum of $\chi^{2}$ variables will itself be a sum of even more independent standard normals.

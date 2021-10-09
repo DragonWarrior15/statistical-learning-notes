@@ -25,6 +25,8 @@ A Beta distribution is a continuous probability distribution defined in the inte
         &= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha - 1}(1-x)^{\beta - 1}
     \end{align}
 
+We are not limited to use Beta distribution only defined over $0$ to $1$. We can go for any interval $a$ to $b$ by transforming the beta variable $X$ using $Y = (b-a)X + a$.
+
 ### Mean and Variance
 
 \begin{align}

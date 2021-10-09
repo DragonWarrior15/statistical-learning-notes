@@ -12,11 +12,6 @@ A random variable $X$ is said to be $Poisson(\lambda)$ if it has the following p
                                     0 &\text{ otherwise} \end{cases}
     \end{align}
 
-The sum of $n$ independent Poisson variables is also Poisson
-\begin{align}
-        X_{1} + X_{2} + \cdots + X_{n} \sim Poisson(\lambda_{1} + \lambda_{2} + \cdots + \lambda_{n})
-    \end{align}
-
 ### Mean and Variance
 
 Expected value is calculated as follows
@@ -54,11 +49,11 @@ Now, we can use the derivates of this function to derive the expectations
 
 ### Sum of Poisson Variables
 
-The sum of two independent random variables $X_{1} \sim Poisson(\lambda_{1})$ and $X_{2} \sim Poisson(\lambda_{2})$ is also Poisson. This can be derived with their moment generating functions
+The sum of $n$ independent random variables $X_{i} \sim Poisson(\lambda_{i})$, $i = 1, \ldots, n$ is also Poisson. This can be derived with their moment generating functions
 \begin{align}
-        E[e^{t(X_{1} + X_{2})}] &= E[e^{tX_{1}} e^{tX_{2}}] = E[e^{tX_{1}}]E[e^{tX_{2}}] \;\text{by independence}\newline
-        &= e^{-\lambda_{1}(1-e^{t})} e^{-\lambda_{2}(1-e^{t})} = e^{-(\lambda_{1} + \lambda_{2})(1-e^{t})}\newline
-        \implies X_{1} + X_{2} &\sim Poisson(\lambda_{1} + \lambda_{2})
+        E[e^{t(X_{1} + \cdots + X_{n})}] &= E[e^{tX_{1}}\cdots e^{tX_{n}}] = E[e^{tX_{1}}]\cdots E[e^{tX_{2}}] \;\text{by independence}\newline
+        &= e^{-\lambda_{1}(1-e^{t})} \cdots e^{-\lambda_{n}(1-e^{t})} = e^{-(\lambda_{1} +\cdots + \lambda_{n})(1-e^{t})}\newline
+        \implies X_{1} + \cdots + X_{n} &\sim Poisson(\lambda_{1} + \cdots + \lambda_{n})
     \end{align}
 
 ### Approximation of a Binomial Random Variable
@@ -140,8 +135,10 @@ Suppose the $k^{th}$ arrival happens at a time $t$. Then we are saying that ther
         f_{Y_{k}}(t)\delta &= P(t \leq Y_{k} \leq t+\delta)\newline
                     &= P(\text{$k-1$ arrivals  in $[0,t]$}) (\lambda \delta)\newline
                     &= \frac{(\lambda t)^{k-1}}{(k-1)!}e^{-\lambda t}(\lambda \delta)\newline
-        f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \quad \text{Erlang Distribution}
+        f_{Y_{k}}(t) &= \frac{\lambda^{k} t^{k-1}}{(k-1)!}e^{-\lambda t} \quad \text{Erlang Distribution}\newline
+        &= \frac{\lambda e^{-\lambda t}(\lambda t)^{k-1}}{\Gamma (k)}
     \end{align}
+which is nothing but the pdf of a Gamma distribution.
 
 ### Time of 1st Arrival
 
@@ -149,7 +146,7 @@ Using the Erlang Distribution described above, we have
 \begin{align}
         f_{Y_{1}}(t) = \lambda e^{-\lambda t}
     \end{align}
-$Y_{k} = T_{1} + T_{2} + \cdots + T_{k}$ where all $T_{i}$ are independent and exponential distributions.
+$Y_{k} = T_{1} + T_{2} + \cdots + T_{k}$ where all $T_{i}$ are independent and exponential distributions. And as derived above, and discussed later, the sum of independent exponential variables is a Gamma distribution.
 
 ### Renewal Process
 
