@@ -2,6 +2,10 @@ probability:
   - name: Probability Theorems
     link: /notes/probability/chapters/theorems/probability_theorems.html
     subnav:
+      - name: Expectation, Variance and Covariance
+        link: /notes/probability/chapters/theorems/expectation_var.html
+      - name: Jacobian
+        link: /notes/probability/chapters/theorems/jacobian.html
       - name: Iterated Expectation and Variance
         link: /notes/probability/chapters/theorems/iterated_exp.html
       - name: Random number of Random Variables
@@ -137,7 +141,16 @@ probability:
       - name: Generating Continuous Random Variables
         link: /notes/probability/chapters/simulation/continuous_random_nos.html
   - name: Exercises
-    link: /notes/probability/chapters/exercises/problems.html
+    link:
+    subnav:
+    - name: Exercises Part 1
+      link: /notes/probability/chapters/exercises/problems_p01.html
+    - name: Exercises Part 2
+      link: /notes/probability/chapters/exercises/problems_p02.html
+    - name: Exercises Part 3
+      link: /notes/probability/chapters/exercises/problems_p03.html
+    - name: Exercises Part 4
+      link: /notes/probability/chapters/exercises/problems_p04.html
 
 linalg:
   - name: Complex Field
