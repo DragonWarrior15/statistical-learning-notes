@@ -52,6 +52,8 @@ The moment generating function of an exponential distribution can be derived as 
     \end{align}
 since quantity under the integral is an exponential distribution with the parameter $\lambda - t$.
 
+As is shown later, exponential distribution is a special case of the Gamma distribution.
+
 ### Memoryless Property
 
 A fundamental mathematical property of the exponential distribution is the memoryless property. In summary, this means that whatever has transpired till now will not affect the future distribution. Mathematically $P(T > t+s)$ is independent of t

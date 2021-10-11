@@ -44,7 +44,9 @@ We are not limited to use Beta distribution only defined over $0$ to $1$. We can
 ### Relation between Gamma and Beta Distributions
 
 \begin{align}
-        X_{1} &\sim Gamma(\alpha_{1}, \beta_{1})\newline
-        X_{2} &\sim Gamma(\alpha_{2}, \beta_{2})\newline
-        \frac{\beta_{2} X_{1}}{\beta_{2}X_{1} + \beta_{1}X_{2}} &\sim Beta(\alpha_{1}, \alpha_{2})\newline
+        X_{1} &\sim Gamma(\alpha_{1}, \lambda_{1})\newline
+        X_{2} &\sim Gamma(\alpha_{2}, \lambda_{2})\newline
+        \frac{\lambda_{1} X_{1}}{\lambda_{1}X_{1} + \lambda_{2}X_{2}} &\sim Beta(\alpha_{1}, \alpha_{2})\newline
     \end{align}
+
+Proof is given in the [exercise solution]({{ "/notes/probability/chapters/exercises/a_gamma_to_beta.html" | relative_url }}).

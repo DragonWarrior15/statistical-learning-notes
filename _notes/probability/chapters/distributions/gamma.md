@@ -28,7 +28,7 @@ For a fixed $\lambda$, as the value of $\alpha$ becomes large, the distribution 
 {% include image.html url="notes/probability/images/gamma_1.png" description="Gamma distribution for $\lambda = 1$ and different values of $\alpha$" img_classes="notes-img gamma_1" %}
 {% include image.html url="notes/probability/images/gamma_2.png" description="distribution for $\alpha = 50$" img_classes="notes-img gamma_1" %}
 
-There is an alternate formulation of the Gamma distribution where $\beta$ is used instead of $\lambda$, with $beta = 1/\lambda$ and $\beta$ is called the scale parameter.
+There is an alternate formulation of the Gamma distribution where $\beta$ is used instead of $\lambda$, with $\beta = 1/\lambda$ and $\beta$ is called the scale parameter.
 
 ### Mean, Variance and Moment Generating Function
 

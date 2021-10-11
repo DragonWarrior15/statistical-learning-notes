@@ -6,9 +6,22 @@ title: "Interval Estimates"
 
 The MLE estimates calculated above are estimates and do not reflect the true value. We expect the true value of the parameter to be close to the estimate, but not exactly equal to it. Hence, it makes sense to give an interval instead of a single estimate to reflect our confidence in the estimated value of the parameter.
 
+Suppose the parameter is denoted by $\theta$ and lies in a set $\Omega$. For some $0 < \alpha < 1$, and statistics $L$ and $U$ of the sample of random variables, the $(1-\alpha)100%$ confidence interval is $(L,U)$ if
+\begin{align}
+    1-\alpha = P_{\theta}(\theta \in (L, U))
+\end{align}
 
-Note that the below confidence intervals imply that $\alpha$ percent of times, the constructed interval will contain the true mean $\mu$, when the same calculation is repeated with multiple samples. The calculations of intervals do not imply that $\mu$ is contained in the interval with $\alpha$ confidence. We calculate an interval that falls on $\mu$ rather than telling the interval that $\mu$ falls in.
+implying that if the experiment is repeated several times (draw the sample and calculate the interval), $(1 - \alpha)100%$ times, the constructed interval will contain the true value of the parameter $\theta$.
 
+**NOTE:** The calculations of intervals do not imply that $\theta$ is contained in the interval with $(1-\alpha)100%$ confidence. We calculate an interval that falls on $\theta$ or traps $\theta$ rather than telling the interval that $\theta$ falls in.
+
+Usually, to obtain the interval, we will first find a pivot (or central) point of our interval using an existing statistic (say MLE) and then construct an interval using statistical properties of the estimate/random variables.
+
+### Efficiency of the Interval Estimate
+For two estimates of the interval $L_{1}, U_{1}$ and $L_{2}, U_{2}$, we say that the former is more efficient if its a narrower interval, i.e.,
+\begin{align}
+    E_{\theta}\squarebr{U_{1} - L_{1}} < E_{\theta}\squarebr{U_{2} - L_{2}} \quad \forall \theta \in \Omega
+\end{align}
 
 ### Confidence interval for Mean of Normal Distribution when Variance is Known
 
@@ -158,3 +171,16 @@ It is not tractable to calculate the confidence intervals from this formulation.
         \text{Two sided $1-\alpha$ confidence interval} &\approx (\hat{p} - z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}})
     \end{align}
 and one sided confidence intervals can be obtained in similar manner to previous derivations.
+
+#### Difference of two Populations
+The above idea can be extended for interval estimate of the difference of two population ratios. Suppose $X_{1}$ and $X_{2}$ denote the two populations with the proportion estimates $\hat{p_{1}}$ and $\hat{p_{2}}$. Then we have
+
+\begin{align}
+    \bar{X_{1}} - \bar{X_{2}} &\sim \mathcal{N}\roundbr{\hat{p_{1}} - \hat{p_{2}}, \sigma_{d}^{2}}\newline
+    \text{where} \quad \sigma_{d}^{2} &\sim \frac{\hat{p_{1}}(1 - \hat{p_{1}})}{n_{1}} + \frac{\hat{p_{2}}(1 - \hat{p_{2}})}{n_{2}}
+\end{align}
+
+by the CLT. The $(1-\alpha)100%$ confidence interval becomes
+\begin{align}
+    \hat{p_{1}} - \hat{p_{2}} \pm z_{\alpha/2}\sigma_{d}^{2}
+\end{align}

@@ -131,3 +131,15 @@ title: "Exercises Part 2"
 1.  **Careful with cdf**
 
     Let $X$ be normally distributed with mean 1 and variance 4. Find $P(1 < X^{2} < 9)$. [Solution]({{ "/notes/probability/chapters/exercises/a_cumul_cdf.html" | relative_url }})
+
+1.  **Gamma to Beta**
+    Suppose we have the following definitions
+    \begin{align}
+        X_{1} &\sim Gamma(\alpha_{1}, \lambda_{1})\newline
+        X_{2} &\sim Gamma(\alpha_{2}, \lambda_{2})\newline
+        Y_{1} &= \lambda_{1}X_{1} + \lambda_{2}X_{2}\newline
+        Y_{2} &= \frac{\lambda_{1}X_{1}}{\lambda_{1}X_{1} + \lambda_{2}X_{2}}
+    \end{align}
+    where $X_{1}$ and $X_{2}$ are independent.
+
+    Show that $Y_{1}$ and $Y_{2}$ are independent and find the distribution of $Y_{2}$. [Solution]({{ "/notes/probability/chapters/exercises/a_gamma_to_beta.html" | relative_url }})

@@ -6,9 +6,19 @@ title: "Maximum Likelihood Estimator"
 
 Maximum Likelihood Estimator or MLE is based on the idea to **find that value of $\theta$ that maximizes the probability of observing the given set of samples of the population**. Alternately, let $x_{i}$ for $i=1,2,\ldots,n$ be $n$ samples drawn from a population whose distribution is parametrized by $\theta$ (can be a vector as well). Then we define the likelihood function as
 \begin{align}
-        \text{likelihood}\quad = f(x_{1}, x_{2}, \ldots, x_{n}|\theta)
+        \text{likelihood function}\quad = L(\theta) = f(x_{1}, x_{2}, \ldots, x_{n}|\theta) = \quad \text{a function of $\theta$}
     \end{align}
-i.e., the joint probability (or density) of occurrence of all the samples under the given distribution for some value of $\theta$. We aim to maximize this likelihood to get the estimate of $\theta$. It is often the case that taking logarithm of both sides allows for an easy way of estimation. Note that both likelihood an log likelihood are maximized by the same value of estimator.
+i.e., the joint probability (or density) of occurrence of all the samples under the given distribution for some value of $\theta$.
+
+We aim to maximize this likelihood to get the estimate of $\theta$.
+\begin{align}
+        \hat{\theta} = \argmax_{\theta}L(\theta)
+\end{align}
+where $\hat{\theta}$ denotes our estimate of $\theta$. If the likelihood is a differentiable function of $\theta$, we can simply equate the derivative of likelihood with respect to $\theta$ to zero.
+
+It is often the case that taking logarithm of both sides allows for an easy way of estimation. Note that both likelihood an log likelihood are maximized by the same value of estimator because $\log$ is a monotonically increasing function (convex).
+
+If $\mathbf{\theta}$ is a vector, we will obtain a system of equations to be solved simultaneously.
 
 
 ### MLE for Bernoulli Variable
@@ -31,7 +41,7 @@ Taking the derivative with respect to $p$ to maximize,
         \frac{d}{dp}log(f(x_{1}, x_{2}, \ldots, x_{n}|p)) &= {\sum_{i=1}^{n}x_{i}}\frac{1}{p} - (n-{\sum_{i=1}^{n}x_{i}})\frac{1}{1-p} = 0\newline
         \text{or,}\quad \hat{p} &= \frac{\sum_{i=1}^{n}x_{i}}{n}
     \end{align}
-which is the proportion of successful trials in the sample.
+which is the proportion of successful trials in the sample. It is also an unbiased estimator.
 
 ### MLE for Poisson Variable
 
