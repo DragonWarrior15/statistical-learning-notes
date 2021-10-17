@@ -95,6 +95,8 @@ probability:
         link: /notes/probability/chapters/parameter_estimation/mme.html
       - name: Interval Estimates
         link: /notes/probability/chapters/parameter_estimation/interval_estimates.html
+      - name: Order Statistics
+        link: /notes/probability/chapters/parameter_estimation/order_statistics.html
       - name: Evaluating an Estimator
         link: /notes/probability/chapters/parameter_estimation/evaluation.html
       - name: Bayes Estimator
