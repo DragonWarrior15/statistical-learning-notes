@@ -100,6 +100,13 @@ And to replace with the new path
 find . -type f -name "*.md" -or -name "*.yml" -exec sed -s "|/notes/differential_equations/laplace_transforms.html|/notes/differential_equations/laplace_transforms/intro.md|" {} ';'
 ```
 
+### Generating Combined Files
+To generate a single `md` file containing all the pages for one notes section
+* Run the file `generate_combined_md.py notes_name` where `notes_name` is the command line argument for the notes section you want to combine
+* Serve the jekyll project using `make jekyll serve`
+* Locally, go to the page `http://127.0.0.1:4000/statistical-learning-notes/combined.html`
+* Save as PDF in the browser as needed
+
 ### Common problem in WSL
 **In case you are running WSL and unable to connect to the server**
 * Close the ubuntu window

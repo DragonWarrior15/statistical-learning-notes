@@ -2,6 +2,7 @@
 title: RegEx
 ---
 
+## `Reg`ular `Ex`pressions
 Regular expresseions are useful tools in a programmers arsenal for text and string matching. In the following sections, token will refer to a character or a group of characters inside `()` that need to be matched
 
 * Matching a single type of specific character
