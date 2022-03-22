@@ -451,7 +451,7 @@ prog_lang:
       - name: Exercises Part 3
         link: /notes/programming_languages/sql/exercises_03.html
   - name: C
-    link: /notes/programming_languages/c/c.html
+    link: /notes/programming_languages/c/C.html
   - name: C++
     link: /notes/programming_languages/cpp/cpp.html
     subnav:
