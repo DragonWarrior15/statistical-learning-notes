@@ -3,9 +3,12 @@ title: "C"
 ---
 
 # C
+
 ***
+
 ### `'` vs `"`
 Single quotes refer to a single character in C. `char c = 'x'` is a valid statement. Double quotes will refer to string literals. `char c = "x"` is not valid. String literals can be used to return strings corresponding to various cases in a switch statement.
+
 ***
 
 ### Structs
@@ -75,6 +78,7 @@ rect_t myRect;
 myRect.x = 4;
 printf("x coordinate %d", myRect.x);
 ```
+
 ***
 
 ### typedef
@@ -82,10 +86,11 @@ printf("x coordinate %d", myRect.x);
 ```c
 typdef unsigned int uint;
 uint x = 10;
-printf('x is %u', x);
+printf("x is %u", x);
 ```
 
 These can help reduce reuse of some constructs in the code and make the code less error prone. For instance, now we do not need to change `unsigned int` to `int` everywhere in the code, in case we make some modifications to our program. Just changing it near the `typedef` will suffice.
+
 ***
 
 ### Enumerated types
@@ -103,16 +108,16 @@ As a convention, the values/levels taken by an `enum` are written in capital let
 void printThreat(enum threat_level_t threat){
     switch(threat){
         case LOW:
-            printf('Low');
+            printf("Low");
             break;
         case MEDIUM:
-            printf('Medium');
+            printf("Medium");
             break;
         case HIGH:
-            printf('High');
+            printf("High");
             break;
         default:
-            printf('Nothing');
+            printf("Nothing");
             break;
     }
 }
@@ -128,6 +133,7 @@ bool threatCompare(enum threat_level_t threat){
 enum threat_level_t myThreat = LOW;
 printThreat(myThreat);
 ```
+
 ***
 
 ### Includes
@@ -154,10 +160,12 @@ This defines a function `SQUARE` with argument `x`. Notice that we have not defi
 #define SQUARE(x) ((x) * (x))
 ```
 to get the correct result.
+
 ***
 
 ### Function Prototype
 This is similar to a function definition, but with a `:` instead of the body. It defines return and argument types of the function. With the prototype, compiler can check if the correct number and types of arguments have been passed to the function, and whether the returned value is correctly used. This does not need the actual definition of the function to be available. `stdio.h` contains the prototype for `printf`.
+
 ***
 
 ### `make`
@@ -195,6 +203,7 @@ clean:
     rm -f final *.o *.c~ *.h~
 ```
 The keyword `PHONY` helps `make` recognize that it does not need to create a new file when building.
+
 ***
 
 ### gcc
@@ -207,11 +216,13 @@ There are several available options to compile the `C` code
 | `-Wall` | Forces the compiler to issue warnings for questionable behaviour which might go unnoticed when compiling normally |
 | `-Werror` | Forces the compiler to treat warnings as errors. This flag will force the user to remove all warnings before the program can be successfully compiled |
 | `-fsanitize=address` | Forces the compiler to check for any potential memory errors, useful especially when working with pointers. |
+
 ***
 
 ### `assert`
 `assert(condition)` is the statement used to check if the given condition holds in the program or not. If the condition holds, the program continues execution as it is. Otherwise, the program will terminate immediately.
 Asserts have minimal impact on performance, and are hence advised to keep in the prgram. In cases when performance is really critical, we can pass the flag `-DNDEBUG` to the compiler while building the program to instruct the compiler to ignore all the asserts.
+
 ***
 
 ### `valgrind`
@@ -225,7 +236,6 @@ valgrind has a memcheck tool that can be used for checking memory leakges and ma
 Running valgrind with gdb (discussed below) is also possible using the flags `--vgdb=full --vgdb-error=0`. valgrind will give us the relvant commands to recreate the encountered error in gdb (since these are two separate processes). `monitor leak_check full reachable any` allows monitoring memory leaks when running the two together, and `monitor who_points_at` allows monitoring memory addresses pointed by all the pointers when running both together.
 
 If we find memory leaks in the summary of valgrind, the full trace can be found by running valgrind with the flags ` --leak-check=full`.
-
 
 ***
 
@@ -298,6 +308,7 @@ Considering a 32-bit machine, each location (a byte long) will be addressed by 3
 | Static Data | This locations stores the data that is available throughout the lifetime of a code, global variables for instance. This area exists just adjacent to the Code.|
 | Heap | Stores dynamically allocated data. Such as Arrays of unknown size initialized after the program starts execution. |
 | Stack | Stores the local variables created by each function. There are different stack frames that correspond to different functions. For any given function, its stack frame is a contiguous piece of memory allocated when the function starts execution, and freed when the execution ends. Each stack frame sits below the stack frame of the function that called it.|
+
 ***
 
 ### Pointers to structs
@@ -337,6 +348,7 @@ printf("%d\n", **y) // prints 8
 Putting two asteriks does the dereferencing twice. `*y` gives the value stored in `x` which is the address of `a`. Modifying `*y` means changing the address pointed by `x` (`y` will still point to `x`). Using the second asterik, `**y` is same as `*x` and equals 8. For more deeper levels, we will use more asteriks to reach the actual value of the variable pointed to.
 
 The `->` operator shouldnt be used here as that is specific to structs.
+
 ***
 
 ### `const`
@@ -497,6 +509,7 @@ Consider all major categories of inputs, and be sure you cover them.
     * Statement coverage means that every statement in the function is executed
     * Decision coverage—in which all possible outcomes of decisions are exercised. For boolean tests, this means we construct a test case where the expression evaluates to true, and another where it evaluates to false. If we have a switch/case statement, we must construct at least one test case per choice in the case statement, plus one for the default case, even if it is implicit, i.e., if we do not write it down, and it behaves as if we wrote default: break;.
     * Decision coverage corresponds to having a suite of test cases which covers every edge in the graph of decisions.
+
 ***
 
 ### Strings
@@ -724,3 +737,6 @@ The key difference from fgets is that getline uses malloc and realloc internally
 It is a good idea to free the last allocated memory by getline in case an error was returned since the memory allocation happens first.
 
 ***
+
+#### References
+* [Coursera C Programming Specialization by Duke University](https://www.coursera.org/specializations/c-programming)
