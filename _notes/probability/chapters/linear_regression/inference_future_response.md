@@ -4,7 +4,7 @@ title: "Inferences Concerning Future Response"
 
 ## Inferences Concerning Future Response
 
-The above section [1.4](#sec:infer_mean_resp){reference-type="ref" reference="sec:infer_mean_resp"} discussed the distribution of the mean response. In many scenarios, we are interested in the distribution of the actual response $Y$ at input $x_{0}$, which takes the noise into account as well. We note
+The previous section discussed the distribution of the mean response. In many scenarios, we are interested in the distribution of the actual response $Y$ at input $x_{0}$, which takes the noise into account as well. We note
 \begin{align}
         Y_{0} &\sim \mathcal{N}(\theta_{0} + \theta_{1}x_{0}, \sigma^{2})\newline
         \hat{\theta}\_{0} + \hat{\theta}\_{1}x_{0} &\sim \mathcal{N}\bigg(\theta_{0} + \theta_{1}x_{0}, \sigma^{2} \bigg[ \frac{1}{n} + \frac{(x_{0} - \bar{x})^{2}}{S_{xx}} \bigg]\bigg)\newline
