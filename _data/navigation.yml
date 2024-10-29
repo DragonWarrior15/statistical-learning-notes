@@ -503,3 +503,7 @@ maths_misc:
     link: /notes/maths_misc/first_to_50.html
   - name: Incremental Remainders
     link: /notes/maths_misc/incremental_remainders.html
+
+large_language_models:
+  - name: Finetuning
+    link: /notes/large_language_models/finetuning.html

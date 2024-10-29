@@ -34,3 +34,7 @@
   bg_color: bg-maths-misc
   card_title: Maths Miscellaneous
   card_text: Miscellaneous Maths Questions and Puzzles.
+- navigation_header: large_language_models
+  bg_color: bg-large-language-models
+  card_title: LLMs
+  card_text: Large Language Models and related topics.
