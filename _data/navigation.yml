@@ -493,6 +493,8 @@ linux:
     link: /notes/linux/curl.html
   - name: sed
     link: /notes/linux/sed.html
+  - name: docker
+    link: /notes/linux/docker.html
 
 maths_misc:
   - name: Exponent and Base Reversed
