@@ -495,6 +495,8 @@ linux:
     link: /notes/linux/sed.html
   - name: docker
     link: /notes/linux/docker.html
+  - name: kubernetes
+    link: /notes/linux/kubernetes.html
 
 maths_misc:
   - name: Exponent and Base Reversed

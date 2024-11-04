@@ -11,7 +11,7 @@ A container engine virtualizes the operating system. It is light-weight, fast, i
 
 Containers are platform, operating system, and programming language independent.
 
-{% include image.html url="notes/linux/images/container_arch.png" description="Container Architecture" img_classes="notes-img" %}
+{% include image.html url="notes/linux/images/container_arch.png" description="Container Architecture" img_classes="notes-img-40" %}
 
 ## Docker
 Docker is the most popular software to run containerized applications. Its written in Go language and uses Linux kernel's features to deliver functionality. It uses namespaces technology to provide isolated workspace called a container. It creates a set of namespaces for every container and each aspect runs in a separate namespace with access limited to that namespace.
