@@ -92,3 +92,11 @@ defaults:
       topic: "Maths Miscellaneous"
       page_nav: "maths_misc"
       bgcolor: bg-maths-misc
+
+  -
+    scope:
+      path: "_notes/large_language_models"
+    values:
+      topic: "Large Language Models"
+      page_nav: "large_language_models"
+      bgcolor: bg-large-language-models
