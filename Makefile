@@ -31,6 +31,9 @@ install:
 jekyll_serve:
 	jekyll serve --force-polling --livereload
 
+jekyll_serve_2:
+	bundle exec jekyll serve --force-polling --livereload
+
 # sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
 # sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
 # sed 's/$$\\begin{aligned}/\\begin{align}/g' | \
