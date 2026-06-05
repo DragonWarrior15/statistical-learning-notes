@@ -89,6 +89,9 @@ title: "sed"
     4  colD
     ```
     * `cat -n` prints the contents and the line numbers as well
+* Another useful usecase is to print specific lines of a file
+    * `sed '20,25p' filename
+    * This will print lines 20-25 of `filename`
 
 #### Reference
 * [Sed - An Introduction and Tutorial by Bruce Barnett](https://www.grymoire.com/Unix/Sed.html#uh-0)

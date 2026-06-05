@@ -72,6 +72,9 @@ title: grep
     * a file will appear only once irrespective of the number of matches
 * `grep -c "search" ./`
     * similar to the `-l` flag, but will also return the number of matches against each file
+* `grep -r 'pattern' --include='*.txt' --include='*.md' /path/to/dir`
+    * searches `pattern` recursively, only including specific files
+    * An equivalent expression is `grep -r 'pattern' --include='*.{txt,md}' /path/to/dir`
 
 ### Piping outputs to `grep`
 * `some command | grep "keyword"`
