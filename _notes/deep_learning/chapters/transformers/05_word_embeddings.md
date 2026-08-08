@@ -24,7 +24,7 @@ In CBOW, the input is the context around the word, while the output is the word 
 
 Lets CBOW from a network perspective. $M=5$ means that we use $2$ words before and after our current word. First we use the emdedding matrix $E$ to conver these into embeddings, then run them through a fully connected neural network whose output is $K$ dimensional softmax, denoting the probability distribution across all the words in the dictionary. $E$ is a learnable parameter, and the loss function is the typical cross entropy loss on which word to select.
 
-Skip-Gram involves the same mechanics, but learns context around the word from the word itself. Both approaches are easy to implement and train, giving reasonable embeddings that do capture semantic relationships as has been demonstrated with phrases like the embeddings themselves follow mathematical laws of similarity. For instance, $\text{King} - \text{Queen} \approx \text{Man} - \text{Woman}$.
+Skip-Gram involves the same mechanics, but learns context around the word from the word itself. Both approaches are easy to implement and train, giving reasonable embeddings that do capture semantic relationships as has been demonstrated with phrases like the embeddings themselves follow mathematical laws of similarity. For instance, $$\text{King} - \text{Queen} \approx \text{Man} - \text{Woman}$$.
 
 ### Character Level Embeddings
 As discussed earlier, these also offer a good possibility giving low dimensional vectors. However, there are a few problems

@@ -12,7 +12,8 @@ The simplest approach in this case is to take the dot product, since similarity 
 
 $$
 \begin{aligned}
-a_{nm} &= \frac{\exp({x_{n}^{T}x_{m}})}{\sum_{m'=1}^{N}\exp{(x_{n}^{T}x_{m})}}\\[4ex]
+a_{nm} &= \frac{\exp({x_{n}^{T}x_{m}})}{\sum_{m'=1}^{N}\exp{(x_{n}^{T}x_{m})}}\\
+\\
 Y &= \text{Softmax}[XX^{T}]X
 \end{aligned}
 $$

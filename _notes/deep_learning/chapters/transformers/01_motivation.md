@@ -21,8 +21,9 @@ If the output is $y_{1}, ..., y_{N}$, then we want $y_{n}$ to be a linear combin
 
 $$
 \begin{aligned}
-y_{n} &= \sum_{m=1}^{N} a_{nm}x_{m}\\[4ex]
-0 &\le a_{nm} \le 1\\[1ex]
+y_{n} &= \sum_{m=1}^{N} a_{nm}x_{m}\\
+\\
+0 &\le a_{nm} \le 1\\
 \sum_{m=1}^{N}a_{nm} &= 1
 \end{aligned}
 $$
