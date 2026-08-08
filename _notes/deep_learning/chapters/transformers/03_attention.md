@@ -6,7 +6,7 @@ $$
 K &= XW^{k}\\
 Q &= XW^{q}\\
 V &= XW^{v}\\
-Y &= \text{Softmax}(QK^{T})V
+Y &= Softmax(QK^{T})V
 \end{aligned}
 $$
 
@@ -17,7 +17,7 @@ Typical formulations look as below
 
 $$
 \begin{aligned}
-Y = \text{Attention}(K, Q, V) = \text{Softmax}\left[\frac{QK^{T}}{\sqrt{D}}\right]V
+Y = Attention(K, Q, V) = Softmax\left[\frac{QK^{T}}{\sqrt{D}}\right]V
 \end{aligned}
 $$
 
@@ -40,6 +40,70 @@ Suppose we have $1, ..., H$ heads
 
 $$
 \begin{aligned}
-
+H_{h} &= Attention(Q_{h}, K_{h}, V_{h})\\
+Q_{h} &= XW_{h}^q\\
+K_{h} &= XW_{h}^k\\
+V_{h} &= XW_{h}^v \quad \text{where}\quad W_{h}^{v} \in \mathbb{R}^{D \times D_{v}}\\
 \end{aligned}
 $$
+
+We concatenate these, and linearly trasform to get back the transformed value.
+
+$$
+\begin{aligned}
+Y = Concat[H_{1}, ..., H_{H}]W^{v}
+\end{aligned}
+$$
+
+where $W^{v}$ is also learnable.
+
+$D_{v} = D/H$ so that $HD_{v} = D$, which is our output (and input) size.
+
+Note that $HD_{v}$ here represents the size of our concatenated attention blocks.
+
+## Deep Attention Networks
+Now, we can stack several of these multi-head attention layers on top of one another to get deep networks. We also add residual connections along with layer normalization to improve the training efficiency.
+
+$$
+\begin{aligned}
+Z = LayerNorm[Y(X) + X] \quad where \enspace dim(Z) = dim(X)
+\end{aligned}
+$$
+
+This all is still a linear layer. To add non-linearity, we add a shared fully connected layer (or MLP) across the otutput vectors (i.e., each data point runs through the same neural network).
+
+$$
+\begin{aligned}
+Y = LayerNorm[MLP(Z) + Z]
+\end{aligned}
+$$
+
+```mermaid
+graph BT;
+    AN[Add & Normalize];
+    AN2[Add & Normalize];
+    Concat[Concat & Linear Transform];
+    X-->K;
+    X-->Q;
+    X-->V;
+    X-->AN;
+    AN-->Z;
+    Concat-->AN;
+    Z-->MLP;
+    MLP-->AN2;
+    AN2-->Y;
+    Z-->Y;
+    SDPA-->Concat;
+    
+    subgraph PH[Multi-Head Attention]
+        SDPA[Scaled Dot Product Attention];
+        K-->SDPA;
+        Q-->SDPA;
+        V-->SDPA;
+    end
+
+    style MLP fill:#E0F2FE;
+    style AN fill:#FEF3C7;
+    style AN2 fill:#FEF3C7;
+    style PH fill:#FFEDD5;
+```
