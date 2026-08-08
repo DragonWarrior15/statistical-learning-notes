@@ -107,3 +107,22 @@ graph BT;
     style AN2 fill:#FEF3C7;
     style PH fill:#FFEDD5;
 ```
+
+## Compute
+The total compute cost of the network is approximately
+
+$$
+\begin{aligned}
+Compute &\approx O(N^{2}D) + O(ND^{2})
+\end{aligned}
+$$
+
+where the first part comes from th edot product in self attention, and the second part comes from the fully connected neural network.
+
+$$
+\begin{aligned}
+\text{Equivalent (FCN)} &\approx O(N^{2}D^{2})
+\end{aligned}
+$$
+
+where FCN is the acronym for fully connected network.
