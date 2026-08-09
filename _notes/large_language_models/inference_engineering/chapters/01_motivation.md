@@ -27,3 +27,21 @@ Below are a couple of runtime model performance improvement techniques
 One needs to look at how to scale inference from a single GPU to multiple GPUs. When that is not sufficient (due to high volume of requests), we move on to getting multi region deployments. Here, we need to ensure optimal usage across all clusters and regions.
 
 Examples of inference engines are vLLM, SGLang, TensorRT-LLM. The software stack typically involves PyTorch and CUDA. Lot of low level optimizations are also used to improve inference efficiency and throughput.
+
+### Some Definitions
+#### Distillation
+The process of _distilling_ a large model to make small models also mimic its behaviour. Instead of using data, we use the outputs of large model (its probability distributions) to teach a smaller model to learn that same behaviour. The large model is called a teacher model while the smaller one is a student model.
+
+The smaller model learns both the good and bad biases of the larger model. This technique is useful when AI Labs do not have sufficient budget to train models of different sizes separately, but can train one large model and distill its outputs into smaller models.
+
+#### TTFT and TPS
+- TTFT: Time to first token, after the prefill step of digesting user input is complete
+- TPS: Tokens per second, the average token count per second, after the first token has been generated
+
+TTFT is based on compute bound prefill, while TPS is based on bandwidth bound decode.
+
+Both are good measurement of model output latency. For real time applications like chat, code assistant, both TTFT and TPS are important to optimize to give the user a seamless experience. These matter less in agentic applications where large number of steps and tool calls are done by the model to achieve the result.
+
+One usually measures and optimizes on the mean values of these latencies. However, for a service running on a very large scale, its usually good practice to look at p90 and even p99 latencies as well and target those for optimization exercises.
+
+Its also worthwhile to look at the overall user latency experienced by the user. Its a combination of inference speed from the model, and latency from other architecture components. If the other components form a bottleneck, they must be investigated first for pockes of opportunities.
