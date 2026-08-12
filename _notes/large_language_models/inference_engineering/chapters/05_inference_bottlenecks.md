@@ -70,3 +70,10 @@ Intuitively, it makes sense that tokens near each other in the sequence affect e
 
 There are also other architectures like Mamba, where selective state space model that replaces self attention with a recurrent state update is used. This achieves linear scaling on sequence length. The intuition for this lies in the Linear Attention discussed earlier.
 A hybrid model mixes Mamba style blocks with transformer blocks.
+
+### Other categories of optimization
+Core principle of inference engineering is that the more constraints that can be introduced in the system, better performance can be achieved.
+
+More traffic means that more preformance optimization is possible (while keeping unit economics reasonable). Higher model parallelism across GPUs, KV aware routing, dynamic disaggregation only make sense when we have a large number of GPUs, often multiple nodes, serving the same model with vertical and horizontal replication.
+
+Five key cateogories: quantization, speculation, caching, parallelism, disaggregation.
