@@ -49,3 +49,31 @@ Draft token validation though cheap, still involves an overhead as seen above. O
 Temperature also affects this whole process. Higher temperature, produces token distributions that are harder to predict, reducing effectiveness of speculative decoding. Subject matter can also make a difference on acceptance rate if the draft model has slightly difference performances compared to the target model in a given domain.
 
 Speculative decoding is most useful in lower batch sizes where spare compute cycles are available. We should dynamically disable it at larger batch sizes as compute is already too satureated. Different implementations navigate these tradeoffs differently.
+
+### Draft Token Target Speculative Decoding
+This is the original method of speculative decoding and uses two models: a **draft model** and a **target model**.
+
+We need a good draft model that has a high token acceptance rate and uses fewer resources. Typically, a smaller model of the same family of models is used. The rule of thumb is tok have a model with parameters at least 10 times fewer than the target model. Further improvements are possible by fine tuning and distillation.
+
+This approach is quick to setup out of the box. However, there are a lot of things to consider. Both the models compete for resources in this case, as the draft model itself needs its own prefill and caching. Both models also need to be kept coordinated, creating additional overheads.
+
+### Medusa
+In this approach, we fine tune the target model to have multiple decoder heads and we can generate multiple draft tokens (typically 2 to 4). The draft tokens get validated on the next forward pass.
+
+This method is limited by the draft token counts and acceptance rates, and not used in production use cases. This did inspire techniques like EAGLE.
+
+### EAGLE
+Off the shelf cheap models are good to run as a cheal LLM, but do not work will on the task of generating draft tokens. EAGLE uses a model trained specifically for this purpose and generates sequences of up to 8 tokens.
+
+The target model has hidden states populated during token generation, which carries important context and is useful for generating draft tokens. EAGLE uses these hidden states (one from early layers, one from middle, and one from later layers) as inputs to generate the draft token sequences. The model is typically kept around 1B parameters. The target model and EAGLE can share the same weights and we can generate both outputs in a single inference run.
+
+This technique gives improved latency when batch size is reduced, which means a lower throughput and higher cost.
+
+### N-gram Speculation and Lookahead Decoding
+There is no draft model in this approach. Instead, the inference engine, in parallel to generating the KV cache, also constructs an n-gram dictionary that maps a single starting token to an observed sequence of N tokens (the n-gram).
+
+The sequences are based on input text and constructed during prefill stage itself. During decode, the generated token is fed to the dictionary and any one of the observed sequences is picked. In the next forward pass, the target model validates the sequence and the process continues.
+
+We can get longer draft token sequences, upto 10 tokens. But for the approach to be useful, output should closely match the input. In coding domain, where the syntax is predictable, this approach can easily outperform EAGLE.
+
+An alternate technique, Lookahead decoding generates n-grams during inference to fill the dictionary. This is more general than n-gram speculation as it does not rely as much on highly repetitive input context, but it does require the extra compute to generate the n-grams.
