@@ -9,7 +9,7 @@ $$
 
 ## Expectation Maximization
 
-EM is a general procedure to solve for intractable likelihood values in case of latent variables. The most general use of EM algorithm is in Gaussian Mixture Models in section [\[sec:gmm_algo\]](#sec:gmm_algo){reference-type="ref" reference="sec:gmm_algo"}.
+EM is a general procedure to solve for intractable likelihood values in case of latent variables. The most general use of EM algorithm is in [Gaussian Mixture Models](../clustering/gmm.md).
 
 ### Jensen's Inequality
 
@@ -29,7 +29,7 @@ $$
 \end{aligned}
 $$
 
-Since the $\alpha$ in the above formula sum upto $1$, we can interpret them as a probability distribution. Let $p(t_{j} = x_{j}) = \alpha_{j}$. Then,
+Since the $\alpha$ in the above formula sum up to $1$, we can interpret them as a probability distribution. Let $p(t_{j} = x_{j}) = \alpha_{j}$. Then,
 
 $$
 \begin{aligned}

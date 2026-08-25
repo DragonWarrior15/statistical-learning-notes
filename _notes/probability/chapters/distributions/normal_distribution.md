@@ -140,7 +140,7 @@ $$
 
 by independence.
 
-Now, assume a real symmetric semippositive definite matrix $\Sigma$ that represents a variance-covariance matrix. From spectral decomposition, there exists $\Sigma^{1/2}$ such that $\Sigma^{1/2} \Sigma^{1/2} = \Sigma$ (from linear algebra). Also, this matrix is itself symmetric.
+Now, assume a real symmetric semipositive definite matrix $\Sigma$ that represents a variance-covariance matrix. From spectral decomposition, there exists $\Sigma^{1/2}$ such that $\Sigma^{1/2} \Sigma^{1/2} = \Sigma$ (from linear algebra). Also, this matrix is itself symmetric.
 
 Assume a constant vector $\mathbf{\mu}$. Then,
 
