@@ -45,9 +45,9 @@ or, the function of expected value is greater than or equal to the expected valu
 KL Divergence is a method to measure the difference between two probability distributions. For two probability distributions $p$ and $q$
 
 $$
-\begin{align}
+\begin{aligned}
     \KL{q}{p} = \int q(x) log\frac{q(x)}{p(x)} dx
-\end{align}
+\end{aligned}
 $$
 
 where the right side is expectation of the logarithm under the probability distribution $q(x)$. It has the following properties
