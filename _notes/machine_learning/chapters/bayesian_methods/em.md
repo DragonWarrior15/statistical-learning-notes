@@ -42,7 +42,7 @@ or, the function of expected value is greater than or equal to the expected valu
 
 ### Kullback Leibler Divergence
 
-KL Divergence is a method to measure the difference between two probability distributions. For two probability distributions $p$ and $q$$
+KL Divergence is a method to measure the difference between two probability distributions. For two probability distributions $p$ and $q$
 
 $$
 \begin{align}
@@ -98,7 +98,7 @@ $$
 \end{aligned}
 $$
 
-through Jensen's inequality ($Q(z)$ is a probability distribution).
+through Jensen's inequality ($Q(z)$ is a probability distribution).  $\mathcal{L}(\theta, Q)$ is also known as **ELBO** or Evidence Lower Bound.
 
 
 Thus, we have found a lower bound on the likelihood that is now a function of both $\theta$ and $Q$. We wish to find a suitable maxima to this term that can help us find the maxima of the original likelihood function. The critical concept to know here is that if we knew $Q$, we could maximize and get the $\theta$ and vice versa. Hence, we break down the EM algorithm into two alternating steps
