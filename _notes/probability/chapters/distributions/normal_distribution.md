@@ -86,7 +86,7 @@ Since the total integral of a normal distribution is 1 (the total probability).
 
 ### Sum of Normal Distributions
 
-With the help of moment generating functions, this calculation becomes easier. Let $X_{1}, \ldots X_{n}$ be $n$ independent normal distributions with $X_{i} \sim \mathcal{N}(\mu_{i}, \sigma^{2}\_{i})$.
+With the help of moment generating functions, this calculation becomes easier. Let $X_{1}, \ldots X_{n}$ be $n$ independent normal distributions with $X_{i} \sim \mathcal{N}(\mu_{i}, \sigma^{2}_{i})$.
 
 $$
 \begin{aligned}
@@ -124,9 +124,9 @@ $E[\mathbf{Z}] = 0 = E[\mathbf{Z}]^{T} $ (element wise).
 $$
 \begin{aligned}
     Cov(\mathbf{Z}, \mathbf{Z}) &= E[\mathbf{Z}\mathbf{Z}^{T}] - E[\mathbf{Z}]E[\mathbf{Z}]^{T}\newline
-    &= \mathbf{I}\_{n}\newline
-    \text{as} \quad E[\mathbf{Z}\mathbf{Z}^{T}]\_{ij} &= Cov(Z_{i}, Z_{j}) = 0 \quad \text{independence}\newline
-    E[\mathbf{Z}\mathbf{Z}^{T}]\_{ii} &= Cov(Z_{i}, Z_{i}) = Var(Z_{i}) = 1 \quad \text{independence}
+    &= \mathbf{I}_{n}\newline
+    \text{as} \quad E[\mathbf{Z}\mathbf{Z}^{T}]_{ij} &= Cov(Z_{i}, Z_{j}) = 0 \quad \text{independence}\newline
+    E[\mathbf{Z}\mathbf{Z}^{T}]_{ii} &= Cov(Z_{i}, Z_{i}) = Var(Z_{i}) = 1 \quad \text{independence}
 \end{aligned}
 $$
 
