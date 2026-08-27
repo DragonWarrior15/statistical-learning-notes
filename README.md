@@ -114,3 +114,7 @@ To generate a single `md` file containing all the pages for one notes section
 * Restart cmd and type `wsl`
 * Now try running the commands
 
+## `uv` Setup
+- Visit the official [astral site](https://docs.astral.sh/uv/) for the latest download instructions
+- Run `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- Run `uv sync` to setup the environment
