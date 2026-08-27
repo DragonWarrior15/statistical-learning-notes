@@ -70,7 +70,7 @@ $$
 
 where the second line uses Jensen's inequality and also the fact that $\int p(x) dx = 1$.
 
-#### EM
+### EM
 
 Now we discuss the general form of the EM algorithm. Consider the problem of obtaining the MLE of data set $X$ containing $N$ data points
 
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-Assume we have some latent variables $z_{i}$ such that knowing those will make the optimization of the log likelihood easier. EM shines in such scenarios. Marginalising over $z$$
+Assume we have some latent variables $z_{i}$ (unknown) such that knowing those will make the optimization of the log likelihood easier. EM shines in such scenarios. Marginalizing (summing) over $z_{i}$
 
 $$
 \begin{aligned}
@@ -89,16 +89,17 @@ $$
 \end{aligned}
 $$
 
-Assume a probability distribution $Q_{i}(z)$ (also called variational distribution) on $z$ such that $\sum_{z} Q_{i}(z) = 1$ and $Q_{i}(z) \geq 0$
+Assume a probability distribution $Q_{i}(z_{i})$ (also called variational distribution) on $z_{i}$ such that $\sum_{z} Q_{i}(z_{i}) = 1$ and $Q_{i}(z_{i}) \geq 0$
 
 $$
 \begin{aligned}
     log(p(X|\theta)) &= \sum_{i=1}^{N} log \bigg( \sum_{z_{i}} Q_{i}(z_{i}) \frac{p(x_{i}, z_{i}|\theta)}{Q_{i}(z_{i})} \bigg)\newline
-    log(p(X|\theta)) &\geq \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i}) log \frac{p(x_{i}, z_{i}|\theta)}{Q_{i}(z_{i})} = \mathcal{L}(\theta, Q)
+    log(p(X|\theta)) &\geq \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i}) log \frac{p(x_{i}, z_{i}|\theta)}{Q_{i}(z_{i})} = \mathcal{L}(\theta, Q)\newline
+    \text{where}\ Q &= \prod_{i=1}^{N}Q_{i}(z_{i})
 \end{aligned}
 $$
 
-through Jensen's inequality ($Q(z)$ is a probability distribution).  $\mathcal{L}(\theta, Q)$ is also known as **ELBO** or Evidence Lower Bound.
+through Jensen's inequality ($Q_{i}(z_{i})$ is a probability distribution).  $\mathcal{L}(\theta, Q)$ is also known as **ELBO** or Evidence Lower Bound.
 
 
 Thus, we have found a lower bound on the likelihood that is now a function of both $\theta$ and $Q$. We wish to find a suitable maxima to this term that can help us find the maxima of the original likelihood function. The critical concept to know here is that if we knew $Q$, we could maximize and get the $\theta$ and vice versa. Hence, we break down the EM algorithm into two alternating steps
@@ -136,12 +137,19 @@ $$
 \begin{aligned}
     \max_{\theta}\mathcal{L}(\theta, Q) &= \max_{\theta} \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i}) log \frac{p(x_{i}, z_{i}|\theta)}{Q_{i}(z_{i})}\newline
     &= \max_{\theta} \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i}) log(p(x_{i}, z_{i}|\theta)) - \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i})log(Q_{i}(z_{i}))\newline
-    &= \max_{\theta} E_{Q}[log(P(X, Z|\theta))]
+    
 \end{aligned}
 $$
 
-i.e., the expectation of the joint distribution of $X$ and latent variables $Z$. Usually this function is concave (we can define in such a way) and local optima are easily achievable.
+Note that we can ignore the second term for maximization since it does not depend on $\theta$. Working with the remaining term
 
+$$
+\begin{aligned}
+\max_{\theta}\mathcal{L}(\theta, Q) &= \max_{\theta} \sum_{i=1}^{N} \sum_{z_{i}} Q_{i}(z_{i}) log(p(x_{i}, z_{i}|\theta))\newline &= \max_{\theta} E_{Q}[log(P(X, Z|\theta))]
+\end{aligned}
+$$
+
+where the last equation is just a notation convenience, denoting the expectation of the joint distribution of $X$ and latent variables $Z$. Usually this function is concave (we can define in such a way) and local optima are easily achievable.
 
 ### Convergence Guaranties
 
