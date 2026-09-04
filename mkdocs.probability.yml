@@ -1,0 +1,121 @@
+site_name: Learning Notes — Probability
+docs_dir: docs
+site_dir: site/probability
+use_directory_urls: false
+theme:
+  name: material
+  features:
+  - navigation.footer
+  - navigation.indexes
+  - navigation.sections
+  - navigation.top
+  - search.highlight
+  - search.suggest
+  - toc.follow
+plugins:
+- search
+not_in_nav: 'probability/chapters/references.md
+
+  probability/chapters/exercises/a_*.md
+
+  '
+extra_css:
+- stylesheets/extra.css
+extra_javascript:
+- javascripts/mathjax.js
+- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+markdown_extensions:
+- admonition
+- attr_list
+- tables
+- toc:
+    permalink: true
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.highlight:
+    anchor_linenums: true
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.superfences
+nav:
+- Home: index.md
+- Probability:
+  - Probability Theorems:
+    - probability/chapters/theorems/probability_theorems.md
+    - Expectation, Variance and Covariance: probability/chapters/theorems/expectation_var.md
+    - Jacobian: probability/chapters/theorems/jacobian.md
+    - Iterated Expectation and Variance: probability/chapters/theorems/iterated_exp.md
+    - Random number of Random Variables: probability/chapters/theorems/random_no.md
+    - Moment Generating Function: probability/chapters/theorems/moment_gen.md
+    - Convolutions: probability/chapters/theorems/convolution.md
+  - Probability Distributions:
+    - Continuous Uniform Random Variable: probability/chapters/distributions/uniform_distribution.md
+    - Bernoulli and Binomial Random Variable: probability/chapters/distributions/binomial.md
+    - Geometric Distribution: probability/chapters/distributions/geometric.md
+    - Negative Binomial Distribution: probability/chapters/distributions/negative_binomial.md
+    - Bernoulli Process: probability/chapters/distributions/bernoulli_process.md
+    - Exponential Distribution: probability/chapters/distributions/exponential_distribution.md
+    - Poisson: probability/chapters/distributions/poisson.md
+    - Gamma Distribution: probability/chapters/distributions/gamma.md
+    - Beta Distribution: probability/chapters/distributions/beta_distribution.md
+    - Dirichlet Distribution: probability/chapters/distributions/dirichlet_distribution.md
+    - Normal Distribution: probability/chapters/distributions/normal_distribution.md
+    - Chi-Square Distribution: probability/chapters/distributions/chi_square.md
+    - t-Distribution: probability/chapters/distributions/t_dist.md
+    - F-Distribution: probability/chapters/distributions/f_dist.md
+    - Logistics Distribution: probability/chapters/distributions/logistic_dist.md
+    - Renewal Process: probability/chapters/distributions/renewal_process.md
+    - Counting Process: probability/chapters/distributions/counting_process.md
+  - Markov Process:
+    - probability/chapters/markov_process/intro.md
+    - Recurring and Transient States: probability/chapters/markov_process/states.md
+    - Steady State Probabilities: probability/chapters/markov_process/steady_state.md
+    - Birth Death Process: probability/chapters/markov_process/birth_death.md
+    - Absorption Probabilities: probability/chapters/markov_process/absorption.md
+  - Limit Theorems:
+    - probability/chapters/limit_theorems/intro.md
+    - Markov Inequality: probability/chapters/limit_theorems/markov_inequality.md
+    - Chebychev Inequality: probability/chapters/limit_theorems/chebychev_inequality.md
+    - Weak Law of Large Numbers: probability/chapters/limit_theorems/wlln.md
+    - Convergence in Probability: probability/chapters/limit_theorems/convergence.md
+    - Central Limit Theorem: probability/chapters/limit_theorems/clt.md
+    - Strong Law of Large Numbers: probability/chapters/limit_theorems/slln.md
+  - Distribution of Sample Mean and Variance:
+    - probability/chapters/sample_mean_var/intro.md
+    - Sample Mean: probability/chapters/sample_mean_var/sample_mean.md
+    - Sample Variance: probability/chapters/sample_mean_var/sample_var.md
+    - Distributions for a Normal Population: probability/chapters/sample_mean_var/normal.md
+  - Parameter Estimation:
+    - probability/chapters/parameter_estimation/intro.md
+    - Maximum Likelihood Estimator: probability/chapters/parameter_estimation/mle.md
+    - Method of Moments Estimate: probability/chapters/parameter_estimation/mme.md
+    - Interval Estimates: probability/chapters/parameter_estimation/interval_estimates.md
+    - Order Statistics: probability/chapters/parameter_estimation/order_statistics.md
+    - Evaluating an Estimator: probability/chapters/parameter_estimation/evaluation.md
+    - Bayes Estimator: probability/chapters/parameter_estimation/bayes.md
+  - Bayesian Inference: probability/chapters/bayesian_inference/intro.md
+  - Hypothesis Testing:
+    - probability/chapters/hypothesis_testing/intro.md
+    - Test around Mean of Normal Population: probability/chapters/hypothesis_testing/mean_normal.md
+    - Testing Equality of Means of Two Normal Populations: probability/chapters/hypothesis_testing/equality_means_normals.md
+    - Tests around Variance of Normal Population: probability/chapters/hypothesis_testing/variance_normal.md
+    - Tests around Bernoulli Population: probability/chapters/hypothesis_testing/bernoulli.md
+  - Linear Regression:
+    - probability/chapters/linear_regression/intro.md
+    - Mean and Variance of Coefficients: probability/chapters/linear_regression/mean_var_coeffs.md
+    - Distribution of Residual: probability/chapters/linear_regression/distribution_residuals.md
+    - Inferences Concerning Coefficients: probability/chapters/linear_regression/inference_coeffs.md
+    - Inferences Concerning Mean Response: probability/chapters/linear_regression/inference_mean_response.md
+    - Inferences Concerning Future Response: probability/chapters/linear_regression/inference_future_response.md
+    - Coefficient of Determination: probability/chapters/linear_regression/r2.md
+    - Weighted Least Squares: probability/chapters/linear_regression/wls.md
+  - Life Testing: probability/chapters/life_testing/intro.md
+  - Generating Random Numbers:
+    - Random Numbers: probability/chapters/simulation/random_nos.md
+    - Generating Discrete Random Variables: probability/chapters/simulation/discrete_random_nos.md
+    - Generating Continuous Random Variables: probability/chapters/simulation/continuous_random_nos.md
+  - Exercises:
+    - Exercises Part 1: probability/chapters/exercises/problems_p01.md
+    - Exercises Part 2: probability/chapters/exercises/problems_p02.md
+    - Exercises Part 3: probability/chapters/exercises/problems_p03.md
+    - Exercises Part 4: probability/chapters/exercises/problems_p04.md

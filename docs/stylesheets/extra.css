@@ -1,0 +1,27 @@
+figure.notes-img {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+figure.notes-img img {
+  height: auto;
+  max-width: 100%;
+}
+
+figure.notes-img figcaption {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+figure.gamma_1 img,
+figure.t_1 img {
+  max-width: 32rem;
+}
+
+figure.markov_3 img,
+figure.exercises_1 img,
+figure.exercises_2 img,
+figure.exercises_3 img {
+  max-width: 42rem;
+}
