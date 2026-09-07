@@ -1,8 +1,9 @@
-"""Generate an MkDocs-compatible Probability proof of concept.
+"""Generate an MkDocs-compatible Probability migration snapshot.
 
-The Jekyll source remains the authority during the migration. This script copies
-only ``_notes/probability`` into ``docs/probability`` and rewrites the small
-set of Jekyll constructs found in that subject.
+This historical migration utility copies ``_notes/probability`` into
+``docs/notes/probability`` and rewrites the small set of Jekyll constructs found
+in that subject. The reviewed content under ``docs/`` is now authoritative, so
+running this script in the repository will overwrite that destination.
 """
 
 from __future__ import annotations
@@ -18,7 +19,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "_notes" / "probability"
 DOCS = ROOT / "docs"
-DESTINATION = DOCS / "probability"
+DESTINATION = DOCS / "notes" / "probability"
 NAVIGATION = ROOT / "_data" / "navigation.yml"
 CONFIG = ROOT / "mkdocs.probability.yml"
 
@@ -45,7 +46,8 @@ def attributes(args: str) -> dict[str, str]:
 
 def relative_link(current: Path, jekyll_path: str, anchor: str = "") -> str:
     """Turn a Jekyll collection URL into a relative MkDocs source link."""
-    target = DOCS / jekyll_path.removeprefix("/notes/").replace(".html", ".md")
+    # Retain the ``notes/`` segment so the built MkDocs route matches Jekyll.
+    target = DOCS / jekyll_path.removeprefix("/").replace(".html", ".md")
     return Path(os.path.relpath(target, current.parent)).as_posix() + anchor
 
 
@@ -55,7 +57,7 @@ def image_markup(current: Path, args: str) -> str:
     if not url:
         raise ValueError(f"Image include has no URL in {current}")
 
-    image = DOCS / url.removeprefix("notes/")
+    image = DOCS / url.lstrip("/")
     source = Path(os.path.relpath(image, current.parent)).as_posix()
     classes = attrs.get("img_classes", "notes-img")
     description = attrs.get("description", "")
@@ -137,9 +139,9 @@ def nav_entry(item: dict) -> dict[str, object]:
     children = [nav_entry(child) for child in item.get("subnav", [])]
     link = item.get("link")
     if link and children:
-        return {item["name"]: [link.removeprefix("/notes/").replace(".html", ".md"), *children]}
+        return {item["name"]: [link.removeprefix("/").replace(".html", ".md"), *children]}
     if link:
-        return {item["name"]: link.removeprefix("/notes/").replace(".html", ".md")}
+        return {item["name"]: link.removeprefix("/").replace(".html", ".md")}
     return {item["name"]: children}
 
 
@@ -147,6 +149,7 @@ def write_config() -> None:
     navigation = yaml.safe_load(NAVIGATION.read_text(encoding="utf-8"))
     config = {
         "site_name": "Learning Notes — Probability",
+        "site_url": "https://dragonwarrior15.github.io/statistical-learning-notes/",
         "docs_dir": "docs",
         "site_dir": "site/probability",
         "use_directory_urls": False,
@@ -165,7 +168,7 @@ def write_config() -> None:
         "plugins": ["search"],
         # Answers and references are linked from the exercises, but deliberately
         # excluded from the global reading order used by the original site.
-        "not_in_nav": "probability/chapters/references.md\nprobability/chapters/exercises/a_*.md\n",
+        "not_in_nav": "notes/probability/chapters/references.md\nnotes/probability/chapters/exercises/a_*.md\n",
         "extra_css": ["stylesheets/extra.css"],
         "extra_javascript": [
             "javascripts/mathjax.js",
@@ -203,7 +206,7 @@ def main() -> None:
     DOCS.mkdir(exist_ok=True)
     (DOCS / "index.md").write_text(
         "# Learning Notes\n\nThis MkDocs proof of concept currently contains the Probability notes.\n\n"
-        "[Start reading Probability](probability/chapters/theorems/probability_theorems.md)\n",
+        "[Start reading Probability](notes/probability/chapters/theorems/probability_theorems.md)\n",
         encoding="utf-8",
     )
     write_config()

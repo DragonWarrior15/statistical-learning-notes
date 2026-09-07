@@ -7,6 +7,9 @@ The content under `docs/` is the authoritative source for the MkDocs site. Edit
 those files directly; do not regenerate reviewed pages from the legacy Jekyll
 content under `_notes/`.
 
+Migrated collections live under `docs/notes/` to preserve their existing
+published URLs, such as `/statistical-learning-notes/notes/probability/...`.
+
 Install the locked Python dependencies:
 
 ```shell
