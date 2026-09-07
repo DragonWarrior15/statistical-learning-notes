@@ -4,6 +4,9 @@ title: "Gaussian Process"
 
 ## Gaussian Process
 
+### Intuition
+Gaussian Process is a distribution over functions and not data points. The process tries to model entire function shapes without knowing the function. Consider an example where we know the temperature values over 5 different geographic points of a city. We want to use this information to predict temperature values over different points. We also want to have the ability that as we add more points with known observaitons, our estimates about unknown points improve. This is where a Gaussian Process helps. It requires us to first define a Kernel $K$ that encapsulates our similarity belief. That is, for close inputs, how similar are the outputs. Once we have established that, under a Gaussian distribution assumption (over the function shape), we can start to build the estimates of unknown points, as is explained in the different sections that follow.
+
 Suppose we have a set $X = (x_{1}, \ldots, x_{N}), x_{i} \in \mathbb{R}^{d}$. Then a random process $f(x)$ is a gaussian process if for any $n \leq N$, the joint distribution of any subset of size $n$ is a multivariate gaussian.
 \begin{align}
     \begin{bmatrix} f(x_{1})\newline f(x_{2})\newline \vdots\newline f(x_{n}) \end{bmatrix} \sim \mathcal{N} \left( \begin{bmatrix} m(x_{1})\newline m(x_{2})\newline \vdots\newline m(x_{n}) \end{bmatrix}, \begin{bmatrix} K(x_{1}, x_{1}) &\cdots &K(x_{1}, x_{n})\newline K(x_{2}, x_{1}) &\cdots &K(x_{2}, x_{n})\newline \vdots &\vdots &\vdots\newline K(x_{n}, x_{1}) &\cdots &K(x_{n}, x_{n}) \end{bmatrix}  \right)\newline
@@ -14,6 +17,8 @@ where $m$ denotes the mean, and the matrix of kernels $K$ is a covariance matrix
     \text{Radial Basis Function (RBF)} &= \sigma^{2}exp \left( -\frac{(x_{1} - x_{2})^{2}}{2l^{2}} \right) \; l = \text{length scale}\newline
     \text{Rational Quadratic} &= \sigma^{2}\left(1 +\frac{(x_{1} - x_{2})^{2}}{2\alpha l^{2}} \right)^{-\alpha}\newline
     \text{White Noise} &= \sigma^{2}I(x_{1} = x_{2})\end{align}
+
+Here, different parameters are in use, that we need to define. $l$ is the length scale that controls how close is "close". Kernel hyperparmeters like $l$ and $\sigma^{2}$ set the function shape.
 
 {% include image.html url="notes/machine_learning/images/gp_1.png" description="Example of a $1d$ gaussian process. The orange line is the mean." img_classes="notes-img" %}
 
@@ -32,6 +37,8 @@ For any new point $x \in \mathbb{R}^{d}$, we first assume that $f(x)$ has a prio
 the ratio of two normals is also a normal distribution, making the final distribution
 \begin{align}
     p(f(x) | f(x_{1}), \ldots, f(x_{N})) = \mathcal{N}(k^{T}C^{-1}f, K(0) - k^{T}C^{-1}k)\end{align}
+
+The matrix $C$ is built using the observed locations (from our earlier example) and all the predictions about uknown points condition on it. The kernel $K$ controls how correlated any two locations are, and is controlled by our intuition or subject knowledge. The correct technical notation for using $K$ above should be $K(x_{i}, x_{j})$ but for stationary kernels, $K(x_{i}, x_{j}) = K(x_{i} - x_{j})$.
 
 {% capture img_url %}{{ "notes/machine_learning/codes/gaussian_process_prediction.html" | relative_url }} {% endcapture %}
 {% capture img_desc %}{{ "Prediction using gaussian process for a $1d$ distribution. Variance of the prediction is $0$ at the observed points. The variance is constant far away from the observed points as $K(0)$ is predefined and finite. Prepared using <a href='" | append: img_url | append: "'>gaussian_process_prediction.py</a>"}}{% endcapture %}
