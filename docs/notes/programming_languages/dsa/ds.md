@@ -505,4 +505,3 @@ Consider an undirected graph where all edges are equal in weight. We want to fin
 To get the shortest path, we can simply get the MST using BFS as only the number of edges matter and not the weights. One simple approach is to first run BFS on A to get the shortest path from A to L, and then run the algorithm again to get the shortest path from L to F.
 
 However, note that the shortest path from A to L is also the shortest path from L to A. Thus, when we run BFS on L, we get shortest paths from L to F and L to A or A to L. Only running BFS once will provide us with the required answer.
-

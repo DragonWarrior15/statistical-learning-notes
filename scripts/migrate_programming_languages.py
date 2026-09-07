@@ -106,7 +106,7 @@ def normalize_block_spacing(content: str, *, exercise: bool) -> str:
             normalized.append("")
         normalized.append(line)
 
-    return "\n".join(normalized) + "\n"
+    return "\n".join(normalized).rstrip() + "\n"
 
 
 def convert_markdown(source: Path, destination: Path) -> None:

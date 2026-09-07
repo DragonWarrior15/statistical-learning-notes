@@ -635,4 +635,3 @@ if(count_map.count("five")){
 This is a useful function if we don't wont to corrupt the map with new entries since a lookup with the `[]` operator will create the entry in the map.
 
 The `find` function returns an iterator which is a pair type corresponding to the key value pair. In case the key does not exist in the map, the `end()` iterator of the map is returned.
-
