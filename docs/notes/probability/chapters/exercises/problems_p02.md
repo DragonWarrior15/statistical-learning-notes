@@ -6,17 +6,17 @@
 
 A shooter takes 10 hits in a shooting range and each shot has $p=0.2$ of hitting target independent of each other. Let $X =$ number of hits. Find
 
-1.  PMF of $X$
+1\. PMF of $X$
 
-2.  $P(\text{no hits})$
+2\. $P(\text{no hits})$
 
-3.  $P(\text{scoring more than misses})$
+3\. $P(\text{scoring more than misses})$
 
-4.  $E[X]$ and $Var(X)$
+4\. $E[X]$ and $Var(X)$
 
-5.  Suppose the entry is \\$3 and each shot fetches \\$2. Let $Y$ = profit. Find $E[Y]$ and $Var(Y)$.
+5\. Suppose the entry is \\$3 and each shot fetches \\$2. Let $Y$ = profit. Find $E[Y]$ and $Var(Y)$.
 
-6.  Suppose entry is free and total reward is square of number of hits. Let $Z$ be profit. Find $E[Z]$.
+6\. Suppose entry is free and total reward is square of number of hits. Let $Z$ be profit. Find $E[Z]$.
 
 [Solution](a_binshoot.md)
 
@@ -34,9 +34,9 @@ Given a coin with $P(H) = p$, find the $E$\[number of tosses till $HH$ or $TT$\]
 
 Let $3$ fair coins be tossed at every turn. Given all coins and turns are independent, calculate the following (assuming success is defined as all three coins landing the same side up))
 
-1.  PMF of $K$, no of trials upto but not including the $2^{nd}$ success
+1\. PMF of $K$, no of trials upto but not including the $2^{nd}$ success
 
-2.  $E$ and $Var$ of $M$, the $E[$number of tails$]$ before first success.
+2\. $E$ and $Var$ of $M$, the $E[$number of tails$]$ before first success.
 
 [Solution](a_threecoins.md)
 
@@ -87,17 +87,17 @@ We have three identical but independent lightbulbs whose lifetimes are modelled 
 
 Beginning at $t=0$, we begin using bulbs one at a time until failure. Any broken bulb is immediately replaced. Each new bulb is selected independently and equally likely from type A(exponential life with $\lambda = 1$) or type B(exponential life with $\lambda = 3$). Lifetimes of all bulbs are independent.
 
-1.  Find $E[$time until first failure$]$.
+1\. Find $E[$time until first failure$]$.
 
-2.  $P($no bulb failure before time $t)$.
+2\. $P($no bulb failure before time $t)$.
 
-3.  Given that there are no failures until time t, determine the conditional probability that the first bulb used is of type A.
+3\. Given that there are no failures until time t, determine the conditional probability that the first bulb used is of type A.
 
-4.  Find the probability that the total illumination by two type B bulbs $>$ one type A.
+4\. Find the probability that the total illumination by two type B bulbs $>$ one type A.
 
-5.  Suppose the process terminates after 12 bulbs fail. Determine the expected value and variance of the total illumination provided by type B bulbs while the process is in operation.
+5\. Suppose the process terminates after 12 bulbs fail. Determine the expected value and variance of the total illumination provided by type B bulbs while the process is in operation.
 
-6.  Given there are no failures until time $t$, find the expected value of time until first failure.
+6\. Given there are no failures until time $t$, find the expected value of time until first failure.
 
 [Solution](a_poissonbulb2.md)
 
@@ -121,8 +121,8 @@ $$
 14\. **Exponential Times**
 
 In a warehouse of parts, average time between requests for parts is about 10 minutes. Assume this time is exponentially distributed. Find
-1. Probability that in an hour there are at least 10 requests for parts.
-1. Porbability that 10th request in the morning requires at least two hours of waiting time.
+1\. Probability that in an hour there are at least 10 requests for parts.
+1\. Porbability that 10th request in the morning requires at least two hours of waiting time.
 
 [Solution](a_exponential_times.md)
 

@@ -17,4 +17,10 @@ Choose a subject to start exploring the notes currently available in MkDocs.
 
     [Explore Linux →](notes/linux/index.md)
 
+-   ## Programming Languages
+
+    SQL, C, C++, exercises, data structures, and algorithms.
+
+    [Explore Programming Languages →](notes/programming_languages/index.md)
+
 </div>

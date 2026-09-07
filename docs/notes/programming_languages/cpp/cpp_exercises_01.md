@@ -1,12 +1,9 @@
----
-title: "C++ Exercises 01"
----
-
 # C++ Exercises
 ## Course 01: Classes in C++
 ***
 
 ### Quiz 01
+
 1. One of these statements below is true and the other three are false. Which one is true?
     1. Every variable in C++ holds either an integer, a character, a Boolean or a floating point value (of some precision).
     1. A Boolean variable can only be assigned a value from this set of three reserved words: {true, false, undefined}.
@@ -38,6 +35,7 @@ title: "C++ Exercises 01"
     1. `#include`
 
 6. Given only the following code:
+
     ```c++
     namespace uiuc {
         class Pair {
@@ -45,11 +43,13 @@ title: "C++ Exercises 01"
         };
     }
     ```
+
     which of the following syntax can be written outside of the namespace declaration to properly create a variable named “p” of type Pair?
-        1. (uiuc) Pair p;
-        1. uiuc/Pair p;
-        1. Pair p;
-        1. uiuc::Pair p;
+
+    1. (uiuc) Pair p;
+    1. uiuc/Pair p;
+    1. Pair p;
+    1. uiuc::Pair p;
 
 7. Which keyword is used to indicate which namespace(s) to search to find classes and variables when they are referenced throughout the rest of the program?
     1. namespace
@@ -95,13 +95,17 @@ title: "C++ Exercises 01"
 ***
 
 ### Quiz 02
+
 1. Recall that every variable in C++ has these four things: a name, a type, a value and a memory location.
+
     ```c++
     int *p;
     p = new int;
     *p = 0;
     ```
+
     For the code above, which one of the following is NOT true for variable p?
+
     1. The name of the variable is `p`
     1. The type of the variable is a pointer to an integer, specifically the type `int *`
     1. The value of the variable is 0
@@ -114,6 +118,7 @@ title: "C++ Exercises 01"
     1. The C++ statement “int i;” allocates memory for one integer on the heap.
 
 3. Suppose we are writing the following function that is intended to return a pointer to a location in memory holding an integer value initialized to zero.
+
     ```c++
     int *allocate_an_integer() {
     // declare variable i here
@@ -121,13 +126,16 @@ title: "C++ Exercises 01"
     return i;
     }
     ```
+
     How should variable i be declared?
+
     1. `int *i = new int;`
     1. `int *i;`
     1. `int i;`
     1. `int j; int *i = &j;`
 
 4. Suppose we have this alternative function that returns a pointer to a memory location to an integer value of zero.
+
     ```c++
     int *allocate_an_integer() {
         int i = 0;
@@ -140,7 +148,9 @@ title: "C++ Exercises 01"
         return 0;
     }
     ```
+
     What value is variable k assigned and why?
+
     1. Variable k is not assigned a value, because even if the compiler is set to ignore warnings and continue with compilation, the compiled program will still automatically detect that a local variable’s address is being used after the function has returned, and exit to the operating system with a non-zero error code.
     1. Assuming that the program compiles with just a warning and not an error due to the settings, the variable k will not be assigned a value, because the running program will crash the whole operating system.
     1. Variable k is certainly assigned the value zero, because the C++ runtime will automatically move the local variable to the heap and return the address of that heap variable instead.
@@ -152,43 +162,54 @@ title: "C++ Exercises 01"
     1. `&i`
     1. `i->addr`
 
-6.
+6. &nbsp;
+
     ```c++
     int i = 0;
     int *j = &i;
     ```
+
     How many memory allocations are made on the stack and on the heap for the above code? For example, declaring an integer would count as one memory allocation.
+
     1. One allocation on the stack and one allocation on the heap.
     1. Two allocations on the stack and zero allocations on the heap.
     1. Zero allocations on the stack and one allocation on the heap.
     1. Zero allocations on the stack and two allocations on the heap.
     1. One allocation on the stack and zero allocations on the heap.
 
-7.
+7. &nbsp;
+
     ```c++
     int *i = new int;
     ```
+
     How many memory allocations are made on the stack and on the heap for the above code? For example, allocating space for one integer would count as one memory allocation.
+
     1. One allocation on the stack and zero allocations on the heap.
     1. Zero allocations on the stack and one allocation on the heap.
     1. Two allocations on the stack and zero allocations on the heap.
     1. Zero allocations on the stack and two allocations on the heap.
     1. One allocation on the stack and one allocation on the heap.
 
-8.
+8. &nbsp;
+
     ```c++
     int *i = new int;
     *i = 0;
     int &j = *i;
     j++;
     ```
+
     What does the last line of the above code segment do?
+
     1. Increments the value of j by one, where the value of j is a local copy stored on the stack of the value of i stored on the heap.
     1. Increments the value pointed to by variable i by one.
     1. Causes an error.
     1. Increments the address pointed to by variable i by one.
 
-9. ```c++
+9. &nbsp;
+
+    ```c++
     int i = 0, j = 1;
     int *ptr = &i;
     i = 2;
@@ -197,9 +218,12 @@ title: "C++ Exercises 01"
     j = i;
     *ptr = 4;
     ```
+
     Enter the number of different values stored in the same address that variable i has during the execution of the code above. (Your answer should be a single integer, which is the total number of different values assigned to that address.)
 
-10. ```c++
+10. &nbsp;
+
+    ```c++
     class Pair {
         public: double a,b;
     };
@@ -209,7 +233,9 @@ title: "C++ Exercises 01"
         return 0;
     }
     ```
+
     The expression p->a is equivalent to which one of the following?
+
     1. `*(p.a)`
     1. `(*p).a`
     1. `p.*a`
@@ -244,22 +270,34 @@ title: "C++ Exercises 01"
 
 2. Which of the following examples does NOT call a copy constructor at least once?
     (If you already have advanced knowledge of C++ that makes this seem like a trick question, then we'll also specify this: Assume that compiler optimizations are mostly disabled.)
-    1. ```c++
+
+    1. &nbsp;
+
+        ```c++
         Cube a, b(10);
         a = b;
         ```
-    2. ```c++
+
+    2. &nbsp;
+
+        ```c++
         // Function prototype for "contains":
         int contains(Cube outer, Cube inner);
         // ...
         Cube a(10),b(5);
         int a_bounds_b = contains(a,b);
         ```
-    3. ```c++
+
+    3. &nbsp;
+
+        ```c++
         Cube b(10);
         Cube a = b;
         ```
-    4. ```c++
+
+    4. &nbsp;
+
+        ```c++
         // Function prototype for "intersect":
         Cube intersect(Cube &left, Cube &right);
         // ...
@@ -269,17 +307,21 @@ title: "C++ Exercises 01"
         ```
 
 3. Recall that a custom assignment operator can be declared such that line 2 of the code below executes a user-defined function to perform the assignment.
+
     ```c++
     Cube a,b(10);
     a = b(10);
     ```
+
     Which one of the following statements regarding the declaration of such a custom assignment operator allowing is **true**?
+
     1. The custom assignment operator function is declared with two arguments: the source and target objects of the assignment.
     1. The custom assignment operator is a function declared with the name "operator::assignment".
     1. The type of the custom assignment operator function should be void.
     1. The custom assignment operator is a public member function of the class.
 
 4. Consider the following class:
+
     ```c++
     class Orange {
         public:
@@ -291,7 +333,9 @@ title: "C++ Exercises 01"
             double weight_;
     };
     ```
+
     Select **all** functions that are present in this class (including any automatic/implicit functions added by the compiler):
+
     1. Default constructor
     1. At least one custom, non-default constructor
     1. Copy constructor
@@ -299,6 +343,7 @@ title: "C++ Exercises 01"
     1. Destructor
 
 5. Consider the following class:
+
     ```c++
     class Blue {
         public:
@@ -309,7 +354,9 @@ title: "C++ Exercises 01"
             double value_;
     };
     ```
+
     Select **all** functions that are present in this class (including any automatic/implicit functions added by the compiler):
+
     1. Default constructor
     1. At least one custom, non-default constructor
     1. Copy constructor
@@ -317,6 +364,7 @@ title: "C++ Exercises 01"
     1. Destructor
 
 6. Consider the following class:
+
     ```c++
     class Animal {
         public:
@@ -334,7 +382,9 @@ title: "C++ Exercises 01"
             // ...
     };
     ```
+
     How many **explicit** (non-automatic) **constructors** are present in the class?
+
     1. 2
     1. 3
     1. 4
@@ -344,12 +394,14 @@ title: "C++ Exercises 01"
 
 7. When you use the `new` operator to create a class object instance in heap memory, the `new` operator makes sure that memory is allocated in the heap for the object, and then it initializes the object instance by automatically calling the class constructor.
     After a class object instance has been created in heap memory with `new`, when is the destructor usually called?
+
     1. The destructor is called automatically when the variable goes out of scope.
     1. The destructor is called automatically when the `delete` operator is used with a pointer to the instance of the class.
     1. The programmer always needs to call the destructor manually in order to free up memory.
     1. The destructor is called automatically when the program returns from the function where the `new` operator was used to create the class object instance.
 
 8. Consider the following program:
+
     ```c++
     double magic(uiuc::Cube cube) {
         cube.setLength(1);
@@ -362,7 +414,9 @@ title: "C++ Exercises 01"
         return 0;
     }
     ```
+
     How many times is the `uiuc::Cube`'s copy constructor invoked?
+
     1. Never
     1. Once
     1. Twice
@@ -375,6 +429,7 @@ title: "C++ Exercises 01"
     1. A reference to the current object.
 
 10. Consider the code below that includes a class that has a custom constructor and destructor and both utilize a global variable (which has global scope and can be accessed anywhere and initialized before the function main is executed).
+
     ```c++
     int reference_count = 0;
 
@@ -384,9 +439,13 @@ title: "C++ Exercises 01"
             ~Track() { reference_count--; }
     };
     ```
+
     Which one of the following procedures (void functions) properly ensures the deallocation of all the memory allocated for objects of type Track so the memory can be re-used for something else after the procedure returns?
     For the correct answer, the variable reference_count should be zero after all calls to track_stuff() and all of the memory should be deallocated properly. This will dependably occur after only one of the following procedures.
-    1. ```c++
+
+    1. &nbsp;
+
+        ```c++
         void track_stuff() {
             Track t;
             // ...
@@ -394,7 +453,10 @@ title: "C++ Exercises 01"
             return;
         }
         ```
-    2. ```c++
+
+    2. &nbsp;
+
+        ```c++
         void track_stuff() {
             Track t;
             Track *p = new Track;
@@ -403,7 +465,10 @@ title: "C++ Exercises 01"
             return;
         }
         ```
-    3. ```c++
+
+    3. &nbsp;
+
+        ```c++
         void track_stuff() {
             Track *t = new Track;
             // ...
@@ -411,7 +476,10 @@ title: "C++ Exercises 01"
             return;
         }
         ```
-    4. ```c++
+
+    4. &nbsp;
+
+        ```c++
         void track_stuff() {
             Track t;
             Track *p = &t;
@@ -550,19 +618,25 @@ int main() {
     1. `std::vector<double> v;`
     1. `std::vector<std::vector<int>> v;`
 
-4. ```c++
+4. &nbsp;
+
+    ```c++
     template <typename Type>
         Type max(Type a, Type b) {
         return (a > b) ? a : b;
     }
     ```
+
     Which one of the following exampled is a proper way to call the max function declared above in template form?
+
     1. `max<Type = double>(5.0,10.0)`
     1. `max(5.0,10.0)`
     1. `max<double>(5.0,10.0)`
     1. `<Type = double>max(5.0,10.0)`
 
-5. ```c++
+5. &nbsp;
+
+    ```c++
     template <typename Type>
     Type max(Type a, Type b) {
         return (a > b) ? a : b;
@@ -578,7 +652,9 @@ int main() {
         // ...
     }
     ```
+
     Given the above code, which one of the expressions below, if used at line 15, will compile and not generate a compile error?
+
     1. `max(a.num,b.num)`
     1. `max("five",10.0)`
     1. `max(a,10.0)`
@@ -590,40 +666,57 @@ int main() {
     1. `class RubikCube(Cube) {...};`
     1. `class Cube : public RubikCube {...};`
 
-7. ```c++
+7. &nbsp;
+
+    ```c++
     class Pair {
         public:
             double a,b;
             Pair(double x, double y) { a = x; b = y; }
     };
     ```
+
     If a class equalPair is derived from the above base class (but specializes it by adding a single boolean "isequal" member variable) then which one of the options below is a proper declaration of a constructor for equalPair?
 
     (As a side note: Although the member variables are of type double, for the sake of this question, we are not concerned about making approximate comparisons of floating-point types, only exact comparisons. Usually, in practical usage, when you compare floating-point values, you should write a function for approximate comparison. That is, you should allow numbers to be considered equal if they have a very small absolute difference, even if they are not exactly the same.)
-    1. ```c++
+
+    1. &nbsp;
+
+        ```c++
         equalPair(double a, double b) {
             this->Pair(a,b);
             isequal = (a == b);
         }
         ```
-    2. ```c++
+
+    2. &nbsp;
+
+        ```c++
         equalPair(double a, double b) : Pair(a,b) {
             isequal = (a == b);
         }
         ```
-    3. ```c++
+
+    3. &nbsp;
+
+        ```c++
         equalPair(double a, double b) {
             Pair(a,b);
             isequal = (a == b);
         }
         ```
-    4. ```c++
+
+    4. &nbsp;
+
+        ```c++
         equalPair(double a, double b) {
             isequal = (a == b);
         }
         ```
 
-8. ```c++
+8. &nbsp;
+
+    ```c++
     class Pair {
         private:
             double a,b;
@@ -635,13 +728,17 @@ int main() {
             int status();
     }
     ```
+
     When the function status() is implemented, which variables will it have access to?
+
     1. Both the member variables a,b or Pair and isequal of equalPair.
     1. No member variables of either equalPair or Pair.
     1. Just the member variables a,b of Pair.
     1. Just the member variable isequal of equalPair.
 
-9. ```c++
+9. &nbsp;
+
+    ```c++
     class Just_a_double {
         public:
             double a;
@@ -649,7 +746,9 @@ int main() {
             Just_a_double() : Just_a_double(0) { }
     }
     ```
+
     Which constructors, if any, compile properly?
+
     1.  Both constructors on lines 5 and 6 compile properly
     1.  The constructor on line 5 results in a compiler error but the constructor on line 6 compiles properly,
     1.  The constructor on line 5 compiles properly, but the constructor on line 6 results in a compiler error.

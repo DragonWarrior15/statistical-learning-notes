@@ -119,23 +119,34 @@ def flatten_exercise_lists(content: str) -> str:
     flattened: list[str] = []
     in_list = False
     next_number = 1
+    continuation_indent = 4
     marker = re.compile(r"^(?P<number>\d+)\.\s*(?P<text>.*)$")
+    nested_marker = re.compile(r"^ {4}(?P<number>\d+)\.\s*(?P<text>.*)$")
 
     for line in content.splitlines():
         match = marker.match(line)
+        nested = nested_marker.match(line) if in_list else None
         if match:
             source_number = int(match.group("number"))
             number = next_number if in_list and source_number == 1 else source_number
             flattened.append(f"{number}\\. {match.group('text')}".rstrip())
             next_number = number + 1
             in_list = True
+            continuation_indent = 4
+        elif nested:
+            flattened.append(f'{nested.group("number")}\\. {nested.group("text")}'.rstrip())
+            continuation_indent = 8
+        elif in_list and continuation_indent == 8 and line.startswith("        "):
+            flattened.append(line[8:])
         elif in_list and line.startswith("    "):
             flattened.append(line[4:])
+            continuation_indent = 4
         else:
             flattened.append(line)
             if line.strip():
                 in_list = False
                 next_number = 1
+                continuation_indent = 4
 
     return "\n".join(flattened) + "\n"
 
@@ -214,6 +225,7 @@ def write_config() -> None:
             "admonition",
             "attr_list",
             "md_in_html",
+            "sane_lists",
             "tables",
             {"toc": {"permalink": True}},
             {"pymdownx.arithmatex": {"generic": True}},

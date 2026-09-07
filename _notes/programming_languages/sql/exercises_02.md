@@ -520,7 +520,7 @@ undefined
     4. The user_id
     5. The orders table
 
-5. Use this [AB testing calculator](!https://thumbtack.github.io/abba/demo/abba.html). Enter the numbers seen in the table, and use the results to determine if the results are statistically significant.
+5. Use this [AB testing calculator](https://thumbtack.github.io/abba/demo/abba.html). Enter the numbers seen in the table, and use the results to determine if the results are statistically significant.
 undefined
 
     | Label | Number of Successes | Number of Trials |
@@ -539,7 +539,7 @@ undefined
     3. There is no detectable change in this metric
     4. The treatment caused a lift of as much as 27% in the success metric
 
-7. Use this [AB testing calculator](!https://thumbtack.github.io/abba/demo/abba.html). Enter the numbers seen in the table. In this calculation, what is the observed success rate in control?
+7. Use this [AB testing calculator](https://thumbtack.github.io/abba/demo/abba.html). Enter the numbers seen in the table. In this calculation, what is the observed success rate in control?
 
     | Label | Number of Successes | Number of Trials |
     | ----- | ------------------- | ---------------- |

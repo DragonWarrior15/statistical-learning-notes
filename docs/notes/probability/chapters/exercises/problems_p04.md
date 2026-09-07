@@ -52,11 +52,11 @@ Given the prior $f_{\Theta \vert (\theta)}$, uniform in $[4,10]$, and $f_{X \ver
 
 Let $X$ be uniformly distributed between $[-1,1]$. Let $X_{1}, X_{2},\ldots,X_{n}$ be independently and identically distributed with the same distribution as $X$. Find whether the following sequences are convergent in probability and also find the limit.
 
-1.  $X_{i}$
+1\. $X_{i}$
 
-2.  $Y_{i} = X_{i}/i$
+2\. $Y_{i} = X_{i}/i$
 
-3.  $Z_{i} = (X_{i})^{i}$
+3\. $Z_{i} = (X_{i})^{i}$
 
 [Solution](a_convergence.md)
 
