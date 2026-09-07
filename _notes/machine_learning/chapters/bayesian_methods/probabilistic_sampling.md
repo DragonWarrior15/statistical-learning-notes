@@ -63,7 +63,6 @@ which we want to be stationary.
     \implies \sum_{\boldsymbol{x}} \pi(\boldsymbol{x})T(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime}) &= \sum_{\boldsymbol{x}} \pi(\boldsymbol{x}^{\prime})T(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x}) = \pi(\boldsymbol{x}^{\prime})\end{align}
 which is the stationarity condition for a markov chain and $\pi$ denote the long term stationary probabilities. These are indeed the probability distribution $P$ we are trying to approximate. To check stationarity, we only need to work with the first equation and choose $A$ accordingly
 \begin{align}
-{2}
     \pi(\boldsymbol{x})Q(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime})A(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime}) &= \pi(\boldsymbol{x}^{\prime})Q(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x})A(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x})\newline
     \frac{A(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime})}{A(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x})} &= \frac{\pi(\boldsymbol{x}^{\prime})Q(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x})}{\pi(\boldsymbol{x})Q(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime})} = \rho\newline
     A(\boldsymbol{x} \rightarrow \boldsymbol{x}^{\prime}), A(\boldsymbol{x}^{\prime} \rightarrow \boldsymbol{x}) &= \begin{cases} \rho, 1 &\mbox{if $\rho < 1$}\newline

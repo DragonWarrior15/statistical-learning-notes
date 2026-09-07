@@ -14,7 +14,7 @@ The fundamental idea of clustering is to reduce the within cluster variation. Le
 
 Using Euclidean distance as a measure of the intercluster distance between two points, we can redefine the optimization summing across all the dimensions of the data as
 \begin{align}
-        \minimize_{C_{1},\ldots,C_{K}} \sum_{k=1}^{K} \frac{1}{\vert C_{k} \vert} \left\\{\sum_{i_{1}, i_{2} \in C_{k}} \sum_{j=1}^{p} (x_{i_{1}j} - x_{i_{2}j})^{2} \right \\}
+        \minimize_{C_{1},\ldots,C_{K}} \sum_{k=1}^{K} \frac{1}{\vert C_{k} \vert} \left\{\sum_{i_{1}, i_{2} \in C_{k}} \sum_{j=1}^{p} (x_{i_{1}j} - x_{i_{2}j})^{2} \right\}
     \end{align}
 where $\vert C_{k} \vert$ is the number of observations in the cluster $C_{k}$. Considering all possible partitions is impossible for large $n$ and we use the following algorithm to obtain the local optimum.
 

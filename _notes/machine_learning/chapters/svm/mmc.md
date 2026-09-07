@@ -34,7 +34,7 @@ Finding the boundary is same as solving for the following optimization problem (
 The constraint $\sum_{i=1}^{p} \beta_{i}^{2} = 1$ gives rise to the unique property that $\beta_{0} + \beta^{T}x$ is the perpendicular distance of the point $x$ from the hyperplane, making the last constraint equation valid.
 
 
-By using the perpendicular distance using the equation from [appendix]({{ "/notes/machine_learning/chapters/appendix/perpendicular_mmc.html" | relative_url }}), we can replace the constraint on the norm and rewrite as
+By using the perpendicular distance using the equation from [appendix]({{ "/notes/machine_learning/chapters/appendix/perp_mmc.html" | relative_url }}), we can replace the constraint on the norm and rewrite as
 \begin{align}
         &\maximize_{\beta_{0}, \beta} M\newline
         &\text{subject to} \quad y_{i}(\beta_{0} + \beta^{T}x_{i}) \geq M \lVert \beta \rVert \quad \forall \quad i = 1, 2, \ldots, N

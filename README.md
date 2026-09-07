@@ -30,8 +30,8 @@ make mkdocs_build
 
 The current MkDocs configuration contains the migrated Probability, Linear
 Algebra, Linux, Programming Languages, Time Series, Differential Equations,
-Deep Learning, Maths Miscellaneous, and Large Language Models collections.
-Jekyll and the content under `_notes/`
+Deep Learning, Machine Learning, Maths Miscellaneous, and Large Language Models
+collections. Jekyll and the content under `_notes/`
 remain temporarily available while the other note collections are migrated and
 the published site is cut over.
 

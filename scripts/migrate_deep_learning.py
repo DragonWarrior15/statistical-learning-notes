@@ -113,6 +113,7 @@ def included_code(source: Path, match: re.Match[str]) -> str:
 
 def display_math(match: re.Match[str]) -> str:
     math = ALIGN_ENVIRONMENT.sub(lambda item: f'\\{item.group("tag")}{{aligned}}', match.group("math"))
+    math = re.sub(r"\n[ \t]*\n", "\n", math)
     return f"\n$$\n{math}\n$$\n"
 
 
@@ -124,7 +125,8 @@ def protect_existing_displays(content: str) -> tuple[str, list[str]]:
         math = ALIGN_ENVIRONMENT.sub(
             lambda item: f'\\{item.group("tag")}{{aligned}}', match.group("math")
         )
-        token = f"MKDOCS_DEEP_LEARNING_DISPLAY_{len(displays)}"
+        math = re.sub(r"\n[ \t]*\n", "\n", math)
+        token = f"MKDOCS_DEEP_LEARNING_DISPLAY_{len(displays)}_END"
         displays.append(f"$$\n{math}\n$$")
         return f"\n\n{token}\n\n"
 
@@ -159,7 +161,7 @@ def convert(source: Path, destination: Path) -> None:
     content = DISPLAY_ENVIRONMENT.sub(display_math, content)
     content = normalize_list_spacing(content)
     for index, math in enumerate(protected_displays):
-        content = content.replace(f"MKDOCS_DEEP_LEARNING_DISPLAY_{index}", math)
+        content = content.replace(f"MKDOCS_DEEP_LEARNING_DISPLAY_{index}_END", math)
     if re.match(r"\s*##\s+", content):
         content = re.sub(r"(?m)^##(?=\s+)", "#", content, count=1)
     elif not re.match(r"\s*#\s+", content):

@@ -1,3 +1,8 @@
+/* Keep Material's subject-scoped navigation while using Home as the subject picker. */
+.md-tabs {
+  display: none;
+}
+
 figure.notes-img {
   margin: 1.5rem auto;
   text-align: center;

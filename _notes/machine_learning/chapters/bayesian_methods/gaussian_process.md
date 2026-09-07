@@ -63,6 +63,6 @@ which can be done using a method like gradient descent. We can also use only a s
 Our y in classification is just two labels $\{-1,1 \}$. We assume a latent process $f$
 \begin{align}
     p(y=1|f) &= \frac{1}{1 + exp(-f)}\newline
-    p^{\*}(f(x)) &= p(f(x) | y_{1}(x_{1}, \ldots, y_{N}(x_{N}))\newline
-    prediction &= \int p(y|f(x))p^{\*}(f(x)) d(f(x))\end{align}
+    p^{*}(f(x)) &= p(f(x) \mid y_{1}(x_{1}), \ldots, y_{N}(x_{N}))\newline
+    prediction &= \int p(y \mid f(x))p^{*}(f(x))\,d(f(x))\end{align}
 where we first train to obtain the latent process $f$ which is converted to a probability using the sigmoid function.

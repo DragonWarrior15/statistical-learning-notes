@@ -25,7 +25,7 @@ Modelling binary response with linear regression might produce values outside th
         \text{Denoting} \quad p(x_{i}) &= P(Y = 1 \vert X = x_{i}) = 1/(1 + exp(-\beta^{T}x_{i}))\newline
         \text{likelihood function} &= l(\beta_{0},\beta_{1}) = \prod_{i:y_{i}=1} p(x_{i}) \prod_{i^{'}:y_{i^{'}}=0}(1-p(x_{i^{'}}))\newline
         \text{Taking logarithm, } logloss &= \sum_{i:y_{i}=1} \log p(x_{i}) + \sum_{i^{'}:y_{i^{'}}=0}\log (1-p(x_{i^{'}}))\newline
-        &= \sum_{i=1}^{n} y\log p(x_{i}) + (1-y)\log (1+p(x_{i})) \tag\*{since $y = 0$ or $1$}\newline
+        &= \sum_{i=1}^{n} y\log p(x_{i}) + (1-y)\log (1+p(x_{i})) \qquad \text{since } y \in \{0,1\}\newline
         &= \sum_{i=1}^{n} y\beta^{T}x_{i} - log(1 + exp(\beta^{T}x_{i}))
     \end{align}
 All the formulae listed here and above extend for the case of multiple variables, wherein we simply replace the sum $\beta_{0} + \beta_{1}X$ with $\beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{p}X_{p}$.

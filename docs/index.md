@@ -43,6 +43,13 @@ Choose a subject to start exploring the notes currently available in MkDocs.
 
     [Explore Deep Learning →](notes/deep_learning/index.md)
 
+-   ## Machine Learning
+
+    Regression, classification, model selection, tree-based models, Bayesian
+    methods, support vector machines, and clustering.
+
+    [Explore Machine Learning →](notes/machine_learning/index.md)
+
 -   ## Differential Equations
 
     First- and higher-order ODEs, systems, series solutions, Laplace

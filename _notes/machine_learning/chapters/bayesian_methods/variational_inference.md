@@ -12,22 +12,22 @@ And we do not need to worry about the normalization constant $Z$ ($p(X)$)
 \begin{align}
     \KL{q(z)}{p(z|X)} &= \int_{z} q(z) log\frac{q(z)}{p(X|z)p(z)/Z}\newline
     &= \int_{z} q(z) log\frac{q(z)}{p(X|z)p(z)}  + log(Z)\newline
-    p(z|X) &\approx \min_{q \in Q} \KL{q(z)}{p(X|z)p(z)} \quad (p(X|z)p(z) = p^{\*}(z))\end{align}
+    p(z|X) &\approx \min_{q \in Q} \KL{q(z)}{p(X|z)p(z)} \quad (p(X|z)p(z) = p^{*}(z))\end{align}
 since $\int_{z} q(z) dz = 1$. We only need to work with likelihood and prior in this case.
 
 #### E-step in EM
 
 utilizes the variational inference technique. The E-step requires us to calculate the posterior of the latent variables, which can be hard to compute. VI can help us approximate that distribution assuming that we restrict ourselves to a family of distributions.
 \begin{align}
-    q(z) = p(z|x, \theta) \approx \min_{q \in Q}KL{q(z)}{p^{\*}(z)}\end{align}
+    q(z) = p(z|x, \theta) \approx \min_{q \in Q}KL{q(z)}{p^{*}(z)}\end{align}
 This is called Variational EM.
 
 ### Mean Field Approximations
 
 This is a Variational Inference method where we assume the distribution $q$ to be factorized over the latent variables across all dimensions $d$, i.e.,
 \begin{align}
-    Q = \\{q | q(z) = \prod_{i=1}^{d}q_{i}(z_{i}) \\}\newline
-    q(z) = \argmin_{q \in Q} \KL{\prod_{i=1}^{d}q_{i}(z_{i})}{p^{\*}(z)}\end{align}
+    Q = \left\{q \mid q(z) = \prod_{i=1}^{d}q_{i}(z_{i}) \right\}\newline
+    q(z) = \argmin_{q \in Q} \KL{\prod_{i=1}^{d}q_{i}(z_{i})}{p^{*}(z)}\end{align}
 and we minimize the KL divergence using coordinated gradient descent. First find the minima for $q_{1}$ keeping everything else fixed, then $q_{2}$, and so on. We will repeat this loop until convergence.
 
 

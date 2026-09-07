@@ -288,3 +288,82 @@ nav:
     - Backprop Example: notes/deep_learning/codes/backprop_example_1.md
     - Exponentially MA Example: notes/deep_learning/codes/exp_ma.md
     - BPTT Example: notes/deep_learning/codes/bptt_example_1.md
+- Machine Learning:
+  - notes/machine_learning/index.md
+  - Linear Regression:
+    - Linear Regression: notes/machine_learning/chapters/regression/intro.md
+    - Simple Linear Regression: notes/machine_learning/chapters/regression/simple.md
+    - Multiple Linear Regression: notes/machine_learning/chapters/regression/multiple.md
+    - Problems when using Linear Regression: notes/machine_learning/chapters/regression/problems.md
+  - Classification:
+    - Classification: notes/machine_learning/chapters/classification/intro.md
+    - Logistic Regression: notes/machine_learning/chapters/classification/logistic.md
+    - Linear Discriminant Analysis (LDA): notes/machine_learning/chapters/classification/lda.md
+    - Naive Bayes Classifier: notes/machine_learning/chapters/classification/naive_bayes.md
+    - Comparison of Classifiers: notes/machine_learning/chapters/classification/comparison.md
+    - Classfication Metrics: notes/machine_learning/chapters/classification/metrics.md
+  - Linear Model Selection and Regularization:
+    - Linear Model Selection and Regularization: notes/machine_learning/chapters/linear_model_selection_regularization/intro.md
+    - Subset Selection: notes/machine_learning/chapters/linear_model_selection_regularization/subset.md
+    - Evaluation Metrics: notes/machine_learning/chapters/linear_model_selection_regularization/evaluation.md
+    - Shrinkage Methods and Regularization: notes/machine_learning/chapters/linear_model_selection_regularization/shrinkage.md
+    - Dimension Reduction Methods: notes/machine_learning/chapters/linear_model_selection_regularization/dimension.md
+    - Curse of Dimensionality: notes/machine_learning/chapters/linear_model_selection_regularization/curse.md
+    - Exercises: notes/machine_learning/chapters/linear_model_selection_regularization/exercises.md
+  - Moving Beyond Linearity:
+    - Moving Beyond Linearity: notes/machine_learning/chapters/moving_beyond_linearity/intro.md
+    - Polynomial Regression: notes/machine_learning/chapters/moving_beyond_linearity/polynomial_regression.md
+    - Step Function: notes/machine_learning/chapters/moving_beyond_linearity/step_function.md
+    - Basis Function: notes/machine_learning/chapters/moving_beyond_linearity/basis_function.md
+    - Regression Splines (Polynomials): notes/machine_learning/chapters/moving_beyond_linearity/regression_splines.md
+    - Smoothing Splines: notes/machine_learning/chapters/moving_beyond_linearity/smoothing_splines.md
+    - Local Regression: notes/machine_learning/chapters/moving_beyond_linearity/local_regression.md
+    - Generalized Additive Models: notes/machine_learning/chapters/moving_beyond_linearity/gam.md
+    - Exercises: notes/machine_learning/chapters/moving_beyond_linearity/exercises.md
+  - Resampling Methods:
+    - Resampling Methods: notes/machine_learning/chapters/resampling_methods/resampling_methods.md
+    - Cross Validation: notes/machine_learning/chapters/resampling_methods/cv.md
+    - Bootstrap: notes/machine_learning/chapters/resampling_methods/bootstrap.md
+  - Tree Based Models:
+    - Tree Based Models: notes/machine_learning/chapters/tree_models/intro.md
+    - Regression Trees: notes/machine_learning/chapters/tree_models/regression.md
+    - Classification Trees: notes/machine_learning/chapters/tree_models/classification.md
+    - Patient Rule Induction Method (PRIM): notes/machine_learning/chapters/tree_models/prim.md
+    - Bagging: notes/machine_learning/chapters/tree_models/bagging.md
+    - Random Forest: notes/machine_learning/chapters/tree_models/random_forest.md
+    - Boosting: notes/machine_learning/chapters/tree_models/boosting.md
+    - Adaboost.M1: notes/machine_learning/chapters/tree_models/adaboost.md
+    - Boosting Trees: notes/machine_learning/chapters/tree_models/boosting_trees.md
+    - XGBoost: notes/machine_learning/chapters/tree_models/xgboost.md
+  - Support Vector Machines (SVM):
+    - Support Vector Machines (SVM): notes/machine_learning/chapters/svm/svm_intro.md
+    - Maximum Margin Classifier: notes/machine_learning/chapters/svm/mmc.md
+    - Support Vector Classifier: notes/machine_learning/chapters/svm/svc.md
+    - Support Vector Machine: notes/machine_learning/chapters/svm/svm.md
+  - Bayesian Methods:
+    - Bayesian Methods: notes/machine_learning/chapters/bayesian_methods/bayesian_methods.md
+    - Maximum Likelihood Estimator (MLE): notes/machine_learning/chapters/bayesian_methods/mle.md
+    - Maximum A Priori (MAP): notes/machine_learning/chapters/bayesian_methods/map.md
+    - Expectation Maximization: notes/machine_learning/chapters/bayesian_methods/em.md
+    - Variational Inference: notes/machine_learning/chapters/bayesian_methods/variational_inference.md
+    - Comparison of Different Inference Methods: notes/machine_learning/chapters/bayesian_methods/comparison.md
+    - Latent Dirichlet Allocation (LDA): notes/machine_learning/chapters/bayesian_methods/lda.md
+    - Sampling from Distributions: notes/machine_learning/chapters/bayesian_methods/probabilistic_sampling.md
+    - Gaussian Process (GP): notes/machine_learning/chapters/bayesian_methods/gaussian_process.md
+    - Bayesian Optimization: notes/machine_learning/chapters/bayesian_methods/bayesian_optimization.md
+  - Clustering:
+    - Clustering: notes/machine_learning/chapters/clustering/intro.md
+    - Distances and Dissimilarity Measures: notes/machine_learning/chapters/clustering/measures.md
+    - K-Means Clustering: notes/machine_learning/chapters/clustering/kmeans.md
+    - K-Mediods Clustering: notes/machine_learning/chapters/clustering/kmedioids.md
+    - Hierarchical Clustering: notes/machine_learning/chapters/clustering/hierarchical.md
+    - Gaussian Mixture Models (GMM): notes/machine_learning/chapters/clustering/gmm.md
+    - Key Considerations while Clustering: notes/machine_learning/chapters/clustering/considerations.md
+  - Appendix:
+    - Bias-Variance Tradeoff: notes/machine_learning/chapters/appendix/bias_variance.md
+    - Matrix Calculus in Logistic Regression: notes/machine_learning/chapters/appendix/matrix_logistic_reg.md
+    - Comparison of Classifiers: notes/machine_learning/chapters/appendix/comparison_classifiers.md
+    - Perpendicular distance in Maximum Margin Classifier: notes/machine_learning/chapters/appendix/perp_mmc.md
+    - Lagrange Multiplier, Primal and Dual: notes/machine_learning/chapters/appendix/lagrangian.md
+  - Codes:
+    - Predictions using Gaussian Process: notes/machine_learning/codes/gaussian_process_prediction.md

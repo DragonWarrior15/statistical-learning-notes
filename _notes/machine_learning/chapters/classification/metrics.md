@@ -11,7 +11,7 @@ Several classification metrics are available for binary classifiers which are us
 This matrix tabulates the number of cases we are classifying and misclassifying.
 
 | **Confusion Matrix** | **Actual Positive** | **Actual Negative** |
-| ================ | =================== | =================== |
+| :------------------- | :------------------ | :------------------ |
 | **Predicted Positive** | True Positive | False Positive |
 | **Predicted Negative** | False Negative | True Negative |
 

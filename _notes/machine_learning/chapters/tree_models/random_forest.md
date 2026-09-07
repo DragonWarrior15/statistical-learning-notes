@@ -32,17 +32,17 @@ In practical use, the concepts of random forest/bagging benefit non linear estim
 
         3.  split the node into two child nodes
 
-2.  Output the ensemble of trees $\{T_{b}\}\_{1}^{B}$
+2.  Output the ensemble of trees $\{T_{b}\}_{1}^{B}$
 
 3.  Make predictions according to the following
 
-    -   Regression: $\hat{f}\_{rf}^{B}(x) = \frac{1}{B}\sum_{b=1}^{B} T_{b}(x)$
+    -   Regression: $\hat{f}_{rf}^{B}(x) = \frac{1}{B}\sum_{b=1}^{B} T_{b}(x)$
 
         By the inventors, default $p = \lfloor p/3 \rfloor$ and minimum node size of $5$
 
-    -   Classification: $\hat{C}\_{rf}^{B}(x) =$ _majoirty vote_ $\{\hat{C}\_{b}(x) \}\_{1}^{B}$
+    -   Classification: $\hat{C}_{rf}^{B}(x) =$ _majority vote_ $\{\hat{C}_{b}(x) \}_{1}^{B}$
 
-        where $\hat{C}\_{b}(x)$ is the class prediction by a single tree and $\hat{C}\_{rf}^{B}(x)$ is the class prediction by the random forest.
+        where $\hat{C}_{b}(x)$ is the class prediction by a single tree and $\hat{C}_{rf}^{B}(x)$ is the class prediction by the random forest.
 
         By the inventors, default $p = \lfloor \sqrt{p} \rfloor$ and minimum node size of $1$
 
@@ -55,10 +55,10 @@ Similar to section on [out of bag error]({{ "/notes/machine_learning/chapters/tr
 
 The relative variable importance is calculated using the total improvement in split criteria across all the trees
 \begin{align}
-        \mathcal{I}\_{l}^{2}(T) &= \sum_{t=1}^{J-1} \hat{i}\_{t}^{2}I(node(t) = l) \quad \text{the sum only includes the splits}\newline
-        \mathcal{I}\_{l}^{2} &= \frac{1}{B}\sum_{b=1}^{B} I_{l}^{2}(T_{b})
+        \mathcal{I}_{l}^{2}(T) &= \sum_{t=1}^{J-1} \hat{i}_{t}^{2}I(node(t) = l)\newline
+        \mathcal{I}_{l}^{2} &= \frac{1}{B}\sum_{b=1}^{B} I_{l}^{2}(T_{b})
     \end{align}
-where $\hat{i}\_{t}^{2}$ is the square of improvement criteria at node $t$ of the $T^{th}$ tree, and $I_{l}^{2}(T)$ is the importance at the $T^{th}$ tree. Since these are relative importance values, usually the variable with maximum importance is assigned a score of 100 and the remaining values of importances are scaled accordingly.
+The first sum only includes the splits involving variable $l$. Here, $\hat{i}_{t}^{2}$ is the square of improvement criteria at node $t$ of the $T^{th}$ tree, and $I_{l}^{2}(T)$ is the importance at the $T^{th}$ tree. Since these are relative importance values, usually the variable with maximum importance is assigned a score of 100 and the remaining values of importances are scaled accordingly.
 
 
 Another importance criteria uses the out of bag samples. Whenever a tree is grown, the oob sample is passed down the tree and the accuracy is recorded. Then, the $j^{th}$ variable is randomly permuted in this sample and the accuracy is again recorded. This decrease in accuracy is averaged across all trees to get the accuracy value for that variable. The results are finally shown as a percent of the maximum. This gives more uniform importances. Note that we are not setting a variable to zero, but randomly permuting it.
