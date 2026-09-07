@@ -6,6 +6,9 @@ learning, deep learning, time series, Linux, and large language models.
 The published site is available at
 [DragonWarrior15.github.io/statistical-learning-notes](https://DragonWarrior15.github.io/statistical-learning-notes/).
 
+A combined printable version is available at
+[Print Learning Notes](https://DragonWarrior15.github.io/statistical-learning-notes/print_page.html).
+
 ## MkDocs development
 
 The content under `docs/` is the authoritative source. Edit those files
@@ -88,6 +91,14 @@ make mkdocs_build
 ### Defining Navigation
 Navigation is defined in [`mkdocs.yml`](mkdocs.yml). Each subject has an
 `index.md` overview and a subject-scoped hierarchy in the left sidebar.
+
+### Future PDF export
+
+The complete site is too large to render reliably as one browser print page.
+A future book pipeline should render one subject at a time with the
+[`mkdocs-print-site-plugin`](https://timvink.github.io/mkdocs-print-site-plugin/how-to/export-PDF.html),
+automate PDF export with headless Chrome, and optionally merge the subject PDFs
+into a complete edition.
 
 ### Using `find` and `grep`
 Suppose we rearrange the directory structure. Since the URLs are hardcoded when referring to a section somewhere else, we need to go through and replace all such links to point to the new path.
