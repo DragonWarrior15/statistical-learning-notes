@@ -36,6 +36,42 @@ DISPLAY_ENVIRONMENT = re.compile(
     re.DOTALL,
 )
 
+INDEX_CONTENT = """# Probability
+
+Notes on probability theory, random variables, statistical inference,
+regression, simulation, and applied problem solving.
+
+<div class="grid cards" markdown>
+
+-   ## Foundations
+
+    [Probability theorems](chapters/theorems/probability_theorems.md) ·
+    [Distributions](chapters/distributions/uniform_distribution.md) ·
+    [Markov processes](chapters/markov_process/intro.md) ·
+    [Limit theorems](chapters/limit_theorems/intro.md)
+
+-   ## Statistical inference
+
+    [Sample mean and variance](chapters/sample_mean_var/intro.md) ·
+    [Parameter estimation](chapters/parameter_estimation/intro.md) ·
+    [Bayesian inference](chapters/bayesian_inference/intro.md) ·
+    [Hypothesis testing](chapters/hypothesis_testing/intro.md)
+
+-   ## Models and applications
+
+    [Linear regression](chapters/linear_regression/intro.md) ·
+    [Life testing](chapters/life_testing/intro.md) ·
+    [Generating random numbers](chapters/simulation/random_nos.md)
+
+-   ## Practice
+
+    Work through the collection of probability and statistics problems.
+
+    [Browse exercises →](chapters/exercises/problems_p01.md)
+
+</div>
+"""
+
 
 def attributes(args: str) -> dict[str, str]:
     return {
@@ -158,7 +194,7 @@ def write_config() -> None:
             "features": [
                 "navigation.footer",
                 "navigation.indexes",
-                "navigation.sections",
+                "navigation.tabs",
                 "navigation.top",
                 "search.highlight",
                 "search.suggest",
@@ -177,6 +213,7 @@ def write_config() -> None:
         "markdown_extensions": [
             "admonition",
             "attr_list",
+            "md_in_html",
             "tables",
             {"toc": {"permalink": True}},
             {"pymdownx.arithmatex": {"generic": True}},
@@ -184,7 +221,10 @@ def write_config() -> None:
             "pymdownx.inlinehilite",
             "pymdownx.superfences",
         ],
-        "nav": [{"Home": "index.md"}, {"Probability": [nav_entry(item) for item in navigation["probability"]]}],
+        "nav": [
+            {"Home": "index.md"},
+            {"Probability": ["notes/probability/index.md", *[nav_entry(item) for item in navigation["probability"]]]},
+        ],
     }
     CONFIG.write_text(yaml.safe_dump(config, sort_keys=False, allow_unicode=True), encoding="utf-8")
 
@@ -203,10 +243,12 @@ def main() -> None:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, destination)
 
+    (DESTINATION / "index.md").write_text(INDEX_CONTENT, encoding="utf-8")
+
     DOCS.mkdir(exist_ok=True)
     (DOCS / "index.md").write_text(
         "# Learning Notes\n\nThis MkDocs proof of concept currently contains the Probability notes.\n\n"
-        "[Start reading Probability](notes/probability/chapters/theorems/probability_theorems.md)\n",
+        "[Explore Probability](notes/probability/index.md)\n",
         encoding="utf-8",
     )
     write_config()

@@ -28,6 +28,33 @@ JEKYLL_LINK = re.compile(
 )
 ATTR = re.compile(r'(\w+)=(?:"(?P<quoted>[^"]*)"|(?P<bare>[^\s]+))')
 
+INDEX_CONTENT = """# Linux
+
+Practical notes on Linux command-line tools, text processing, containers, and
+container orchestration.
+
+## Command-line tools
+
+<div class="grid cards" markdown>
+
+- [Regular expressions](regex.md)
+- [`find`](find.md)
+- [`grep`](grep.md)
+- [`curl`](curl.md)
+- [`sed`](sed.md)
+
+</div>
+
+## Containers and orchestration
+
+<div class="grid cards" markdown>
+
+- [Docker](docker.md)
+- [Kubernetes](kubernetes.md)
+
+</div>
+"""
+
 
 def attributes(args: str) -> dict[str, str]:
     return {
@@ -88,6 +115,8 @@ def main() -> None:
         else:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, destination)
+
+    (DESTINATION / "index.md").write_text(INDEX_CONTENT, encoding="utf-8")
 
     print(f"Generated {DESTINATION.relative_to(ROOT)}")
 

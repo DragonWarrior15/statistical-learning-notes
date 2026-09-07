@@ -8,7 +8,7 @@ theme:
   features:
   - navigation.footer
   - navigation.indexes
-  - navigation.sections
+  - navigation.tabs
   - navigation.top
   - search.highlight
   - search.suggest
@@ -28,6 +28,7 @@ extra_javascript:
 markdown_extensions:
 - admonition
 - attr_list
+- md_in_html
 - tables
 - toc:
     permalink: true
@@ -41,6 +42,7 @@ markdown_extensions:
 nav:
 - Home: index.md
 - Probability:
+  - notes/probability/index.md
   - Probability Theorems:
     - notes/probability/chapters/theorems/probability_theorems.md
     - Expectation, Variance and Covariance: notes/probability/chapters/theorems/expectation_var.md
@@ -121,6 +123,7 @@ nav:
     - Exercises Part 3: notes/probability/chapters/exercises/problems_p03.md
     - Exercises Part 4: notes/probability/chapters/exercises/problems_p04.md
 - Linux:
+  - notes/linux/index.md
   - RegEx: notes/linux/regex.md
   - find: notes/linux/find.md
   - grep: notes/linux/grep.md

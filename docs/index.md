@@ -1,7 +1,20 @@
 # Learning Notes
 
-This MkDocs migration currently contains the Probability and Linux notes.
+Choose a subject to start exploring the notes currently available in MkDocs.
 
-[Start reading Probability](notes/probability/chapters/theorems/probability_theorems.md)
+<div class="grid cards" markdown>
 
-[Browse Linux notes](notes/linux/regex.md)
+-   ## Probability
+
+    Probability theorems, distributions, statistical inference, regression,
+    simulation, and exercises.
+
+    [Explore Probability →](notes/probability/index.md)
+
+-   ## Linux
+
+    Command-line tools, regular expressions, containers, and Kubernetes.
+
+    [Explore Linux →](notes/linux/index.md)
+
+</div>
