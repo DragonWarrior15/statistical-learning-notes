@@ -6,7 +6,7 @@ prob_dir = tex_files/probability/
 linalg = linear_algebra
 linalg_dir = tex_files/linalg/
 
-.Phony: clean .FORCE
+.PHONY: clean .FORCE mkdocs_serve mkdocs_build
 
 .FORCE:# a dummy file so that build of all pdf is forced everytime
 
@@ -28,23 +28,8 @@ install:
 	sudo apt-get install texlive-latex-recommended
 	sudo apt-get install texlive-latex-extra
 
-jekyll_serve:
-	jekyll serve --force-polling --livereload
+mkdocs_serve:
+	uv run mkdocs serve
 
-jekyll_serve_2:
-	bundle exec jekyll serve --force-polling --livereload
-
-# sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
-# sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
-# sed 's/$$\\begin{aligned}/\\begin{align}/g' | \
-# sed 's/\\end{aligned}\$\$/\\end{align}/g' |\
-# sed 's/$$\\begin{gathered}/\\begin{align}/g' | \
-# sed 's/\\end{gathered}\$\$/\\end{align}/g' |\
-# sed 's/INSERTLINE/\n/g' |\
-# sed 's/}_/}\\_/g' | sed 's/]_/]\\_/g' | sed 's/)_/)\\_/g' |\
-# sed 's/{\*/{\\\*/g' |\
-# sed 's/\\bm{/\\boldsymbol{/g' |\
-# sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
-# > _notes/time_series/chapters/arima/arma.md
-
-
+mkdocs_build:
+	uv run mkdocs build --strict

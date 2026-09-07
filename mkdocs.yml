@@ -1,0 +1,373 @@
+site_name: Learning Notes
+site_url: https://dragonwarrior15.github.io/statistical-learning-notes/
+docs_dir: docs
+site_dir: site
+use_directory_urls: false
+theme:
+  name: material
+  features:
+  - navigation.footer
+  - navigation.indexes
+  - navigation.tabs
+  - navigation.top
+  - search.highlight
+  - search.suggest
+  - toc.follow
+plugins:
+- search
+- print-site:
+    print_page_title: Learning Notes
+    add_cover_page: true
+    add_print_site_banner: true
+not_in_nav: 'notes/probability/chapters/references.md
+
+  notes/probability/chapters/exercises/a_*.md
+
+  notes/differential_equations/exercises/a_*.md
+
+  '
+extra_css:
+- stylesheets/extra.css
+extra_javascript:
+- javascripts/mathjax.js
+- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+- https://unpkg.com/mermaid@11/dist/mermaid.min.js
+- javascripts/mermaid.js
+markdown_extensions:
+- admonition
+- attr_list
+- md_in_html
+- sane_lists
+- tables
+- toc:
+    permalink: true
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.highlight:
+    anchor_linenums: true
+    pygments_lang_class: true
+- pymdownx.inlinehilite
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+nav:
+- Home: index.md
+- Probability:
+  - notes/probability/index.md
+  - Probability Theorems:
+    - notes/probability/chapters/theorems/probability_theorems.md
+    - Expectation, Variance and Covariance: notes/probability/chapters/theorems/expectation_var.md
+    - Jacobian: notes/probability/chapters/theorems/jacobian.md
+    - Iterated Expectation and Variance: notes/probability/chapters/theorems/iterated_exp.md
+    - Random number of Random Variables: notes/probability/chapters/theorems/random_no.md
+    - Moment Generating Function: notes/probability/chapters/theorems/moment_gen.md
+    - Convolutions: notes/probability/chapters/theorems/convolution.md
+  - Probability Distributions:
+    - Continuous Uniform Random Variable: notes/probability/chapters/distributions/uniform_distribution.md
+    - Bernoulli and Binomial Random Variable: notes/probability/chapters/distributions/binomial.md
+    - Geometric Distribution: notes/probability/chapters/distributions/geometric.md
+    - Negative Binomial Distribution: notes/probability/chapters/distributions/negative_binomial.md
+    - Bernoulli Process: notes/probability/chapters/distributions/bernoulli_process.md
+    - Exponential Distribution: notes/probability/chapters/distributions/exponential_distribution.md
+    - Poisson: notes/probability/chapters/distributions/poisson.md
+    - Gamma Distribution: notes/probability/chapters/distributions/gamma.md
+    - Beta Distribution: notes/probability/chapters/distributions/beta_distribution.md
+    - Dirichlet Distribution: notes/probability/chapters/distributions/dirichlet_distribution.md
+    - Normal Distribution: notes/probability/chapters/distributions/normal_distribution.md
+    - Chi-Square Distribution: notes/probability/chapters/distributions/chi_square.md
+    - t-Distribution: notes/probability/chapters/distributions/t_dist.md
+    - F-Distribution: notes/probability/chapters/distributions/f_dist.md
+    - Logistics Distribution: notes/probability/chapters/distributions/logistic_dist.md
+    - Renewal Process: notes/probability/chapters/distributions/renewal_process.md
+    - Counting Process: notes/probability/chapters/distributions/counting_process.md
+  - Markov Process:
+    - notes/probability/chapters/markov_process/intro.md
+    - Recurring and Transient States: notes/probability/chapters/markov_process/states.md
+    - Steady State Probabilities: notes/probability/chapters/markov_process/steady_state.md
+    - Birth Death Process: notes/probability/chapters/markov_process/birth_death.md
+    - Absorption Probabilities: notes/probability/chapters/markov_process/absorption.md
+  - Limit Theorems:
+    - notes/probability/chapters/limit_theorems/intro.md
+    - Markov Inequality: notes/probability/chapters/limit_theorems/markov_inequality.md
+    - Chebychev Inequality: notes/probability/chapters/limit_theorems/chebychev_inequality.md
+    - Weak Law of Large Numbers: notes/probability/chapters/limit_theorems/wlln.md
+    - Convergence in Probability: notes/probability/chapters/limit_theorems/convergence.md
+    - Central Limit Theorem: notes/probability/chapters/limit_theorems/clt.md
+    - Strong Law of Large Numbers: notes/probability/chapters/limit_theorems/slln.md
+  - Distribution of Sample Mean and Variance:
+    - notes/probability/chapters/sample_mean_var/intro.md
+    - Sample Mean: notes/probability/chapters/sample_mean_var/sample_mean.md
+    - Sample Variance: notes/probability/chapters/sample_mean_var/sample_var.md
+    - Distributions for a Normal Population: notes/probability/chapters/sample_mean_var/normal.md
+  - Parameter Estimation:
+    - notes/probability/chapters/parameter_estimation/intro.md
+    - Maximum Likelihood Estimator: notes/probability/chapters/parameter_estimation/mle.md
+    - Method of Moments Estimate: notes/probability/chapters/parameter_estimation/mme.md
+    - Interval Estimates: notes/probability/chapters/parameter_estimation/interval_estimates.md
+    - Order Statistics: notes/probability/chapters/parameter_estimation/order_statistics.md
+    - Evaluating an Estimator: notes/probability/chapters/parameter_estimation/evaluation.md
+    - Bayes Estimator: notes/probability/chapters/parameter_estimation/bayes.md
+  - Bayesian Inference: notes/probability/chapters/bayesian_inference/intro.md
+  - Hypothesis Testing:
+    - notes/probability/chapters/hypothesis_testing/intro.md
+    - Test around Mean of Normal Population: notes/probability/chapters/hypothesis_testing/mean_normal.md
+    - Testing Equality of Means of Two Normal Populations: notes/probability/chapters/hypothesis_testing/equality_means_normals.md
+    - Tests around Variance of Normal Population: notes/probability/chapters/hypothesis_testing/variance_normal.md
+    - Tests around Bernoulli Population: notes/probability/chapters/hypothesis_testing/bernoulli.md
+  - Linear Regression:
+    - notes/probability/chapters/linear_regression/intro.md
+    - Mean and Variance of Coefficients: notes/probability/chapters/linear_regression/mean_var_coeffs.md
+    - Distribution of Residual: notes/probability/chapters/linear_regression/distribution_residuals.md
+    - Inferences Concerning Coefficients: notes/probability/chapters/linear_regression/inference_coeffs.md
+    - Inferences Concerning Mean Response: notes/probability/chapters/linear_regression/inference_mean_response.md
+    - Inferences Concerning Future Response: notes/probability/chapters/linear_regression/inference_future_response.md
+    - Coefficient of Determination: notes/probability/chapters/linear_regression/r2.md
+    - Weighted Least Squares: notes/probability/chapters/linear_regression/wls.md
+  - Life Testing: notes/probability/chapters/life_testing/intro.md
+  - Generating Random Numbers:
+    - Random Numbers: notes/probability/chapters/simulation/random_nos.md
+    - Generating Discrete Random Variables: notes/probability/chapters/simulation/discrete_random_nos.md
+    - Generating Continuous Random Variables: notes/probability/chapters/simulation/continuous_random_nos.md
+  - Exercises:
+    - Exercises Part 1: notes/probability/chapters/exercises/problems_p01.md
+    - Exercises Part 2: notes/probability/chapters/exercises/problems_p02.md
+    - Exercises Part 3: notes/probability/chapters/exercises/problems_p03.md
+    - Exercises Part 4: notes/probability/chapters/exercises/problems_p04.md
+- Linux:
+  - notes/linux/index.md
+  - RegEx: notes/linux/regex.md
+  - find: notes/linux/find.md
+  - grep: notes/linux/grep.md
+  - cURL: notes/linux/curl.md
+  - sed: notes/linux/sed.md
+  - Docker: notes/linux/docker.md
+  - Kubernetes: notes/linux/kubernetes.md
+- Programming Languages:
+  - notes/programming_languages/index.md
+  - SQL:
+    - notes/programming_languages/sql/sql.md
+    - Exercises Part 1: notes/programming_languages/sql/exercises_01.md
+    - Exercises Part 2: notes/programming_languages/sql/exercises_02.md
+    - Exercises Part 3: notes/programming_languages/sql/exercises_03.md
+  - C: notes/programming_languages/c/C.md
+  - C++:
+    - notes/programming_languages/cpp/cpp.md
+    - Exercises Part 1: notes/programming_languages/cpp/cpp_exercises_01.md
+    - Exercises Part 2: notes/programming_languages/cpp/cpp_exercises_02.md
+    - Exercises Part 3: notes/programming_languages/cpp/cpp_exercises_03.md
+  - Data Structures and Algorithms: notes/programming_languages/dsa/ds.md
+- Time Series:
+  - notes/time_series/index.md
+  - Characteristics of Time Series:
+    - Characteristics of Time Series: notes/time_series/chapters/characteristics/characteristics.md
+    - Time Series Formulations: notes/time_series/chapters/characteristics/formulations.md
+    - Measures of Dependence: notes/time_series/chapters/characteristics/measures.md
+    - Exercises: notes/time_series/chapters/characteristics/exercises.md
+  - ARIMA:
+    - Backward Shift Operators: notes/time_series/chapters/arima/backward_shift.md
+    - Smoothing in Time Series: notes/time_series/chapters/arima/smoothing.md
+    - Autoregressive Models (AR): notes/time_series/chapters/arima/ar.md
+    - Moving Average Models (MA): notes/time_series/chapters/arima/ma.md
+    - ARMA(p,q) Process: notes/time_series/chapters/arima/arma.md
+    - ARIMA(p,d,q) Process: notes/time_series/chapters/arima/arima.md
+    - Walkthrough Example: notes/time_series/chapters/arima/example.md
+  - Simple Exponential Smoothing - Introduction:
+    - Simple Exponential Smoothing - Introduction: notes/time_series/chapters/ses/ses.md
+    - Simple Exponential Smoothing: notes/time_series/chapters/ses/simple_exp_smoothing.md
+    - Exponential Smoothing with Trend: notes/time_series/chapters/ses/exp_smoothing_trend.md
+    - Exponential Smoothing with Trend and Seasonality: notes/time_series/chapters/ses/exp_smoothing_season.md
+  - Codes:
+    - PACF Simulation: notes/time_series/codes/pacf_simulation.md
+    - ACF Simulation: notes/time_series/codes/acf_simulation.md
+    - ARIMA Simulation: notes/time_series/codes/arima_simulation.md
+    - SARMA Simulation: notes/time_series/codes/sarma_simulation.md
+    - SARMA Simulation - 1: notes/time_series/codes/sarma_simulation_1.md
+    - Time Series Walkthrough Code: notes/time_series/codes/time_series_python.md
+    - SES Example: notes/time_series/codes/ses.md
+    - SES Trend: notes/time_series/codes/ses_trend.md
+    - SES Seasonal: notes/time_series/codes/ses_season.md
+- Maths Miscellaneous:
+  - notes/maths_misc/index.md
+  - Reversing an Exponential Base: notes/maths_misc/exp_base_reversed.md
+  - Definite Integral: notes/maths_misc/definite_integral.md
+  - First to 50: notes/maths_misc/first_to_50.md
+  - Incremental Remainders: notes/maths_misc/incremental_remainders.md
+- Large Language Models:
+  - notes/large_language_models/index.md
+  - Finetuning: notes/large_language_models/finetuning.md
+  - Inference Engineering:
+    - Motivation: notes/large_language_models/inference_engineering/chapters/01_motivation.md
+    - LLM Models: notes/large_language_models/inference_engineering/chapters/02_basics_llm_models.md
+    - Image Generation Models: notes/large_language_models/inference_engineering/chapters/03_basics_image_gen_models.md
+    - Video Generation Models: notes/large_language_models/inference_engineering/chapters/04_basics_video_gen_models.md
+    - Inference Bottlenecks: notes/large_language_models/inference_engineering/chapters/05_inference_bottlenecks.md
+    - Quantization: notes/large_language_models/inference_engineering/chapters/06_quantization.md
+    - Speculative Decoding: notes/large_language_models/inference_engineering/chapters/07_speculative_decoding.md
+    - Caching: notes/large_language_models/inference_engineering/chapters/08_caching.md
+    - Model Parallelism: notes/large_language_models/inference_engineering/chapters/09_model_parallelism.md
+    - Disaggregation: notes/large_language_models/inference_engineering/chapters/10_disaggregation.md
+- Linear Algebra:
+  - notes/linalg/index.md
+  - Complex Field:
+    - Complex Field: notes/linalg/vector_spaces/complex.md
+    - Lists: notes/linalg/vector_spaces/vs_list.md
+    - Fields: notes/linalg/vector_spaces/fields.md
+    - Vector Spaces: notes/linalg/vector_spaces/vector_space.md
+    - Product and Quotient of Vector Spaces: notes/linalg/vector_spaces/prod_quo.md
+    - Subspace: notes/linalg/vector_spaces/subspace.md
+    - Finite Dimensional Vector Spaces: notes/linalg/vector_spaces/finite_dim.md
+    - Orthogonal and Orthonormal Vectors: notes/linalg/vector_spaces/orthogonal.md
+  - Linear Maps:
+    - Linear Maps: notes/linalg/linear_maps/linear_maps.md
+    - Matrix: notes/linalg/linear_maps/matrix.md
+    - Determinant: notes/linalg/linear_maps/det.md
+    - Special Matrices: notes/linalg/linear_maps/special_matrices.md
+    - Algebraic Properties of Matrices: notes/linalg/linear_maps/algebraic_properties.md
+  - Linear Equations:
+    - Linear Equations: notes/linalg/linear_eq/elimination.md
+    - Eigenvectors and Eigenvalues: notes/linalg/linear_eq/eigen.md
+  - Exercises: notes/linalg/exercises/problems.md
+- Differential Equations:
+  - notes/differential_equations/index.md
+  - Differential Equations: notes/differential_equations/intro.md
+  - Special Solutions to First Order ODE: notes/differential_equations/special_solutions.md
+  - Second Order Linear ODE: notes/differential_equations/order_two_linear.md
+  - Higher Order Linear ODE: notes/differential_equations/higher_order_linear.md
+  - System of ODEs: notes/differential_equations/system_of_ode.md
+  - Series Solutions of ODEs: notes/differential_equations/series_solutions.md
+  - Laplace Transforms: notes/differential_equations/laplace_transforms.md
+  - Exercises: notes/differential_equations/exercises.md
+- Deep Learning:
+  - notes/deep_learning/index.md
+  - Gradient Descent:
+    - Gradient Descent: notes/deep_learning/chapters/gradient_descent/gradient_descent.md
+    - Matrix Calculus: notes/deep_learning/chapters/gradient_descent/matrix_calculus.md
+    - Backpropagation: notes/deep_learning/chapters/gradient_descent/backprop.md
+    - Gradients for Common Activation Functions: notes/deep_learning/chapters/gradient_descent/gradient_activation.md
+    - Gradients for Common Loss Functions: notes/deep_learning/chapters/gradient_descent/gradient_loss.md
+    - Gradients for Common Layers: notes/deep_learning/chapters/gradient_descent/gradient_layers.md
+    - Backpropagation Example: notes/deep_learning/chapters/gradient_descent/backprop_example_1.md
+    - Optimizers: notes/deep_learning/chapters/gradient_descent/optimizers.md
+  - Weights Initialization:
+    - Weights Initialization: notes/deep_learning/chapters/weight_initialization/gradient_explosion.md
+    - Correct Initialization: notes/deep_learning/chapters/weight_initialization/correct_init.md
+  - Recurrent Layers:
+    - Recurrent Layers: notes/deep_learning/chapters/recurrent_layers/rnn.md
+    - Backpropagation Through Time (BPTT): notes/deep_learning/chapters/recurrent_layers/bptt.md
+    - Exploding and Vanishing Gradient: notes/deep_learning/chapters/recurrent_layers/rnn_grad_problems.md
+    - Gated Recurrent Unit (GRU): notes/deep_learning/chapters/recurrent_layers/gru.md
+    - Long Short Term Memory (LSTM): notes/deep_learning/chapters/recurrent_layers/lstm.md
+  - Convolutional Neural Networks:
+    - Convolutional Neural Networks: notes/deep_learning/chapters/convolutional_neural_networks/01_introduction.md
+    - Convolution Operation: notes/deep_learning/chapters/convolutional_neural_networks/02_convolution_operation.md
+    - VGG-16 Architecture: notes/deep_learning/chapters/convolutional_neural_networks/03_vgg16_architecture.md
+    - Layer Visualizations: notes/deep_learning/chapters/convolutional_neural_networks/04_layer_visualization.md
+    - Adversarial Attacks: notes/deep_learning/chapters/convolutional_neural_networks/05_adversarial_attacks.md
+    - Deepdream: notes/deep_learning/chapters/convolutional_neural_networks/06_deepdream.md
+    - Object Detection: notes/deep_learning/chapters/convolutional_neural_networks/07_object_detection.md
+    - Convolutional Segmentation: notes/deep_learning/chapters/convolutional_neural_networks/08_convolutional_segmentation.md
+    - Style Transfer: notes/deep_learning/chapters/convolutional_neural_networks/09_style_transfer.md
+  - Transformers:
+    - Transformers Motivation: notes/deep_learning/chapters/transformers/01_motivation.md
+    - Self Attention: notes/deep_learning/chapters/transformers/02_self_attention.md
+    - Attention: notes/deep_learning/chapters/transformers/03_attention.md
+    - Positional Encodings: notes/deep_learning/chapters/transformers/04_positional_encoding.md
+    - Word Embeddings: notes/deep_learning/chapters/transformers/05_word_embeddings.md
+    - Sequence Modelling: notes/deep_learning/chapters/transformers/06_sequence_modelling.md
+    - Decoder Transformers: notes/deep_learning/chapters/transformers/07_decoder_transformers.md
+    - Sampling Strategies: notes/deep_learning/chapters/transformers/08_sampling_strategies.md
+    - Encoder Transformers: notes/deep_learning/chapters/transformers/09_encoder_transformers.md
+    - Sequence to Sequence or Encoder Decoder Models: notes/deep_learning/chapters/transformers/10_encoder_decoder_transformers.md
+    - Fine Tuning LLMs: notes/deep_learning/chapters/transformers/11_fine_tuning.md
+    - Vision Transformers: notes/deep_learning/chapters/transformers/12_vision_transformers.md
+    - Working with audio data: notes/deep_learning/chapters/transformers/13_audio_data.md
+    - Text to Speech: notes/deep_learning/chapters/transformers/14_text_to_speech.md
+    - Multimodal Transformers: notes/deep_learning/chapters/transformers/15_multimodal_transformers.md
+  - Generative Models:
+    - Generative Adversarial Networks: notes/deep_learning/chapters/generative_models/01_gan.md
+    - Autoencoders: notes/deep_learning/chapters/generative_models/02_autoencoders.md
+  - Codes:
+    - Backprop Example: notes/deep_learning/codes/backprop_example_1.md
+    - Exponentially MA Example: notes/deep_learning/codes/exp_ma.md
+    - BPTT Example: notes/deep_learning/codes/bptt_example_1.md
+- Machine Learning:
+  - notes/machine_learning/index.md
+  - Linear Regression:
+    - Linear Regression: notes/machine_learning/chapters/regression/intro.md
+    - Simple Linear Regression: notes/machine_learning/chapters/regression/simple.md
+    - Multiple Linear Regression: notes/machine_learning/chapters/regression/multiple.md
+    - Problems when using Linear Regression: notes/machine_learning/chapters/regression/problems.md
+  - Classification:
+    - Classification: notes/machine_learning/chapters/classification/intro.md
+    - Logistic Regression: notes/machine_learning/chapters/classification/logistic.md
+    - Linear Discriminant Analysis (LDA): notes/machine_learning/chapters/classification/lda.md
+    - Naive Bayes Classifier: notes/machine_learning/chapters/classification/naive_bayes.md
+    - Comparison of Classifiers: notes/machine_learning/chapters/classification/comparison.md
+    - Classfication Metrics: notes/machine_learning/chapters/classification/metrics.md
+  - Linear Model Selection and Regularization:
+    - Linear Model Selection and Regularization: notes/machine_learning/chapters/linear_model_selection_regularization/intro.md
+    - Subset Selection: notes/machine_learning/chapters/linear_model_selection_regularization/subset.md
+    - Evaluation Metrics: notes/machine_learning/chapters/linear_model_selection_regularization/evaluation.md
+    - Shrinkage Methods and Regularization: notes/machine_learning/chapters/linear_model_selection_regularization/shrinkage.md
+    - Dimension Reduction Methods: notes/machine_learning/chapters/linear_model_selection_regularization/dimension.md
+    - Curse of Dimensionality: notes/machine_learning/chapters/linear_model_selection_regularization/curse.md
+    - Exercises: notes/machine_learning/chapters/linear_model_selection_regularization/exercises.md
+  - Moving Beyond Linearity:
+    - Moving Beyond Linearity: notes/machine_learning/chapters/moving_beyond_linearity/intro.md
+    - Polynomial Regression: notes/machine_learning/chapters/moving_beyond_linearity/polynomial_regression.md
+    - Step Function: notes/machine_learning/chapters/moving_beyond_linearity/step_function.md
+    - Basis Function: notes/machine_learning/chapters/moving_beyond_linearity/basis_function.md
+    - Regression Splines (Polynomials): notes/machine_learning/chapters/moving_beyond_linearity/regression_splines.md
+    - Smoothing Splines: notes/machine_learning/chapters/moving_beyond_linearity/smoothing_splines.md
+    - Local Regression: notes/machine_learning/chapters/moving_beyond_linearity/local_regression.md
+    - Generalized Additive Models: notes/machine_learning/chapters/moving_beyond_linearity/gam.md
+    - Exercises: notes/machine_learning/chapters/moving_beyond_linearity/exercises.md
+  - Resampling Methods:
+    - Resampling Methods: notes/machine_learning/chapters/resampling_methods/resampling_methods.md
+    - Cross Validation: notes/machine_learning/chapters/resampling_methods/cv.md
+    - Bootstrap: notes/machine_learning/chapters/resampling_methods/bootstrap.md
+  - Tree Based Models:
+    - Tree Based Models: notes/machine_learning/chapters/tree_models/intro.md
+    - Regression Trees: notes/machine_learning/chapters/tree_models/regression.md
+    - Classification Trees: notes/machine_learning/chapters/tree_models/classification.md
+    - Patient Rule Induction Method (PRIM): notes/machine_learning/chapters/tree_models/prim.md
+    - Bagging: notes/machine_learning/chapters/tree_models/bagging.md
+    - Random Forest: notes/machine_learning/chapters/tree_models/random_forest.md
+    - Boosting: notes/machine_learning/chapters/tree_models/boosting.md
+    - Adaboost.M1: notes/machine_learning/chapters/tree_models/adaboost.md
+    - Boosting Trees: notes/machine_learning/chapters/tree_models/boosting_trees.md
+    - XGBoost: notes/machine_learning/chapters/tree_models/xgboost.md
+  - Support Vector Machines (SVM):
+    - Support Vector Machines (SVM): notes/machine_learning/chapters/svm/svm_intro.md
+    - Maximum Margin Classifier: notes/machine_learning/chapters/svm/mmc.md
+    - Support Vector Classifier: notes/machine_learning/chapters/svm/svc.md
+    - Support Vector Machine: notes/machine_learning/chapters/svm/svm.md
+  - Bayesian Methods:
+    - Bayesian Methods: notes/machine_learning/chapters/bayesian_methods/bayesian_methods.md
+    - Maximum Likelihood Estimator (MLE): notes/machine_learning/chapters/bayesian_methods/mle.md
+    - Maximum A Priori (MAP): notes/machine_learning/chapters/bayesian_methods/map.md
+    - Expectation Maximization: notes/machine_learning/chapters/bayesian_methods/em.md
+    - Variational Inference: notes/machine_learning/chapters/bayesian_methods/variational_inference.md
+    - Comparison of Different Inference Methods: notes/machine_learning/chapters/bayesian_methods/comparison.md
+    - Latent Dirichlet Allocation (LDA): notes/machine_learning/chapters/bayesian_methods/lda.md
+    - Sampling from Distributions: notes/machine_learning/chapters/bayesian_methods/probabilistic_sampling.md
+    - Gaussian Process (GP): notes/machine_learning/chapters/bayesian_methods/gaussian_process.md
+    - Bayesian Optimization: notes/machine_learning/chapters/bayesian_methods/bayesian_optimization.md
+  - Clustering:
+    - Clustering: notes/machine_learning/chapters/clustering/intro.md
+    - Distances and Dissimilarity Measures: notes/machine_learning/chapters/clustering/measures.md
+    - K-Means Clustering: notes/machine_learning/chapters/clustering/kmeans.md
+    - K-Mediods Clustering: notes/machine_learning/chapters/clustering/kmedioids.md
+    - Hierarchical Clustering: notes/machine_learning/chapters/clustering/hierarchical.md
+    - Gaussian Mixture Models (GMM): notes/machine_learning/chapters/clustering/gmm.md
+    - Key Considerations while Clustering: notes/machine_learning/chapters/clustering/considerations.md
+  - Appendix:
+    - Bias-Variance Tradeoff: notes/machine_learning/chapters/appendix/bias_variance.md
+    - Matrix Calculus in Logistic Regression: notes/machine_learning/chapters/appendix/matrix_logistic_reg.md
+    - Comparison of Classifiers: notes/machine_learning/chapters/appendix/comparison_classifiers.md
+    - Perpendicular distance in Maximum Margin Classifier: notes/machine_learning/chapters/appendix/perp_mmc.md
+    - Lagrange Multiplier, Primal and Dual: notes/machine_learning/chapters/appendix/lagrangian.md
+  - Codes:
+    - Predictions using Gaussian Process: notes/machine_learning/codes/gaussian_process_prediction.md

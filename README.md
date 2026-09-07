@@ -1,16 +1,46 @@
-# Notes
-Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](https://DragonWarrior15.github.io/statistical-learning-notes/)
+# Learning Notes
 
-## Building Locally
-* Run `make jekyll_serve` to serve using jekyll
+Personal notes on probability, statistics, mathematics, programming, machine
+learning, deep learning, time series, Linux, and large language models.
+
+The published site is available at
+[DragonWarrior15.github.io/statistical-learning-notes](https://DragonWarrior15.github.io/statistical-learning-notes/).
+
+A combined printable version is available at
+[Print Learning Notes](https://DragonWarrior15.github.io/statistical-learning-notes/print_page.html).
+
+## MkDocs development
+
+The content under `docs/` is the authoritative source. Edit those files
+directly.
+
+Migrated collections live under `docs/notes/` to preserve their existing
+published URLs, such as `/statistical-learning-notes/notes/probability/...`.
+
+Install the locked Python dependencies:
+
+```shell
+uv sync
+```
+
+Start the local MkDocs development server:
+
+```shell
+make mkdocs_serve
+```
+
+Build the site with warnings treated as errors:
+
+```shell
+make mkdocs_build
+```
 
 ## Common Pitfalls/Suggestions
 * MathJax overview: See [1](https://memory.psych.mun.ca/tech/js/mathjax.shtml) and [2](https://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm).
-* To escape the curly braces inside math mode, use a double back slash like `\\{`. This is because of two levels of processing by Jekyll and MathJax ([see here](https://stackoverflow.com/questions/41312777/mathjax-curly-brackets-dont-show-up-using-jekyll)).
-* Any hanging pair of square brackets `[ ]` in math mode should be escaped using `\[ \]` so that markdown does not process them as hyperlinks.
-* Refer to [include_mathjax.html](/_includes/include_mathjax.html) for examples on defining new macros and including extensions. This files also defines the complete configuration to import MathJax to a jekyll project.
+* MathJax configuration and custom macros live in [`docs/javascripts/mathjax.js`](docs/javascripts/mathjax.js).
+* Use `\{` and `\}` for literal curly braces in math mode.
 * Instead of `\bigg` use `\left` and `\right` for automatically sizing brackets. However, `\left` and `\right` should be present in pairs with matching pairs of brackets. Otherwise, MathJax can throw errors like `missing left or right` or `missing &`.
-* The actual `$` symbol can be included as `\\$`, i.e., by double escapting `\` so that its interpreted as `\$`. Just using `\$` will make it be interpreted as `$` and begin as math mode.
+* The actual `$` symbol can be included as `\$`.
 * The following will work
     ```tex
     \begin{alignat}{2}
@@ -33,11 +63,9 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
             E = mc^{2}
         \end{align}
     ```
-* Linking to another page of the project can be done by following the template
-    ```md
-    {{ "/notes/full_path_to_file/file.html#a-heading-name" | relative_url }}
-    ```
-    For a heading in the same file, a simple `#a-heading-name` will suffice
+* In MkDocs content, link to another page using a relative Markdown source path,
+  for example `[label](../distributions/normal_distribution.md#a-heading-name)`.
+  For a heading in the same file, `[label](#a-heading-name)` is sufficient.
 * Before starting any table, there should be a blank line before it, otherwise it is not parsed correctly. It is a good practice to keep a blank line after the table as well, but that may not work when table is inside lists.
 * Use `\quad` in math mode for spacing between text and mathematical expression.
 
@@ -60,57 +88,30 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
     * `\diffone{arg}` to denote the first derivative of `arg` using a single prime character in power
     * `\difftwo{arg}` to denote the second derivative of `arg` in the double prime notation
 
-### Codes in markdown+jekyll
-* To use double curly braces inside a code block, enclose it inside the raw tag
-    ```html
-    {% raw %}
-    This is a code with double curly braces {{ user.name | uppercase }}
-    {% endraw %}
-    ```
-
 ### Defining Navigation
-* Refer to [navigation.yml](_data/navigation.yml) to see how the navigation is defined currently. It follows the below format
-    ```yaml
-    topic:
-      - name: Section/Chapter 1 Name
-        link: complete_path_to_the_file.html
-        subnav:
-          - name: Subsection 1.1
-            link: complete_path_to_the_file.html
-          - name: Subsection 1.2
-            link: complete_path_to_the_file.html
-      - name: Section/Chapter 2 Name
-        link: complete_path_to_the_file.html
-        subnav:
-          - name: Subsection 2.1
-            link: complete_path_to_the_file.html
-    ```
+Navigation is defined in [`mkdocs.yml`](mkdocs.yml). Each subject has an
+`index.md` overview and a subject-scoped hierarchy in the left sidebar.
+
+### Future PDF export
+
+The complete site is too large to render reliably as one browser print page.
+A future book pipeline should render one subject at a time with the
+[`mkdocs-print-site-plugin`](https://timvink.github.io/mkdocs-print-site-plugin/how-to/export-PDF.html),
+automate PDF export with headless Chrome, and optionally merge the subject PDFs
+into a complete edition.
 
 ### Using `find` and `grep`
 Suppose we rearrange the directory structure. Since the URLs are hardcoded when referring to a section somewhere else, we need to go through and replace all such links to point to the new path.
 
-Assuming we changed `/notes/differential_equations/laplace_transforms.md` to `/notes/differential_equations/laplace_transforms/intro.md`. The command to search through all the places where the change needs to be made
+Assuming we changed `docs/notes/differential_equations/laplace_transforms.md`
+to `docs/notes/differential_equations/laplace_transforms/intro.md`, search for
+references to the old path before moving it:
 
 ```shell
-find . -type f -name "*.md" -or -name "*.yml" -exec grep "/notes/differential_equations/laplace_transforms.html" {} ';'
+rg 'laplace_transforms\.md' docs mkdocs.yml
 ```
 
-And to replace with the new path
-```shell
-find . -type f -name "*.md" -or -name "*.yml" -exec sed -s "|/notes/differential_equations/laplace_transforms.html|/notes/differential_equations/laplace_transforms/intro.md|" {} ';'
-```
-
-### Generating Combined Files
-To generate a single `md` file containing all the pages for one notes section
-* Run the file `generate_combined_md.py notes_name` where `notes_name` is the command line argument for the notes section you want to combine
-* Serve the jekyll project using `make jekyll serve`
-* Locally, go to the page `http://127.0.0.1:4000/statistical-learning-notes/combined.html`
-* Save as PDF in the browser as needed
-
-### Common problem in WSL
-**In case you are running WSL and unable to connect to the server**
-* Close the ubuntu window
-* Open cmd and type `wsl --shutdown`
-* Restart cmd and type `wsl`
-* Now try running the commands
-
+## `uv` Setup
+- Visit the official [astral site](https://docs.astral.sh/uv/) for the latest download instructions
+- Run `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- Run `uv sync` to setup the environment
