@@ -1,8 +1,35 @@
 # Notes
 Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](https://DragonWarrior15.github.io/statistical-learning-notes/)
 
-## Building Locally
-* Run `make jekyll_serve` to serve using jekyll
+## MkDocs development
+
+The content under `docs/` is the authoritative source for the MkDocs site. Edit
+those files directly; do not regenerate reviewed pages from the legacy Jekyll
+content under `_notes/`.
+
+Install the locked Python dependencies:
+
+```shell
+uv sync
+```
+
+Start the local MkDocs development server:
+
+```shell
+make mkdocs_serve
+```
+
+Build the site with warnings treated as errors:
+
+```shell
+make mkdocs_build
+```
+
+The current MkDocs configuration is a Probability-only migration. Jekyll and
+the content under `_notes/` remain temporarily available while the other note
+collections are migrated and the published site is cut over.
+
+To serve the legacy Jekyll site, run `make jekyll_serve`.
 
 ## Common Pitfalls/Suggestions
 * MathJax overview: See [1](https://memory.psych.mun.ca/tech/js/mathjax.shtml) and [2](https://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm).
@@ -33,11 +60,9 @@ Accessible at [https://DragonWarrior15.github.io/statistical-learning-notes/](ht
             E = mc^{2}
         \end{align}
     ```
-* Linking to another page of the project can be done by following the template
-    ```md
-    {{ "/notes/full_path_to_file/file.html#a-heading-name" | relative_url }}
-    ```
-    For a heading in the same file, a simple `#a-heading-name` will suffice
+* In MkDocs content, link to another page using a relative Markdown source path,
+  for example `[label](../distributions/normal_distribution.md#a-heading-name)`.
+  For a heading in the same file, `[label](#a-heading-name)` is sufficient.
 * Before starting any table, there should be a blank line before it, otherwise it is not parsed correctly. It is a good practice to keep a blank line after the table as well, but that may not work when table is inside lists.
 * Use `\quad` in math mode for spacing between text and mathematical expression.
 

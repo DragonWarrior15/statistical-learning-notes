@@ -6,7 +6,7 @@ prob_dir = tex_files/probability/
 linalg = linear_algebra
 linalg_dir = tex_files/linalg/
 
-.Phony: clean .FORCE
+.PHONY: clean .FORCE mkdocs_serve mkdocs_build
 
 .FORCE:# a dummy file so that build of all pdf is forced everytime
 
@@ -34,6 +34,12 @@ jekyll_serve:
 jekyll_serve_2:
 	bundle exec jekyll serve --force-polling --livereload
 
+mkdocs_serve:
+	uv run mkdocs serve --config-file mkdocs.probability.yml
+
+mkdocs_build:
+	uv run mkdocs build --strict --config-file mkdocs.probability.yml
+
 # sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
 # sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
 # sed 's/$$\\begin{aligned}/\\begin{align}/g' | \
@@ -46,5 +52,4 @@ jekyll_serve_2:
 # sed 's/\\bm{/\\boldsymbol{/g' |\
 # sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
 # > _notes/time_series/chapters/arima/arma.md
-
 
