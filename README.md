@@ -28,8 +28,9 @@ Build the site with warnings treated as errors:
 make mkdocs_build
 ```
 
-The current MkDocs configuration contains the migrated Probability, Linux, and
-Programming Languages collections. Jekyll and the content under `_notes/`
+The current MkDocs configuration contains the migrated Probability, Linux,
+Programming Languages, Time Series, Maths Miscellaneous, and Large Language
+Models collections. Jekyll and the content under `_notes/`
 remain temporarily available while the other note collections are migrated and
 the published site is cut over.
 

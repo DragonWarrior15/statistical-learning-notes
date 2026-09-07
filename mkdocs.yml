@@ -146,3 +146,53 @@ nav:
     - Exercises Part 2: notes/programming_languages/cpp/cpp_exercises_02.md
     - Exercises Part 3: notes/programming_languages/cpp/cpp_exercises_03.md
   - Data Structures and Algorithms: notes/programming_languages/dsa/ds.md
+- Time Series:
+  - notes/time_series/index.md
+  - Characteristics of Time Series:
+    - Characteristics of Time Series: notes/time_series/chapters/characteristics/characteristics.md
+    - Time Series Formulations: notes/time_series/chapters/characteristics/formulations.md
+    - Measures of Dependence: notes/time_series/chapters/characteristics/measures.md
+    - Exercises: notes/time_series/chapters/characteristics/exercises.md
+  - ARIMA:
+    - Backward Shift Operators: notes/time_series/chapters/arima/backward_shift.md
+    - Smoothing in Time Series: notes/time_series/chapters/arima/smoothing.md
+    - Autoregressive Models (AR): notes/time_series/chapters/arima/ar.md
+    - Moving Average Models (MA): notes/time_series/chapters/arima/ma.md
+    - ARMA(p,q) Process: notes/time_series/chapters/arima/arma.md
+    - ARIMA(p,d,q) Process: notes/time_series/chapters/arima/arima.md
+    - Walkthrough Example: notes/time_series/chapters/arima/example.md
+  - Simple Exponential Smoothing - Introduction:
+    - Simple Exponential Smoothing - Introduction: notes/time_series/chapters/ses/ses.md
+    - Simple Exponential Smoothing: notes/time_series/chapters/ses/simple_exp_smoothing.md
+    - Exponential Smoothing with Trend: notes/time_series/chapters/ses/exp_smoothing_trend.md
+    - Exponential Smoothing with Trend and Seasonality: notes/time_series/chapters/ses/exp_smoothing_season.md
+  - Codes:
+    - PACF Simulation: notes/time_series/codes/pacf_simulation.md
+    - ACF Simulation: notes/time_series/codes/acf_simulation.md
+    - ARIMA Simulation: notes/time_series/codes/arima_simulation.md
+    - SARMA Simulation: notes/time_series/codes/sarma_simulation.md
+    - SARMA Simulation - 1: notes/time_series/codes/sarma_simulation_1.md
+    - Time Series Walkthrough Code: notes/time_series/codes/time_series_python.md
+    - SES Example: notes/time_series/codes/ses.md
+    - SES Trend: notes/time_series/codes/ses_trend.md
+    - SES Seasonal: notes/time_series/codes/ses_season.md
+- Maths Miscellaneous:
+  - notes/maths_misc/index.md
+  - Reversing an Exponential Base: notes/maths_misc/exp_base_reversed.md
+  - Definite Integral: notes/maths_misc/definite_integral.md
+  - First to 50: notes/maths_misc/first_to_50.md
+  - Incremental Remainders: notes/maths_misc/incremental_remainders.md
+- Large Language Models:
+  - notes/large_language_models/index.md
+  - Finetuning: notes/large_language_models/finetuning.md
+  - Inference Engineering:
+    - Motivation: notes/large_language_models/inference_engineering/chapters/01_motivation.md
+    - LLM Models: notes/large_language_models/inference_engineering/chapters/02_basics_llm_models.md
+    - Image Generation Models: notes/large_language_models/inference_engineering/chapters/03_basics_image_gen_models.md
+    - Video Generation Models: notes/large_language_models/inference_engineering/chapters/04_basics_video_gen_models.md
+    - Inference Bottlenecks: notes/large_language_models/inference_engineering/chapters/05_inference_bottlenecks.md
+    - Quantization: notes/large_language_models/inference_engineering/chapters/06_quantization.md
+    - Speculative Decoding: notes/large_language_models/inference_engineering/chapters/07_speculative_decoding.md
+    - Caching: notes/large_language_models/inference_engineering/chapters/08_caching.md
+    - Model Parallelism: notes/large_language_models/inference_engineering/chapters/09_model_parallelism.md
+    - Disaggregation: notes/large_language_models/inference_engineering/chapters/10_disaggregation.md
