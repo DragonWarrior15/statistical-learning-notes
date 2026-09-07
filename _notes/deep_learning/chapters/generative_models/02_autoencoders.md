@@ -40,3 +40,19 @@ $$
 $$
 
 where $E(w)$ is the unregularized error. Note here the $L_{1}$ regularization is applied on all activations of one of the hidden layers. This is in contrast to the usual application of $L_{1}$ regularization where it is applied on the parameters of the network.
+
+### Denoising Autoencoders
+This is one of the approaches to force a model to learn interesting patterns in teh data. We take the input vector $x_{n}$ and corrupt it with noise to give $\tilde{x}_{n}$. Next, we feed this to the autoencoder to get the output $y(\tilde{x}_{n}, w)$ and we try to minimize the error between this output and the noise free input $x_{n}$.
+
+The noise can take two forms
+- Take a fraction of inputs ($0 \leq v \leq 1$) and set the value to zero
+- Add an independent gaussian noise (zero mean) to all the input features, with scale of the gaussian deterimined relative to the input feature
+
+Through denoising, in applications like images, network learns to understand how nearby pixels are correlated.
+
+### Masked Autoencoders
+Language models like BERT learn rich internal representations of natural language through self supervision using randomly masked inputs.
+
+Consider the same idea in images. We mask certain patches and ask the network to predict those patches. The error is calculated only on those patches. Its an encoder-decoder style of architecture where the decoder is discarded post training, and the encoder representations are used in downstream tasks.
+
+Typically for a well trained model, the percentage of masked tokens is close to 75%, compared to just 15% in BERT. This is because of the differences in distributions of data for an image and text.
