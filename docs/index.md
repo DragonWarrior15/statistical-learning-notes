@@ -36,6 +36,13 @@ Choose a subject to start exploring the notes currently available in MkDocs.
 
     [Explore Time Series →](notes/time_series/index.md)
 
+-   ## Deep Learning
+
+    Optimization, neural-network architectures, recurrent layers,
+    transformers, convolutional networks, and generative models.
+
+    [Explore Deep Learning →](notes/deep_learning/index.md)
+
 -   ## Differential Equations
 
     First- and higher-order ODEs, systems, series solutions, Laplace

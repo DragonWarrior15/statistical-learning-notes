@@ -1,7 +1,3 @@
----
-title: "Optimizers"
----
-
 # Optimizers
 
 Optimizers implement different techniques for performing gradient descent and aim to solve problems of noisy updates to perform smooth descent and faster convergence.
@@ -23,7 +19,10 @@ As an implementation note, the data indices are usually shuffled in a random ord
 
 Stochastic gradient descent is commonly used when we are doing online learning. At a time, we can only get a single example and update the network weights using only this example.
 
-{% include image.html url="notes/deep_learning/images/momentum_1.png" description="Vector representation of SGD" img_classes="notes-img" %}
+<figure class="notes-img">
+  <img src="../../images/momentum_1.png" alt="Vector representation of SGD">
+  <figcaption>Vector representation of SGD</figcaption>
+</figure>
 
 ## Batch Gradient Descent
 
@@ -53,31 +52,51 @@ Typical batch sizes used are 32, 64, 128, 256 etc. We can keep a larger batch si
 ## Gradient Descent with Momentum
 
 To understand the concept of momentum in this context, we first look at exponential moving averages. The general equation is
-\begin{align}
+
+$$
+\begin{aligned}
     v_{t} &= \beta v_{t-1} + (1- \beta) s_{t}\newline
     &= \beta(\beta v_{t-2} + (1-\beta)s_{t-1}) +(1-\beta) s_{t} = \beta^{2}v_{t-2} + \beta(1-\beta)s_{t-1} + (1-\beta)s_{t}\newline
-    &= \beta^{n}v_{t-n} + \beta^{n-1}(1-\beta)s_{t-n+1} + \cdots + \beta(1-\beta)s_{t-1} + (1-\beta)s_{t}\end{align}
+    &= \beta^{n}v_{t-n} + \beta^{n-1}(1-\beta)s_{t-n+1} + \cdots + \beta(1-\beta)s_{t-1} + (1-\beta)s_{t}\end{aligned}
+$$
+
 where $v$ is the averaged series, $\beta \in (0,1)$ controls how much weight we give to different terms, and $s$ is the original series. Higher value of $\beta$ will give more weight to the moving average term while lower values will give preference to the actual series value.
 
-{% capture img_url %}{{ "notes/deep_learning/codes/exp_ma.html" | relative_url }} {% endcapture %}
-{% capture img_desc %}{{ "Exponentially averaged series for different values of $\beta$. Plot prepared using <a href='" | append: img_url | append: "'>exp_ma.py</a>"}}{% endcapture %}
-{% include image.html url="notes/deep_learning/images/exp_ma_1.png" description=img_desc img_classes="notes-img" %}
+<figure class="notes-img">
+  <img src="../../images/exp_ma_1.png" alt="Exponentially averaged series for different values of $\beta$. Plot prepared using exp_ma.py">
+  <figcaption>Exponentially averaged series for different values of $\beta$. Plot prepared using <a href="../../codes/exp_ma.md">exp_ma.py</a></figcaption>
+</figure>
 
 Exponential moving average will help approximate a noisy series by a smoother version. Since mini-batch gradient updates are usually a noisy series (since we are not using the entire data to calculate the gradient), the update equation can benefit by this averaging. This is one reason why gradient descent with momentum works.
-\begin{align}
+
+$$
+\begin{aligned}
     h_{t} &= \beta h_{t-1} + (1-\beta) \frac{1}{b}\nabla_{w} \sum_{i=1}^{b} L(w_{t-1}, X_{B,i}, Y_{B,i})\newline
-    w_{t} &= w_{t-1} - \eta h_{t}\newline\end{align}
+    w_{t} &= w_{t-1} - \eta h_{t}\newline\end{aligned}
+$$
+
 Sometimes, another formulation is also used
-\begin{align}
+
+$$
+\begin{aligned}
     h_{t} &= \alpha h_{t-1} + \beta \frac{1}{b}\nabla_{w} \sum_{i=1}^{b} L(w_{t-1}, X_{B,i}, Y_{B,i})\newline
-    w_{t} &= w_{t-1} - h_{t}\end{align}
+    w_{t} &= w_{t-1} - h_{t}\end{aligned}
+$$
+
 where $\beta$ is different from the one used in the previous formulation (we have multiplied the learning rate in the update equation itself). Both formulation have the same number of parameters. The first one is more intuitive while the second one is a compact form to work with. The learning rates will be different in the two formulations. $\alpha$ is usually $0.9$. Figure below shows a visual representation of this process.
 
-{% include image.html url="notes/deep_learning/images/momentum_2.png" description="Vector representation of Gradient Descent with Momentum" img_classes="notes-img" %}
+<figure class="notes-img">
+  <img src="../../images/momentum_2.png" alt="Vector representation of Gradient Descent with Momentum">
+  <figcaption>Vector representation of Gradient Descent with Momentum</figcaption>
+</figure>
 
 In exponential series, it is often the case to have some bias initially (before smoothing starts). To adjust for this, we use the following transformation
-\begin{align}
-    v_{t} = \frac{v_{t}}{1 - \beta^{t}}\end{align}
+
+$$
+\begin{aligned}
+    v_{t} = \frac{v_{t}}{1 - \beta^{t}}\end{aligned}
+$$
+
 which will be effective only for the first few timesteps. In practice, this correction may not be followed since the average series quickly converges. An earlier figure shows how higher values of $\beta$ give a smoother series, but suffer from high bias as well.
 
 
@@ -86,20 +105,31 @@ Another reason why gradient descent with momentum works is it's ability to manip
 ## Nesterov Momentum (NAG)
 
 This builds on the concept of momentum and is also known as Nesterov accelerated gradient (NAG). Instead of calculating the gradient using the current value of weights, we calculate is using the future value
-\begin{align}
+
+$$
+\begin{aligned}
     h_{t} &= \alpha h_{t-1} + \beta \frac{1}{b}\nabla_{w} \sum_{i=1}^{b} L(w_{t-1} - \alpha h_{t-1}, X_{B,i}, Y_{B,i})\newline
-    w_{t} &= w_{t-1} - h_{t}\end{align}
+    w_{t} &= w_{t-1} - h_{t}\end{aligned}
+$$
+
 The reasoning is that momentum may not always point in the correct direction and as such, we correct the direction of the gradient so that the final value of $w$ after update is close to expected. The figure below shows this visually.
 
-{% include image.html url="notes/deep_learning/images/momentum_3.png" description="Vector representation of Gradient Descent with Nesterov Momentum" img_classes="notes-img" %}
+<figure class="notes-img">
+  <img src="../../images/momentum_3.png" alt="Vector representation of Gradient Descent with Nesterov Momentum">
+  <figcaption>Vector representation of Gradient Descent with Nesterov Momentum</figcaption>
+</figure>
 
 ## AdaGrad
 
 AdaGrad uses an *adaptive* learning rate to stabilize training. It uses a slightly different value of learning rate for each parameter. Till now, for the entire weight vector $w$, we have used the same learning rate
-\begin{align}
+
+$$
+\begin{aligned}
     g_{t,j} &= \nabla_{w_{t-1, j}}L(w_{t-1}, X, y)\newline
     G_{t,j} &= G_{t-1,j} + g_{t,j}^{2}\newline
-    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{G_{t,j} + \epsilon}} g_{t,j} \end{align}
+    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{G_{t,j} + \epsilon}} g_{t,j} \end{aligned}
+$$
+
 where $\eta$ is usually kept fixed at $0.01$, and $G$ keeps increasing with time. Hence, we have an in-built early stopping mechanism where after long time, weight update will stop. The different effective learning rate per parameter, gives us finer control on how weights update.
 
 
@@ -108,18 +138,26 @@ $\epsilon$ is a small value ($10^{-8}$) kept to prevent denominator from becomin
 ## RMSProp
 
 RMSProp is a variation of AdaGrad where the calculation of square of gradient is itself converted to a exponential moving average
-\begin{align}
+
+$$
+\begin{aligned}
     g_{t,j} &= \nabla_{w_{t-1, j}}L(w_{t-1}, X, y)\newline
     G_{t,j} &= \beta G_{t-1,j} + (1-\beta)g_{t,j}^{2}\newline
-    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{G_{t,j} + \epsilon}} g_{t,j} \end{align}
+    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{G_{t,j} + \epsilon}} g_{t,j} \end{aligned}
+$$
+
 where $\beta$ is about $0.9$ and $\eta$ about $0.001$, and the exponential average is tracked for every variable individually. Thus, the learning rate also adapts to the latest gradient values because the coefficient $\beta$ will force only a few of the latest gradient values to contribute to the weights update. This is in contrast with AdaGrad where the gradient keeps accumulating and becoming larger, causing the learning rate to continuously decrease.
 
 ## Adam
 
 Adam builds on top of RMSProp to bring exponential moving average to the gradient calculation as well. We also have bias correction discussed [here](#gradient-descent-with-momentum).
-\begin{align}
+
+$$
+\begin{aligned}
     g_{t,j} &= \nabla_{w_{t-1, j}}L(w_{t-1}, X, y)\newline
     m_{t,j} &= \frac{\beta_{1} m_{t-1,j} + (1-\beta_{1}) g_{t,j}}{1 - \beta_{1}^{t}}\newline
     v_{t,j} &= \frac{\beta_{2} v_{t-1,j} + (1-\beta_{2})g_{t,j}^{2}}{1 - \beta_{2}^{t}}\newline
-    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{v_{t,j}} + \epsilon} m_{t,j} \end{align}
+    w_{t,j} &= w_{t-1,j} - \frac{\eta}{\sqrt{v_{t,j}} + \epsilon} m_{t,j} \end{aligned}
+$$
+
 We have introduced exponential moving average for both the gradient and it's square, bias correction in both the terms, and also adaptive learning rate. Good initial values are $0.9$ for $\beta_{1}$, $0.999$ for $\beta_{2}$, $10^{-8}$ for epsilon, and $0.1$ for $\alpha$. However, it should be noted that $\alpha$ needs to be tuned differently as per the use case.

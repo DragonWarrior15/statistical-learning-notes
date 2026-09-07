@@ -1,4 +1,4 @@
-## Word Embeddings
+# Word Embeddings
 These are numerical representations of words so that they can be ingested by any moddl like transformer.
 
 ### One Hot Encoding
@@ -10,11 +10,15 @@ Alternate encodings like character level one hot encoding vectors exist, but typ
 
 ### Word2Vec
 Suppose the dictionary size is $K$. The idea is to build on top of one hot encodings and build an embedding matrix $E$ such that
+
+
 $$
 \begin{aligned}
 v_{n} = Ex_{n}
 \end{aligned}
 $$
+
+
 
 where $x_{n}$ is of dimensions $K \times 1$ and $E$ is of dimensions $D \times K$. Here $D$ is the dimensionality of our embedding space.
 
@@ -28,6 +32,7 @@ Skip-Gram involves the same mechanics, but learns context around the word from t
 
 ### Character Level Embeddings
 As discussed earlier, these also offer a good possibility giving low dimensional vectors. However, there are a few problems
+
 - Sequences now become much longer, which means the compute time increases significantly
 - Neural Network must learn to assemble words from characters to generate or infer semantic meaning.. this means the network has to perform this extra tasks to learn meaning first
 - Words are usually more semantically meaningful than character level information

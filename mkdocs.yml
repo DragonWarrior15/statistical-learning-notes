@@ -27,6 +27,8 @@ extra_css:
 extra_javascript:
 - javascripts/mathjax.js
 - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+- https://unpkg.com/mermaid@11/dist/mermaid.min.js
+- javascripts/mermaid.js
 markdown_extensions:
 - admonition
 - attr_list
@@ -41,7 +43,11 @@ markdown_extensions:
     anchor_linenums: true
     pygments_lang_class: true
 - pymdownx.inlinehilite
-- pymdownx.superfences
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
 - Home: index.md
 - Probability:
@@ -229,3 +235,56 @@ nav:
   - Series Solutions of ODEs: notes/differential_equations/series_solutions.md
   - Laplace Transforms: notes/differential_equations/laplace_transforms.md
   - Exercises: notes/differential_equations/exercises.md
+- Deep Learning:
+  - notes/deep_learning/index.md
+  - Gradient Descent:
+    - Gradient Descent: notes/deep_learning/chapters/gradient_descent/gradient_descent.md
+    - Matrix Calculus: notes/deep_learning/chapters/gradient_descent/matrix_calculus.md
+    - Backpropagation: notes/deep_learning/chapters/gradient_descent/backprop.md
+    - Gradients for Common Activation Functions: notes/deep_learning/chapters/gradient_descent/gradient_activation.md
+    - Gradients for Common Loss Functions: notes/deep_learning/chapters/gradient_descent/gradient_loss.md
+    - Gradients for Common Layers: notes/deep_learning/chapters/gradient_descent/gradient_layers.md
+    - Backpropagation Example: notes/deep_learning/chapters/gradient_descent/backprop_example_1.md
+    - Optimizers: notes/deep_learning/chapters/gradient_descent/optimizers.md
+  - Weights Initialization:
+    - Weights Initialization: notes/deep_learning/chapters/weight_initialization/gradient_explosion.md
+    - Correct Initialization: notes/deep_learning/chapters/weight_initialization/correct_init.md
+  - Recurrent Layers:
+    - Recurrent Layers: notes/deep_learning/chapters/recurrent_layers/rnn.md
+    - Backpropagation Through Time (BPTT): notes/deep_learning/chapters/recurrent_layers/bptt.md
+    - Exploding and Vanishing Gradient: notes/deep_learning/chapters/recurrent_layers/rnn_grad_problems.md
+    - Gated Recurrent Unit (GRU): notes/deep_learning/chapters/recurrent_layers/gru.md
+    - Long Short Term Memory (LSTM): notes/deep_learning/chapters/recurrent_layers/lstm.md
+  - Convolutional Neural Networks:
+    - Convolutional Neural Networks: notes/deep_learning/chapters/convolutional_neural_networks/01_introduction.md
+    - Convolution Operation: notes/deep_learning/chapters/convolutional_neural_networks/02_convolution_operation.md
+    - VGG-16 Architecture: notes/deep_learning/chapters/convolutional_neural_networks/03_vgg16_architecture.md
+    - Layer Visualizations: notes/deep_learning/chapters/convolutional_neural_networks/04_layer_visualization.md
+    - Adversarial Attacks: notes/deep_learning/chapters/convolutional_neural_networks/05_adversarial_attacks.md
+    - Deepdream: notes/deep_learning/chapters/convolutional_neural_networks/06_deepdream.md
+    - Object Detection: notes/deep_learning/chapters/convolutional_neural_networks/07_object_detection.md
+    - Convolutional Segmentation: notes/deep_learning/chapters/convolutional_neural_networks/08_convolutional_segmentation.md
+    - Style Transfer: notes/deep_learning/chapters/convolutional_neural_networks/09_style_transfer.md
+  - Transformers:
+    - Transformers Motivation: notes/deep_learning/chapters/transformers/01_motivation.md
+    - Self Attention: notes/deep_learning/chapters/transformers/02_self_attention.md
+    - Attention: notes/deep_learning/chapters/transformers/03_attention.md
+    - Positional Encodings: notes/deep_learning/chapters/transformers/04_positional_encoding.md
+    - Word Embeddings: notes/deep_learning/chapters/transformers/05_word_embeddings.md
+    - Sequence Modelling: notes/deep_learning/chapters/transformers/06_sequence_modelling.md
+    - Decoder Transformers: notes/deep_learning/chapters/transformers/07_decoder_transformers.md
+    - Sampling Strategies: notes/deep_learning/chapters/transformers/08_sampling_strategies.md
+    - Encoder Transformers: notes/deep_learning/chapters/transformers/09_encoder_transformers.md
+    - Sequence to Sequence or Encoder Decoder Models: notes/deep_learning/chapters/transformers/10_encoder_decoder_transformers.md
+    - Fine Tuning LLMs: notes/deep_learning/chapters/transformers/11_fine_tuning.md
+    - Vision Transformers: notes/deep_learning/chapters/transformers/12_vision_transformers.md
+    - Working with audio data: notes/deep_learning/chapters/transformers/13_audio_data.md
+    - Text to Speech: notes/deep_learning/chapters/transformers/14_text_to_speech.md
+    - Multimodal Transformers: notes/deep_learning/chapters/transformers/15_multimodal_transformers.md
+  - Generative Models:
+    - Generative Adversarial Networks: notes/deep_learning/chapters/generative_models/01_gan.md
+    - Autoencoders: notes/deep_learning/chapters/generative_models/02_autoencoders.md
+  - Codes:
+    - Backprop Example: notes/deep_learning/codes/backprop_example_1.md
+    - Exponentially MA Example: notes/deep_learning/codes/exp_ma.md
+    - BPTT Example: notes/deep_learning/codes/bptt_example_1.md

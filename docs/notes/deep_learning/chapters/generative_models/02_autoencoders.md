@@ -3,15 +3,20 @@ These models learn representations of data that are useful for one or more subse
 
 They usually have the same number of outputs as inputs, and also have an intermediate layer/representation $z(x)$, also called the hidden representation. Thus, the full transformation can be written as 
 
+
+
 $$
 x \to z(x) \to y(z)
 $$
+
+
 
 where the first half of the transformation is an encoder, while the latter is a decoder.
 
 The goal is to get $y$ (the output) as close to $x$ (the input) as possible, or minimize the error between the two.
 
 The trivial solution for the above is where the network just learns to copy the input to the output. To force the network to learn non-trivial and interesting representations, we can do one of the below
+
 - Restrict the dimensionality of $z(x)$ to be less than that of $x$ or constraint $z$ to be sparse
 - Task the network with reconstruction where the input is corrupted by adding noise, or some parts/features of the input are masked
 
@@ -35,11 +40,15 @@ Due to non-linear activations, mappings learnt are now very general, and not res
 ### Sparse Autoencoders
 We use L1 regularization to force sparsity, causing an effective reduction in dimensionality
 
+
+
 $$
 \begin{aligned}
 \tilde{E}(w) = E(w) + \lambda\sum_{k=1}^{K}|z_{k}|
 \end{aligned}
 $$
+
+
 
 where $E(w)$ is the unregularized error. Note here the $L_{1}$ regularization is applied on all activations of one of the hidden layers. This is in contrast to the usual application of $L_{1}$ regularization where it is applied on the parameters of the network.
 
@@ -47,6 +56,7 @@ where $E(w)$ is the unregularized error. Note here the $L_{1}$ regularization is
 This is one of the approaches to force a model to learn interesting patterns in teh data. We take the input vector $x_{n}$ and corrupt it with noise to give $\tilde{x}_{n}$. Next, we feed this to the autoencoder to get the output $y(\tilde{x}_{n}, w)$ and we try to minimize the error between this output and the noise free input $x_{n}$.
 
 The noise can take two forms
+
 - Take a fraction of inputs ($0 \leq v \leq 1$) and set the value to zero
 - Add an independent gaussian noise (zero mean) to all the input features, with scale of the gaussian deterimined relative to the input feature
 

@@ -13,13 +13,19 @@ $n = 1,...,N$ represents individual tokens.
 
 Input is a matrix $X$ of dimensions $N \times D$.
 
+
+
 $$
 \tilde{X} = \text{Transformer Layer}[X] \quad \text{where, dim}(\tilde{X}) = \text{dim}(X)
 $$
 
+
+
 Multiple such layers can be stacked up to create deep networks to learn more powerful representations.
 
 If the output is $y_{1}, ..., y_{N}$, then we want $y_{n}$ to be a linear combination of $x_{i}$ such that coefficient of important $x_{i}$ is higher and vice versa. To keep coefficients bounded, we add some constraints
+
+
 
 $$
 \begin{aligned}
