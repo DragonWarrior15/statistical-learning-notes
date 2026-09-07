@@ -5,7 +5,6 @@ description = "Build tooling for the Statistical Learning Notes site"
 requires-python = ">=3.11"
 dependencies = [
   "mkdocs-material>=9,<10",
-  "pyyaml>=6,<7",
 ]
 
 [dependency-groups]
