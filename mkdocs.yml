@@ -1,7 +1,7 @@
-site_name: Learning Notes — Probability
+site_name: Learning Notes
 site_url: https://dragonwarrior15.github.io/statistical-learning-notes/
 docs_dir: docs
-site_dir: site/probability
+site_dir: site
 use_directory_urls: false
 theme:
   name: material
@@ -120,3 +120,11 @@ nav:
     - Exercises Part 2: notes/probability/chapters/exercises/problems_p02.md
     - Exercises Part 3: notes/probability/chapters/exercises/problems_p03.md
     - Exercises Part 4: notes/probability/chapters/exercises/problems_p04.md
+- Linux:
+  - RegEx: notes/linux/regex.md
+  - find: notes/linux/find.md
+  - grep: notes/linux/grep.md
+  - cURL: notes/linux/curl.md
+  - sed: notes/linux/sed.md
+  - Docker: notes/linux/docker.md
+  - Kubernetes: notes/linux/kubernetes.md

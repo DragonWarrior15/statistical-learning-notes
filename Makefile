@@ -35,10 +35,10 @@ jekyll_serve_2:
 	bundle exec jekyll serve --force-polling --livereload
 
 mkdocs_serve:
-	uv run mkdocs serve --config-file mkdocs.probability.yml
+	uv run mkdocs serve
 
 mkdocs_build:
-	uv run mkdocs build --strict --config-file mkdocs.probability.yml
+	uv run mkdocs build --strict
 
 # sed 's/\\newline/\\newline INSERTLINE/g' _notes/time_series/chapters/arima/arma.tex | \
 # sed 's/\\\\/\\newline/g' | pandoc -f latex -t markdown --wrap=preserve --atx-headers | \
@@ -52,4 +52,3 @@ mkdocs_build:
 # sed 's/\\bm{/\\boldsymbol{/g' |\
 # sed '1 i\---\ntitle: "ARMA(p,q) Process"\n---\n' \
 # > _notes/time_series/chapters/arima/arma.md
-

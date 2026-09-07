@@ -28,9 +28,10 @@ Build the site with warnings treated as errors:
 make mkdocs_build
 ```
 
-The current MkDocs configuration is a Probability-only migration. Jekyll and
-the content under `_notes/` remain temporarily available while the other note
-collections are migrated and the published site is cut over.
+The current MkDocs configuration contains the migrated Probability and Linux
+collections. Jekyll and the content under `_notes/` remain temporarily available
+while the other note collections are migrated and the published site is cut
+over.
 
 To serve the legacy Jekyll site, run `make jekyll_serve`.
 

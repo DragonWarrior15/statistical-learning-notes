@@ -8,6 +8,7 @@ Also known as K8s, its an open source system for automating deployment, scaling,
 It supports a wide variety of applications like stateful, stateless and data intensive apps.
 
 Important concepts related to kubernetes
+
 * Pods and workloads
     * Pods are smalles deployable object in kubernetes and the higher level abstractions to run workloads
 * Services
