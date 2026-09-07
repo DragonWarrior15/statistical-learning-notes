@@ -19,6 +19,8 @@ not_in_nav: 'notes/probability/chapters/references.md
 
   notes/probability/chapters/exercises/a_*.md
 
+  notes/differential_equations/exercises/a_*.md
+
   '
 extra_css:
 - stylesheets/extra.css
@@ -196,3 +198,34 @@ nav:
     - Caching: notes/large_language_models/inference_engineering/chapters/08_caching.md
     - Model Parallelism: notes/large_language_models/inference_engineering/chapters/09_model_parallelism.md
     - Disaggregation: notes/large_language_models/inference_engineering/chapters/10_disaggregation.md
+- Linear Algebra:
+  - notes/linalg/index.md
+  - Complex Field:
+    - Complex Field: notes/linalg/vector_spaces/complex.md
+    - Lists: notes/linalg/vector_spaces/vs_list.md
+    - Fields: notes/linalg/vector_spaces/fields.md
+    - Vector Spaces: notes/linalg/vector_spaces/vector_space.md
+    - Product and Quotient of Vector Spaces: notes/linalg/vector_spaces/prod_quo.md
+    - Subspace: notes/linalg/vector_spaces/subspace.md
+    - Finite Dimensional Vector Spaces: notes/linalg/vector_spaces/finite_dim.md
+    - Orthogonal and Orthonormal Vectors: notes/linalg/vector_spaces/orthogonal.md
+  - Linear Maps:
+    - Linear Maps: notes/linalg/linear_maps/linear_maps.md
+    - Matrix: notes/linalg/linear_maps/matrix.md
+    - Determinant: notes/linalg/linear_maps/det.md
+    - Special Matrices: notes/linalg/linear_maps/special_matrices.md
+    - Algebraic Properties of Matrices: notes/linalg/linear_maps/algebraic_properties.md
+  - Linear Equations:
+    - Linear Equations: notes/linalg/linear_eq/elimination.md
+    - Eigenvectors and Eigenvalues: notes/linalg/linear_eq/eigen.md
+  - Exercises: notes/linalg/exercises/problems.md
+- Differential Equations:
+  - notes/differential_equations/index.md
+  - Differential Equations: notes/differential_equations/intro.md
+  - Special Solutions to First Order ODE: notes/differential_equations/special_solutions.md
+  - Second Order Linear ODE: notes/differential_equations/order_two_linear.md
+  - Higher Order Linear ODE: notes/differential_equations/higher_order_linear.md
+  - System of ODEs: notes/differential_equations/system_of_ode.md
+  - Series Solutions of ODEs: notes/differential_equations/series_solutions.md
+  - Laplace Transforms: notes/differential_equations/laplace_transforms.md
+  - Exercises: notes/differential_equations/exercises.md

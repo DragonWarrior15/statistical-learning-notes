@@ -11,6 +11,12 @@ Choose a subject to start exploring the notes currently available in MkDocs.
 
     [Explore Probability →](notes/probability/index.md)
 
+-   ## Linear Algebra
+
+    Vector spaces, linear maps, matrices, linear equations, and eigenvalues.
+
+    [Explore Linear Algebra →](notes/linalg/index.md)
+
 -   ## Linux
 
     Command-line tools, regular expressions, containers, and Kubernetes.
@@ -29,6 +35,13 @@ Choose a subject to start exploring the notes currently available in MkDocs.
     simulations, and Python examples.
 
     [Explore Time Series →](notes/time_series/index.md)
+
+-   ## Differential Equations
+
+    First- and higher-order ODEs, systems, series solutions, Laplace
+    transforms, and exercises.
+
+    [Explore Differential Equations →](notes/differential_equations/index.md)
 
 -   ## Maths Miscellaneous
 

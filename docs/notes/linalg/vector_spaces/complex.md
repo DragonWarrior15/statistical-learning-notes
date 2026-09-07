@@ -1,17 +1,17 @@
----
-title: "Complex Field"
----
-
 # Vector Fields
 ## Complex Field
 A complex number is of the form $a + bi \in \comp$ where $a, b \in \real$ and $i^{2} = -1$. Additon and multiplication is performed as
 
-\begin{align}
+
+$$
+\begin{aligned}
      (a + bi) + (c + di) &= (a + c) + (b + d)i\newline
      (a + bi) \times (c + di) &= a \times (c + di) + bi \times (c + di)
      = ac + adi + bci + bd \times (-1)\newline
      &= (ac - bd) + (ad + bc)i
-\end{align}
+\end{aligned}
+$$
+
 
 Complex arithmetic satisfies the following properties
 
@@ -42,7 +42,10 @@ Complex arithmetic satisfies the following properties
 
 Subtraction and Division are also defined for complex numbers
 
-\begin{align}
+
+$$
+\begin{aligned}
     \alpha - \beta &= \alpha + (-\beta)\newline
     \alpha \div \beta &= \alpha * (\frac{1}{\beta}) \quad \text{where $1/\beta$ is the multiplicative inverse of $\beta$}
-\end{align}
+\end{aligned}
+$$

@@ -1,22 +1,26 @@
----
-title: "Finite Dimensional Vector Spaces"
----
-
 # Finite Dimensional Vector Spaces
 
 **Linear Combination**
 
 A linear combination of vectors in a vector space $\setv$ is a vector of the form
-\begin{align}
-    a_{1}v_{1} + a_{2}v_{2} + \cdots + a_{n}v_{n}\end{align}
+
+$$
+\begin{aligned}
+    a_{1}v_{1} + a_{2}v_{2} + \cdots + a_{n}v_{n}\end{aligned}
+$$
+
 where $v_{j} \in \setv$ and $a_{j} \in \field$.
 
 
 **Span**
 
 The span of a set of vectors $v_{1}, \ldots v_{2} \in \setv$ is a set of all vectors which are a linear combination of these vectors
-\begin{align}
-    span(v_{1}, \ldots, v_{n}) = \{ a_{1}v_{1} + \ldots + a_{n}v_{n} | a_{1}, \ldots a_{n} \in \field \}\end{align}
+
+$$
+\begin{aligned}
+    span(v_{1}, \ldots, v_{n}) = \{ a_{1}v_{1} + \ldots + a_{n}v_{n} | a_{1}, \ldots a_{n} \in \field \}\end{aligned}
+$$
+
 The span of an empty list is defined to be the singleton set $\{ 0 \}$.
 
 
@@ -43,12 +47,16 @@ A vector space $\setv$ is called finite dimensional if some list of vectors in $
 -   In a list of linearly *dependent* vectors, it is possible to express at least one vector as a linear combination of the other vectors in that list. The converse also holds true which can be used to esatablish if a list of vectors is linearly independent or dependent.
 
 -   If we express a vector as linear combination of a list of vectors that are linearly independent, the coefficients used in the process are unique. Assume that two representations of the same vector exist
-    \begin{align}
+
+$$
+\begin{aligned}
             v &= \alpha_{1}v_{1} + \cdots + \alpha_{m}v_{m}\newline
             v &= \gamma_{1}v_{1} + \cdots + \gamma_{m}v_{m}\newline
             \Rightarrow 0 &= (\alpha_{1} - \gamma_{1})v_{1} + \cdots + (\alpha_{m} - \gamma_{m})v_{m}\newline
             \Rightarrow (\alpha_{1} - \gamma_{1}) &= \cdots = (\alpha_{m} - \gamma_{m}) = 0
-        \end{align}
+        \end{aligned}
+$$
+
 since the only possible way to get the $0$ vector is to have all the coefficients $0$.
 
 ## Basis
@@ -76,6 +84,10 @@ It follows that the dimension of a subspace of a vector space $\setv$ is $\leq$ 
 
 
 Dimensions of sum of subspaces can be written out as
-\begin{align}
-    dim(U_{1} + U_{2}) = dim(U_{1}) + dim(U_{2}) - dim(U_{1} \cap U_{2})\end{align}
+
+$$
+\begin{aligned}
+    dim(U_{1} + U_{2}) = dim(U_{1}) + dim(U_{2}) - dim(U_{1} \cap U_{2})\end{aligned}
+$$
+
 analogous to how the size of union of two sets is determined. The same analogy as with sets can be extend to 3 or higher subspaces as well.
