@@ -15,6 +15,10 @@ theme:
   - toc.follow
 plugins:
 - search
+- print-site:
+    print_page_title: Learning Notes
+    add_cover_page: true
+    add_print_site_banner: true
 not_in_nav: 'notes/probability/chapters/references.md
 
   notes/probability/chapters/exercises/a_*.md
