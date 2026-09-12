@@ -1,10 +1,11 @@
+# Scaling and Implementation Checklist
 ## Scaling
 For highly scalable embedding search, use HNSW, but it requires careful tuning of the relevant algorithm parameters.
 * <1M vectors: Chroma or pgvector
 * 1M-100M vectors: pgvector + pgvectorscale
 * >100M vectors: Milvus or elastisearch (for distributed/sharded architecture)
 
-## HNSW
+### HNSW
 Most modern vector databases rely on HNSW (Hierarchical Navigable Small Worlds). The parameters are
 * `M` (connectivity): A higher M means higher recall, but memory usage explodes and index builds can begin to slow down.
 * `ef_construction`: Controls the index quality during the build phase.

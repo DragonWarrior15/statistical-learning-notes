@@ -1,4 +1,4 @@
-## Chunking Strategies
+# Chunking Strategies
 Choose a strategy that represents the documents inherent structure.
 
 | Strategy Type | Definition | Use case |

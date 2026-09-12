@@ -1,3 +1,4 @@
+# Pre and Post Retrieval Optimizations
 ## Pre retrieval
 Here, we can enhance our understanding of the query
 * Use synonyms or similar variants to ensure high recall among different variants.

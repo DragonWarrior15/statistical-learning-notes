@@ -1,3 +1,4 @@
+# Advanced RAG Architectures
 ## Query Decomposition
 A pattern where the system uses query decomposition to break a complex question into sub sentences, retrieving pertinent triplets for each part before synthesizing the final answer.
 
