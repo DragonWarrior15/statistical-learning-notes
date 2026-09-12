@@ -208,6 +208,13 @@ nav:
     - Caching: notes/large_language_models/inference_engineering/chapters/08_caching.md
     - Model Parallelism: notes/large_language_models/inference_engineering/chapters/09_model_parallelism.md
     - Disaggregation: notes/large_language_models/inference_engineering/chapters/10_disaggregation.md
+  - Retrieval Augmented Generation (RAG):
+    - Basics: notes/large_language_models/retrieval_augmented_generation/01_basics.md
+    - Retrieval Optimizations: notes/large_language_models/retrieval_augmented_generation/02_pre_and_post_retrieval_optimizations.md
+    - Chunking Strategies: notes/large_language_models/retrieval_augmented_generation/03_chunking_strategies.md
+    - Advanced Architectures: notes/large_language_models/retrieval_augmented_generation/04_advanced_rag_architectures.md
+    - Scaling and Implementation Checklist: notes/large_language_models/retrieval_augmented_generation/05_scaling_and_implementation_checklist.md
+    - Evaluations: notes/large_language_models/retrieval_augmented_generation/06_evaluation.md
 - Linear Algebra:
   - notes/linalg/index.md
   - Complex Field:

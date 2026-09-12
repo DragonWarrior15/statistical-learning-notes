@@ -18,4 +18,10 @@ systems for language, image, and video generation.
 
     [Start with motivation →](inference_engineering/chapters/01_motivation.md)
 
+-   ## Retrieval Augmented Generation (RAG)
+
+    RAG, Chunking, Retrieval, GraphRAG, Agentic RAG.
+
+    [Start with basics →](retrieval_augmented_generation/01_basics.md)
+
 </div>
