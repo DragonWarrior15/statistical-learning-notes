@@ -38,15 +38,17 @@ Quantization can be applied at
 
 - **Tensor Level**: Calculate a single scale factor for the entire QKV vector
 - **Channel Level**: Calculate a different scale factor for each feature vector within the tensor
-- **Block Level**: Within each feature vector, devide the vector into blocks of N values, and calculate a scale factor for each block
+- **Block Level**: Within each feature vector, divide the vector into blocks of N values, and calculate a scale factor for each block
 
 ### Scale Factor
 The scaling factor helps converting the floating point numbers to an equivalent lower precision representation.
 
 Standard quantization formula
+
 $$
 q = \left\lfloor{\frac{x}{S}}\right\rfloor + Z
 $$
+
 where
 
 - $q$ is the quantized value
@@ -55,6 +57,7 @@ where
 - $Z$ is the zero point (integer representing the real world 0)
 
 and the inverse operation will be
+
 $$
 x \approx S \times(q - Z)
 $$
@@ -80,7 +83,7 @@ There are two ways to calculate the Scale Factor
     - Primarily useful when the data is skewed, activations (ReLU for instance)
     - Higher accuracy on skewed data
 
-Note that the format MXFP8, supported by Blackwell architecture, is also called a microscaling format. It computes blockwise scale factor on every 32 parameters, reducing the impact of these number formats' lower dynamic range.
+Note that the format MXFP8, supported by Blackwell architecture, is also called a microscaling format. It computes block-wise scale factor on every 32 parameters, reducing the impact of these number formats' lower dynamic range.
 
 Dynamic Quantization: Certain layers or other components of the model are left in the original precision, while the others are quantized to integers with as little as one bit of precision. These usually represent average precision when reporting (example 1.58 bit quantization).
 
@@ -99,23 +102,23 @@ We can use the NVIDIA TensorRT Model Optimizer (Model Opt) for post quantization
 ### What to Quantize ?
 After picking a precision to quantize to, two decisions have to be made before post training quantization
 
-- What parts of the mdoel need to be quantized: weights, activation, cache, attention ?
-- What nomber format offers the appropriate dynamic range and granularity ?
+- What parts of the model need to be quantized: weights, activation, cache, attention ?
+- What number format offers the appropriate dynamic range and granularity ?
 
 Different components have different sensitivity to quantization. Reducing the precision of more sensitive components has a higher risk of quality degradation. See the below in the order of least to most sensitivity
 
-- Weights: Specifically the linear layers are least sensitive to quantization, thanks to the size of the layer; however, input and output maybe left in original precision as they are more sensitive
-- Activations: Intermediate outputs of activation functions are only somewhat sensitive to quantization; activation functions are rarely quantized though as they are such a tiny fraction of teh model's weights
-- KV Cache: Cached values from attention calculation are moderately sensitive to quantization; KV cache fo each token is used by every subsequent token, hence quantization induced errors can compound in a sequence
-- Attention: Attention layers of a model are highly sensitive to quantization, especially equations like softmax
+- **Weights**: Specifically the linear layers are least sensitive to quantization, thanks to the size of the layer; however, input and output maybe left in original precision as they are more sensitive; this includes the linear weights of both attention and fully connected layers
+- **Activations**: Intermediate outputs of activation functions are only somewhat sensitive to quantization; activation functions are rarely quantized though as they are such a tiny fraction of teh model's weights
+- **KV Cache**: Cached values from attention calculation are moderately sensitive to quantization; KV cache fo each token is used by every subsequent token, hence quantization induced errors can compound in a sequence
+- **Attention**: Attention layers of a model are highly sensitive to quantization (mainly the softmax calculation at the heart of attention)
 
 Here, KV cache refers to the operations that have already been completed and stored. By quantization, we are only saving the memory footprint of the already calculated numbers. On the contrary, attention refers to active calculations where precision is important. Softmax is part of attention and is sensitive to changes in the input.
 
 KV cache quantization gives additional boost to techniques like prefix caching and disaggregation. KV cache is a valuable resource. Quantizing it allows storing more of it in memory and reading it more quickly.
 
-All but the most aggresive quantization schemes run softmax in the original precision.
+All but the most aggressive quantization schemes run softmax in the original precision.
 
-A moderate approach to low precision inference uses a format like FP8 with high dynamic range if possible, a microscaling format like MXFP8 to carefully quantizae select layers, activations and often KV cache values. Even with thise high dynamic range formats, components of attention layer are rarely quantized.
+A moderate approach to low precision inference uses a format like FP8 with high dynamic range if possible, a microscaling format like MXFP8 to carefully quantize select layers, activations and often KV cache values. Even with these high dynamic range formats, components of attention layer are rarely quantized.
 
 ### Measuring Quality Impact
 Test the output quality vs original precision outputs
@@ -128,4 +131,4 @@ The idea is to look for difference in scores that is indistinguishable from nois
 
 Simplest check on quality is perplexity. Give the quantized model the expected output token sequence, and calculate the likelihood of the model predicting those tokens. Higher perplexity means the model is "_surprised_" by the sequence which is not desirable. We want only a small increase in perplexity.
 
-Quantization is a scale, not a binray decision. Every configuration of what to quantize and what not to, produces entirely different scores. For highly sensitive domains, it is preferable to not perform quantization, but rather look at other optimization techniques.
+Quantization is a scale, not a binary decision. Every configuration of what to quantize and what not to, produces entirely different scores. For highly sensitive domains, it is preferable to not perform quantization, but rather look at other optimization techniques.
