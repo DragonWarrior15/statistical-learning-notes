@@ -41,3 +41,22 @@ Three levels of granularity. A good system checks all, but we need to be cogniza
 | End to End | Final response and outcome | Black box: given the task, check the answer and the end state. This is robust to new paths, but tells little about why an error occurred. |
 | Trajectory | Did the agent take the sensible path? | Check the sequence of tool calls, and the arguments against a reference. This is good for debugging and safety, brittle if only one path is expected. |
 | Single Step | Given this state, what is teh right next move? | Freeze the conversation at a decision point, and test only the next action. This is fast, cheap and precise, like a unit test for one decision. |
+
+## Full checklist of dimensions
+
+| Dimension | Question | Type of Grader/Check |
+| --- | --- | --- |
+| Task success | Was the users' goal achieved ? | State check, exact or fuzzy match, LLM judge |
+| Correctness/Factuality | Are the claims true ? | Reference match, judge with reference |
+| Groundedness | Is every claim supported by tool results or retrieved context ? | Judge given the context; citation checks |
+| Tool Selection | Right tools and no unneeded ones | Set comparison with the expected tools |
+| Tool Arguments | Valid, real IDs, right values | JSON schema, argument match, Database lookup |
+| Efficiency | Steps, tool calls, tokens, latency, cost | Counters from the trace with budgets |
+| Instruction following | Format, length language, policy constraints | Regex, schema checks, LLM Judge |
+| Error recovery | Does it handle tool failures sensibly ? | Fault injection and outcome check |
+| Safety | No harmful or unauthorized actions, resists prompt injections | Forbidden action checks, red team suites |
+| Robustness | Stable under paraphrase, types and noisy input | Perturbed variants of the same task |
+| Consistency | Same results across repeated turns | pass^k over k trials |
+Calibration | Does stated confidence match accuracy ? Does it defer when unsure ? | Brier Score, ECE, abstention rate |
+| Conversation quality | Asks clarifying questions when needed, tone, turns to resolution | Simulated user with a judge |
+| User outcomes (online) | Resolution rate, escalations, thumbs up/down, edits, retention | Product analytics joined to traces |
