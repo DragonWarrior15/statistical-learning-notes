@@ -121,3 +121,40 @@ $$
 | $k \approx 0$ | Chance |
 | $k \geq 0.6$ | Substantial |
 | $k \geq 0.8$ | Near-human |
+
+## Metrics and Statistics
+
+| Metric | Definition | Formula | Useful in cases |
+| --- | --- | --- | --- |
+| pass@k | Pass in at least one out of k attempts | $1-(1-p)^{k}$ | Suits cases where we get multiple attempts at a problem, such as code generation and code testing |
+| pass^k | Pass in all k attempts | $p^{k}$ | Suits cases similar to user facing ones, where we must succeed every single time |
+
+Use confidence intervals to see whether current change is statistically significant or not.
+
+Also watch per case flips. Suppose 5 cases improved and 5 deteriorated. That means agent performance change is flat. We should include gates like no critical case should switch from pass to fail.
+
+
+## Failures Unique to Multi Agent Systems
+
+| Failure | Definition | How to check |
+| --- | --- | --- |
+| Routing and Delegation | Did the router send the task to the right specialist ? | Treat as a classification problem |
+| Handoff Fidelity | Did the sub agent get the context it needed, or was some context lost | Judge |
+| Coordination | Duplicate work, contradictory sub results, deadlock, runaway spawning of sub agents | |
+| Attribution | When the system fails, which agent caused it ? | Need per agent span in the trace |
+| Cost Blow Up | Tokens multiply with each agent | Track cost per calculated task and number of agents |
+
+## Safety and Prompt Injection
+
+- A system that rejects everything is safe but useless
+- Measure utility: does it still do the job and attack success rate; how often the injection work
+
+## Error Analysis in Practice
+
+- Sample 50 to 100 traces, deliberately including failures, complaints and edge cases
+- Open Coding: For each trace, write the first thing that wen wrong in own words; don't use a pre defined list yet
+- Axial Coding: Group notes into categories
+- Count and Ran by Frequency multiplied by severity; evaluate and fix top categories first
+- Automate: Build a grader per category, validating on already labelled traces
+
+This is a shift from test driven development to eval driven development.
