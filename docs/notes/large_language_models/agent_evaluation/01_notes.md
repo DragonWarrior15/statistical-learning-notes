@@ -9,6 +9,8 @@ Ordinary Software has unit tests where for a given single input, we have a singl
 
 Agent evaluations measure whether an agent achieves the outcome the user wanted through an acceptable trajectory, at an acceptable cost, reliably across repeated runs and verified inputs.
 
+These notes are based on [this link](https://claude.ai/artifact/QeGEdokdkwUAaUjRr2Eirx).
+
 ## Places an agent can fail
 
 ```mermaid
