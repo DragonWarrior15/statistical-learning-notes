@@ -60,3 +60,18 @@ Three levels of granularity. A good system checks all, but we need to be cogniza
 Calibration | Does stated confidence match accuracy ? Does it defer when unsure ? | Brier Score, ECE, abstention rate |
 | Conversation quality | Asks clarifying questions when needed, tone, turns to resolution | Simulated user with a judge |
 | User outcomes (online) | Resolution rate, escalations, thumbs up/down, edits, retention | Product analytics joined to traces |
+
+## Three grader types
+
+```mermaid
+graph TD
+    A[Is there a checkable right answer or end state ?] -- Yes --> B[Code grader, regex, schema, state diffs, unit tests]
+    A -- No --> C[Can a written rubric separate good from bad ?]
+    C -- Yes --> D[LLM Judge calibrated against human labels]
+    D -.-> E[Human reviewer, pairwise preference]
+    C -- No --> E
+```
+
+People and model are most reliable at comparing than at absolute scoring.
+
+Binary pass/fail beats a scoring rubric of style 1-10 almost every time. It is easy to agree on, calibrate, and easier to act on.
