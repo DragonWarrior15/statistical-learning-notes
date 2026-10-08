@@ -75,3 +75,49 @@ graph TD
 People and model are most reliable at comparing than at absolute scoring.
 
 Binary pass/fail beats a scoring rubric of style 1-10 almost every time. It is easy to agree on, calibrate, and easier to act on.
+
+## LLM as a Judge
+
+Known judge biases
+
+| Bias Type | Description | Techniques to prevent |
+| --- | --- | --- |
+| Position Bias | In pairwise mode, it prefers whichever answer comes first | Run both orders and count a win only if it holds in both cases |
+| Verbosity Bias | Longer answers score higher | Rubric must include length is not a merit; control for length |
+| Self Preference | A model rates text in its own style higher | Use a different model family or at least validate using one |
+| Leniency | Passes almost everything | Binary criteria, examples of failures in the prompt, measure its false pass rate |
+| Surface Matching | Same words as the source are judged as faithful even when the meaning is reversed | Include such cases in judges' own test set |
+| Rubric Drift | Changing the judge prompt or model slightly changes scores | Version the judge, re-validate on every change |
+
+### Rules for a reliable judge
+
+- One narrow criteria per judge. Split "is good" into grounded, complete, correct format, safe.
+- Binary verdict with the reasoning before the verdict. Use structured output so it parses.
+- Give the judge what it needs to judge, such as reference answer, retrieved context, or tool results.
+- Put a few labelled examples of passes and fails in the prompt.
+- Judge the judge; Label 50 to 200 examples by hand, and run the judge on them and measure agreement. Only trust it when agreement is high.
+- Report judge;s precision and recall as well, against humans, not just the accuracy.
+- General failure families: negation, ambiguous requests, missing information, tool errors, prompt injection.
+- Seeded sandbox pattern: A fresh DB, filesystem or container per trial, seeded with fixture data.
+    - This lets grade the end state, realistic side effects.
+    - Needs more infra and must be reset between the trials.
+    - Compare final DB state with the expected one. Grades the outcome without worrying about which valid path the agent took.
+
+### Cohen's Kappa
+
+$$
+k = \frac{p_{o} - p_{e}}{1 - p_{e}}
+$$
+
+where
+
+$$
+p_{o} = \text{proportion of observations where human and judge agree}\\
+p_{e} = \text{expected proportion of agreement between human and judge graders}
+$$
+
+| $k$ | Interpretation |
+| --- | --- |
+| $k \approx 0$ | Chance |
+| $k \geq 0.6$ | Substantial |
+| $k \geq 0.8$ | Near-human |
