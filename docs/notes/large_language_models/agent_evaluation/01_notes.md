@@ -122,6 +122,14 @@ $$
 | $k \geq 0.6$ | Substantial |
 | $k \geq 0.8$ | Near-human |
 
+## Metric Groups
+
+| Metric Group | Metrics |
+| Quality | Task success rate, per-slice success, critical failure count, groundedness rate, judge scores |
+| Reliability | pass^k, variance across trials, error-recovery rate, calibration |
+| Efficiency | Steps per task, tool calls, input and output tokens, cost per completed task, p50 and p90 latency |
+| Safety | Forbidden action rate, injection attack success rate, refusal on in-scope requests |
+
 ## Metrics and Statistics
 
 | Metric | Definition | Formula | Useful in cases |
@@ -133,6 +141,14 @@ Use confidence intervals to see whether current change is statistically signific
 
 Also watch per case flips. Suppose 5 cases improved and 5 deteriorated. That means agent performance change is flat. We should include gates like no critical case should switch from pass to fail.
 
+## Agents that Retrieve
+
+| Stage | Metric | Needs |
+| --- | --- | --- |
+| Retrieval | Recall@k, Precision@k, MRR, nDCG; Did the right documents come back and near the top ? | Labelled relevant document ids per query |
+| Context Use | Context precision and recall: Was the useful context present and was the noise low | Reference answer or a Judge |
+| Generation | Faithfulness/Groundedness: Is every claim supported by the retrieved text ? Answer relevance | Judge given the context |
+| Agentic Retrieval | Did it decide to search when needed ? Re-query when the results were poor ? Stop searching when it had enough | Trajectory graders |
 
 ## Failures Unique to Multi Agent Systems
 
