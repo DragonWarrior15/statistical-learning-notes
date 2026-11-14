@@ -63,3 +63,18 @@ Lets look at different scenarios
 | --- | --- | --- | --- |
 | 1 | High Temperature + Standard Top-p | High temperature forces flattening of distribution, meaning a standard top-p of say 0.9 will have to consider more tokens | Model is creative |
 | 2 | High Temperature + Aggressive Top-p/Top-K | Distribution is still flattened, but the number of tokens considered is much more restricted | Model is somewhat creative, but prevented from generating gibberish |
+
+### Constrained Decoding
+
+Constrained decoding restricts generation to valid outputs by masking invalid next-token logits before selecting a token. For example, a classifier can restrict its output to a predefined set of labels. This guarantees the output format when generation completes, but does not guarantee the correct classification.
+
+One implementation with Hugging Face Transformers works as follows:
+
+1. Tokenize each label without special tokens and record the prompt length. For a decoder-only model, `generate` returns the full sequence of prompt and generated tokens, so slice off the prompt to obtain the output.
+2. Pass a custom `LogitsProcessor` to `model.generate`. At each step, keep only label token sequences that match the generated prefix.
+3. Allow the next token from each matching sequence; if a label is complete, allow EOS. A completed label and a longer label can share a prefix, so EOS and continuation tokens may both be allowed.
+4. Set all other token logits to negative infinity, leaving the original logits for allowed tokens. The model then selects among the valid continuations.
+
+A stopping criterion can end generation as soon as only one label matches the prefix. In that case, return the identified full label separately, since the generated text may be incomplete. Without this optimization, generation continues until the label and EOS are produced. Ensure the generation length limit is long enough for the longest label and EOS.
+
+During generation, the model produces vocabulary logits, and a `LogitsProcessor` receives scores before the next token is selected. It can modify these scores directly; probabilities are obtained from scores when needed for sampling. A custom `StoppingCriteria` receives the token IDs and may also receive scores, depending on the generation configuration. Both hooks receive the full current token sequence for a decoder-only model, so slice at the recorded prompt length when checking only the generated prefix.
